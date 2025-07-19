@@ -59,7 +59,7 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
           <Route path="/service/:id" element={<ServiceDetailPage />} />
-          <Route path="/list" element={<SubApp />} />
+          <Route path="/list/*" element={<SubApp />} />
         </Routes>
         <Footer />
         <ScrollingFooter />
