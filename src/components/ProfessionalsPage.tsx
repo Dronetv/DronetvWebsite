@@ -10,7 +10,7 @@ const ProfessionalsPage = () => {
   const [filteredProfessionals, setFilteredProfessionals] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const professionalsPerPage = 12;
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const professions = ['All', 'Drone Pilot', 'AI Specialist', 'GIS Expert', 'Software Engineer', 'Data Analyst', 'Flight Instructor', 'Photographer'];
   const locations = ['All', 'San Francisco, CA', 'Austin, TX', 'Seattle, WA', 'Denver, CO', 'Miami, FL', 'Boston, MA', 'Chicago, IL', 'New York, NY'];
@@ -258,7 +258,7 @@ const ProfessionalsPage = () => {
 
   const handleAddEventClick = () => {
     navigate('/list'); // Navigate to the /add-event route
-  };  
+  };
 
   return (
     <div className="min-h-screen bg-yellow-400 pt-16">
@@ -278,14 +278,14 @@ const ProfessionalsPage = () => {
           </p>
           <div className="w-24 h-1 bg-black mx-auto rounded-full"></div>
         </div>
-                <div className="absolute top-4 right-10 z-10 pointer-events-auto">
-  <button
-    onClick={handleAddEventClick}
-    className="px-6 py-3 bg-black text-white rounded-lg hover:bg-red-600 transition duration-300"
-  >
-    List your Profile
-  </button>
-</div>
+        <div className="absolute top-4 right-10 z-10 pointer-events-auto">
+          <button
+            onClick={handleAddEventClick}
+            className="px-6 py-3 bg-black text-white rounded-lg hover:bg-red-600 transition duration-300"
+          >
+            List your Profile
+          </button>
+        </div>
 
       </section>
 
@@ -347,78 +347,78 @@ const ProfessionalsPage = () => {
 
       {/* Featured Professionals Section */}
       <section className="py-4 bg-gradient-to-b from-yellow-400 to-yellow-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredProfessionals.map((professional, index) => (
-              <div
-                key={professional.id}
-                className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1"
-                style={{
-                  animationDelay: `${index * 200}ms`,
-                  animation: `fadeInUp 0.8s ease-out ${index * 200}ms both`
-                }}
-              >
-                <div className="p-8 text-center bg-yellow-50">
-                  {/* Profile Picture */}
-                  <div className="relative mb-6">
-                    <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 group-hover:border-yellow-500 transition-all duration-300">
-                      <img
-                        src={professional.profilePicture}
-                        alt={professional.name}
-                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                      />
-                    </div>
-                    <div className="absolute -top-2 -right-2 bg-yellow-400 text-black px-2 py-1 rounded-lg text-xs font-bold flex items-center gap-1">
-                      <Star className="h-3 w-3 fill-current" />
-                      Featured
-                    </div>
-                  </div>
-
-                  {/* Professional Info */}
-                  <h3 className="text-xl font-bold text-black mb-1 group-hover:text-gray-800 transition-colors duration-300">
-                    {professional.name}
-                  </h3>
-                  <p className="text-gray-600 mb-2">Age: {professional.age}</p>
-
-                  <div className={`${getProfessionColor(professional.profession)} text-white px-3 py-1 rounded-full text-sm font-bold inline-block mb-3`}>
-                    {professional.profession}
-                  </div>
-
-                  <div className="flex items-center justify-center gap-2 text-gray-600 mb-3">
-                    <MapPin className="h-4 w-4" />
-                    <span className="text-sm">{professional.location}</span>
-                  </div>
-
-                  <div className="flex items-center justify-center gap-1 mb-3">
-                    {renderStars(professional.rating)}
-                    <span className="ml-2 text-black font-semibold">{professional.rating}</span>
-                  </div>
-
-                  <p className="text-gray-600 mb-4 leading-relaxed text-sm">
-                    {professional.bio}
-                  </p>
-
-                  <div className="grid grid-cols-2 gap-3 mb-4">
-                    <div className="text-center p-2 bg-yellow-50 rounded-lg">
-                      <div className="text-sm font-bold text-black">{professional.experience}</div>
-                      <div className="text-xs text-gray-600">Experience</div>
-                    </div>
-                    <div className="text-center p-2 bg-yellow-200 rounded-lg">
-                      <div className="text-sm font-bold text-yellow-700">{professional.projects}</div>
-                      <div className="text-xs text-yellow-600">Projects</div>
-                    </div>
-                  </div>
-
-                  <button className="bg-black text-yellow-400 px-6 py-3 rounded-xl font-semibold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto">
-                    <Mail className="h-4 w-4" />
-                    Contact
-                  </button>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {featuredProfessionals.map((professional, index) => (
+          <div
+            key={professional.id}
+            className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1"
+            style={{
+              animationDelay: `${index * 200}ms`,
+              animation: `fadeInUp 0.8s ease-out ${index * 200}ms both`
+            }}
+            onClick={() => navigate('/list/portfolio-template-1')} // Navigate on card click
+          >
+            <div className="p-8 text-center bg-yellow-50">
+              {/* Profile Picture */}
+              <div className="relative mb-6">
+                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 group-hover:border-yellow-500 transition-all duration-300">
+                  <img
+                    src={professional.profilePicture}
+                    alt={professional.name}
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                  />
+                </div>
+                <div className="absolute -top-2 -right-2 bg-yellow-400 text-black px-2 py-1 rounded-lg text-xs font-bold flex items-center gap-1">
+                  <Star className="h-3 w-3 fill-current" />
+                  Featured
                 </div>
               </div>
-            ))}
+
+              {/* Professional Info */}
+              <h3 className="text-xl font-bold text-black mb-1 group-hover:text-gray-800 transition-colors duration-300">
+                {professional.name}
+              </h3>
+              <p className="text-gray-600 mb-2">Age: {professional.age}</p>
+
+              <div className={`${getProfessionColor(professional.profession)} text-white px-3 py-1 rounded-full text-sm font-bold inline-block mb-3`}>
+                {professional.profession}
+              </div>
+
+              <div className="flex items-center justify-center gap-2 text-gray-600 mb-3">
+                <MapPin className="h-4 w-4" />
+                <span className="text-sm">{professional.location}</span>
+              </div>
+
+              <div className="flex items-center justify-center gap-1 mb-3">
+                {renderStars(professional.rating)}
+                <span className="ml-2 text-black font-semibold">{professional.rating}</span>
+              </div>
+
+              <p className="text-gray-600 mb-4 leading-relaxed text-sm">
+                {professional.bio}
+              </p>
+
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="text-center p-2 bg-yellow-50 rounded-lg">
+                  <div className="text-sm font-bold text-black">{professional.experience}</div>
+                  <div className="text-xs text-gray-600">Experience</div>
+                </div>
+                <div className="text-center p-2 bg-yellow-200 rounded-lg">
+                  <div className="text-sm font-bold text-yellow-700">{professional.projects}</div>
+                  <div className="text-xs text-yellow-600">Projects</div>
+                </div>
+              </div>
+
+              <button className="bg-black text-yellow-400 px-6 py-3 rounded-xl font-semibold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto">
+                <Mail className="h-4 w-4" />
+                Contact
+              </button>
+            </div>
           </div>
-        </div>
+        ))}
+      </div>
+    </div>
       </section>
 
       {/* All Professionals Grid Section */}
@@ -442,87 +442,88 @@ const ProfessionalsPage = () => {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {currentProfessionals.map((professional, index) => (
-                <div
-                  key={professional.id}
-                  className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                    animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`
-                  }}
-                >
-                  <div className="p-6 text-center bg-yellow-50">
-                    {/* Profile Picture */}
-                    <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border-3 border-yellow-400 group-hover:border-yellow-500 transition-all duration-300 mb-4">
-                      <img
-                        src={professional.profilePicture}
-                        alt={professional.name}
-                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                      />
-                    </div>
-
-                    {/* Professional Info */}
-                    <h3 className="text-lg font-bold text-black mb-1 group-hover:text-gray-800 transition-colors duration-300">
-                      {professional.name}
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-2">Age: {professional.age}</p>
-
-                    <div className={`${getProfessionColor(professional.profession)} text-white px-2 py-1 rounded-full text-xs font-bold inline-block mb-3`}>
-                      {professional.profession}
-                    </div>
-
-                    <div className="flex items-center justify-center gap-1 text-gray-600 mb-2 text-sm">
-                      <MapPin className="h-3 w-3" />
-                      <span>{professional.location}</span>
-                    </div>
-
-                    <div className="flex items-center justify-center gap-1 mb-3">
-                      {renderStars(professional.rating)}
-                      <span className="ml-1 text-black font-semibold text-sm">{professional.rating}</span>
-                    </div>
-
-                    <p className="text-gray-600 mb-4 leading-relaxed text-sm line-clamp-2">
-                      {professional.bio}
-                    </p>
-
-                    <div className="grid grid-cols-2 gap-2 mb-4">
-                      <div className="text-center p-2 bg-yellow-50 rounded-lg">
-                        <div className="text-xs font-bold text-black">{professional.experience}</div>
-                        <div className="text-xs text-gray-600">Experience</div>
-                      </div>
-                      <div className="text-center p-2 bg-yellow-200 rounded-lg">
-                        <div className="text-xs font-bold text-yellow-700">{professional.projects}</div>
-                        <div className="text-xs text-yellow-600">Projects</div>
-                      </div>
-                    </div>
-
-                    <div className="mb-3">
-                      <div className="flex flex-wrap gap-1 justify-center">
-                        {professional.specialties.slice(0, 2).map((specialty, idx) => (
-                          <span
-                            key={specialty}
-                            className="bg-yellow-200 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
-                          >
-                            {specialty}
-                          </span>
-                        ))}
-                        {professional.specialties.length > 2 && (
-                          <span className="bg-yellow-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
-                            +{professional.specialties.length - 2}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <button className="bg-black text-yellow-400 px-4 py-2 rounded-xl font-semibold text-sm hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto">
-                      <Mail className="h-3 w-3" />
-                      Contact
-                    </button>
-                  </div>
-                </div>
-              ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      {currentProfessionals.map((professional, index) => (
+        <div
+          key={professional.id}
+          className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
+          style={{
+            animationDelay: `${index * 100}ms`,
+            animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`
+          }}
+          onClick={() => navigate('/list/portfolio-template-2')} // Navigate on card click
+        >
+          <div className="p-6 text-center bg-yellow-50">
+            {/* Profile Picture */}
+            <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border-3 border-yellow-400 group-hover:border-yellow-500 transition-all duration-300 mb-4">
+              <img
+                src={professional.profilePicture}
+                alt={professional.name}
+                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+              />
             </div>
+
+            {/* Professional Info */}
+            <h3 className="text-lg font-bold text-black mb-1 group-hover:text-gray-800 transition-colors duration-300">
+              {professional.name}
+            </h3>
+            <p className="text-gray-600 text-sm mb-2">Age: {professional.age}</p>
+
+            <div className={`${getProfessionColor(professional.profession)} text-white px-2 py-1 rounded-full text-xs font-bold inline-block mb-3`}>
+              {professional.profession}
+            </div>
+
+            <div className="flex items-center justify-center gap-1 text-gray-600 mb-2 text-sm">
+              <MapPin className="h-3 w-3" />
+              <span>{professional.location}</span>
+            </div>
+
+            <div className="flex items-center justify-center gap-1 mb-3">
+              {renderStars(professional.rating)}
+              <span className="ml-1 text-black font-semibold text-sm">{professional.rating}</span>
+            </div>
+
+            <p className="text-gray-600 mb-4 leading-relaxed text-sm line-clamp-2">
+              {professional.bio}
+            </p>
+
+            <div className="grid grid-cols-2 gap-2 mb-4">
+              <div className="text-center p-2 bg-yellow-50 rounded-lg">
+                <div className="text-xs font-bold text-black">{professional.experience}</div>
+                <div className="text-xs text-gray-600">Experience</div>
+              </div>
+              <div className="text-center p-2 bg-yellow-200 rounded-lg">
+                <div className="text-xs font-bold text-yellow-700">{professional.projects}</div>
+                <div className="text-xs text-yellow-600">Projects</div>
+              </div>
+            </div>
+
+            <div className="mb-3">
+              <div className="flex flex-wrap gap-1 justify-center">
+                {professional.specialties.slice(0, 2).map((specialty, idx) => (
+                  <span
+                    key={specialty}
+                    className="bg-yellow-200 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
+                  >
+                    {specialty}
+                  </span>
+                ))}
+                {professional.specialties.length > 2 && (
+                  <span className="bg-yellow-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
+                    +{professional.specialties.length - 2}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <button className="bg-black text-yellow-400 px-4 py-2 rounded-xl font-semibold text-sm hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto">
+              <Mail className="h-3 w-3" />
+              Contact
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
           )}
 
           {/* Pagination */}
