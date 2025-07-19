@@ -257,6 +257,11 @@ const EventsPage = () => {
   const getStatusColor = (status) => {
     return status === 'upcoming' ? 'bg-green-500' : 'bg-gray-500';
   };
+  
+
+  const handleViewDetailsClick = () => {
+    navigate('/list/event-template-1'); // Redirect to the specified URL
+  };
 
   return (
     <div className="min-h-screen bg-yellow-400 pt-16">
@@ -279,13 +284,13 @@ const EventsPage = () => {
 
         {/* "List your Event" button positioned at the bottom-right corner */}
         <div className="absolute top-4 right-10 z-10 pointer-events-auto">
-  <button
-    onClick={handleAddEventClick}
-    className="px-6 py-3 bg-black text-white rounded-lg hover:bg-red-600 transition duration-300"
-  >
-    List your Event
-  </button>
-</div>
+          <button
+            onClick={handleAddEventClick}
+            className="px-6 py-3 bg-black text-white rounded-lg hover:bg-red-600 transition duration-300"
+          >
+            List your Event
+          </button>
+        </div>
 
 
       </section>
@@ -387,7 +392,10 @@ const EventsPage = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
 
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <div className="bg-yellow-400 text-black px-6 py-3 rounded-full font-bold shadow-2xl transform scale-0 group-hover:scale-100 transition-all duration-500 hover:bg-yellow-300 flex items-center gap-2">
+                    <div
+                      onClick={handleViewDetailsClick}  // Attach the onClick handler here
+                      className="bg-yellow-400 text-black px-6 py-3 rounded-full font-bold shadow-2xl transform scale-0 group-hover:scale-100 transition-all duration-500 hover:bg-yellow-300 flex items-center gap-2"
+                    >
                       <span>View Event Details</span>
                       <ArrowRight className="h-4 w-4" />
                     </div>
@@ -479,12 +487,16 @@ const EventsPage = () => {
 
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
 
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <div className="bg-yellow-400 text-black px-4 py-2 rounded-full font-bold shadow-2xl transform scale-0 group-hover:scale-100 transition-all duration-500 hover:bg-yellow-300 flex items-center gap-2">
-                          <span>View Details</span>
-                          <ArrowRight className="h-3 w-3" />
-                        </div>
-                      </div>
+                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+  <div
+    onClick={() => navigate('/list/event-template-2')} // Use the navigate function directly for this button
+    className="bg-yellow-400 text-black px-4 py-2 rounded-full font-bold shadow-2xl transform scale-0 group-hover:scale-100 transition-all duration-500 hover:bg-yellow-300 flex items-center gap-2"
+  >
+    <span>View Details</span>
+    <ArrowRight className="h-3 w-3" />
+  </div>
+</div>
+
 
                       <div className={`absolute top-3 right-3 ${getTypeColor(event.type)} text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg`}>
                         {event.type}

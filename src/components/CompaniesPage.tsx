@@ -464,11 +464,14 @@ const CompaniesPage = () => {
                     </div>
 
                     <div className="flex justify-center pt-2">
-                      <button className="group/btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-3 rounded-xl font-semibold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg">
-                        <span>View Profile</span>
-                        <ExternalLink className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                      </button>
-                    </div>
+      <button
+        onClick={() => navigate('/list/company-template-1')} // Trigger navigation to the specific route on click
+        className="group/btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-3 rounded-xl font-semibold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg"
+      >
+        <span>View Profile</span>
+        <ExternalLink className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+      </button>
+    </div>
                   </div>
                 </div>
               );
@@ -582,12 +585,15 @@ const CompaniesPage = () => {
                         </div>
                       </div>
 
-                      <div className="flex justify-center">
-                        <button className="group/btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-4 py-2 rounded-xl font-semibold text-sm hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg">
-                          <span>View Profile</span>
-                          <ExternalLink className="h-3 w-3 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                        </button>
-                      </div>
+                     <div className="flex justify-center">
+      <button
+        onClick={() => navigate('/list/company-template-2')} // Navigate to /list/company-template-12
+        className="group/btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-4 py-2 rounded-xl font-semibold text-sm hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg"
+      >
+        <span>View Profile</span>
+        <ExternalLink className="h-3 w-3 group-hover/btn:translate-x-1 transition-transform duration-300" />
+      </button>
+    </div>
                     </div>
                   </div>
                 );
