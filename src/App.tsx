@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import PopularVideos from './components/PopularVideos';
@@ -38,32 +38,41 @@ const HomePage = () => (
   </>
 );
 
+const AppContent = () => {
+  const location = useLocation();
+  const hideFooter = location.pathname.startsWith('/list');
+
+  return (
+    <div className="min-h-screen">
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/videos" element={<VideosPage />} />
+        <Route path="/professionals" element={<ProfessionalsPage />} />
+        <Route path="/companies" element={<CompaniesPage />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/news" element={<NewsPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/partner" element={<PartnerPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/product/:id" element={<ProductDetailPage />} />
+        <Route path="/service/:id" element={<ServiceDetailPage />} />
+        <Route path="/list/*" element={<SubApp />} />
+      </Routes>
+      {!hideFooter && <Footer />}
+      <ScrollingFooter />
+    </div>
+  );
+};
+
 function App() {
   return (
     <Router>
-      <div className="min-h-screen">
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/videos" element={<VideosPage />} />
-          <Route path="/professionals" element={<ProfessionalsPage />} />
-          <Route path="/companies" element={<CompaniesPage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/events" element={<EventsPage />} />
-          <Route path="/news" element={<NewsPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/partner" element={<PartnerPage />} />
-          <Route path="/gallery" element={<GalleryPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/product/:id" element={<ProductDetailPage />} />
-          <Route path="/service/:id" element={<ServiceDetailPage />} />
-          <Route path="/list/*" element={<SubApp />} />
-        </Routes>
-        <Footer />
-        <ScrollingFooter />
-      </div>
+      <AppContent />
     </Router>
   );
 }
