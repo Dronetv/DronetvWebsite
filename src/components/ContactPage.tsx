@@ -42,14 +42,14 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-yellow-400 pt-16">
       {/* Hero Section */}
-     <section className="py-1 bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-500 relative overflow-hidden">
+     <section className="py-3 bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-500 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-200/30 rounded-full animate-pulse blur-2xl"></div>
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-yellow-600/20 rounded-full animate-pulse blur-2xl" style={{ animationDelay: '2s' }}></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black text-black mb-2 tracking-tight">
+          <h1 className="text-2xl md:text-5xl font-black text-black mb-2 tracking-tight">
            Contact Us
 
           </h1>
@@ -61,7 +61,7 @@ const ContactPage = () => {
       </section>
 
       {/* Main Content */}
-      <section className="py-20 bg-yellow-400">
+      <section className="py-4 bg-yellow-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             

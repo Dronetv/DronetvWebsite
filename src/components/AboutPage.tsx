@@ -91,26 +91,26 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-yellow-400 pt-16">
       {/* Hero Section */}
-  <section className="py-1 bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-500 relative overflow-hidden">
-  <div className="absolute inset-0">
-    <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-200/30 rounded-full animate-pulse blur-2xl"></div>
-    <div className="absolute bottom-10 right-10 w-40 h-40 bg-yellow-600/20 rounded-full animate-pulse blur-2xl" style={{ animationDelay: '2s' }}></div>
-  </div>
+      <section className="py-3 bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-500 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-200/30 rounded-full animate-pulse blur-2xl"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-yellow-600/20 rounded-full animate-pulse blur-2xl" style={{ animationDelay: '2s' }}></div>
+        </div>
 
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-    <h1 className="text-2xl md:text-5xl font-black text-black mb-2 tracking-tight">
-      About Drone TV
-    </h1>
-    <p className="text-xl text-black/80 max-w-2xl mx-auto mb-4">
-     Driving the future of drones through education and innovation.
-    </p>
-    <div className="w-24 h-1 bg-black mx-auto rounded-full"></div>
-  </div>
-</section>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h1 className="text-2xl md:text-5xl font-black text-black mb-2 tracking-tight">
+            About Drone TV
+          </h1>
+          <p className="text-xl text-black/80 max-w-2xl mx-auto mb-4">
+            Driving the future of drones through education and innovation.
+          </p>
+          <div className="w-24 h-1 bg-black mx-auto rounded-full"></div>
+        </div>
+      </section>
 
 
       {/* Mission and Vision Section */}
-      <section className="py-12 bg-gradient-to-b from-yellow-400 to-yellow-300">
+      <section className="py-8 bg-gradient-to-b from-yellow-400 to-yellow-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -141,9 +141,9 @@ const AboutPage = () => {
 
             <div className="relative">
               <div className="bg-white rounded-3xl p-8 shadow-2xl">
-                <img 
-                  src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                  alt="Drone Technology" 
+                <img
+                  src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  alt="Drone Technology"
                   className="w-full h-64 object-cover rounded-2xl mb-6"
                 />
                 <div className="text-center">
@@ -169,9 +169,9 @@ const AboutPage = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
               <div className="lg:col-span-1">
                 <div className="relative">
-                  <img 
-                    src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400" 
-                    alt="Alex Johnson - Founder" 
+                  <img
+                    src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400"
+                    alt="Alex Johnson - Founder"
                     className="w-64 h-64 object-cover rounded-full mx-auto shadow-2xl"
                   />
                   <div className="absolute -bottom-4 -right-4 bg-yellow-400 rounded-full p-4 shadow-lg">
@@ -179,7 +179,7 @@ const AboutPage = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="lg:col-span-2">
                 <h2 className="text-3xl md:text-4xl font-black text-black mb-6">
                   A Message from Our Founder
@@ -225,7 +225,7 @@ const AboutPage = () => {
               <div
                 key={member.id}
                 className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
-                style={{ 
+                style={{
                   animationDelay: `${index * 150}ms`,
                   animation: `fadeInUp 0.8s ease-out ${index * 150}ms both`
                 }}
@@ -238,18 +238,17 @@ const AboutPage = () => {
                     alt={member.name}
                     className="w-full h-64 object-cover transition-all duration-700 group-hover:scale-110"
                   />
-                  
+
                   {/* Hover Overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-all duration-500 ${
-                    hoveredTeamMember === member.id ? 'opacity-100' : 'opacity-0'
-                  }`}>
+                  <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-all duration-500 ${hoveredTeamMember === member.id ? 'opacity-100' : 'opacity-0'
+                    }`}>
                     <div className="absolute bottom-4 left-4 right-4 text-white">
                       <h4 className="font-bold mb-2">Fun Fact:</h4>
                       <p className="text-sm">{member.funFact}</p>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-black mb-1 group-hover:text-gray-800 transition-colors duration-300">
                     {member.name}
@@ -283,12 +282,12 @@ const AboutPage = () => {
               {timelineEvents.map((event, index) => {
                 const IconComponent = event.icon;
                 const isEven = index % 2 === 0;
-                
+
                 return (
                   <div
                     key={event.year}
                     className={`relative flex items-center ${isEven ? 'justify-start' : 'justify-end'}`}
-                    style={{ 
+                    style={{
                       animationDelay: `${index * 200}ms`,
                       animation: `fadeInUp 0.8s ease-out ${index * 200}ms both`
                     }}
@@ -328,7 +327,7 @@ const AboutPage = () => {
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               Whether you're a drone enthusiast, industry professional, or technology innovator, we'd love to connect with you and explore how we can work together.
             </p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="flex items-center justify-center gap-3 text-gray-700">
                 <Mail className="h-5 w-5 text-yellow-600" />

@@ -5,6 +5,7 @@ import { Search, Menu, X } from 'lucide-react';
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false); // To toggle language dropdown
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -31,6 +32,7 @@ const Navigation = () => {
     navigate(path);
     window.scrollTo(0, 0);
   };
+
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
@@ -38,18 +40,18 @@ const Navigation = () => {
     { name: 'Companies', path: '/companies' },
     { name: 'Products', path: '/products' },
     { name: 'Services', path: '/services' },
-    { name: 'Partner', path: '/partner' },
+    { name: 'Professionals', path: '/professionals' },
+    { name: 'Partner with us', path: '/partner' },
     { name: 'News', path: '/news' },
     { name: 'Videos', path: '/videos' },
     { name: 'Gallery', path: '/gallery' },
-
     { name: 'Contact', path: '/contact' }
   ];
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ease-out ${isScrolled
-        ? 'bg-yellow-400/95 backdrop-blur-lg shadow-2xl border-b border-yellow-500/20'
-        : 'bg-yellow-400'
+      ? 'bg-yellow-400/95 backdrop-blur-lg shadow-2xl border-b border-yellow-500/20'
+      : 'bg-yellow-400'
       }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -69,8 +71,8 @@ const Navigation = () => {
                 key={item.name}
                 to={item.path}
                 className={`relative px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 group overflow-hidden whitespace-nowrap ${location.pathname === item.path
-                    ? 'text-gray-800 bg-black/10'
-                    : 'text-black hover:text-gray-800'
+                  ? 'text-gray-800 bg-black/10'
+                  : 'text-black hover:text-gray-800'
                   }`}
                 style={{ animationDelay: `${index * 50}ms` }}
               >
@@ -78,13 +80,39 @@ const Navigation = () => {
                 <div className="absolute inset-0 bg-black/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-lg"></div>
               </Link>
             ))}
-          </div>
+            {/* Language Selector */}
+            <div className="relative">
+              <button onClick={() => setIsLanguageOpen(!isLanguageOpen)} className="text-black hover:text-gray-800 flex items-center space-x-2">
+                <img src="/images/download.png" alt="Language" className="h-6 w-6 rounded-full" /> {/* Replace with actual flag image path */}
+                <span className="text-sm">Language</span>
+              </button>
+              {isLanguageOpen && (
+                <div className="absolute bg-white border-2 border-gray-200 rounded-lg shadow-lg mt-2">
+                  <div className="p-2">
+                    <ul>
+                      {/* Add your language options here */}
+                      <li className="px-4 py-2 cursor-pointer">English</li>
 
-          {/* Search Icon */}
-          <div className="hidden xl:flex items-center">
-            <div className="relative group">
-              <Search className="h-5 w-5 text-black hover:text-gray-800 cursor-pointer transition-all duration-300 group-hover:scale-125 group-hover:rotate-12" />
-              <div className="absolute -inset-2 bg-black/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+
+                      <li className="px-4 py-2 cursor-pointer">Hindi</li>
+                      <li className="px-4 py-2 cursor-pointer">Bengali</li>
+                      <li className="px-4 py-2 cursor-pointer">Telugu</li>
+
+                      <li className="px-4 py-2 cursor-pointer">Tamil</li>
+                      <li className="px-4 py-2 cursor-pointer">Kannada</li>
+                      <li className="px-4 py-2 cursor-pointer">Odia</li>
+                      <li className="px-4 py-2 cursor-pointer">Assamese</li>
+
+                      <li className="px-4 py-2 cursor-pointer">Nepali</li>
+                      <li className="px-4 py-2 cursor-pointer">Spanish</li>
+                      <li className="px-4 py-2 cursor-pointer">French</li>
+                      <li className="px-4 py-2 cursor-pointer">Chinese</li>
+
+                      {/* Add more languages as needed */}
+                    </ul>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -106,16 +134,13 @@ const Navigation = () => {
         <div className={`xl:hidden transition-all duration-500 ease-out overflow-hidden ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}>
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-yellow-400">
-            {[
-              ...navItems,
-              { name: 'Professionals', path: '/professionals' }
-            ].map((item, index) => (
+            {navItems.map((item, index) => (
               <button
                 key={item.name}
                 onClick={() => handleNavigation(item.path)}
                 className={`w-full text-left block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 hover:bg-black/10 transform hover:translate-x-2 ${location.pathname === item.path
-                    ? 'text-gray-800 bg-black/10'
-                    : 'text-black hover:text-gray-800'
+                  ? 'text-gray-800 bg-black/10'
+                  : 'text-black hover:text-gray-800'
                   }`}
                 style={{
                   animationDelay: `${index * 50}ms`,

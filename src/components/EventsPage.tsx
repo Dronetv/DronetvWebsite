@@ -256,7 +256,7 @@ const EventsPage = () => {
   return (
     <div className="min-h-screen bg-yellow-400 pt-16">
       {/* Hero Section */}
-      <section className="py-1 bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-500 relative overflow-hidden">
+      <section className="py-3 bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-500 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-200/30 rounded-full animate-pulse blur-2xl"></div>
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-yellow-600/20 rounded-full animate-pulse blur-2xl" style={{ animationDelay: '2s' }}></div>
@@ -270,81 +270,83 @@ const EventsPage = () => {
           <p className="text-xl text-black/80 max-w-2xl mx-auto mb-4">
             Highlights from our events and collaborations.
           </p>
-          <div className="w-24 h-1 bg-black mx-auto rounded-full"></div>
+            <div className="w-24 h-1 bg-black mx-auto rounded-full"></div>
         </div>
       </section>
 
       {/* Filter Section */}
-      <section className="py-6 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row gap-2 items-center justify-between">
-            {/* Search Bar */}
-            <div className="relative flex-1 max-w-xs">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60" />
-              <input
-                type="text"
-                placeholder="Search events..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-black/20 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 font-medium text-sm transition-all duration-300"
-              />
-            </div>
+  <section className="py-3 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col lg:flex-row gap-2 items-center justify-between">
+      {/* Search Bar */}
+      <div className="relative flex-1 max-w-xs">
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60" />
+        <input
+          type="text"
+          placeholder="Search events..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-black/20 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 text-sm transition-all duration-300"
+        />
+      </div>
 
-            {/* Event Type Filter */}
-            <div className="relative w-full lg:w-auto">
-              <select
-                value={selectedType}
-                onChange={(e) => setSelectedType(e.target.value)}
-                className="w-64 appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300"
-              >
-                {eventTypes.map(type => (
-                  <option key={type} value={type}>
-                    {type === 'All' ? 'All Event Types' : type}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
-            </div>
+      {/* Event Type Filter */}
+      <div className="relative">
+        <select
+          value={selectedType}
+          onChange={(e) => setSelectedType(e.target.value)}
+          className="w-48 appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300"
+        >
+          {eventTypes.map((type) => (
+            <option key={type} value={type}>
+              {type === 'All' ? 'All Event Types' : type}
+            </option>
+          ))}
+        </select>
+        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
+      </div>
 
-            {/* Sort Options */}
-            <div className="relative">
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300 w-80"
-              >
-                {sortOptions.map(option => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
-            </div>
+      {/* Sort Options */}
+      <div className="relative">
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+          className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300 w-72"
+        >
+          {sortOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
+      </div>
+    </div>
 
-          </div>
-
-          {/* Active Filters Display */}
-          <div className="mt-3 flex flex-wrap gap-2">
-            {selectedType !== 'All' && (
-              <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-                Type: {selectedType}
-                <button onClick={() => setSelectedType('All')} className="hover:text-white transition-colors duration-200 text-sm">×</button>
-              </span>
-            )}
-            {searchQuery && (
-              <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-                Search: "{searchQuery}"
-                <button onClick={() => setSearchQuery('')} className="hover:text-white transition-colors duration-200 text-sm">×</button>
-              </span>
-            )}
-          </div>
-        </div>
-      </section>
-
+    {/* Active Filters Display */}
+    <div className="mt-2 flex flex-wrap gap-2">
+      {selectedType !== 'All' && (
+        <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+          Type: {selectedType}
+          <button onClick={() => setSelectedType('All')} className="hover:text-white transition-colors duration-200 text-sm">
+            ×
+          </button>
+        </span>
+      )}
+      {searchQuery && (
+        <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+          Search: "{searchQuery}"
+          <button onClick={() => setSearchQuery('')} className="hover:text-white transition-colors duration-200 text-sm">
+            ×
+          </button>
+        </span>
+      )}
+    </div>
+  </div>
+</section>
 
       {/* Featured Events Section */}
-      <section className="py-8 bg-gradient-to-b from-yellow-400 to-yellow-300">
+      <section className="py-4 bg-gradient-to-b from-yellow-400 to-yellow-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
 
