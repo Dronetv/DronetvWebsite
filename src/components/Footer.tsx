@@ -6,10 +6,12 @@ import { X } from 'lucide-react'; // You can replace this with your own X icon i
 
 const Footer = () => {
   const socialLinks = [
-    { name: 'Facebook', icon: Facebook, href: '#', color: 'hover:text-blue-600' },
-    { name: 'Instagram', icon: Instagram, href: '#', color: 'hover:text-pink-600' },
-    { name: 'Twitter', icon: X, href: '#', color: 'hover:text-blue-400' }, // Use X for Twitter here
-    { name: 'YouTube', icon: Youtube, href: '#', color: 'hover:text-red-600' }
+
+    { name: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/dronetv.in', color: 'hover:text-blue-600' },
+    { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/dronetv.in/', color: 'hover:text-pink-600' },
+    { name: 'Twitter', icon: Twitter, href: 'https://x.com/indiadronetv', color: 'hover:text-blue-400' },
+    { name: 'YouTube', icon: Youtube, href: 'https://www.youtube.com/@indiadronetv', color: 'hover:text-red-600' }
+
   ];
 
   const footerLinks = [
@@ -36,13 +38,19 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center">
             {/* Logo */}
-            <div className="mb-8 group">
-              <h2 className="text-4xl font-black text-black group-hover:scale-110 transition-all duration-300 cursor-pointer">
-                Drone TV
-              </h2>
-              <div className="w-16 h-1 bg-black mx-auto mt-2 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+            <div className="flex-shrink-0 group">
+              <h1 className="text-2xl font-bold text-black cursor-pointer transition-all duration-300 group-hover:scale-110 group-hover:text-gray-800">
+                <img
+                  src="1.png"
+                  alt="Drone TV Logo"
+                  className="inline-block w-35 h-32 mr-2 relative top-[-10px]"  // Move only the logo up
+                />
+              </h1>
             </div>
-            
+
+
+
+
             {/* Social Media Icons */}
             <div className="flex space-x-6 mb-8">
               {socialLinks.map((social, index) => {
@@ -63,7 +71,7 @@ const Footer = () => {
                 );
               })}
             </div>
-            
+
             {/* Footer Links */}
             <div className="flex flex-wrap justify-center gap-8 mb-8">
               {footerLinks.map((link, index) => (
@@ -78,12 +86,12 @@ const Footer = () => {
                 </a>
               ))}
             </div>
-            
+
             {/* Copyright */}
             <div className="text-center text-black/80 mb-8">
               <p className="flex items-center justify-center gap-2 text-lg">
-                &copy; 2024 Drone TV. Made with 
-                <Heart className="h-5 w-5 text-red-500 animate-pulse" /> 
+                &copy; 2024 Drone TV. Made with
+                <Heart className="h-5 w-5 text-red-500 animate-pulse" />
                 for drone enthusiasts
               </p>
             </div>

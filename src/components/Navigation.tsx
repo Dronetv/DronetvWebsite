@@ -46,21 +46,29 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ease-out ${
-      isScrolled 
-        ? 'bg-yellow-400/95 backdrop-blur-lg shadow-2xl border-b border-yellow-500/20' 
-        : 'bg-yellow-400'
-    }`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ease-out ${isScrolled
+      ? 'bg-yellow-400/95 backdrop-blur-lg shadow-2xl border-b border-yellow-500/20'
+      : 'bg-yellow-400'
+      }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 group">
-            <Link to="/">
-              <h1 className="text-2xl font-bold text-black cursor-pointer transition-all duration-300 group-hover:scale-110 group-hover:text-gray-800">
-                Drone TV
-              </h1>
-            </Link>
-          </div>
+  <Link to="/">
+    <h1 className="text-2xl font-bold text-black cursor-pointer transition-all duration-300 group-hover:scale-110 group-hover:text-gray-800">
+      <img
+        src="1.png"
+        alt="Drone TV Logo"
+        className="inline-block w-40 h-14 mr-0 -ml-4"  // Further adjust negative left margin
+      />
+    </h1>
+  </Link>
+</div>
+
+
+
+
+
 
           {/* Desktop Navigation */}
           <div className="hidden xl:flex items-center space-x-1">
@@ -68,11 +76,13 @@ const Navigation = () => {
               <Link
                 key={item.name}
                 to={item.path}
+
                 className={`relative px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 group overflow-hidden whitespace-nowrap ${
                   location.pathname === item.path
                     ? 'text-gray-800 bg-black/10'
                     : 'text-black hover:text-gray-800'
                 }`}
+
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <span className="relative z-10">{item.name}</span>
@@ -104,6 +114,8 @@ const Navigation = () => {
         </div>
 
         {/* Mobile Navigation */}
+
+
         <div className={`xl:hidden transition-all duration-500 ease-out overflow-hidden ${
           isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}>
@@ -115,12 +127,11 @@ const Navigation = () => {
               <button
                 key={item.name}
                 onClick={() => handleNavigation(item.path)}
-                className={`w-full text-left block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 hover:bg-black/10 transform hover:translate-x-2 ${
-                  location.pathname === item.path
-                    ? 'text-gray-800 bg-black/10'
-                    : 'text-black hover:text-gray-800'
-                }`}
-                style={{ 
+                className={`w-full text-left block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 hover:bg-black/10 transform hover:translate-x-2 ${location.pathname === item.path
+                  ? 'text-gray-800 bg-black/10'
+                  : 'text-black hover:text-gray-800'
+                  }`}
+                style={{
                   animationDelay: `${index * 50}ms`,
                   transform: isMenuOpen ? 'translateY(0)' : 'translateY(-20px)',
                   opacity: isMenuOpen ? 1 : 0,
