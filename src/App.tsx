@@ -24,6 +24,7 @@ import ServiceDetailPage from './components/ServiceDetailPage';
 import ScrollingFooter from './components/ScrollingFooter';
 import GalleryPage from './components/GalleryPage';
 import GalleryGlimpse from './components/GalleryGlimpse';
+import SubApp from './components/webbuilder/src/App';
 
 const HomePage = () => (
   <>
@@ -58,6 +59,7 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
           <Route path="/service/:id" element={<ServiceDetailPage />} />
+          <Route path="/list/*" element={<SubApp />} />
         </Routes>
         <Footer />
         <ScrollingFooter />
