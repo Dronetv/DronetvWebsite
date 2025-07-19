@@ -1,12 +1,17 @@
 import React from 'react';
 import { Facebook, Instagram, Twitter, Youtube, Heart, ArrowUp } from 'lucide-react';
 
+// Custom X Twitter icon, if you have one imported, you can add it here.
+import { X } from 'lucide-react'; // You can replace this with your own X icon if needed.
+
 const Footer = () => {
   const socialLinks = [
+
     { name: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/dronetv.in', color: 'hover:text-blue-600' },
     { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/dronetv.in/', color: 'hover:text-pink-600' },
     { name: 'Twitter', icon: Twitter, href: 'https://x.com/indiadronetv', color: 'hover:text-blue-400' },
     { name: 'YouTube', icon: Youtube, href: 'https://www.youtube.com/@indiadronetv', color: 'hover:text-red-600' }
+
   ];
 
   const footerLinks = [
