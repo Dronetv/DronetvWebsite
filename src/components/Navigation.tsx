@@ -55,11 +55,11 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 group">
-            <Link to="/">
-              <h1 className="text-2xl font-bold text-black cursor-pointer transition-all duration-300 group-hover:scale-110 group-hover:text-gray-800">
-                Drone TV
-              </h1>
-            </Link>
+              <img
+                src="/images/logo.png"
+                alt="Drone TV Logo"
+                className="w-40 h-14 mx-auto cursor-pointer group-hover:scale-110 transition-all duration-300"
+              />
           </div>
 
           {/* Desktop Navigation */}

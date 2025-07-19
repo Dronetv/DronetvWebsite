@@ -1,15 +1,12 @@
 import React from 'react';
-import { Facebook, Instagram, Twitter, Youtube, Heart, ArrowUp } from 'lucide-react';
-
-// Custom X Twitter icon, if you have one imported, you can add it here.
-import { X } from 'lucide-react'; // You can replace this with your own X icon if needed.
+import { Facebook, Instagram, X, Youtube, Heart, ArrowUp } from 'lucide-react';
 
 const Footer = () => {
   const socialLinks = [
-    { name: 'Facebook', icon: Facebook, href: '#', color: 'hover:text-blue-600' },
-    { name: 'Instagram', icon: Instagram, href: '#', color: 'hover:text-pink-600' },
-    { name: 'Twitter', icon: X, href: '#', color: 'hover:text-blue-400' }, // Use X for Twitter here
-    { name: 'YouTube', icon: Youtube, href: '#', color: 'hover:text-red-600' }
+    { name: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/dronetv.in', color: 'hover:text-blue-600' },
+    { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/dronetv.in/', color: 'hover:text-pink-600' },
+    { name: 'Twitter', icon: X, href: 'https://x.com/indiadronetv', color: 'hover:text-blue-400' },  // Updated with X
+    { name: 'YouTube', icon: Youtube, href: 'https://www.youtube.com/@indiadronetv', color: 'hover:text-red-600' }
   ];
 
   const footerLinks = [
@@ -37,12 +34,14 @@ const Footer = () => {
           <div className="flex flex-col items-center">
             {/* Logo */}
             <div className="mb-8 group">
-              <h2 className="text-4xl font-black text-black group-hover:scale-110 transition-all duration-300 cursor-pointer">
-                Drone TV
-              </h2>
+              <img
+                src="/images/logo.png"
+                alt="Drone TV Logo"
+                className="w-64 h-24 mx-auto cursor-pointer group-hover:scale-110 transition-all duration-300"
+              />
               <div className="w-16 h-1 bg-black mx-auto mt-2 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
             </div>
-            
+
             {/* Social Media Icons */}
             <div className="flex space-x-6 mb-8">
               {socialLinks.map((social, index) => {
@@ -51,6 +50,8 @@ const Footer = () => {
                   <a
                     key={social.name}
                     href={social.href}
+                    target="_blank"  // Open link in a new tab
+                    rel="noopener noreferrer"  // For security reasons, use this in combination with target="_blank"
                     className={`group relative text-black ${social.color} transition-all duration-300 transform hover:scale-125 hover:-translate-y-1`}
                     aria-label={social.name}
                     style={{ animationDelay: `${index * 100}ms` }}
@@ -63,7 +64,7 @@ const Footer = () => {
                 );
               })}
             </div>
-            
+
             {/* Footer Links */}
             <div className="flex flex-wrap justify-center gap-8 mb-8">
               {footerLinks.map((link, index) => (
@@ -78,12 +79,12 @@ const Footer = () => {
                 </a>
               ))}
             </div>
-            
+
             {/* Copyright */}
             <div className="text-center text-black/80 mb-8">
               <p className="flex items-center justify-center gap-2 text-lg">
-                &copy; 2024 Drone TV. Made with 
-                <Heart className="h-5 w-5 text-red-500 animate-pulse" /> 
+                &copy; 2024 Drone TV. Made with
+                <Heart className="h-5 w-5 text-red-500 animate-pulse" />
                 for drone enthusiasts
               </p>
             </div>
