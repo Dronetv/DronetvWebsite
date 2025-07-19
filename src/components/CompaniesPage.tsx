@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Filter, ChevronDown, Building2, MapPin, Users, TrendingUp, Star, ExternalLink, Award, Calendar } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const CompaniesPage = () => {
   const [selectedIndustry, setSelectedIndustry] = useState('All');
@@ -8,7 +9,11 @@ const CompaniesPage = () => {
   const [filteredCompanies, setFilteredCompanies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const companiesPerPage = 12;
+  const navigate = useNavigate();
 
+  const handleAddEventClick = () => {
+    navigate('/list'); // Navigate to the /add-event route
+  };
   const industries = ['All', 'Drone Manufacturing', 'AI Systems', 'GIS Mapping', 'Software & Cloud', 'Professional Services', 'Energy & Propulsion', 'Startups'];
   const sortOptions = [
     { value: 'name', label: 'Sort by Name' },
@@ -303,6 +308,14 @@ const CompaniesPage = () => {
           </p>
           <div className="w-24 h-1 bg-black mx-auto rounded-full"></div>
         </div>
+        <div className="absolute top-4 right-10 z-10 pointer-events-auto">
+  <button
+    onClick={handleAddEventClick}
+    className="px-6 py-3 bg-black text-white rounded-lg hover:bg-red-600 transition duration-300"
+  >
+    List your Company
+  </button>
+</div>
       </section>
 
       {/* Filter Section */}

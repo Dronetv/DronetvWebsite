@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Filter, ChevronDown, MapPin, Star, Mail, Phone, Award, Users, Calendar, Eye } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const ProfessionalsPage = () => {
   const [selectedProfession, setSelectedProfession] = useState('All');
@@ -9,6 +10,7 @@ const ProfessionalsPage = () => {
   const [filteredProfessionals, setFilteredProfessionals] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const professionalsPerPage = 12;
+   const navigate = useNavigate();
 
   const professions = ['All', 'Drone Pilot', 'AI Specialist', 'GIS Expert', 'Software Engineer', 'Data Analyst', 'Flight Instructor', 'Photographer'];
   const locations = ['All', 'San Francisco, CA', 'Austin, TX', 'Seattle, WA', 'Denver, CO', 'Miami, FL', 'Boston, MA', 'Chicago, IL', 'New York, NY'];
@@ -254,6 +256,10 @@ const ProfessionalsPage = () => {
     ));
   };
 
+  const handleAddEventClick = () => {
+    navigate('/list'); // Navigate to the /add-event route
+  };  
+
   return (
     <div className="min-h-screen bg-yellow-400 pt-16">
       {/* Hero Section */}
@@ -272,58 +278,67 @@ const ProfessionalsPage = () => {
           </p>
           <div className="w-24 h-1 bg-black mx-auto rounded-full"></div>
         </div>
+                <div className="absolute top-4 right-10 z-10 pointer-events-auto">
+  <button
+    onClick={handleAddEventClick}
+    className="px-6 py-3 bg-black text-white rounded-lg hover:bg-red-600 transition duration-300"
+  >
+    List your Profile
+  </button>
+</div>
+
       </section>
 
       {/* Filter Section */}
-  <section className="py-3 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex flex-col lg:flex-row gap-2 items-center justify-between">
-      <div className="relative flex-1 max-w-xs">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60" />
-        <input
-          type="text"
-          placeholder="Search professionals..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-black/20 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 font-medium text-sm"
-        />
-      </div>
-      <div className="flex gap-3">
-        {[
-          { value: selectedProfession, setValue: setSelectedProfession, options: professions, label: 'Professions' },
-          { value: selectedLocation, setValue: setSelectedLocation, options: locations, label: 'Locations' },
-          { value: sortBy, setValue: setSortBy, options: sortOptions, label: 'Sort Options' }
-        ].map(({ value, setValue, options, label }, idx) => (
-          <div key={idx} className="relative">
-            <select
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40"
-            >
-              {options.map(option => (
-                <option key={option.value || option} value={option.value || option}>
-                  {option === 'All' ? `All ${label}` : option.label || option}
-                </option>
+      <section className="py-3 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row gap-2 items-center justify-between">
+            <div className="relative flex-1 max-w-xs">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60" />
+              <input
+                type="text"
+                placeholder="Search professionals..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-black/20 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 font-medium text-sm"
+              />
+            </div>
+            <div className="flex gap-3">
+              {[
+                { value: selectedProfession, setValue: setSelectedProfession, options: professions, label: 'Professions' },
+                { value: selectedLocation, setValue: setSelectedLocation, options: locations, label: 'Locations' },
+                { value: sortBy, setValue: setSortBy, options: sortOptions, label: 'Sort Options' }
+              ].map(({ value, setValue, options, label }, idx) => (
+                <div key={idx} className="relative">
+                  <select
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                    className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40"
+                  >
+                    {options.map(option => (
+                      <option key={option.value || option} value={option.value || option}>
+                        {option === 'All' ? `All ${label}` : option.label || option}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
+                </div>
               ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
+            </div>
           </div>
-        ))}
-      </div>
-    </div>
-    <div className="mt-2 flex flex-wrap gap-2">
-      {['Profession', 'Location', 'Search'].map((filter, idx) => {
-        const value = filter === 'Profession' ? selectedProfession : filter === 'Location' ? selectedLocation : searchQuery;
-        const setter = filter === 'Profession' ? setSelectedProfession : filter === 'Location' ? setSelectedLocation : setSearchQuery;
-        return value !== 'All' && value ? (
-          <span key={idx} className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-            {filter}: {value} <button onClick={() => setter('All')} className="hover:text-white transition-colors duration-200 text-sm">×</button>
-          </span>
-        ) : null;
-      })}
-    </div>
-  </div>
-</section>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {['Profession', 'Location', 'Search'].map((filter, idx) => {
+              const value = filter === 'Profession' ? selectedProfession : filter === 'Location' ? selectedLocation : searchQuery;
+              const setter = filter === 'Profession' ? setSelectedProfession : filter === 'Location' ? setSelectedLocation : setSearchQuery;
+              return value !== 'All' && value ? (
+                <span key={idx} className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                  {filter}: {value} <button onClick={() => setter('All')} className="hover:text-white transition-colors duration-200 text-sm">×</button>
+                </span>
+              ) : null;
+            })}
+          </div>
+        </div>
+      </section>
 
 
 

@@ -110,7 +110,7 @@ const FeaturedCompanies = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-hidden min-h-screen">
+   <section className="py-20 bg-gradient-to-b from-yellow-200 via-yellow-200 to-yellow-100 relative overflow-hidden min-h-screen">
       {/* Enhanced Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -139,163 +139,160 @@ const FeaturedCompanies = () => {
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto rounded-full"></div>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {companies.map((company, index) => {
-            const LogoComponent = company.logo;
-            const isHovered = hoveredCard === company.id;
-            
-            return (
-              <div
-                key={company.id}
-                className="group relative bg-white rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1 opacity-100 translate-y-0"
-                style={{ 
-                  transitionDelay: `${index * 150}ms`,
-                  background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
-                  animation: `fadeInUp 0.8s ease-out ${index * 150}ms both`
-                }}
-                onMouseEnter={() => setHoveredCard(company.id)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
-                {/* Company Image Header */}
-                <div className="relative h-40 sm:h-48 overflow-hidden">
-                  <img 
-                    src={company.image} 
-                    alt={company.name}
-                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                  />
-                  {/* Black overlay with subtle yellow glow */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/75 to-black/80 transition-all duration-500"></div>
-                  
-                  {/* Yellow Glow Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/10 via-transparent to-yellow-600/10 opacity-60 group-hover:opacity-80 transition-all duration-500"></div>
-                  
-                  {/* Logo Overlay */}
-                  <div className="absolute top-4 left-4">
-                    <div className="relative bg-yellow-400/20 backdrop-blur-sm rounded-2xl p-3 border border-yellow-400/30 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-yellow-400/30 transition-all duration-500">
-                      <LogoComponent className="h-6 w-6 text-yellow-400" />
-                    </div>
-                  </div>
-                  
-                  {/* Rating */}
-                  <div className="absolute top-4 right-4 flex items-center gap-1 bg-yellow-400/20 backdrop-blur-sm px-3 py-1 rounded-full border border-yellow-400/30">
-                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                    <span className="text-sm font-bold text-yellow-400">{company.rating}</span>
-                  </div>
+  {companies.map((company, index) => {
+    const LogoComponent = company.logo;
+    const isHovered = hoveredCard === company.id;
 
-                  {/* Industry Badge */}
-                  <div className="absolute bottom-4 left-4">
-                    <span className="bg-yellow-400/20 backdrop-blur-sm text-yellow-400 px-3 py-1 rounded-full text-sm font-bold border border-yellow-400/30">
-                      {company.industry}
-                    </span>
-                  </div>
-                </div>
-                
-                <div className="p-4 sm:p-6">
-                  {/* Company Header */}
-                  <div className="mb-3 sm:mb-4">
-                    <h3 className="text-lg sm:text-xl font-bold text-black mb-2 group-hover:text-gray-800 transition-colors duration-300">
-                      {company.name}
-                    </h3>
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-xs sm:text-sm text-gray-500 mb-3">
-                      <div className="flex items-center gap-1">
-                        <MapPin className="h-3 w-3 flex-shrink-0" />
-                        {company.location}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3 flex-shrink-0" />
-                        Est. {company.founded}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Description */}
-                  <p className="text-gray-600 mb-3 sm:mb-4 leading-relaxed text-xs sm:text-sm line-clamp-3">
-                    {company.description}
-                  </p>
-                  
-                  {/* Key Stats */}
-                  <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-4">
-                    <div className="text-center p-2 sm:p-3 bg-yellow-50 rounded-lg sm:rounded-xl group-hover:bg-yellow-100 transition-colors duration-300">
-                      <Users className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600 group-hover:text-yellow-600 mx-auto mb-1 transition-colors duration-300" />
-                      <div className="text-xs sm:text-sm font-bold text-gray-800">{company.employees}</div>
-                      <div className="text-xs text-gray-500">Employees</div>
-                    </div>
-                    
-                    <div className="text-center p-2 sm:p-3 bg-yellow-50 rounded-lg sm:rounded-xl group-hover:bg-yellow-100 transition-colors duration-300">
-                      <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-600 mx-auto mb-1" />
-                      <div className="text-xs sm:text-sm font-bold text-yellow-600">{company.growth}</div>
-                      <div className="text-xs text-gray-500">Growth</div>
-                    </div>
-                  </div>
+    return (
+      <div
+        key={company.id}
+        data-id={company.id}
+        className={`group relative bg-yellow-100 rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1 opacity-100 translate-y-0`}
+        style={{
+          transitionDelay: `${index * 150}ms`,
+          animation: `fadeInUp 0.8s ease-out ${index * 150}ms both`
+        }}
+        onMouseEnter={() => setHoveredCard(company.id)}
+        onMouseLeave={() => setHoveredCard(null)}
+      >
+        {/* Company Image Header */}
+        <div className="relative h-40 sm:h-48 overflow-hidden">
+          <img
+            src={company.image}
+            alt={company.name}
+            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+          />
+          {/* Black overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/75 to-black/80 transition-all duration-500"></div>
 
-                  {/* Revenue & Clients */}
-                  <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-4">
-                    <div className="text-center p-2 bg-yellow-50 rounded-lg group-hover:bg-yellow-100 transition-colors duration-300">
-                      <div className="text-xs sm:text-sm font-bold text-black">{company.revenue}</div>
-                      <div className="text-xs text-gray-600">Revenue</div>
-                    </div>
-                    <div className="text-center p-2 bg-yellow-100 rounded-lg group-hover:bg-yellow-200 transition-colors duration-300">
-                      <div className="text-xs sm:text-sm font-bold text-yellow-700">{company.clients}</div>
-                      <div className="text-xs text-yellow-600">Clients</div>
-                    </div>
-                  </div>
-                  
-                  {/* Specialties */}
-                  <div className="mb-3 sm:mb-4">
-                    <h4 className="text-xs sm:text-sm font-semibold text-gray-800 mb-2">Specialties:</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {company.specialties.slice(0, 3).map((specialty, idx) => (
-                        <span 
-                          key={specialty}
-                          className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium group-hover:bg-yellow-200 transition-colors duration-300"
-                          style={{ animationDelay: `${idx * 100}ms` }}
-                        >
-                          {specialty}
-                        </span>
-                      ))}
-                      {company.specialties.length > 3 && (
-                        <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium group-hover:bg-gray-200 transition-colors duration-300">
-                          +{company.specialties.length - 3} more
-                        </span>
-                      )}
-                    </div>
-                  </div>
+          {/* Logo Overlay */}
+          <div className="absolute top-4 left-4">
+            <div className="relative bg-yellow-400/20 backdrop-blur-sm rounded-2xl p-3 border border-yellow-400/30 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-yellow-400/30 transition-all duration-500">
+              <LogoComponent className="h-6 w-6 text-yellow-400" />
+            </div>
+          </div>
 
-                  {/* Achievements */}
-                  <div className="mb-3 sm:mb-4">
-                    <h4 className="text-xs sm:text-sm font-semibold text-gray-800 mb-2 flex items-center gap-1">
-                      <Award className="h-3 w-3 flex-shrink-0" />
-                      Recent Achievements:
-                    </h4>
-                    <div className="space-y-1">
-                      {company.achievements.slice(0, 2).map((achievement, idx) => (
-                        <div 
-                          key={achievement}
-                          className="text-xs text-gray-600 flex items-start gap-1"
-                        >
-                          <div className="w-1 h-1 bg-yellow-500 rounded-full mt-1.5 flex-shrink-0"></div>
-                          {achievement}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+          {/* Rating */}
+          <div className="absolute top-4 right-4 flex items-center gap-1 bg-yellow-400/20 backdrop-blur-sm px-3 py-1 rounded-full border border-yellow-400/30">
+            <Star className="h-4 w-4 text-yellow-400 fill-current" />
+            <span className="text-sm font-bold text-yellow-400">{company.rating}</span>
+          </div>
 
-                  {/* CTA Button */}
-                  <div className="flex justify-center pt-2">
-                    <button className="group/btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-3 sm:px-4 py-2 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg">
-                      <span>View Profile</span>
-                      <ExternalLink className="h-3 w-3 group-hover/btn:translate-x-1 transition-transform duration-300 flex-shrink-0" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Yellow Glow Border on Hover */}
-                <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-yellow-400/30 group-hover:shadow-lg group-hover:shadow-yellow-400/20 transition-all duration-500"></div>
-              </div>
-            );
-          })}
+          {/* Industry Badge */}
+          <div className="absolute bottom-4 left-4">
+            <span className="bg-yellow-400/20 backdrop-blur-sm text-yellow-400 px-3 py-1 rounded-full text-sm font-bold border border-yellow-400/30">
+              {company.industry}
+            </span>
+          </div>
         </div>
+
+        <div className="p-4 sm:p-6">
+          {/* Company Header */}
+          <div className="mb-3 sm:mb-4">
+            <h3 className="text-lg sm:text-xl font-bold text-black mb-2 group-hover:text-gray-800 transition-colors duration-300">
+              {company.name}
+            </h3>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-xs sm:text-sm text-gray-500 mb-3">
+              <div className="flex items-center gap-1">
+                <MapPin className="h-3 w-3 flex-shrink-0" />
+                {company.location}
+              </div>
+              <div className="flex items-center gap-1">
+                <Calendar className="h-3 w-3 flex-shrink-0" />
+                Est. {company.founded}
+              </div>
+            </div>
+          </div>
+
+          {/* Description */}
+          <p className="text-gray-600 mb-3 sm:mb-4 leading-relaxed text-xs sm:text-sm line-clamp-3">
+            {company.description}
+          </p>
+
+          {/* Key Stats */}
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-4">
+            <div className="text-center p-2 sm:p-3 bg-yellow-50 rounded-lg sm:rounded-xl group-hover:bg-yellow-100 transition-colors duration-300">
+              <Users className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600 group-hover:text-yellow-600 mx-auto mb-1 transition-colors duration-300" />
+              <div className="text-xs sm:text-sm font-bold text-gray-800">{company.employees}</div>
+              <div className="text-xs text-gray-500">Employees</div>
+            </div>
+
+            <div className="text-center p-2 sm:p-3 bg-yellow-50 rounded-lg sm:rounded-xl group-hover:bg-yellow-100 transition-colors duration-300">
+              <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-600 mx-auto mb-1" />
+              <div className="text-xs sm:text-sm font-bold text-yellow-600">{company.growth}</div>
+              <div className="text-xs text-gray-500">Growth</div>
+            </div>
+          </div>
+
+          {/* Revenue & Clients */}
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-4">
+            <div className="text-center p-2 bg-yellow-50 rounded-lg group-hover:bg-yellow-100 transition-colors duration-300">
+              <div className="text-xs sm:text-sm font-bold text-black">{company.revenue}</div>
+              <div className="text-xs text-gray-600">Revenue</div>
+            </div>
+            <div className="text-center p-2 bg-yellow-100 rounded-lg group-hover:bg-yellow-200 transition-colors duration-300">
+              <div className="text-xs sm:text-sm font-bold text-yellow-700">{company.clients}</div>
+              <div className="text-xs text-yellow-600">Clients</div>
+            </div>
+          </div>
+
+          {/* Specialties */}
+          <div className="mb-3 sm:mb-4">
+            <h4 className="text-xs sm:text-sm font-semibold text-gray-800 mb-2">Specialties:</h4>
+            <div className="flex flex-wrap gap-1">
+              {company.specialties.slice(0, 3).map((specialty, idx) => (
+                <span
+                  key={specialty}
+                  className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium group-hover:bg-yellow-200 transition-colors duration-300"
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                >
+                  {specialty}
+                </span>
+              ))}
+              {company.specialties.length > 3 && (
+                <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium group-hover:bg-gray-200 transition-colors duration-300">
+                  +{company.specialties.length - 3} more
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Achievements */}
+          <div className="mb-3 sm:mb-4">
+            <h4 className="text-xs sm:text-sm font-semibold text-gray-800 mb-2 flex items-center gap-1">
+              <Award className="h-3 w-3 flex-shrink-0" />
+              Recent Achievements:
+            </h4>
+            <div className="space-y-1">
+              {company.achievements.slice(0, 2).map((achievement, idx) => (
+                <div
+                  key={achievement}
+                  className="text-xs text-gray-600 flex items-start gap-1"
+                >
+                  <div className="w-1 h-1 bg-yellow-500 rounded-full mt-1.5 flex-shrink-0"></div>
+                  {achievement}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="flex justify-center pt-2">
+            <button className="group/btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-3 sm:px-4 py-2 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg">
+              <span>View Profile</span>
+              <ExternalLink className="h-3 w-3 group-hover/btn:translate-x-1 transition-transform duration-300 flex-shrink-0" />
+            </button>
+          </div>
+        </div>
+
+        {/* Yellow Glow Border on Hover */}
+        <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-yellow-400/30 group-hover:shadow-lg group-hover:shadow-yellow-400/20 transition-all duration-500"></div>
+      </div>
+    );
+  })}
+</div>
 
         {/* Call to Action Section */}
         <div className="text-center mt-16">

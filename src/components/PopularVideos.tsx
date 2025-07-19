@@ -95,7 +95,7 @@ const PopularVideos = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
+    <section className="py-20 bg-yellow-200 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -107,74 +107,73 @@ const PopularVideos = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-black text-black mb-4 tracking-tight">
-            <span className="bg-gradient-to-r from-black via-red-800 to-black bg-clip-text text-transparent">
+            <span className="text-black">
               Popular Videos
             </span>
+
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-black to-red-600 mx-auto rounded-full"></div>
         </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {videos.map((video, index) => (
-            <div
-              key={video.id}
-              data-id={video.id}
-              className={`group bg-white rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1 ${
-                visibleCards.has(video.id) 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-10'
-              }`}
-              style={{ 
-                transitionDelay: `${index * 150}ms`,
-                background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)'
-              }}
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={video.thumbnail}
-                  alt={video.title}
-                  className="w-full h-40 sm:h-48 object-cover transition-all duration-700 group-hover:scale-110"
-                />
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                
-                {/* Play Button */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className="bg-red-600 rounded-full p-4 transform scale-0 group-hover:scale-100 transition-all duration-500 hover:bg-red-700 shadow-2xl">
-                    <Play className="h-8 w-8 text-white" />
-                  </div>
-                </div>
-                
-                {/* Category Badge */}
-                <div className={`absolute top-4 right-4 ${getCategoryColor(video.category)} text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg transform translate-x-full group-hover:translate-x-0 transition-transform duration-500`}>
-                  {video.category}
-                </div>
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+  {videos.map((video, index) => (
+    <div
+      key={video.id}
+      data-id={video.id}
+      className={`group bg-yellow-100 rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1 ${visibleCards.has(video.id)
+        ? 'opacity-100 translate-y-0'
+        : 'opacity-0 translate-y-10'
+      }`}
+      style={{
+        transitionDelay: `${index * 150}ms`,
+      }}
+    >
+      <div className="relative overflow-hidden">
+        <img
+          src={video.thumbnail}
+          alt={video.title}
+          className="w-full h-40 sm:h-48 object-cover transition-all duration-700 group-hover:scale-110"
+        />
 
-                {/* Duration */}
-                <div className="absolute bottom-4 right-4 bg-black/80 text-white px-2 py-1 rounded-lg text-xs font-medium flex items-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  {video.duration}
-                </div>
-              </div>
-              
-              <div className="p-4 sm:p-6">
-                <h3 className="text-lg sm:text-xl font-bold text-black mb-2 group-hover:text-red-800 transition-colors duration-300">
-                  {video.title}
-                </h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-4 line-clamp-2">{video.description}</p>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-gray-500 text-xs sm:text-sm">
-                    <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
-                    {video.views} views
-                  </div>
-                  <div className="w-8 h-1 bg-gradient-to-r from-black to-red-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                </div>
-              </div>
-            </div>
-          ))}
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+
+        {/* Play Button */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+          <div className="bg-red-600 rounded-full p-4 transform scale-0 group-hover:scale-100 transition-all duration-500 hover:bg-red-700 shadow-2xl">
+            <Play className="h-8 w-8 text-white" />
+          </div>
         </div>
+
+        {/* Category Badge */}
+        <div className={`absolute top-4 right-4 ${getCategoryColor(video.category)} text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg transform translate-x-full group-hover:translate-x-0 transition-transform duration-500`}>
+          {video.category}
+        </div>
+
+        {/* Duration */}
+        <div className="absolute bottom-4 right-4 bg-black/80 text-white px-2 py-1 rounded-lg text-xs font-medium flex items-center gap-1">
+          <Clock className="h-3 w-3" />
+          {video.duration}
+        </div>
+      </div>
+
+      <div className="p-4 sm:p-6">
+        <h3 className="text-lg sm:text-xl font-bold text-black mb-2 group-hover:text-red-800 transition-colors duration-300">
+          {video.title}
+        </h3>
+        <p className="text-sm sm:text-base text-gray-600 mb-4 line-clamp-2">{video.description}</p>
+
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1 text-gray-500 text-xs sm:text-sm">
+            <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
+            {video.views} views
+          </div>
+          <div className="w-8 h-1 bg-gradient-to-r from-black to-red-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
       </div>
     </section>
   );
