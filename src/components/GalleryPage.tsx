@@ -297,10 +297,10 @@ const GalleryPage = () => {
   };
 
   const navigateLightbox = (direction) => {
-    const newIndex = direction === 'next' 
+    const newIndex = direction === 'next'
       ? (lightboxIndex + 1) % filteredImages.length
       : (lightboxIndex - 1 + filteredImages.length) % filteredImages.length;
-    
+
     setLightboxIndex(newIndex);
     setSelectedImage(filteredImages[newIndex]);
   };
@@ -308,23 +308,22 @@ const GalleryPage = () => {
   return (
     <div className="min-h-screen bg-yellow-400 pt-16">
       {/* Hero Section */}
-      <section className="py-12 sm:py-16 bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-500 relative overflow-hidden">
+      <section className="py-1 bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-500 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-200/30 rounded-full animate-pulse blur-2xl"></div>
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-yellow-600/20 rounded-full animate-pulse blur-2xl" style={{ animationDelay: '2s' }}></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-black mb-4 tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-black text-black mb-2 tracking-tight">
             Photo Gallery
           </h1>
-          <p className="text-lg sm:text-xl text-black/80 max-w-2xl mx-auto mb-6 sm:mb-8">
-            Explore moments from our events, collaborations, and community gatherings
+          <p className="text-xl text-black/80 max-w-2xl mx-auto mb-4">
+            Highlights from our events and collaborations.
           </p>
           <div className="w-24 h-1 bg-black mx-auto rounded-full"></div>
         </div>
       </section>
-
       {/* Filter Section */}
       <section className="py-6 sm:py-8 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -387,7 +386,7 @@ const GalleryPage = () => {
                     key={image.id}
                     className="break-inside-avoid group cursor-pointer"
                     onClick={() => openLightbox(image, index)}
-                    style={{ 
+                    style={{
                       animationDelay: `${index * 50}ms`,
                       animation: `fadeInUp 0.6s ease-out ${index * 50}ms both`
                     }}
@@ -399,7 +398,7 @@ const GalleryPage = () => {
                         className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-110"
                         loading="lazy"
                       />
-                      
+
                       {/* Hover Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
                         <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -433,7 +432,7 @@ const GalleryPage = () => {
                     >
                       Previous
                     </button>
-                    
+
                     {[...Array(totalPages)].map((_, index) => {
                       const page = index + 1;
                       if (page === currentPage || page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)) {
@@ -441,11 +440,10 @@ const GalleryPage = () => {
                           <button
                             key={page}
                             onClick={() => setCurrentPage(page)}
-                            className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
-                              page === currentPage
+                            className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${page === currentPage
                                 ? 'bg-black text-yellow-400 border-2 border-black'
                                 : 'bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black hover:bg-white hover:border-black/40'
-                            }`}
+                              }`}
                           >
                             {page}
                           </button>
@@ -455,7 +453,7 @@ const GalleryPage = () => {
                       }
                       return null;
                     })}
-                    
+
                     <button
                       onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                       disabled={currentPage === totalPages}
@@ -532,13 +530,12 @@ const GalleryPage = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <button
                       onClick={() => setIsLiked(!isLiked)}
-                      className={`p-3 rounded-full transition-all duration-300 ${
-                        isLiked ? 'bg-red-500 text-white' : 'bg-white/20 text-white hover:bg-white/30'
-                      }`}
+                      className={`p-3 rounded-full transition-all duration-300 ${isLiked ? 'bg-red-500 text-white' : 'bg-white/20 text-white hover:bg-white/30'
+                        }`}
                     >
                       <Heart className={`h-5 w-5 ${isLiked ? 'fill-current' : ''}`} />
                     </button>
