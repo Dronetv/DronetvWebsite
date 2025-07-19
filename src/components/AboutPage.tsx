@@ -98,7 +98,7 @@ const AboutPage = () => {
   </div>
 
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-    <h1 className="text-4xl md:text-6xl font-black text-black mb-2 tracking-tight">
+    <h1 className="text-2xl md:text-5xl font-black text-black mb-2 tracking-tight">
       About Drone TV
     </h1>
     <p className="text-xl text-black/80 max-w-2xl mx-auto mb-4">
@@ -110,7 +110,7 @@ const AboutPage = () => {
 
 
       {/* Mission and Vision Section */}
-      <section className="py-20 bg-gradient-to-b from-yellow-400 to-yellow-300">
+      <section className="py-12 bg-gradient-to-b from-yellow-400 to-yellow-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">

@@ -263,115 +263,97 @@ const EventsPage = () => {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black text-black mb-2 tracking-tight">
+          <h1 className="text-2xl md:text-5xl font-black text-black mb-2 tracking-tight">
             Events Calendar
 
           </h1>
           <p className="text-xl text-black/80 max-w-2xl mx-auto mb-4">
-          Join global events to learn, connect, and grow in drone tech.
+            Highlights from our events and collaborations.
           </p>
           <div className="w-24 h-1 bg-black mx-auto rounded-full"></div>
         </div>
       </section>
 
       {/* Filter Section */}
-      <section className="py-8 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
+      <section className="py-6 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
+          <div className="flex flex-col lg:flex-row gap-2 items-center justify-between">
             {/* Search Bar */}
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-black/60" />
+            <div className="relative flex-1 max-w-xs">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60" />
               <input
                 type="text"
-                placeholder="Search events, dates, or locations..."
+                placeholder="Search events..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-black/20 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 font-medium transition-all duration-300"
+                className="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-black/20 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 font-medium text-sm transition-all duration-300"
               />
             </div>
 
-            {/* Filter and Sort Controls */}
-            <div className="flex gap-4">
-              {/* Event Type Filter */}
-              <div className="relative">
-                <select
-                  value={selectedType}
-                  onChange={(e) => setSelectedType(e.target.value)}
-                  className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-xl px-4 py-3 pr-10 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 transition-all duration-300"
-                >
-                  {eventTypes.map(type => (
-                    <option key={type} value={type}>
-                      {type === 'All' ? 'All Event Types' : type}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-black/60 pointer-events-none" />
-              </div>
-
-              {/* Sort Options */}
-              <div className="relative">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-xl px-4 py-3 pr-10 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 transition-all duration-300"
-                >
-                  {sortOptions.map(option => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-black/60 pointer-events-none" />
-              </div>
+            {/* Event Type Filter */}
+            <div className="relative w-full lg:w-auto">
+              <select
+                value={selectedType}
+                onChange={(e) => setSelectedType(e.target.value)}
+                className="w-64 appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300"
+              >
+                {eventTypes.map(type => (
+                  <option key={type} value={type}>
+                    {type === 'All' ? 'All Event Types' : type}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
             </div>
+
+            {/* Sort Options */}
+            <div className="relative">
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300 w-80"
+              >
+                {sortOptions.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
+            </div>
+
           </div>
 
           {/* Active Filters Display */}
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2">
             {selectedType !== 'All' && (
-              <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
+              <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
                 Type: {selectedType}
-                <button
-                  onClick={() => setSelectedType('All')}
-                  className="hover:text-white transition-colors duration-200"
-                >
-                  ×
-                </button>
+                <button onClick={() => setSelectedType('All')} className="hover:text-white transition-colors duration-200 text-sm">×</button>
               </span>
             )}
             {searchQuery && (
-              <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
+              <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
                 Search: "{searchQuery}"
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="hover:text-white transition-colors duration-200"
-                >
-                  ×
-                </button>
+                <button onClick={() => setSearchQuery('')} className="hover:text-white transition-colors duration-200 text-sm">×</button>
               </span>
             )}
           </div>
         </div>
       </section>
 
+
       {/* Featured Events Section */}
-      <section className="py-16 bg-gradient-to-b from-yellow-400 to-yellow-300">
+      <section className="py-8 bg-gradient-to-b from-yellow-400 to-yellow-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black text-black mb-4">
-              Featured Events
-            </h2>
-            <p className="text-lg text-black/80">
-              Don't miss these upcoming industry highlights
-            </p>
-          </div>
+
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredEvents.map((event, index) => (
               <div
                 key={event.id}
                 className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1 border-2 border-black/20 hover:border-black/40"
-                style={{ 
+                style={{
                   animationDelay: `${index * 200}ms`,
                   animation: `fadeInUp 0.8s ease-out ${index * 200}ms both`
                 }}
@@ -382,16 +364,16 @@ const EventsPage = () => {
                     alt={event.name}
                     className="w-full h-48 object-cover transition-all duration-700 group-hover:scale-110 border-b-2 border-black/10"
                   />
-                  
+
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                  
+
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
                     <div className="bg-yellow-400 text-black px-6 py-3 rounded-full font-bold shadow-2xl transform scale-0 group-hover:scale-100 transition-all duration-500 hover:bg-yellow-300 flex items-center gap-2">
                       <span>View Event Details</span>
                       <ArrowRight className="h-4 w-4" />
                     </div>
                   </div>
-                  
+
                   <div className={`absolute top-4 right-4 ${getTypeColor(event.type)} text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg`}>
                     {event.type}
                   </div>
@@ -409,13 +391,13 @@ const EventsPage = () => {
                     {event.status}
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-black mb-2 group-hover:text-gray-800 transition-colors duration-300">
                     {event.name}
                   </h3>
                   <p className="text-gray-600 mb-4 line-clamp-2">{event.description}</p>
-                  
+
                   <div className="space-y-2">
                     <div className="flex items-center text-gray-600 text-sm">
                       <Calendar className="h-4 w-4 mr-2 text-yellow-600" />
@@ -463,7 +445,7 @@ const EventsPage = () => {
                 <div
                   key={event.id}
                   className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 border-2 border-black/20 hover:border-black/40"
-                  style={{ 
+                  style={{
                     animationDelay: `${index * 100}ms`,
                     animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`
                   }}
@@ -475,16 +457,16 @@ const EventsPage = () => {
                         alt={event.name}
                         className="w-full h-40 object-cover transition-all duration-700 group-hover:scale-110"
                       />
-                      
+
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                      
+
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
                         <div className="bg-yellow-400 text-black px-4 py-2 rounded-full font-bold shadow-2xl transform scale-0 group-hover:scale-100 transition-all duration-500 hover:bg-yellow-300 flex items-center gap-2">
                           <span>View Details</span>
                           <ArrowRight className="h-3 w-3" />
                         </div>
                       </div>
-                      
+
                       <div className={`absolute top-3 right-3 ${getTypeColor(event.type)} text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg`}>
                         {event.type}
                       </div>
@@ -498,13 +480,13 @@ const EventsPage = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="p-4">
                     <h3 className="text-lg font-bold text-black mb-2 group-hover:text-gray-800 transition-colors duration-300 line-clamp-2">
                       {event.name}
                     </h3>
                     <p className="text-gray-600 mb-3 line-clamp-2 text-sm">{event.description}</p>
-                    
+
                     <div className="space-y-1 text-xs">
                       <div className="flex items-center text-gray-600">
                         <Calendar className="h-3 w-3 mr-1 text-yellow-600" />
@@ -536,7 +518,7 @@ const EventsPage = () => {
                 >
                   Previous
                 </button>
-                
+
                 {[...Array(totalPages)].map((_, index) => {
                   const page = index + 1;
                   if (page === currentPage || page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)) {
@@ -544,11 +526,10 @@ const EventsPage = () => {
                       <button
                         key={page}
                         onClick={() => setCurrentPage(page)}
-                        className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
-                          page === currentPage
-                            ? 'bg-black text-yellow-400 border-2 border-black'
-                            : 'bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black hover:bg-white hover:border-black/40'
-                        }`}
+                        className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${page === currentPage
+                          ? 'bg-black text-yellow-400 border-2 border-black'
+                          : 'bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black hover:bg-white hover:border-black/40'
+                          }`}
                       >
                         {page}
                       </button>
@@ -558,7 +539,7 @@ const EventsPage = () => {
                   }
                   return null;
                 })}
-                
+
                 <button
                   onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                   disabled={currentPage === totalPages}
