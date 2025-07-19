@@ -33,14 +33,15 @@ const Navigation = () => {
   };
   const navItems = [
     { name: 'Home', path: '/' },
+    { name: 'About Us', path: '/about' },
     { name: 'Videos', path: '/videos' },
-    { name: 'Professionals', path: '/professionals' },
+    { name: 'Gallery', path: '/gallery' },
     { name: 'Companies', path: '/companies' },
+    { name: 'Professionals', path: '/professionals' },
     { name: 'Products', path: '/products' },
     { name: 'Services', path: '/services' },
     { name: 'Events', path: '/events' },
     { name: 'News & Blogs', path: '/news' },
-    { name: 'About Us', path: '/about' },
     { name: 'Partner With Us', path: '/partner' },
     { name: 'Contact', path: '/contact' }
   ];

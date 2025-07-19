@@ -22,6 +22,8 @@ import ProfessionalsPage from './components/ProfessionalsPage';
 import ServicesPage from './components/ServicesPage';
 import ServiceDetailPage from './components/ServiceDetailPage';
 import ScrollingFooter from './components/ScrollingFooter';
+import GalleryPage from './components/GalleryPage';
+import GalleryGlimpse from './components/GalleryGlimpse';
 
 const HomePage = () => (
   <>
@@ -30,6 +32,7 @@ const HomePage = () => (
     <BrowseByTopic />
     <FeaturedCompanies />
     <UpcomingEvents />
+    <GalleryGlimpse />
     <Newsletter />
   </>
 );
@@ -50,6 +53,7 @@ function App() {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/partner" element={<PartnerPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
