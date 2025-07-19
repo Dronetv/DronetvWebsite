@@ -31,11 +31,11 @@ const CreatePortfolio: React.FC = () => {
 
   const handleCategorySelect = (categoryId: string) => {
     if (categoryId === 'professional') {
-      navigate('/create-portfolio/professional');
+      navigate('/list/create-portfolio/professional');
     } else if (categoryId === 'company') {
-      navigate('/create-company');
+      navigate('/list/create-company');
     } else if (categoryId === 'event') {
-      navigate('/create-event');
+      navigate('/list/create-event');
     }
   };
 
@@ -49,7 +49,7 @@ const CreatePortfolio: React.FC = () => {
               Drone<span className="text-[#FFD400]">TV</span>
             </div>
             <nav>
-              <a href="/" className="text-white hover:text-[#FFD400] transition-colors">
+              <a href="/list" className="text-white hover:text-[#FFD400] transition-colors">
                 ← Back to Home
               </a>
             </nav>
