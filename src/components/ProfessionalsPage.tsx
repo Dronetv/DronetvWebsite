@@ -200,7 +200,7 @@ const ProfessionalsPage = () => {
         professional.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         professional.profession.toLowerCase().includes(searchQuery.toLowerCase()) ||
         professional.bio.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        professional.specialties.some(specialty => 
+        professional.specialties.some(specialty =>
           specialty.toLowerCase().includes(searchQuery.toLowerCase())
         )
       );
@@ -257,152 +257,89 @@ const ProfessionalsPage = () => {
   return (
     <div className="min-h-screen bg-yellow-400 pt-16">
       {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-500 relative overflow-hidden">
+      <section className="py-3 bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-500 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-200/30 rounded-full animate-pulse blur-2xl"></div>
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-yellow-600/20 rounded-full animate-pulse blur-2xl" style={{ animationDelay: '2s' }}></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black text-black mb-4 tracking-tight">
+          <h1 className="text-2xl md:text-5xl font-black text-black mb-2 tracking-tight">
             Meet Our Professionals
+
           </h1>
-          <p className="text-xl text-black/80 max-w-2xl mx-auto mb-8">
-            Discover the talented professionals from various fields who are shaping the future of drone technology
+          <p className="text-xl text-black/80 max-w-2xl mx-auto mb-4">Meet the experts shaping the future of drone tech
           </p>
-          <div className="w-24 h-1 bg-black mx-auto rounded-full mb-8"></div>
-          
-          <button className="bg-black text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 shadow-lg">
-            Join Our Network
-          </button>
+          <div className="w-24 h-1 bg-black mx-auto rounded-full"></div>
         </div>
       </section>
 
       {/* Filter Section */}
-      <section className="py-8 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-            {/* Search Bar */}
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-black/60" />
-              <input
-                type="text"
-                placeholder="Search professionals or specialties..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-black/20 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 font-medium transition-all duration-300"
-              />
-            </div>
-
-            {/* Filter Controls */}
-            <div className="flex gap-4">
-              {/* Profession Filter */}
-              <div className="relative">
-                <select
-                  value={selectedProfession}
-                  onChange={(e) => setSelectedProfession(e.target.value)}
-                  className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-xl px-4 py-3 pr-10 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 transition-all duration-300"
-                >
-                  {professions.map(profession => (
-                    <option key={profession} value={profession}>
-                      {profession === 'All' ? 'All Professions' : profession}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-black/60 pointer-events-none" />
-              </div>
-
-              {/* Location Filter */}
-              <div className="relative">
-                <select
-                  value={selectedLocation}
-                  onChange={(e) => setSelectedLocation(e.target.value)}
-                  className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-xl px-4 py-3 pr-10 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 transition-all duration-300"
-                >
-                  {locations.map(location => (
-                    <option key={location} value={location}>
-                      {location === 'All' ? 'All Locations' : location}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-black/60 pointer-events-none" />
-              </div>
-
-              {/* Sort Options */}
-              <div className="relative">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-xl px-4 py-3 pr-10 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 transition-all duration-300"
-                >
-                  {sortOptions.map(option => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-black/60 pointer-events-none" />
-              </div>
-            </div>
+  <section className="py-3 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col lg:flex-row gap-2 items-center justify-between">
+      <div className="relative flex-1 max-w-xs">
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60" />
+        <input
+          type="text"
+          placeholder="Search professionals..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-black/20 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 font-medium text-sm"
+        />
+      </div>
+      <div className="flex gap-3">
+        {[
+          { value: selectedProfession, setValue: setSelectedProfession, options: professions, label: 'Professions' },
+          { value: selectedLocation, setValue: setSelectedLocation, options: locations, label: 'Locations' },
+          { value: sortBy, setValue: setSortBy, options: sortOptions, label: 'Sort Options' }
+        ].map(({ value, setValue, options, label }, idx) => (
+          <div key={idx} className="relative">
+            <select
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40"
+            >
+              {options.map(option => (
+                <option key={option.value || option} value={option.value || option}>
+                  {option === 'All' ? `All ${label}` : option.label || option}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
           </div>
+        ))}
+      </div>
+    </div>
+    <div className="mt-2 flex flex-wrap gap-2">
+      {['Profession', 'Location', 'Search'].map((filter, idx) => {
+        const value = filter === 'Profession' ? selectedProfession : filter === 'Location' ? selectedLocation : searchQuery;
+        const setter = filter === 'Profession' ? setSelectedProfession : filter === 'Location' ? setSelectedLocation : setSearchQuery;
+        return value !== 'All' && value ? (
+          <span key={idx} className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+            {filter}: {value} <button onClick={() => setter('All')} className="hover:text-white transition-colors duration-200 text-sm">×</button>
+          </span>
+        ) : null;
+      })}
+    </div>
+  </div>
+</section>
 
-          {/* Active Filters Display */}
-          <div className="mt-4 flex flex-wrap gap-2">
-            {selectedProfession !== 'All' && (
-              <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
-                Profession: {selectedProfession}
-                <button
-                  onClick={() => setSelectedProfession('All')}
-                  className="hover:text-white transition-colors duration-200"
-                >
-                  ×
-                </button>
-              </span>
-            )}
-            {selectedLocation !== 'All' && (
-              <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
-                Location: {selectedLocation}
-                <button
-                  onClick={() => setSelectedLocation('All')}
-                  className="hover:text-white transition-colors duration-200"
-                >
-                  ×
-                </button>
-              </span>
-            )}
-            {searchQuery && (
-              <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
-                Search: "{searchQuery}"
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="hover:text-white transition-colors duration-200"
-                >
-                  ×
-                </button>
-              </span>
-            )}
-          </div>
-        </div>
-      </section>
+
+
+
+
 
       {/* Featured Professionals Section */}
-      <section className="py-16 bg-gradient-to-b from-yellow-400 to-yellow-300">
+      <section className="py-4 bg-gradient-to-b from-yellow-400 to-yellow-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black text-black mb-4">
-              Featured Professionals
-            </h2>
-            <p className="text-lg text-black/80">
-              Top-rated experts leading innovation in their fields
-            </p>
-          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredProfessionals.map((professional, index) => (
               <div
                 key={professional.id}
                 className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1"
-                style={{ 
+                style={{
                   animationDelay: `${index * 200}ms`,
                   animation: `fadeInUp 0.8s ease-out ${index * 200}ms both`
                 }}
@@ -428,7 +365,7 @@ const ProfessionalsPage = () => {
                     {professional.name}
                   </h3>
                   <p className="text-gray-600 mb-2">Age: {professional.age}</p>
-                  
+
                   <div className={`${getProfessionColor(professional.profession)} text-white px-3 py-1 rounded-full text-sm font-bold inline-block mb-3`}>
                     {professional.profession}
                   </div>
@@ -495,7 +432,7 @@ const ProfessionalsPage = () => {
                 <div
                   key={professional.id}
                   className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
-                  style={{ 
+                  style={{
                     animationDelay: `${index * 100}ms`,
                     animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`
                   }}
@@ -515,7 +452,7 @@ const ProfessionalsPage = () => {
                       {professional.name}
                     </h3>
                     <p className="text-gray-600 text-sm mb-2">Age: {professional.age}</p>
-                    
+
                     <div className={`${getProfessionColor(professional.profession)} text-white px-2 py-1 rounded-full text-xs font-bold inline-block mb-3`}>
                       {professional.profession}
                     </div>
@@ -548,7 +485,7 @@ const ProfessionalsPage = () => {
                     <div className="mb-3">
                       <div className="flex flex-wrap gap-1 justify-center">
                         {professional.specialties.slice(0, 2).map((specialty, idx) => (
-                          <span 
+                          <span
                             key={specialty}
                             className="bg-yellow-200 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
                           >
@@ -584,7 +521,7 @@ const ProfessionalsPage = () => {
                 >
                   Previous
                 </button>
-                
+
                 {[...Array(totalPages)].map((_, index) => {
                   const page = index + 1;
                   if (page === currentPage || page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)) {
@@ -592,11 +529,10 @@ const ProfessionalsPage = () => {
                       <button
                         key={page}
                         onClick={() => setCurrentPage(page)}
-                        className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
-                          page === currentPage
-                            ? 'bg-black text-yellow-400 border-2 border-black'
-                            : 'bg-yellow-100/80 backdrop-blur-sm border-2 border-black/20 text-black hover:bg-yellow-200 hover:border-black/40'
-                        }`}
+                        className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${page === currentPage
+                          ? 'bg-black text-yellow-400 border-2 border-black'
+                          : 'bg-yellow-100/80 backdrop-blur-sm border-2 border-black/20 text-black hover:bg-yellow-200 hover:border-black/40'
+                          }`}
                       >
                         {page}
                       </button>
@@ -606,7 +542,7 @@ const ProfessionalsPage = () => {
                   }
                   return null;
                 })}
-                
+
                 <button
                   onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                   disabled={currentPage === totalPages}
