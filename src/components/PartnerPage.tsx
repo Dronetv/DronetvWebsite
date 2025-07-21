@@ -22,14 +22,14 @@ const PartnerPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     setIsLoading(false);
     setIsSubmitted(true);
     setFormData({ name: '', email: '', organization: '', message: '' });
-    
+
     setTimeout(() => setIsSubmitted(false), 5000);
   };
 
@@ -97,7 +97,7 @@ const PartnerPage = () => {
   return (
     <div className="min-h-screen bg-yellow-400 pt-16">
       {/* Hero Section */}
-    <section className="py-3 bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-500 relative overflow-hidden">
+      <section className="py-3 bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-500 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-200/30 rounded-full animate-pulse blur-2xl"></div>
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-yellow-600/20 rounded-full animate-pulse blur-2xl" style={{ animationDelay: '2s' }}></div>
@@ -105,11 +105,11 @@ const PartnerPage = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-2xl md:text-5xl font-black text-black mb-2 tracking-tight">
-           Partner With Us
+            Partner With Us
 
           </h1>
           <p className="text-xl text-black/80 max-w-2xl mx-auto mb-4">
-           Partner with Drone TV to connect and innovate globally.
+            Partner with Drone TV to connect and innovate globally.
           </p>
           <div className="w-24 h-1 bg-black mx-auto rounded-full"></div>
         </div>
@@ -135,17 +135,17 @@ const PartnerPage = () => {
                 </p>
               </div>
               <div className="mt-8">
-                <button className="bg-black text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <button className="bg-black text-[#f1ee8e] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 shadow-lg">
                   Become a Partner
                 </button>
               </div>
             </div>
-            
+
             <div className="relative">
-              <div className="bg-white rounded-3xl p-8 shadow-2xl">
-                <img 
-                  src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                  alt="Partnership Opportunities" 
+              <div className="bg-[#f1ee8e] rounded-3xl p-8 shadow-2xl">
+                <img
+                  src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  alt="Partnership Opportunities"
                   className="w-full h-64 object-cover rounded-2xl mb-6"
                 />
                 <div className="text-center">
@@ -186,12 +186,12 @@ const PartnerPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {partnerTypes.map((type, index) => {
               const IconComponent = type.icon;
-              
+
               return (
                 <div
                   key={type.title}
-                  className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:scale-105"
-                  style={{ 
+                  className="bg-[#f1ee8e] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:scale-105"
+                  style={{
                     animationDelay: `${index * 150}ms`,
                     animation: `fadeInUp 0.8s ease-out ${index * 150}ms both`
                   }}
@@ -225,12 +225,12 @@ const PartnerPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {benefits.map((benefit, index) => {
               const IconComponent = benefit.icon;
-              
+
               return (
                 <div
                   key={benefit.title}
-                  className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:scale-105"
-                  style={{ 
+                  className="bg-[#f1ee8e] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:scale-105"
+                  style={{
                     animationDelay: `${index * 100}ms`,
                     animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`
                   }}
@@ -263,7 +263,7 @@ const PartnerPage = () => {
             </p>
           </div>
 
-          <div className="bg-white rounded-3xl p-12 shadow-2xl">
+          <div className="bg-[#f1ee8e] rounded-3xl p-12 shadow-2xl">
             {!isSubmitted ? (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -278,11 +278,11 @@ const PartnerPage = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="Enter your full name"
-                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-500 transition-all duration-300"
+                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-600 transition-all duration-300 resize-none"
                       required
                     />
                   </div>
-                  
+
                   <div>
                     <label htmlFor="email" className="block text-sm font-bold text-black mb-2">
                       Email Address *
@@ -294,7 +294,7 @@ const PartnerPage = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="Enter your email address"
-                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-500 transition-all duration-300"
+                       className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-600 transition-all duration-300 resize-none"
                       required
                     />
                   </div>
@@ -311,7 +311,7 @@ const PartnerPage = () => {
                     value={formData.organization}
                     onChange={handleInputChange}
                     placeholder="Enter your organization name"
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-500 transition-all duration-300"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-600 transition-all duration-300 resize-none"
                     required
                   />
                 </div>
@@ -327,7 +327,7 @@ const PartnerPage = () => {
                     onChange={handleInputChange}
                     placeholder="Tell us about your organization and how you'd like to partner with Drone TV..."
                     rows={6}
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-500 transition-all duration-300 resize-none"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-600 transition-all duration-300 resize-none"
                     required
                   ></textarea>
                 </div>
@@ -336,10 +336,10 @@ const PartnerPage = () => {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="bg-black text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 mx-auto shadow-lg"
+                    className="bg-black text-[#f1ee8e] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 mx-auto shadow-lg"
                   >
                     {isLoading ? (
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <div className="w-5 h-5 border-2 border-[#f1ee8e] border-t-[#f1ee8e] rounded-full animate-spin"></div>
                     ) : (
                       <Send className="h-5 w-5" />
                     )}
@@ -350,11 +350,11 @@ const PartnerPage = () => {
             ) : (
               <div className="text-center py-8">
                 <div className="bg-green-500 rounded-full p-6 w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                  <CheckCircle className="h-10 w-10 text-white" />
+                  <CheckCircle className="h-10 w-10 text-[#f1ee8e]" />
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-4">Thank You for Your Interest!</h3>
                 <p className="text-gray-600 mb-6">
-                  We've received your partnership application and our team will review it shortly. 
+                  We've received your partnership application and our team will review it shortly.
                   You can expect to hear from us within 24 hours.
                 </p>
                 <div className="text-sm text-gray-500">

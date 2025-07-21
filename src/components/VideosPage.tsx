@@ -16,13 +16,26 @@ const VideosPage = () => {
     { value: 'views', label: 'Sort by Views' },
     { value: 'title', label: 'Sort by Title' }
   ];
+  type Video = {
+  id: number;
+  title: string;
+  description: string;
+  videoUrl: string;
+  category: string;
+  views: string;
+  duration: string;
+  rating: number;
+  featured?: boolean;
+  date?: string;
+};
 
-  const allVideos = [
+
+ const allVideos: Video[]  = [
     {
       id: 1,
       title: "Advanced Drone AI Navigation Systems",
       description: "Explore cutting-edge AI algorithms that power autonomous drone flight systems and intelligent navigation.",
-      videoUrl: "https://www.youtube.com/embed/hRt9Op9nD7M?si=-571QkovUUgty9du",
+      videoUrl: "https://www.youtube.com/embed/hRt9Op9nD7M",
       category: "AI",
       views: "12.5K",
       duration: "8:42",
@@ -33,7 +46,7 @@ const VideosPage = () => {
       id: 2,
       title: "GIS Mapping with Professional Drones",
       description: "Learn precision mapping and surveying techniques using advanced drone technology for geographic data collection.",
-      videoUrl: "https://www.youtube.com/embed/W2kpIo1Xlj4?si=CA_zU6OekIF0FhQV",
+      videoUrl: "https://www.youtube.com/embed/W2kpIo1Xlj4",
       category: "GIS",
       views: "8.9K",
       duration: "12:15",
@@ -44,7 +57,7 @@ const VideosPage = () => {
       id: 3,
       title: "Commercial Drone Applications in Industry",
       description: "Discover real-world use cases and applications of commercial drones across various industries and sectors.",
-      videoUrl: "https://www.youtube.com/embed/7Emdg4-WgQo?si=KDbrdsf_h8PqxG52",
+      videoUrl: "https://www.youtube.com/embed/7Emdg4-WgQo",
       category: "Drone",
       views: "15.2K",
       duration: "6:33",
@@ -55,7 +68,7 @@ const VideosPage = () => {
       id: 4,
       title: "Drone Safety Regulations and Guidelines",
       description: "Essential safety guidelines and regulatory compliance for professional drone operators and enthusiasts.",
-      videoUrl: "https://www.youtube.com/embed/bIOSkyj6xSk?si=lQx1xcuZNCkB4GEQ",
+      videoUrl: "https://www.youtube.com/embed/bIOSkyj6xSk",
       category: "Drone",
       views: "9.7K",
       duration: "10:28",
@@ -65,7 +78,7 @@ const VideosPage = () => {
       id: 5,
       title: "Machine Learning in Drone Technology",
       description: "How machine learning algorithms are revolutionizing drone capabilities and autonomous decision-making.",
-      videoUrl: "https://www.youtube.com/embed/9SUglQh93cQ?si=Uf-zR974YZT-6Vcy",
+      videoUrl: "https://www.youtube.com/embed/9SUglQh93cQ",
       category: "AI",
       views: "11.3K",
       duration: "14:07",
@@ -75,7 +88,7 @@ const VideosPage = () => {
       id: 6,
       title: "Precision Agriculture with Drone Technology",
       description: "Transforming modern farming practices with aerial technology and precision agriculture solutions.",
-      videoUrl: "https://www.youtube.com/embed/ykgVmoq5UXc?si=y2jlhM_AbFaBzEp1",
+      videoUrl: "https://www.youtube.com/embed/ykgVmoq5UXc",
       category: "GIS",
       views: "7.8K",
       duration: "9:51",
@@ -85,7 +98,7 @@ const VideosPage = () => {
       id: 7,
       title: "DroneWorld Conference 2024 Highlights",
       description: "Key highlights and insights from the biggest drone technology conference of the year.",
-      videoUrl: "https://www.youtube.com/embed/Wd5tORrsZDY?si=OGLwflM-U_q-KIHh",
+      videoUrl: "https://www.youtube.com/embed/Wd5tORrsZDY",
       category: "Events",
       views: "13.1K",
       duration: "18:22",
@@ -95,7 +108,7 @@ const VideosPage = () => {
       id: 8,
       title: "DJI Mavic Pro 3 Complete Review",
       description: "In-depth review of the latest DJI Mavic Pro 3 with performance tests and feature analysis.",
-      videoUrl: "https://www.youtube.com/embed/D8yx7peXCtg?si=AkQDrvOUnIJTTk-k",
+      videoUrl: "https://www.youtube.com/embed/D8yx7peXCtg",
       category: "Reviews",
       views: "22.4K",
       duration: "16:45",
@@ -105,7 +118,7 @@ const VideosPage = () => {
       id: 9,
       title: "Computer Vision for Autonomous Drones",
       description: "Advanced computer vision techniques enabling drones to see, understand, and navigate complex environments.",
-      videoUrl: "https://www.youtube.com/embed/K9ZIZtb0PNY?si=AVbW4ORLcUd6FoAG",
+      videoUrl: "https://www.youtube.com/embed/K9ZIZtb0PNY",
       category: "AI",
       views: "6.2K",
       duration: "11:33",
@@ -115,7 +128,7 @@ const VideosPage = () => {
       id: 10,
       title: "Environmental Monitoring with Drones",
       description: "Using drone technology for environmental research, wildlife monitoring, and conservation efforts.",
-      videoUrl: "https://www.youtube.com/embed/q-3kYJJff3s?si=UICfEXiv3q2Ri2k7",
+      videoUrl: "https://www.youtube.com/embed/q-3kYJJff3s",
       category: "GIS",
       views: "5.9K",
       duration: "13:17",
@@ -125,7 +138,7 @@ const VideosPage = () => {
       id: 11,
       title: "Racing Drone Build Tutorial",
       description: "Step-by-step guide to building your own high-performance racing drone from scratch.",
-      videoUrl: "https://www.youtube.com/embed/UTEOSIHf9G4?si=RtM0eBSHG_xSzRb4",
+      videoUrl: "https://www.youtube.com/embed/UTEOSIHf9G4",
       category: "Drone",
       views: "18.7K",
       duration: "25:14",
@@ -135,7 +148,7 @@ const VideosPage = () => {
       id: 12,
       title: "AI Summit 2024 Keynote Presentation",
       description: "Keynote presentation on the future of AI in aviation and autonomous systems.",
-      videoUrl: "https://www.youtube.com/embed/ctKVmhYssVw?si=WqFa2VGIYzPr-xN1",
+      videoUrl: "https://www.youtube.com/embed/ctKVmhYssVw",
       category: "Events",
       views: "14.8K",
       duration: "32:18",
@@ -193,6 +206,10 @@ const VideosPage = () => {
       case 'Reviews': return 'bg-gray-900';
       default: return 'bg-gray-700';
     }
+  };
+  const getYoutubeId = (url: string) => {
+    const match = url.match(/(?:youtube\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+    return match ? match[1] : '';
   };
 
   return (
@@ -281,7 +298,7 @@ const VideosPage = () => {
             {featuredVideos.map((video, index) => (
               <div
                 key={video.id}
-                className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1 border-2 border-black/20 hover:border-black/40"
+                className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1 border-2 border-black/20 hover:border-black/40"
                 style={{
                   animationDelay: `${index * 200}ms`,
                   animation: `fadeInUp 0.8s ease-out ${index * 200}ms both`
@@ -302,10 +319,7 @@ const VideosPage = () => {
                     {video.category}
                   </div>
 
-                  <div className="absolute bottom-4 right-4 bg-black/80 text-white px-2 py-1 rounded-lg text-xs font-medium flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    {video.duration}
-                  </div>
+                  
 
                   <div className="absolute top-4 left-4 bg-yellow-400 text-black px-2 py-1 rounded-lg text-xs font-bold flex items-center gap-1">
                     <Star className="h-3 w-3 fill-current" />
@@ -334,7 +348,7 @@ const VideosPage = () => {
                 </div>
 
 
-            
+
               </div>
             ))}
           </div>
@@ -342,140 +356,136 @@ const VideosPage = () => {
       </section>
 
       {/* Video Grid Section */}
-      <section className="py-16 bg-yellow-400">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl md:text-4xl font-black text-black">
-              All Videos ({filteredVideos.length})
-            </h2>
-            <div className="text-black/60">
-              Page {currentPage} of {totalPages}
-            </div>
-          </div>
+{/* Video Grid Section */}
+<section className="py-16 bg-yellow-400">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-between mb-8">
+      <h2 className="text-3xl md:text-4xl font-black text-black">
+        All Videos ({filteredVideos.length})
+      </h2>
+      <div className="text-black/60">
+        Page {currentPage} of {totalPages}
+      </div>
+    </div>
 
-          {currentVideos.length === 0 ? (
-            <div className="text-center py-16">
-              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 max-w-md mx-auto">
-                <Search className="h-16 w-16 text-black/40 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-black mb-2">No videos found</h3>
-                <p className="text-black/60">Try adjusting your filters or search terms</p>
+    {currentVideos.length === 0 ? (
+      <div className="text-center py-16">
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 max-w-md mx-auto">
+          <Search className="h-16 w-16 text-black/40 mx-auto mb-4" />
+          <h3 className="text-2xl font-bold text-black mb-2">No videos found</h3>
+          <p className="text-black/60">Try adjusting your filters or search terms</p>
+        </div>
+      </div>
+    ) : (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {currentVideos.map((video, index) => (
+          <div
+            key={video.id}
+            className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 border-2 border-black/20 hover:border-black/40"
+            style={{
+              animationDelay: `${index * 100}ms`,
+              animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`
+            }}
+          >
+            <div className="p-3">
+              <div className="relative overflow-hidden rounded-2xl">
+                {/* Embed the YouTube video */}
+                <iframe
+                  src={`https://www.youtube.com/embed/${getYoutubeId(video.videoUrl)}?rel=0&modestbranding=1`}
+                  title={video.title}
+                  className="w-full h-48 object-cover rounded-2xl"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+
+                {/* Overlay (transparent on hover only) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"></div>
+
+                {/* Category Badge */}
+                <div className={`absolute top-3 right-3 ${getCategoryColor(video.category)} text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg`}>
+                  {video.category}
+                </div>
+
+                {/* Duration */}
+                
               </div>
             </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {currentVideos.map((video, index) => (
-                <div
-                  key={video.id}
-                  className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 border-2 border-black/20 hover:border-black/40"
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                    animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`
-                  }}
-                >
-                  <div className="p-3">
-                    <div className="relative overflow-hidden rounded-2xl">
-                      {/* Embed the YouTube video */}
-                      <iframe
-                        src={video.videoUrl} // The URL of the YouTube video
-                        title={video.title} // Set title for accessibility
-                        className="w-full h-40 object-cover transition-all duration-700 group-hover:scale-110"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
 
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+            <div className="p-4">
+              <h3 className="text-lg font-bold text-black mb-2 group-hover:text-red-800 transition-colors duration-300 line-clamp-2">
+                {video.title}
+              </h3>
+              <p className="text-gray-600 mb-3 line-clamp-2 text-sm">{video.description}</p>
 
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <div className="bg-red-600 rounded-full p-3 transform scale-0 group-hover:scale-100 transition-all duration-500 hover:bg-red-700 shadow-2xl">
-                          <Play className="h-6 w-6 text-white" />
-                        </div>
-                      </div>
-
-                      <div className={`absolute top-3 right-3 ${getCategoryColor(video.category)} text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg`}>
-                        {video.category}
-                      </div>
-
-                      <div className="absolute bottom-3 right-3 bg-black/80 text-white px-2 py-1 rounded-lg text-xs font-medium flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        {video.duration}
-                      </div>
-                    </div>
+              <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center gap-3 text-gray-500">
+                  <div className="flex items-center gap-1">
+                    <Eye className="h-3 w-3" />
+                    {video.views}
                   </div>
-
-                  <div className="p-4">
-                    <h3 className="text-lg font-bold text-black mb-2 group-hover:text-red-800 transition-colors duration-300 line-clamp-2">
-                      {video.title}
-                    </h3>
-                    <p className="text-gray-600 mb-3 line-clamp-2 text-sm">{video.description}</p>
-
-                    <div className="flex items-center justify-between text-xs">
-                      <div className="flex items-center gap-3 text-gray-500">
-                        <div className="flex items-center gap-1">
-                          <Eye className="h-3 w-3" />
-                          {video.views}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Star className="h-3 w-3 fill-current text-yellow-500" />
-                          {video.rating}
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-1 text-gray-400">
-                        <Calendar className="h-3 w-3" />
-                        {new Date(video.date).toLocaleDateString()}
-                      </div>
-                    </div>
+                  <div className="flex items-center gap-1">
+                    <Star className="h-3 w-3 fill-current text-yellow-500" />
+                    {video.rating}
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
-
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="flex justify-center mt-12">
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                  disabled={currentPage === 1}
-                  className="px-4 py-2 rounded-xl bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black font-medium hover:bg-white hover:border-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-                >
-                  Previous
-                </button>
-
-                {[...Array(totalPages)].map((_, index) => {
-                  const page = index + 1;
-                  if (page === currentPage || page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)) {
-                    return (
-                      <button
-                        key={page}
-                        onClick={() => setCurrentPage(page)}
-                        className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${page === currentPage
-                          ? 'bg-black text-yellow-400 border-2 border-black'
-                          : 'bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black hover:bg-white hover:border-black/40'
-                          }`}
-                      >
-                        {page}
-                      </button>
-                    );
-                  } else if (page === currentPage - 2 || page === currentPage + 2) {
-                    return <span key={page} className="px-2 text-black/60">...</span>;
-                  }
-                  return null;
-                })}
-
-                <button
-                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                  disabled={currentPage === totalPages}
-                  className="px-4 py-2 rounded-xl bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black font-medium hover:bg-white hover:border-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-                >
-                  Next
-                </button>
+                <div className="flex items-center gap-1 text-gray-400">
+                  <Calendar className="h-3 w-3" />
+                  {new Date(video.date ?? "").toLocaleDateString()}
+                </div>
               </div>
             </div>
-          )}
+          </div>
+        ))}
+      </div>
+    )}
+
+    {/* Pagination */}
+    {totalPages > 1 && (
+      <div className="flex justify-center mt-12">
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-4 py-2 rounded-xl bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black font-medium hover:bg-white hover:border-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+          >
+            Previous
+          </button>
+
+          {[...Array(totalPages)].map((_, index) => {
+            const page = index + 1;
+            if (page === currentPage || page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)) {
+              return (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${page === currentPage
+                    ? 'bg-black text-yellow-400 border-2 border-black'
+                    : 'bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black hover:bg-white hover:border-black/40'
+                    }`}
+                >
+                  {page}
+                </button>
+              );
+            } else if (page === currentPage - 2 || page === currentPage + 2) {
+              return <span key={page} className="px-2 text-black/60">...</span>;
+            }
+            return null;
+          })}
+
+          <button
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 rounded-xl bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black font-medium hover:bg-white hover:border-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+          >
+            Next
+          </button>
         </div>
-      </section>
+      </div>
+    )}
+  </div>
+</section>
+
 
     </div>
   );

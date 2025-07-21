@@ -16,7 +16,7 @@ const GalleryPage = () => {
   const allImages = [
     {
       id: 1,
-      src: "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/1.png",
       title: "DroneWorld Conference 2024 Opening Ceremony",
       category: "Events",
       date: "March 15, 2024",
@@ -26,7 +26,7 @@ const GalleryPage = () => {
     },
     {
       id: 2,
-      src: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/2.png",
       title: "AI Partnership Announcement",
       category: "Collaborations",
       date: "February 20, 2024",
@@ -36,7 +36,7 @@ const GalleryPage = () => {
     },
     {
       id: 3,
-      src: "https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/3.png",
       title: "GIS Mapping Workshop Session",
       category: "Workshops",
       date: "January 28, 2024",
@@ -46,7 +46,7 @@ const GalleryPage = () => {
     },
     {
       id: 4,
-      src: "https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/4.png",
       title: "Drone Technology Exhibition",
       category: "Events",
       date: "March 16, 2024",
@@ -56,7 +56,7 @@ const GalleryPage = () => {
     },
     {
       id: 5,
-      src: "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/5.png",
       title: "Industry Leaders Panel Discussion",
       category: "Conferences",
       date: "March 17, 2024",
@@ -66,7 +66,7 @@ const GalleryPage = () => {
     },
     {
       id: 6,
-      src: "https://images.pexels.com/photos/724712/pexels-photo-724712.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/6.png",
       title: "New Product Launch Event",
       category: "Product Launches",
       date: "February 10, 2024",
@@ -76,7 +76,7 @@ const GalleryPage = () => {
     },
     {
       id: 7,
-      src: "https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/7.png",
       title: "Team Building Retreat",
       category: "Team Photos",
       date: "January 15, 2024",
@@ -86,7 +86,7 @@ const GalleryPage = () => {
     },
     {
       id: 8,
-      src: "https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/8.png",
       title: "University Partnership Signing",
       category: "Collaborations",
       date: "December 20, 2023",
@@ -96,7 +96,7 @@ const GalleryPage = () => {
     },
     {
       id: 9,
-      src: "https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/9.png",
       title: "Drone Safety Training Workshop",
       category: "Workshops",
       date: "November 30, 2023",
@@ -106,7 +106,7 @@ const GalleryPage = () => {
     },
     {
       id: 10,
-      src: "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/10.png",
       title: "International Drone Summit",
       category: "Conferences",
       date: "October 25, 2023",
@@ -116,7 +116,7 @@ const GalleryPage = () => {
     },
     {
       id: 11,
-      src: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/11.png",
       title: "Startup Collaboration Meetup",
       category: "Collaborations",
       date: "September 15, 2023",
@@ -126,7 +126,7 @@ const GalleryPage = () => {
     },
     {
       id: 12,
-      src: "https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/12.png",
       title: "Annual Company Celebration",
       category: "Team Photos",
       date: "August 20, 2023",
@@ -136,7 +136,7 @@ const GalleryPage = () => {
     },
     {
       id: 13,
-      src: "https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/13.png",
       title: "Environmental Monitoring Conference",
       category: "Conferences",
       date: "July 18, 2023",
@@ -146,7 +146,7 @@ const GalleryPage = () => {
     },
     {
       id: 14,
-      src: "https://images.pexels.com/photos/724712/pexels-photo-724712.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/14.png",
       title: "Racing Drone Championship",
       category: "Events",
       date: "June 25, 2023",
@@ -156,7 +156,7 @@ const GalleryPage = () => {
     },
     {
       id: 15,
-      src: "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/15.png",
       title: "AI Research Collaboration",
       category: "Collaborations",
       date: "May 30, 2023",
@@ -166,7 +166,7 @@ const GalleryPage = () => {
     },
     {
       id: 16,
-      src: "https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/16.png",
       title: "Precision Agriculture Workshop",
       category: "Workshops",
       date: "April 22, 2023",
@@ -176,7 +176,7 @@ const GalleryPage = () => {
     },
     {
       id: 17,
-      src: "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/17.png",
       title: "Drone Delivery Demo Day",
       category: "Product Launches",
       date: "March 28, 2023",
@@ -186,7 +186,7 @@ const GalleryPage = () => {
     },
     {
       id: 18,
-      src: "https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/18.png",
       title: "Holiday Team Party",
       category: "Team Photos",
       date: "December 15, 2022",
@@ -196,7 +196,7 @@ const GalleryPage = () => {
     },
     {
       id: 19,
-      src: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/19.png",
       title: "Government Partnership Forum",
       category: "Collaborations",
       date: "November 10, 2022",
@@ -206,7 +206,7 @@ const GalleryPage = () => {
     },
     {
       id: 20,
-      src: "https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/20.png",
       title: "Advanced Pilot Training",
       category: "Workshops",
       date: "October 5, 2022",
@@ -216,7 +216,7 @@ const GalleryPage = () => {
     },
     {
       id: 21,
-      src: "https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/21.png",
       title: "Tech Innovation Showcase",
       category: "Events",
       date: "September 20, 2022",
@@ -226,7 +226,7 @@ const GalleryPage = () => {
     },
     {
       id: 22,
-      src: "https://images.pexels.com/photos/724712/pexels-photo-724712.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/22.png",
       title: "European Expansion Launch",
       category: "Product Launches",
       date: "August 15, 2022",
@@ -236,7 +236,7 @@ const GalleryPage = () => {
     },
     {
       id: 23,
-      src: "https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/23.png",
       title: "Mapping Technology Conference",
       category: "Conferences",
       date: "July 8, 2022",
@@ -246,7 +246,7 @@ const GalleryPage = () => {
     },
     {
       id: 24,
-      src: "https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/24.png",
       title: "Company Milestone Celebration",
       category: "Team Photos",
       date: "June 1, 2022",

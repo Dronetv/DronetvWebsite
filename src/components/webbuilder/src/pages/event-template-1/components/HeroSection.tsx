@@ -10,12 +10,12 @@ const HeroSection: React.FC = () => {
   });
 
   useEffect(() => {
-    const eventDate = new Date('2025-06-15T09:00:00').getTime();
-    
+    const eventDate = new Date('2025-09-25T09:00:00').getTime(); // Updated date
+
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const distance = eventDate - now;
-      
+
       if (distance > 0) {
         setTimeLeft({
           days: Math.floor(distance / (1000 * 60 * 60 * 24)),
@@ -42,14 +42,14 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-10 text-center">
+      <div className="container mx-auto px-4 relative z-10 text-center pt-32">
         <div className="max-w-4xl mx-auto">
           <h1 
             data-aos="fade-up" 
             data-aos-delay="300"
             className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
           >
-            Drone <span className="text-[#FFD400]">Innovation</span> Summit 2025
+            Drone <span className="text-[#FFD400]">Expo 2025</span>
           </h1>
           
           <div 
@@ -59,7 +59,7 @@ const HeroSection: React.FC = () => {
           >
             <div className="flex items-center gap-2">
               <Calendar size={20} className="text-[#FFD400]" />
-              <span>June 15-16, 2025</span>
+              <span>25th – 27th September 2025</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock size={20} className="text-[#FFD400]" />
@@ -67,23 +67,14 @@ const HeroSection: React.FC = () => {
             </div>
             <div className="flex items-center gap-2">
               <MapPin size={20} className="text-[#FFD400]" />
-              <span>Tech Convention Center, San Francisco</span>
+              <span>Bombay Exhibition Centre, NESCO, Mumbai</span>
             </div>
           </div>
-
-          <p 
-            data-aos="fade-up" 
-            data-aos-delay="900"
-            className="text-xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed"
-          >
-            Join industry leaders, innovators, and drone enthusiasts for two days of cutting-edge technology, 
-            networking, and the future of unmanned aerial systems.
-          </p>
 
           {/* Countdown Timer */}
           <div 
             data-aos="fade-up" 
-            data-aos-delay="1200"
+            data-aos-delay="900"
             className="grid grid-cols-4 gap-4 max-w-md mx-auto mb-12"
           >
             {[
@@ -99,18 +90,29 @@ const HeroSection: React.FC = () => {
             ))}
           </div>
 
+          {/* Event Highlights */}
+          <div className="text-white text-lg max-w-3xl mx-auto space-y-2 mb-10">
+            <p>• Interaction with Key Buyers</p>
+            <p>• Launch New Products</p>
+            <p>• Showcase Your Products & Services</p>
+            <p>• Understand Market Competition</p>
+            <p>• Build Brand Awareness</p>
+            <p>• Know About Visitors</p>
+          </div>
+
+          {/* Buttons */}
           <div 
             data-aos="fade-up" 
-            data-aos-delay="1500"
+            data-aos-delay="1200"
             className="flex flex-col sm:flex-row gap-6 justify-center"
           >
             <button className="group bg-[#FFD400] hover:bg-[#FFD400]/90 text-black px-8 py-4 rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-3 transform hover:scale-105 shadow-lg hover:shadow-xl">
-              <span>Register Now</span>
+              <span>Register to Visit</span>
               <ArrowRight size={20} className="transform group-hover:translate-x-1 transition-transform" />
             </button>
 
             <button className="group border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-3 transform hover:scale-105">
-              <span>View Agenda</span>
+              <span>Exhibitor Enquiry</span>
               <ArrowRight size={20} className="transform group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
