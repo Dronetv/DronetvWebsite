@@ -114,7 +114,8 @@ const AboutPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+              <div className="bg-[#f1ee8e] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+
                 <div className="flex items-center mb-6">
                   <div className="bg-yellow-400 rounded-full p-4 mr-4">
                     <Target className="h-8 w-8 text-black" />
@@ -126,7 +127,7 @@ const AboutPage = () => {
                 </p>
               </div>
 
-              <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+              <div className="bg-[#f1ee8e] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
                 <div className="flex items-center mb-6">
                   <div className="bg-yellow-400 rounded-full p-4 mr-4">
                     <Eye className="h-8 w-8 text-black" />
@@ -140,7 +141,7 @@ const AboutPage = () => {
             </div>
 
             <div className="relative">
-              <div className="bg-white rounded-3xl p-8 shadow-2xl">
+              <div className="bg-[#f1ee8e] rounded-3xl p-8 shadow-2xl">
                 <img
                   src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=800"
                   alt="Drone Technology"
@@ -165,7 +166,7 @@ const AboutPage = () => {
       {/* Founder's Message Section */}
       <section className="py-20 bg-yellow-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-3xl p-12 shadow-2xl">
+          <div className="bg-[#f1ee8e] rounded-3xl p-12 shadow-2xl">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
               <div className="lg:col-span-1">
                 <div className="relative">
@@ -224,7 +225,7 @@ const AboutPage = () => {
             {teamMembers.map((member, index) => (
               <div
                 key={member.id}
-                className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
+                className="group bg-yellow-200 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
                 style={{
                   animationDelay: `${index * 150}ms`,
                   animation: `fadeInUp 0.8s ease-out ${index * 150}ms both`
@@ -242,7 +243,7 @@ const AboutPage = () => {
                   {/* Hover Overlay */}
                   <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-all duration-500 ${hoveredTeamMember === member.id ? 'opacity-100' : 'opacity-0'
                     }`}>
-                    <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <div className="absolute bottom-4 left-4 right-4 text-yellow">
                       <h4 className="font-bold mb-2">Fun Fact:</h4>
                       <p className="text-sm">{member.funFact}</p>
                     </div>
@@ -293,13 +294,13 @@ const AboutPage = () => {
                     }}
                   >
                     {/* Timeline Node */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 bg-white rounded-full border-4 border-yellow-400 flex items-center justify-center shadow-lg z-10">
+                    <div className="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 bg-yellow-100 rounded-full border-4 border-yellow-400 flex items-center justify-center shadow-lg z-10">
                       <IconComponent className="h-8 w-8 text-black" />
                     </div>
 
                     {/* Content Card */}
                     <div className={`w-5/12 ${isEven ? 'pr-8' : 'pl-8'}`}>
-                      <div className="bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+                      <div className="bg-yellow-200 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
                         <div className="flex items-center mb-4">
                           <div className="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold mr-4">
                             {event.year}
@@ -320,7 +321,7 @@ const AboutPage = () => {
       {/* Contact CTA Section */}
       <section className="py-20 bg-gradient-to-b from-yellow-400 to-yellow-300">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-white rounded-3xl p-12 shadow-2xl">
+          <div className="bg-yellow-200 rounded-3xl p-12 shadow-2xl">
             <h2 className="text-3xl md:text-4xl font-black text-black mb-6">
               Ready to Join Our Mission?
             </h2>
@@ -348,7 +349,7 @@ const AboutPage = () => {
                 <span>Get In Touch</span>
                 <ArrowRight className="h-4 w-4" />
               </button>
-              <button className="bg-black text-white px-8 py-3 rounded-xl font-bold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105">
+              <button className="bg-yellow-400 text-black px-8 py-3 rounded-xl font-bold hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 justify-center">
                 Partner With Us
               </button>
             </div>

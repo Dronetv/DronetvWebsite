@@ -33,20 +33,22 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed top-[60px] left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' 
-        : 'bg-transparent py-6'
-    }`}>
+    <nav className={`fixed top-[60px] left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+      ? 'bg-white/95 backdrop-blur-md shadow-lg py-3'
+      : 'bg-transparent py-6'
+      }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="text-2xl font-bold">
-            <span className={isScrolled ? 'text-black' : 'text-white'}>
-              Drone
-            </span>
-            <span className="text-[#FF0000]">Expo</span>
+          <div className="h-16 w-44"> {/* Adjust height and width here */}
+            <img
+              src="/images/expologo.png"
+              alt="Drone Expo Logo"
+              className="h-full w-full object-contain"
+            />
           </div>
+
+
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
@@ -54,11 +56,10 @@ const Navigation: React.FC = () => {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className={`relative font-medium transition-colors duration-300 group ${
-                  isScrolled 
-                    ? 'text-black hover:text-[#FF0000]' 
-                    : 'text-white hover:text-[#FFD400]'
-                }`}
+                className={`relative font-medium transition-colors duration-300 group ${isScrolled
+                  ? 'text-black hover:text-[#FF0000]'
+                  : 'text-white hover:text-[#FFD400]'
+                  }`}
               >
                 {item.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF0000] transition-all duration-300 group-hover:w-full"></span>

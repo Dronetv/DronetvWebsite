@@ -376,7 +376,7 @@ const EventsPage = () => {
             {featuredEvents.map((event, index) => (
               <div
                 key={event.id}
-                className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1 border-2 border-black/20 hover:border-black/40"
+                className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1 border-2 border-black/20 hover:border-black/40"
                 style={{
                   animationDelay: `${index * 200}ms`,
                   animation: `fadeInUp 0.8s ease-out ${index * 200}ms both`
@@ -471,7 +471,7 @@ const EventsPage = () => {
               {currentEvents.map((event, index) => (
                 <div
                   key={event.id}
-                  className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 border-2 border-black/20 hover:border-black/40"
+                  className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 border-2 border-black/20 hover:border-black/40"
                   style={{
                     animationDelay: `${index * 100}ms`,
                     animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`

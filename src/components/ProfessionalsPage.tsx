@@ -352,14 +352,14 @@ const ProfessionalsPage = () => {
         {featuredProfessionals.map((professional, index) => (
           <div
             key={professional.id}
-            className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1"
+            className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1"
             style={{
               animationDelay: `${index * 200}ms`,
               animation: `fadeInUp 0.8s ease-out ${index * 200}ms both`
             }}
             onClick={() => navigate('/list/portfolio-template-1')} // Navigate on card click
           >
-            <div className="p-8 text-center bg-yellow-50">
+            <div className="p-8 text-center bg-[#f1ee8e]">
               {/* Profile Picture */}
               <div className="relative mb-6">
                 <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 group-hover:border-yellow-500 transition-all duration-300">
@@ -435,7 +435,7 @@ const ProfessionalsPage = () => {
 
           {currentProfessionals.length === 0 ? (
             <div className="text-center py-16">
-              <div className="bg-yellow-100/80 backdrop-blur-sm rounded-3xl p-12 max-w-md mx-auto">
+              <div className="bg-[#f1ee8e] backdrop-blur-sm rounded-3xl p-12 max-w-md mx-auto">
                 <Search className="h-16 w-16 text-black/40 mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-black mb-2">No professionals found</h3>
                 <p className="text-black/60">Try adjusting your filters or search terms</p>
@@ -446,7 +446,7 @@ const ProfessionalsPage = () => {
       {currentProfessionals.map((professional, index) => (
         <div
           key={professional.id}
-          className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
+          className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
           style={{
             animationDelay: `${index * 100}ms`,
             animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`

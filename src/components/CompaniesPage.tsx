@@ -309,84 +309,84 @@ const CompaniesPage = () => {
           <div className="w-24 h-1 bg-black mx-auto rounded-full"></div>
         </div>
         <div className="absolute top-4 right-10 z-10 pointer-events-auto">
-  <button
-    onClick={handleAddEventClick}
-    className="px-6 py-3 bg-black text-white rounded-lg hover:bg-red-600 transition duration-300"
-  >
-    List your Company
-  </button>
-</div>
+          <button
+            onClick={handleAddEventClick}
+            className="px-6 py-3 bg-black text-white rounded-lg hover:bg-red-600 transition duration-300"
+          >
+            List your Company
+          </button>
+        </div>
       </section>
 
       {/* Filter Section */}
-     <section className="py-3 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex flex-col lg:flex-row gap-2 items-center justify-between">
-      {/* Search Bar */}
-      <div className="relative flex-1 max-w-xs">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60" />
-        <input
-          type="text"
-          placeholder="Search companies..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-black/20 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 font-medium text-sm transition-all duration-300"
-        />
-      </div>
+      <section className="py-3 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row gap-2 items-center justify-between">
+            {/* Search Bar */}
+            <div className="relative flex-1 max-w-xs">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60" />
+              <input
+                type="text"
+                placeholder="Search companies..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-black/20 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 font-medium text-sm transition-all duration-300"
+              />
+            </div>
 
-      {/* Filter and Sort Controls */}
-      <div className="flex gap-3">
-        {/* Industry Filter */}
-        <div className="relative">
-          <select
-            value={selectedIndustry}
-            onChange={(e) => setSelectedIndustry(e.target.value)}
-            className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300 w-48"
-          >
-            {industries.map(industry => (
-              <option key={industry} value={industry}>
-                {industry === 'All' ? 'All Industries' : industry}
-              </option>
-            ))}
-          </select>
-          <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
+            {/* Filter and Sort Controls */}
+            <div className="flex gap-3">
+              {/* Industry Filter */}
+              <div className="relative">
+                <select
+                  value={selectedIndustry}
+                  onChange={(e) => setSelectedIndustry(e.target.value)}
+                  className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300 w-48"
+                >
+                  {industries.map(industry => (
+                    <option key={industry} value={industry}>
+                      {industry === 'All' ? 'All Industries' : industry}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
+              </div>
+
+              {/* Sort Options */}
+              <div className="relative">
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300 w-48"
+                >
+                  {sortOptions.map(option => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
+              </div>
+            </div>
+          </div>
+
+          {/* Active Filters Display */}
+          <div className="mt-2 flex flex-wrap gap-2">
+            {selectedIndustry !== 'All' && (
+              <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                Industry: {selectedIndustry}
+                <button onClick={() => setSelectedIndustry('All')} className="hover:text-white transition-colors duration-200 text-sm">×</button>
+              </span>
+            )}
+            {searchQuery && (
+              <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                Search: "{searchQuery}"
+                <button onClick={() => setSearchQuery('')} className="hover:text-white transition-colors duration-200 text-sm">×</button>
+              </span>
+            )}
+          </div>
         </div>
-
-        {/* Sort Options */}
-        <div className="relative">
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300 w-48"
-          >
-            {sortOptions.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
-        </div>
-      </div>
-    </div>
-
-    {/* Active Filters Display */}
-    <div className="mt-2 flex flex-wrap gap-2">
-      {selectedIndustry !== 'All' && (
-        <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-          Industry: {selectedIndustry}
-          <button onClick={() => setSelectedIndustry('All')} className="hover:text-white transition-colors duration-200 text-sm">×</button>
-        </span>
-      )}
-      {searchQuery && (
-        <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-          Search: "{searchQuery}"
-          <button onClick={() => setSearchQuery('')} className="hover:text-white transition-colors duration-200 text-sm">×</button>
-        </span>
-      )}
-    </div>
-  </div>
-</section>
+      </section>
 
 
 
@@ -403,7 +403,7 @@ const CompaniesPage = () => {
               return (
                 <div
                   key={company.id}
-                  className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1"
+                  className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1"
                   style={{
                     animationDelay: `${index * 200}ms`,
                     animation: `fadeInUp 0.8s ease-out ${index * 200}ms both`
@@ -464,14 +464,14 @@ const CompaniesPage = () => {
                     </div>
 
                     <div className="flex justify-center pt-2">
-      <button
-        onClick={() => navigate('/list/company-template-1')} // Trigger navigation to the specific route on click
-        className="group/btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-3 rounded-xl font-semibold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg"
-      >
-        <span>View Profile</span>
-        <ExternalLink className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-      </button>
-    </div>
+                      <button
+                        onClick={() => navigate('/list/company-template-1')} // Trigger navigation to the specific route on click
+                        className="group/btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-3 rounded-xl font-semibold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg"
+                      >
+                        <span>View Profile</span>
+                        <ExternalLink className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               );
@@ -508,7 +508,7 @@ const CompaniesPage = () => {
                 return (
                   <div
                     key={company.id}
-                    className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
+                    className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
                     style={{
                       animationDelay: `${index * 100}ms`,
                       animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`
@@ -585,15 +585,15 @@ const CompaniesPage = () => {
                         </div>
                       </div>
 
-                     <div className="flex justify-center">
-      <button
-        onClick={() => navigate('/list/company-template-2')} // Navigate to /list/company-template-12
-        className="group/btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-4 py-2 rounded-xl font-semibold text-sm hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg"
-      >
-        <span>View Profile</span>
-        <ExternalLink className="h-3 w-3 group-hover/btn:translate-x-1 transition-transform duration-300" />
-      </button>
-    </div>
+                      <div className="flex justify-center">
+                        <button
+                          onClick={() => navigate('/list/company-template-2')} // Navigate to /list/company-template-12
+                          className="group/btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-4 py-2 rounded-xl font-semibold text-sm hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg"
+                        >
+                          <span>View Profile</span>
+                          <ExternalLink className="h-3 w-3 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 );
