@@ -1,85 +1,154 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Save, Upload, Plus, Trash2, Star } from 'lucide-react';
+import { uploadImageToS3 } from './src/utils/s3Upload';
 
+interface CompanyValue {
+  icon?: string; // optional for select
+  title: string;
+  description: string;
+}
+interface Client {
+  name: string;
+  logo: string;
+  industry: string;
+}
+interface Service {
+  icon: string;
+  title: string;
+  description: string;
+}
+interface Product {
+  image: string;
+  title: string;
+  description: string;
+  link: string;
+}
+interface Testimonial {
+  name: string;
+  role: string;
+  quote: string;
+  photo: string;
+  rating: number;
+}
 interface FormData {
-  // Template Selection
-  selectedTemplate: string;
-  
+  companyName: string;
+  contactName: string;
+category?: string;
   // Header & Hero
   companyLogo: string;
-  navigationLinks: Array<{ label: string; link: string }>;
+  navigationLinks: { label: string; link: string }[];
   heroHeadline: string;
   heroSubheadline: string;
   heroBackground: string;
   primaryCTA: { text: string; link: string };
   secondaryCTA: { text: string; link: string };
-  
-  // About Section
+
+  // About
   aboutTitle: string;
   aboutDescription: string;
+  aboutTeamExperience?: string; // optional: add a second para for experience highlight
   aboutImage: string;
-  companyValues: Array<{ title: string; description: string }>;
+  aboutExperienceYears?: number; // optional: years of experience display
+  companyValues: CompanyValue[];
   videoEmbedUrl: string;
-  
+
   // Services
   servicesTitle: string;
-  services: Array<{
-    icon: string;
-    title: string;
-    description: string;
-  }>;
-  
+  servicesDescription?: string;
+  services: Service[];
+
   // Products
   productsTitle: string;
   productCategories: string;
-  products: Array<{
-    image: string;
-    title: string;
-    description: string;
-    link: string;
-  }>;
-  
+  products: Product[];
+
   // Clients & Testimonials
   clientsTitle: string;
-  clientLogos: Array<string>;
-  testimonials: Array<{
-    name: string;
-    role: string;
-    quote: string;
-    photo: string;
-    rating: number;
-  }>;
-  
+  clientLogos: string[];
+  testimonials: Testimonial[];
+  clients: Client[];
+
   // Contact
   contactTitle: string;
   email: string;
   phone: string;
-  address: string;
+  addressLine: string;
+  city: string;
+  state: string;
+  pinCode: string;
   mapEmbedUrl: string;
   contactFormText: string;
   submitButtonText: string;
-  
+
   // Footer
   footerLogo: string;
+  footerDescription: string;
   footerText: string;
-  footerNavLinks: Array<{ label: string; link: string }>;
+  footerEmail: string;
+  footerPhone: string;
+  footerAddress: string;
+  footerNavLinks: { label: string; link: string }[];
   socialLinks: {
-    linkedin: string;
-    instagram: string;
-    youtube: string;
-    whatsapp: string;
-    website: string;
+    facebook?: string;
+    twitter?: string;
+    linkedin?: string;
+    instagram?: string;
+    youtube?: string;
+    whatsapp?: string;
+    website?: string;
   };
+  newsletterEnabled: boolean;
+  newsletterDescription: string;
 }
 
+
+
 const CreateCompany: React.FC = () => {
+  const [imageUploadLoading, setImageUploadLoading] = useState(false);
+  const [imageUploadMessage, setImageUploadMessage] = useState('');
+  const [productImageUploadLoading, setProductImageUploadLoading] = useState<{ [key: number]: boolean }>({});
+  const [productImageUploadMessage, setProductImageUploadMessage] = useState<{ [key: number]: string }>({});
+  const [clientLogoUploadLoading, setClientLogoUploadLoading] = useState<{ [key: number]: boolean }>({});
+  const [clientLogoUploadMessage, setClientLogoUploadMessage] = useState<{ [key: number]: string }>({});
+  const [aboutImageUploadLoading, setAboutImageUploadLoading] = useState(false);
+  const [aboutImageUploadMessage, setAboutImageUploadMessage] = useState('');
+  const [testimonialPhotoUploadLoading, setTestimonialPhotoUploadLoading] = useState<{ [key: number]: boolean }>({});
+  const [testimonialPhotoUploadMessage, setTestimonialPhotoUploadMessage] = useState<{ [key: number]: string }>({});
+  const [heroImageUploadLoading, setHeroImageUploadLoading] = useState(false);
+  const [heroImageUploadMessage, setHeroImageUploadMessage] = useState('');
+  const [footerLogoUploadLoading, setFooterLogoUploadLoading] = useState(false);
+  const [footerLogoUploadMessage, setFooterLogoUploadMessage] = useState('');
+  const [promoCode, setPromoCode] = useState('');
+  const [promoCodeError, setPromoCodeError] = useState('');
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
-  
+
+  const handleSubmit = async () => {
+    // (optional: validate data here)
+    const formDataWithTimestamp = {
+      ...formData,
+      timestamp: new Date().toISOString(),// or new Date().toISOString() if you want ISO format
+    };
+    // Call the API
+    const response = await fetch('https://6dcd2cnc76.execute-api.ap-south-1.amazonaws.com/postCompanyform', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formDataWithTimestamp)
+    });
+
+    if (response.ok) {
+      // Success — maybe route to preview page
+      navigate('/preview/company-template');
+    } else {
+      // Handle error
+      alert('Failed to create company. Try again!');
+    }
+  };
   const [formData, setFormData] = useState<FormData>({
-    selectedTemplate: '',
-    
+    companyName: '',
+    contactName: '',
+category: '',
     // Header & Hero
     companyLogo: '',
     navigationLinks: [
@@ -94,52 +163,75 @@ const CreateCompany: React.FC = () => {
     heroBackground: '',
     primaryCTA: { text: 'Explore Products', link: '#products' },
     secondaryCTA: { text: 'Contact Us', link: '#contact' },
-    
+
     // About
     aboutTitle: 'About Our Company',
     aboutDescription: '',
+    aboutTeamExperience: '',
     aboutImage: '',
+    aboutExperienceYears: 5,
     companyValues: [],
     videoEmbedUrl: '',
-    
+
     // Services
     servicesTitle: 'Our Services',
+    servicesDescription: '',
     services: [],
-    
+
     // Products
     productsTitle: 'Our Products',
     productCategories: 'All, Surveillance, Agriculture, Custom',
     products: [],
-    
-    // Clients
+
+    // Clients & Testimonials
     clientsTitle: 'Our Clients',
+    clients: [],
     clientLogos: [],
     testimonials: [],
-    
+
     // Contact
     contactTitle: 'Get In Touch',
     email: '',
     phone: '',
-    address: '',
+    addressLine: '',
+    city: '',
+    state: '',
+    pinCode: '',
     mapEmbedUrl: '',
     contactFormText: 'Ready to work with us? Send us a message.',
     submitButtonText: 'Send Message',
-    
+
     // Footer
     footerLogo: '',
+    footerDescription: ' ',
     footerText: '© 2025 Your Company. All rights reserved.',
-    footerNavLinks: [],
+    footerEmail: '',
+    footerPhone: '',
+    footerAddress: '',
+    footerNavLinks: [
+      { label: 'Home', link: '#home' },
+      { label: 'About', link: '#about' },
+      { label: 'Services', link: '#services' },
+      { label: 'Products', link: '#products' },
+      { label: 'Contact', link: '#contact' }
+    ],
     socialLinks: {
+      facebook: '',
+      twitter: '',
       linkedin: '',
       instagram: '',
       youtube: '',
       whatsapp: '',
       website: ''
-    }
+    },
+    newsletterEnabled: true,
+    newsletterDescription: 'Subscribe to our newsletter for the latest drone technology updates.'
   });
 
+
+
   const steps = [
-    'Select Template',
+    'Basic Details',
     'Header & Hero',
     'About Section',
     'Services',
@@ -157,13 +249,25 @@ const CreateCompany: React.FC = () => {
   };
 
   const handleNestedInputChange = (section: string, field: string, value: any) => {
-    setFormData(prev => ({
-      ...prev,
-      [section]: {
-        ...prev[section as keyof FormData],
-        [field]: value
+    setFormData(prev => {
+      const sectionValue = prev[section as keyof FormData];
+      // Check if it's an object (not array, not null)
+      if (
+        sectionValue &&
+        typeof sectionValue === 'object' &&
+        !Array.isArray(sectionValue)
+      ) {
+        return {
+          ...prev,
+          [section]: {
+            ...sectionValue,
+            [field]: value
+          }
+        };
       }
-    }));
+      // fallback, do nothing
+      return prev;
+    });
   };
 
   const addArrayItem = (field: string, item: any) => {
@@ -183,106 +287,277 @@ const CreateCompany: React.FC = () => {
   const updateArrayItem = (field: string, index: number, updatedItem: any) => {
     setFormData(prev => ({
       ...prev,
-      [field]: (prev[field as keyof FormData] as any[]).map((item, i) => 
+      [field]: (prev[field as keyof FormData] as any[]).map((item, i) =>
         i === index ? updatedItem : item
       )
     }));
   };
 
-  const handleSubmit = () => {
-    localStorage.setItem('companyFormData', JSON.stringify(formData));
-    navigate(`/preview/company-template-${formData.selectedTemplate}`);
-  };
 
   const renderStepContent = () => {
     switch (currentStep) {
-      case 1: // Template Selection
-        return (
-          <div className="space-y-8">
-            <h3 className="text-3xl font-bold text-black mb-8 text-center">Choose Your Template</h3>
-            
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div 
-                onClick={() => handleInputChange('selectedTemplate', '1')}
-                className={`cursor-pointer rounded-2xl overflow-hidden border-4 transition-all duration-300 ${
-                  formData.selectedTemplate === '1' 
-                    ? 'border-[#FF0000] shadow-2xl transform scale-105' 
-                    : 'border-gray-200 hover:border-[#FFD400]'
-                }`}
-              >
-                <div className="bg-white p-6">
-                  <div className="h-48 bg-gradient-to-br from-[#FFD400] to-[#FFD400]/80 rounded-lg mb-4 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-black">Template 1</span>
-                  </div>
-                  <h4 className="text-xl font-bold text-black mb-2">Bright Theme</h4>
-                  <p className="text-gray-600">Modern design with yellow highlights and clean layout</p>
-                </div>
-              </div>
+case 1:
+  return (
+    <div className="space-y-6">
+      <h2 className="text-2xl font-bold text-black mb-4">Basic Company Details</h2>
 
-              <div 
-                onClick={() => handleInputChange('selectedTemplate', '2')}
-                className={`cursor-pointer rounded-2xl overflow-hidden border-4 transition-all duration-300 ${
-                  formData.selectedTemplate === '2' 
-                    ? 'border-[#FF0000] shadow-2xl transform scale-105' 
-                    : 'border-gray-200 hover:border-[#FFD400]'
-                }`}
-              >
-                <div className="bg-white p-6">
-                  <div className="h-48 bg-black rounded-lg mb-4 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-[#FFD400]">Template 2</span>
-                  </div>
-                  <h4 className="text-xl font-bold text-black mb-2">Dark Theme</h4>
-                  <p className="text-gray-600">Professional dark design with premium aesthetics</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
+      <input
+        type="text"
+        required
+        placeholder="Your company name (used in URL)"
+        className="w-full px-4 py-2 border rounded-md"
+        value={formData.companyName}
+        onChange={e =>
+          handleInputChange('companyName', e.target.value.toLowerCase().replace(/\s+/g, '-'))
+        }
+      />
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+        <input
+          type="text"
+          placeholder="John Doe"
+          className="w-full px-4 py-2 border rounded-md"
+          onChange={e => handleInputChange('contactName', e.target.value)}
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <input
+          type="email"
+          placeholder="you@example.com"
+          className="w-full px-4 py-2 border rounded-md"
+          value={formData.email}
+          onChange={e => handleInputChange('email', e.target.value)}
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+        <input
+          type="tel"
+          placeholder="+91 9876543210"
+          className="w-full px-4 py-2 border rounded-md"
+          value={formData.phone}
+          onChange={e => handleInputChange('phone', e.target.value)}
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Promotional Code</label>
+        <input
+          type="text"
+          placeholder="Enter Promotional Code"
+          className="w-full px-4 py-2 border rounded-md"
+          value={promoCode}
+          onChange={e => {
+            setPromoCode(e.target.value);
+            setPromoCodeError('');
+          }}
+        />
+        {promoCodeError && (
+          <div className="text-red-600 mt-1 text-sm">{promoCodeError}</div>
+        )}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+        <select
+          className="w-full px-4 py-2 border rounded-md"
+          value={formData.category || ''}
+          onChange={e => handleInputChange('category', e.target.value)}
+        >
+          <option value="">Select a category</option>
+          <option value="Drone Manufacturer">Drone Manufacturer</option>
+          <option value="Drone Service Provider">Drone Service Provider</option>
+          <option value="Spare Parts Provider">Spare Parts Provider</option>
+          <option value="Startup">Startup</option>
+          <option value="AI Solutions">AI Solutions</option>
+          <option value="GIS Solutions">GIS Solutions</option>
+          <option value="Training Institute">Training Institute</option>
+          <option value="Drone Pilot">Drone Pilot</option>
+          <option value="Agritech">Agritech</option>
+          <option value="Aerial Cinematography">Aerial Cinematography</option>
+          <option value="Media & Events">Media & Events</option>
+          <option value="Software Developer">Software Developer</option>
+          <option value="Government">Government</option>
+          <option value="Academia/College">Academia/College</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+  );
 
       case 2: // Header & Hero
         return (
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-black mb-6">Header & Hero Section</h3>
-            
+
+            {/* Company Logo */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Company Logo</label>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                 <Upload size={48} className="mx-auto text-gray-400 mb-4" />
                 <p className="text-gray-500">Upload your company logo</p>
-                <input type="file" className="hidden" accept="image/*" />
+
+                {/* Loader & message UI */}
+                {imageUploadLoading && (
+                  <div className="flex items-center justify-center mt-2">
+                    <svg className="animate-spin h-6 w-6 text-[#FFD400]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#FFD400" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="#FFD400" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                    </svg>
+                    <span className="ml-2 text-[#FFD400] font-semibold">Uploading image...</span>
+                  </div>
+                )}
+                {imageUploadMessage && (
+                  <div className="text-green-600 font-semibold mt-2">{imageUploadMessage}</div>
+                )}
+
+                <input
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                  id="company-logo-input"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      setImageUploadLoading(true);            // Start loader
+                      setImageUploadMessage('');              // Clear old messages
+                      try {
+                        // Upload to S3 and get the URL
+                        const url = await uploadImageToS3(file);
+                        setFormData((prev) => ({
+                          ...prev,
+                          companyLogo: url,
+                        }));
+                        setImageUploadMessage('Logo uploaded successfully!');
+                      } catch (err) {
+                        setImageUploadMessage('Image upload failed: ' + (err as Error).message);
+                      } finally {
+                        setImageUploadLoading(false);         // Stop loader
+                      }
+                    }
+                  }}
+                />
+                <button
+                  className="bg-[#FFD400] px-3 py-1 mt-2 rounded text-black"
+                  onClick={() => document.getElementById('company-logo-input')?.click()}
+                  type="button"
+                >
+                  Choose File
+                </button>
+                {formData.companyLogo && (
+                  <img
+                    src={formData.companyLogo}
+                    alt="Logo Preview"
+                    className="mx-auto mt-2 h-16"
+                  />
+                )}
               </div>
             </div>
 
+
+
+            {/* Hero Background Image */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Hero Background Image</label>
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                <Upload size={48} className="mx-auto text-gray-400 mb-4" />
+                <p className="text-gray-500">Upload your hero background image</p>
+
+                {/* Loader & message UI */}
+                {heroImageUploadLoading && (
+                  <div className="flex items-center justify-center mt-2">
+                    <svg className="animate-spin h-6 w-6 text-[#FFD400]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#FFD400" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="#FFD400" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                    </svg>
+                    <span className="ml-2 text-[#FFD400] font-semibold">Uploading image...</span>
+                  </div>
+                )}
+                {heroImageUploadMessage && (
+                  <div className="text-green-600 font-semibold mt-2">{heroImageUploadMessage}</div>
+                )}
+
+                <input
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                  id="hero-background-input"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      setHeroImageUploadLoading(true);
+                      setHeroImageUploadMessage('');
+                      try {
+                        const url = await uploadImageToS3(file);
+                        setFormData((prev) => ({
+                          ...prev,
+                          heroBackground: url,
+                        }));
+                        setHeroImageUploadMessage('Hero background uploaded successfully!');
+                      } catch (err) {
+                        setHeroImageUploadMessage('Image upload failed: ' + (err as Error).message);
+                      } finally {
+                        setHeroImageUploadLoading(false);
+                      }
+                    }
+                  }}
+                />
+                <button
+                  className="bg-[#FFD400] px-3 py-1 mt-2 rounded text-black"
+                  onClick={() => document.getElementById('hero-background-input')?.click()}
+                  type="button"
+                >
+                  Choose File
+                </button>
+                {formData.heroBackground && (
+                  <img
+                    src={formData.heroBackground}
+                    alt="Hero Background Preview"
+                    className="mx-auto mt-2 h-32 w-full object-cover rounded"
+                  />
+                )}
+              </div>
+            </div>
+
+
+            {/* Hero Headline */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Hero Headline</label>
               <input
                 type="text"
                 value={formData.heroHeadline}
-                onChange={(e) => handleInputChange('heroHeadline', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                onChange={e => handleInputChange('heroHeadline', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FFD400] focus:border-transparent"
                 placeholder="Advanced Drone Solutions"
               />
             </div>
 
+            {/* Hero Subheadline */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Hero Subheadline</label>
               <textarea
                 value={formData.heroSubheadline}
-                onChange={(e) => handleInputChange('heroSubheadline', e.target.value)}
+                onChange={e => handleInputChange('heroSubheadline', e.target.value)}
                 rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FFD400] focus:border-transparent"
                 placeholder="Pioneering the future of aerial technology..."
               />
             </div>
 
+            {/* CTA Buttons */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Primary CTA Text</label>
                 <input
                   type="text"
                   value={formData.primaryCTA.text}
-                  onChange={(e) => handleNestedInputChange('primaryCTA', 'text', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                  onChange={e => handleNestedInputChange('primaryCTA', 'text', e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FFD400] focus:border-transparent"
+                  placeholder="Explore Services"
                 />
               </div>
               <div>
@@ -290,20 +565,21 @@ const CreateCompany: React.FC = () => {
                 <input
                   type="text"
                   value={formData.primaryCTA.link}
-                  onChange={(e) => handleNestedInputChange('primaryCTA', 'link', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                  onChange={e => handleNestedInputChange('primaryCTA', 'link', e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FFD400] focus:border-transparent"
+                  placeholder="#services"
                 />
               </div>
             </div>
-
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Secondary CTA Text</label>
                 <input
                   type="text"
                   value={formData.secondaryCTA.text}
-                  onChange={(e) => handleNestedInputChange('secondaryCTA', 'text', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                  onChange={e => handleNestedInputChange('secondaryCTA', 'text', e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FFD400] focus:border-transparent"
+                  placeholder="Contact Us"
                 />
               </div>
               <div>
@@ -311,8 +587,9 @@ const CreateCompany: React.FC = () => {
                 <input
                   type="text"
                   value={formData.secondaryCTA.link}
-                  onChange={(e) => handleNestedInputChange('secondaryCTA', 'link', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                  onChange={e => handleNestedInputChange('secondaryCTA', 'link', e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FFD400] focus:border-transparent"
+                  placeholder="#contact"
                 />
               </div>
             </div>
@@ -323,73 +600,174 @@ const CreateCompany: React.FC = () => {
         return (
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-black mb-6">About Section</h3>
-            
+
+            {/* Section Title */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Section Title</label>
               <input
                 type="text"
                 value={formData.aboutTitle}
-                onChange={(e) => handleInputChange('aboutTitle', e.target.value)}
+                onChange={e => handleInputChange('aboutTitle', e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                placeholder="About DroneTech"
               />
             </div>
 
+            {/* Section Description (first para) */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Section Description (Company Summary)</label>
               <textarea
                 value={formData.aboutDescription}
-                onChange={(e) => handleInputChange('aboutDescription', e.target.value)}
-                rows={6}
+                onChange={e => handleInputChange('aboutDescription', e.target.value)}
+                rows={3}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
-                placeholder="Tell your company story..."
+                placeholder="DroneTech is a pioneering company in the UAV industry, specializing in advanced drone solutions for various sectors..."
               />
             </div>
 
+            {/* Section Description (team/experience para) */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">About Image</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Section Description (Team/Experience)</label>
+              <textarea
+                value={formData.aboutTeamExperience}
+                onChange={e => handleInputChange('aboutTeamExperience', e.target.value)}
+                rows={2}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                placeholder="With over 5 years of experience and a team of expert engineers, we deliver cutting-edge drone technology..."
+              />
+            </div>
+
+            {/* About Image */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">About Section Image</label>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                 <Upload size={48} className="mx-auto text-gray-400 mb-4" />
                 <p className="text-gray-500">Upload about section image</p>
-                <input type="file" className="hidden" accept="image/*" />
+
+                {/* Loader & message UI */}
+                {aboutImageUploadLoading && (
+                  <div className="flex items-center justify-center mt-2">
+                    <svg className="animate-spin h-6 w-6 text-[#FFD400]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#FFD400" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="#FFD400" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                    </svg>
+                    <span className="ml-2 text-[#FFD400] font-semibold">Uploading image...</span>
+                  </div>
+                )}
+                {aboutImageUploadMessage && (
+                  <div className="text-green-600 font-semibold mt-2">{aboutImageUploadMessage}</div>
+                )}
+
+                <input
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                  id="about-image-input"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      setAboutImageUploadLoading(true);
+                      setAboutImageUploadMessage('');
+                      try {
+                        const url = await uploadImageToS3(file);
+                        setFormData((prev) => ({
+                          ...prev,
+                          aboutImage: url,
+                        }));
+                        setAboutImageUploadMessage('About image uploaded successfully!');
+                      } catch (err) {
+                        setAboutImageUploadMessage('Image upload failed: ' + (err as Error).message);
+                      } finally {
+                        setAboutImageUploadLoading(false);
+                      }
+                    }
+                  }}
+                />
+                <button
+                  className="bg-[#FFD400] px-3 py-1 mt-2 rounded text-black"
+                  onClick={() => document.getElementById('about-image-input')?.click()}
+                  type="button"
+                >
+                  Choose File
+                </button>
+                {formData.aboutImage && (
+                  <img
+                    src={formData.aboutImage}
+                    alt="About Preview"
+                    className="mx-auto mt-2 h-16"
+                  />
+                )}
               </div>
             </div>
 
+
+
+            {/* Years of Experience */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Years of Experience</label>
+              <input
+                type="number"
+                min={1}
+                value={formData.aboutExperienceYears || 5}
+                onChange={e => handleInputChange('aboutExperienceYears', parseInt(e.target.value))}
+                className="w-32 px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                placeholder="5"
+              />
+              <span className="ml-2 text-gray-600 text-sm">Years</span>
+            </div>
+
+            {/* Company Values */}
             <div>
               <div className="flex items-center justify-between mb-4">
-                <label className="block text-sm font-medium text-gray-700">Company Values</label>
+                <label className="block text-sm font-medium text-gray-700">Company Values (Mission, Vision, Values)</label>
                 <button
-                  onClick={() => addArrayItem('companyValues', { title: '', description: '' })}
+                  onClick={() => addArrayItem('companyValues', { icon: 'target', title: '', description: '' })}
                   className="bg-[#FF0000] text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-[#FF0000]/90"
                 >
                   <Plus size={16} />
                   Add Value
                 </button>
               </div>
-
               <div className="space-y-4">
                 {formData.companyValues.map((value, index) => (
                   <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                    <div className="grid md:grid-cols-2 gap-4 mb-4">
+                    <div className="grid md:grid-cols-4 gap-4 mb-4">
+                      {/* Icon selector */}
+                      <div>
+                        <label className="block text-xs font-medium text-gray-600 mb-1">Icon</label>
+                        <select
+                          value={value.icon}
+                          onChange={e => updateArrayItem('companyValues', index, { ...value, icon: e.target.value })}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                        >
+                          <option value="target">🎯 Target (Mission)</option>
+                          <option value="eye">👁️ Eye (Vision)</option>
+                          <option value="award">🏆 Award (Values)</option>
+                        </select>
+                      </div>
+                      {/* Value title */}
                       <input
                         type="text"
                         value={value.title}
-                        onChange={(e) => updateArrayItem('companyValues', index, { ...value, title: e.target.value })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
-                        placeholder="Value title"
+                        onChange={e => updateArrayItem('companyValues', index, { ...value, title: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                        placeholder="e.g. Mission"
                       />
+                      {/* Delete button */}
                       <button
                         onClick={() => removeArrayItem('companyValues', index)}
-                        className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                        className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 mt-6"
                       >
                         <Trash2 size={16} />
                       </button>
                     </div>
+                    {/* Value description */}
                     <textarea
                       value={value.description}
-                      onChange={(e) => updateArrayItem('companyValues', index, { ...value, description: e.target.value })}
+                      onChange={e => updateArrayItem('companyValues', index, { ...value, description: e.target.value })}
                       rows={2}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
-                      placeholder="Value description"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      placeholder="Describe this value..."
                     />
                   </div>
                 ))}
@@ -404,7 +782,13 @@ const CreateCompany: React.FC = () => {
             <div className="flex items-center justify-between">
               <h3 className="text-2xl font-bold text-black">Services Section</h3>
               <button
-                onClick={() => addArrayItem('services', { icon: 'camera', title: '', description: '' })}
+                onClick={() =>
+                  addArrayItem('services', {
+                    icon: 'camera',
+                    title: '',
+                    description: ''
+                  })
+                }
                 className="bg-[#FF0000] text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-[#FF0000]/90"
               >
                 <Plus size={16} />
@@ -417,8 +801,19 @@ const CreateCompany: React.FC = () => {
               <input
                 type="text"
                 value={formData.servicesTitle}
-                onChange={(e) => handleInputChange('servicesTitle', e.target.value)}
+                onChange={e => handleInputChange('servicesTitle', e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                placeholder="Our Services"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Section Description</label>
+              <textarea
+                value={formData.servicesDescription || ''}
+                onChange={e => handleInputChange('servicesDescription', e.target.value)}
+                rows={2}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                placeholder="Comprehensive drone solutions tailored to meet the unique needs of various industries and applications."
               />
             </div>
 
@@ -426,42 +821,61 @@ const CreateCompany: React.FC = () => {
               {formData.services.map((service, index) => (
                 <div key={index} className="bg-gray-50 p-4 rounded-lg">
                   <div className="grid md:grid-cols-4 gap-4 items-end">
+                    {/* Icon Selector */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Icon</label>
                       <select
                         value={service.icon}
-                        onChange={(e) => updateArrayItem('services', index, { ...service, icon: e.target.value })}
+                        onChange={e =>
+                          updateArrayItem('services', index, {
+                            ...service,
+                            icon: e.target.value
+                          })
+                        }
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
                       >
-                        <option value="camera">Camera</option>
-                        <option value="zap">Zap</option>
-                        <option value="shield">Shield</option>
-                        <option value="settings">Settings</option>
+                        <option value="camera">Camera (Aerial Surveying)</option>
+                        <option value="zap">Zap (Agricultural Monitoring)</option>
+                        <option value="shield">Shield (Security & Surveillance)</option>
+                        <option value="settings">Settings (Custom UAV Solutions)</option>
                       </select>
                     </div>
+                    {/* Title */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
                       <input
                         type="text"
                         value={service.title}
-                        onChange={(e) => updateArrayItem('services', index, { ...service, title: e.target.value })}
+                        onChange={e =>
+                          updateArrayItem('services', index, {
+                            ...service,
+                            title: e.target.value
+                          })
+                        }
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
-                        placeholder="Service title"
+                        placeholder="e.g. Aerial Surveying"
                       />
                     </div>
-                    <div>
+                    {/* Description */}
+                    <div className="md:col-span-2">
                       <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
                       <textarea
                         value={service.description}
-                        onChange={(e) => updateArrayItem('services', index, { ...service, description: e.target.value })}
+                        onChange={e =>
+                          updateArrayItem('services', index, {
+                            ...service,
+                            description: e.target.value
+                          })
+                        }
                         rows={2}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
-                        placeholder="Service description"
+                        placeholder="Describe the service..."
                       />
                     </div>
+                    {/* Remove Button */}
                     <button
                       onClick={() => removeArrayItem('services', index)}
-                      className="bg-red-500 text-white p-2 rounded-md hover:bg-red-600"
+                      className="bg-red-500 text-white p-2 rounded-md hover:bg-red-600 mt-8"
                     >
                       <Trash2 size={16} />
                     </button>
@@ -516,9 +930,61 @@ const CreateCompany: React.FC = () => {
                       <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
                         <Upload size={32} className="mx-auto text-gray-400 mb-2" />
                         <p className="text-gray-500 text-sm">Upload product image</p>
-                        <input type="file" className="hidden" accept="image/*" />
+
+                        {/* Loader & message UI */}
+                        {productImageUploadLoading[index] && (
+                          <div className="flex items-center justify-center mt-2">
+                            <svg className="animate-spin h-6 w-6 text-[#FFD400]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#FFD400" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="#FFD400" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                            </svg>
+                            <span className="ml-2 text-[#FFD400] font-semibold">Uploading image...</span>
+                          </div>
+                        )}
+                        {productImageUploadMessage[index] && (
+                          <div className="text-green-600 font-semibold mt-2">{productImageUploadMessage[index]}</div>
+                        )}
+
+                        <input
+                          type="file"
+                          className="hidden"
+                          accept="image/*"
+                          id={`product-image-input-${index}`}
+                          onChange={async (e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              setProductImageUploadLoading((prev) => ({ ...prev, [index]: true }));
+                              setProductImageUploadMessage((prev) => ({ ...prev, [index]: '' }));
+                              try {
+                                const url = await uploadImageToS3(file);
+                                updateArrayItem('products', index, { ...product, image: url });
+                                setProductImageUploadMessage((prev) => ({ ...prev, [index]: 'Product image uploaded successfully!' }));
+                              } catch (err) {
+                                setProductImageUploadMessage((prev) => ({ ...prev, [index]: 'Image upload failed: ' + (err as Error).message }));
+                              } finally {
+                                setProductImageUploadLoading((prev) => ({ ...prev, [index]: false }));
+                              }
+                            }
+                          }}
+                        />
+                        <button
+                          className="bg-[#FFD400] px-3 py-1 mt-2 rounded text-black"
+                          onClick={() => document.getElementById(`product-image-input-${index}`)?.click()}
+                          type="button"
+                        >
+                          Choose File
+                        </button>
+                        {product.image && (
+                          <img
+                            src={product.image}
+                            alt="Product Preview"
+                            className="mx-auto mt-2 h-16"
+                          />
+                        )}
                       </div>
                     </div>
+
+
                     <div className="space-y-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
@@ -567,19 +1033,112 @@ const CreateCompany: React.FC = () => {
 
       case 6: // Clients & Testimonials
         return (
-          <div className="space-y-6">
+          <div className="space-y-10">
             <h3 className="text-2xl font-bold text-black mb-6">Clients & Testimonials</h3>
-            
+
+            {/* Clients Section */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Clients Section Title</label>
-              <input
-                type="text"
-                value={formData.clientsTitle}
-                onChange={(e) => handleInputChange('clientsTitle', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
-              />
+              <div className="flex items-center justify-between mb-4">
+                <label className="block text-sm font-medium text-gray-700">Clients</label>
+                <button
+                  onClick={() => addArrayItem('clients', { name: '', logo: '', industry: '' })}
+                  className="bg-[#FFD400] text-black px-4 py-2 rounded-md flex items-center gap-2 hover:bg-[#FFD400]/90"
+                >
+                  <Plus size={16} />
+                  Add Client
+                </button>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {(formData.clients || []).map((client, idx) => (
+                  <div key={idx} className="bg-white p-4 rounded-lg shadow-sm space-y-3">
+                    {/* Logo Upload */}
+                    <div>
+                      <label className="block text-xs font-medium text-gray-600 mb-1">Logo</label>
+                      <div className="flex items-center gap-2">
+                        <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center overflow-hidden">
+                          {client.logo ? (
+                            <img src={client.logo} alt="Client Logo" className="w-full h-full object-cover" />
+                          ) : (
+                            <span className="text-gray-400 text-xs">No Logo</span>
+                          )}
+                        </div>
+                        {/* Loader & Message */}
+                        {clientLogoUploadLoading[idx] && (
+                          <div className="flex items-center ml-2">
+                            <svg className="animate-spin h-5 w-5 text-[#FFD400]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#FFD400" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="#FFD400" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                            </svg>
+                          </div>
+                        )}
+                        {clientLogoUploadMessage[idx] && (
+                          <span className="text-green-600 text-xs ml-2">{clientLogoUploadMessage[idx]}</span>
+                        )}
+                        <button
+                          className="bg-[#FFD400] text-black px-2 py-1 text-xs rounded"
+                          type="button"
+                          onClick={() => {
+                            const input = document.createElement('input');
+                            input.type = 'file';
+                            input.accept = 'image/*';
+                            input.onchange = async (e: any) => {
+                              const file = e.target.files?.[0];
+                              if (file) {
+                                setClientLogoUploadLoading((prev) => ({ ...prev, [idx]: true }));
+                                setClientLogoUploadMessage((prev) => ({ ...prev, [idx]: '' }));
+                                try {
+                                  const url = await uploadImageToS3(file);
+                                  updateArrayItem('clients', idx, { ...client, logo: url });
+                                  setClientLogoUploadMessage((prev) => ({ ...prev, [idx]: 'Logo uploaded!' }));
+                                } catch (err) {
+                                  setClientLogoUploadMessage((prev) => ({ ...prev, [idx]: 'Upload failed: ' + (err as Error).message }));
+                                } finally {
+                                  setClientLogoUploadLoading((prev) => ({ ...prev, [idx]: false }));
+                                }
+                              }
+                            };
+                            input.click();
+                          }}
+                        >
+                          Upload
+                        </button>
+                        <button
+                          className="bg-red-500 text-white px-2 py-1 text-xs rounded"
+                          onClick={() => removeArrayItem('clients', idx)}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Client Name */}
+                    <div>
+                      <label className="block text-xs font-medium text-gray-600 mb-1">Client Name</label>
+                      <input
+                        type="text"
+                        value={client.name}
+                        onChange={e => updateArrayItem('clients', idx, { ...client, name: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+                        placeholder="Company Name"
+                      />
+                    </div>
+                    {/* Client Industry */}
+                    <div>
+                      <label className="block text-xs font-medium text-gray-600 mb-1">Industry</label>
+                      <input
+                        type="text"
+                        value={client.industry}
+                        onChange={e => updateArrayItem('clients', idx, { ...client, industry: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+                        placeholder="e.g. Technology, Agriculture"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
+            {/* Testimonials Section */}
             <div>
               <div className="flex items-center justify-between mb-4">
                 <label className="block text-sm font-medium text-gray-700">Testimonials</label>
@@ -601,9 +1160,60 @@ const CreateCompany: React.FC = () => {
                         <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
                           <Upload size={32} className="mx-auto text-gray-400 mb-2" />
                           <p className="text-gray-500 text-sm">Upload client photo</p>
-                          <input type="file" className="hidden" accept="image/*" />
+
+                          {/* Loader & message UI */}
+                          {testimonialPhotoUploadLoading[index] && (
+                            <div className="flex items-center justify-center mt-2">
+                              <svg className="animate-spin h-6 w-6 text-[#FFD400]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#FFD400" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="#FFD400" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                              </svg>
+                              <span className="ml-2 text-[#FFD400] font-semibold">Uploading image...</span>
+                            </div>
+                          )}
+                          {testimonialPhotoUploadMessage[index] && (
+                            <div className="text-green-600 font-semibold mt-2">{testimonialPhotoUploadMessage[index]}</div>
+                          )}
+
+                          <input
+                            type="file"
+                            className="hidden"
+                            accept="image/*"
+                            id={`testimonial-photo-input-${index}`}
+                            onChange={async (e) => {
+                              const file = e.target.files?.[0];
+                              if (file) {
+                                setTestimonialPhotoUploadLoading((prev) => ({ ...prev, [index]: true }));
+                                setTestimonialPhotoUploadMessage((prev) => ({ ...prev, [index]: '' }));
+                                try {
+                                  const url = await uploadImageToS3(file);
+                                  updateArrayItem('testimonials', index, { ...testimonial, photo: url });
+                                  setTestimonialPhotoUploadMessage((prev) => ({ ...prev, [index]: 'Client photo uploaded successfully!' }));
+                                } catch (err) {
+                                  setTestimonialPhotoUploadMessage((prev) => ({ ...prev, [index]: 'Image upload failed: ' + (err as Error).message }));
+                                } finally {
+                                  setTestimonialPhotoUploadLoading((prev) => ({ ...prev, [index]: false }));
+                                }
+                              }
+                            }}
+                          />
+                          <button
+                            className="bg-[#FFD400] px-3 py-1 mt-2 rounded text-black"
+                            onClick={() => document.getElementById(`testimonial-photo-input-${index}`)?.click()}
+                            type="button"
+                          >
+                            Choose File
+                          </button>
+                          {testimonial.photo && (
+                            <img
+                              src={testimonial.photo}
+                              alt="Client Photo Preview"
+                              className="mx-auto mt-2 h-16"
+                            />
+                          )}
                         </div>
                       </div>
+
                       <div className="space-y-4">
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">Client Name</label>
@@ -669,7 +1279,7 @@ const CreateCompany: React.FC = () => {
         return (
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-black mb-6">Contact Section</h3>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Section Title</label>
               <input
@@ -701,16 +1311,49 @@ const CreateCompany: React.FC = () => {
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Address</label>
-              <textarea
-                value={formData.address}
-                onChange={(e) => handleInputChange('address', e.target.value)}
-                rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
-                placeholder="Company address"
-              />
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Address Line</label>
+                <input
+                  type="text"
+                  value={formData.addressLine}
+                  onChange={e => handleInputChange('addressLine', e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  placeholder="123 Main Street"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">City</label>
+                <input
+                  type="text"
+                  value={formData.city}
+                  onChange={e => handleInputChange('city', e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  placeholder="Hyderabad"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">State</label>
+                <input
+                  type="text"
+                  value={formData.state}
+                  onChange={e => handleInputChange('state', e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  placeholder="Telangana"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Pin Code</label>
+                <input
+                  type="text"
+                  value={formData.pinCode}
+                  onChange={e => handleInputChange('pinCode', e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  placeholder="500001"
+                />
+              </div>
             </div>
+
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Google Maps Embed URL</label>
@@ -747,49 +1390,222 @@ const CreateCompany: React.FC = () => {
 
       case 8: // Footer
         return (
-          <div className="space-y-6">
+          <div className="space-y-8">
             <h3 className="text-2xl font-bold text-black mb-6">Footer Section</h3>
-            
+
+            {/* Logo */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Footer Logo</label>
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                <Upload size={48} className="mx-auto text-gray-400 mb-4" />
+                <p className="text-gray-500">Upload your footer logo</p>
+
+                {/* Loader & message UI */}
+                {footerLogoUploadLoading && (
+                  <div className="flex items-center justify-center mt-2">
+                    <svg className="animate-spin h-6 w-6 text-[#FFD400]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#FFD400" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="#FFD400" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                    </svg>
+                    <span className="ml-2 text-[#FFD400] font-semibold">Uploading image...</span>
+                  </div>
+                )}
+                {footerLogoUploadMessage && (
+                  <div className="text-green-600 font-semibold mt-2">{footerLogoUploadMessage}</div>
+                )}
+
+                <input
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                  id="footer-logo-input"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      setFooterLogoUploadLoading(true);
+                      setFooterLogoUploadMessage('');
+                      try {
+                        // Upload to S3 and get the URL
+                        const url = await uploadImageToS3(file);
+                        setFormData((prev) => ({
+                          ...prev,
+                          footerLogo: url,
+                        }));
+                        setFooterLogoUploadMessage('Footer logo uploaded successfully!');
+                      } catch (err) {
+                        setFooterLogoUploadMessage('Image upload failed: ' + (err as Error).message);
+                      } finally {
+                        setFooterLogoUploadLoading(false);
+                      }
+                    }
+                  }}
+                />
+                <button
+                  className="bg-[#FFD400] px-3 py-1 mt-2 rounded text-black"
+                  onClick={() => document.getElementById('footer-logo-input')?.click()}
+                  type="button"
+                >
+                  Choose File
+                </button>
+                {formData.footerLogo && (
+                  <img
+                    src={formData.footerLogo}
+                    alt="Footer Logo Preview"
+                    className="mx-auto mt-2 h-16"
+                  />
+                )}
+              </div>
+            </div>
+
+
+
+            {/* Description */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Footer Description</label>
+              <textarea
+                value={formData.footerDescription || ''}
+                onChange={e => handleInputChange('footerDescription', e.target.value)}
+                rows={2}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                placeholder="Short company description for the footer..."
+              />
+            </div>
+
+            {/* Footer Text */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Footer Text</label>
               <input
                 type="text"
-                value={formData.footerText}
-                onChange={(e) => handleInputChange('footerText', e.target.value)}
+                value={formData.footerText || ''}
+                onChange={e => handleInputChange('footerText', e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
               />
             </div>
 
+            {/* Contact Info */}
+            <div className="grid md:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-xs text-gray-500 mb-1">Contact Email</label>
+                <input
+                  type="email"
+                  value={formData.footerEmail || ''}
+                  onChange={e => handleInputChange('footerEmail', e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                  placeholder="info@dronetech.com"
+                />
+              </div>
+              <div>
+                <label className="block text-xs text-gray-500 mb-1">Contact Phone</label>
+                <input
+                  type="text"
+                  value={formData.footerPhone || ''}
+                  onChange={e => handleInputChange('footerPhone', e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                  placeholder="+91 98765 43210"
+                />
+              </div>
+              <div>
+                <label className="block text-xs text-gray-500 mb-1">Contact Address</label>
+                <input
+                  type="text"
+                  value={formData.footerAddress || ''}
+                  onChange={e => handleInputChange('footerAddress', e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                  placeholder="Bangalore, Karnataka"
+                />
+              </div>
+            </div>
+
+            {/* Footer Navigation Links */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Footer Navigation Links</label>
+              <div className="space-y-2">
+                {formData.footerNavLinks?.map((item, idx) => (
+                  <div className="flex gap-2" key={idx}>
+                    <input
+                      type="text"
+                      value={item.label}
+                      onChange={e => updateArrayItem('footerNavLinks', idx, { ...item, label: e.target.value })}
+                      placeholder="Label"
+                      className="flex-1 px-3 py-2 border border-gray-300 rounded-md"
+                    />
+                    <input
+                      type="text"
+                      value={item.link}
+                      onChange={e => updateArrayItem('footerNavLinks', idx, { ...item, link: e.target.value })}
+                      placeholder="#section"
+                      className="flex-1 px-3 py-2 border border-gray-300 rounded-md"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeArrayItem('footerNavLinks', idx)}
+                      className="text-red-500 font-bold"
+                    >
+                      X
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => addArrayItem('footerNavLinks', { label: '', link: '' })}
+                  className="text-[#FF0000] mt-2 px-2 py-1 rounded border border-[#FF0000]"
+                >
+                  + Add Link
+                </button>
+              </div>
+            </div>
+
+            {/* Social Links */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Social Links</label>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs text-gray-500 mb-1">LinkedIn</label>
+                  <label className="block text-xs text-gray-500 mb-1">Facebook</label>
                   <input
                     type="url"
-                    value={formData.socialLinks.linkedin}
-                    onChange={(e) => handleNestedInputChange('socialLinks', 'linkedin', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
-                    placeholder="https://linkedin.com/company/..."
+                    value={formData.socialLinks.facebook || ''}
+                    onChange={e => handleNestedInputChange('socialLinks', 'facebook', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    placeholder="https://facebook.com/..."
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Twitter</label>
+                  <input
+                    type="url"
+                    value={formData.socialLinks.twitter || ''}
+                    onChange={e => handleNestedInputChange('socialLinks', 'twitter', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    placeholder="https://twitter.com/..."
                   />
                 </div>
                 <div>
                   <label className="block text-xs text-gray-500 mb-1">Instagram</label>
                   <input
                     type="url"
-                    value={formData.socialLinks.instagram}
-                    onChange={(e) => handleNestedInputChange('socialLinks', 'instagram', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                    value={formData.socialLinks.instagram || ''}
+                    onChange={e => handleNestedInputChange('socialLinks', 'instagram', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
                     placeholder="https://instagram.com/..."
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">LinkedIn</label>
+                  <input
+                    type="url"
+                    value={formData.socialLinks.linkedin || ''}
+                    onChange={e => handleNestedInputChange('socialLinks', 'linkedin', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    placeholder="https://linkedin.com/company/..."
                   />
                 </div>
                 <div>
                   <label className="block text-xs text-gray-500 mb-1">YouTube</label>
                   <input
                     type="url"
-                    value={formData.socialLinks.youtube}
-                    onChange={(e) => handleNestedInputChange('socialLinks', 'youtube', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                    value={formData.socialLinks.youtube || ''}
+                    onChange={e => handleNestedInputChange('socialLinks', 'youtube', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
                     placeholder="https://youtube.com/..."
                   />
                 </div>
@@ -797,14 +1613,51 @@ const CreateCompany: React.FC = () => {
                   <label className="block text-xs text-gray-500 mb-1">Website</label>
                   <input
                     type="url"
-                    value={formData.socialLinks.website}
-                    onChange={(e) => handleNestedInputChange('socialLinks', 'website', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#FF0000] focus:border-transparent"
+                    value={formData.socialLinks.website || ''}
+                    onChange={e => handleNestedInputChange('socialLinks', 'website', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
                     placeholder="https://yourcompany.com"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">WhatsApp</label>
+                  <input
+                    type="url"
+                    value={formData.socialLinks.whatsapp || ''}
+                    onChange={e => handleNestedInputChange('socialLinks', 'whatsapp', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    placeholder="https://wa.me/..."
                   />
                 </div>
               </div>
             </div>
+
+            {/* Newsletter Toggle */}
+            <div className="flex items-center gap-2 mt-2">
+              <input
+                type="checkbox"
+                checked={!!formData.newsletterEnabled}
+                onChange={e => handleInputChange('newsletterEnabled', e.target.checked)}
+                id="newsletterEnabled"
+                className="w-5 h-5 border-gray-400 rounded focus:ring-2 focus:ring-[#FF0000]"
+              />
+              <label htmlFor="newsletterEnabled" className="text-gray-700 text-sm font-medium">
+                Enable Newsletter Signup in Footer
+              </label>
+            </div>
+
+            {formData.newsletterEnabled && (
+              <div>
+                <label className="block text-xs text-gray-500 mb-1">Newsletter Description</label>
+                <input
+                  type="text"
+                  value={formData.newsletterDescription || ''}
+                  onChange={e => handleInputChange('newsletterDescription', e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  placeholder="Subscribe to our newsletter for the latest drone technology updates."
+                />
+              </div>
+            )}
           </div>
         );
 
@@ -812,6 +1665,8 @@ const CreateCompany: React.FC = () => {
         return null;
     }
   };
+
+
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -841,7 +1696,7 @@ const CreateCompany: React.FC = () => {
             </span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
+            <div
               className="bg-[#FF0000] h-2 rounded-full transition-all duration-300"
               style={{ width: `${(currentStep / steps.length) * 100}%` }}
             ></div>
@@ -860,13 +1715,12 @@ const CreateCompany: React.FC = () => {
                   <button
                     key={index}
                     onClick={() => setCurrentStep(index + 1)}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                      currentStep === index + 1
-                        ? 'bg-[#FF0000] text-white'
-                        : currentStep > index + 1
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${currentStep === index + 1
+                      ? 'bg-[#FF0000] text-white'
+                      : currentStep > index + 1
                         ? 'bg-[#FFD400] text-black'
                         : 'bg-gray-200 text-gray-600'
-                    }`}
+                      }`}
                   >
                     {step}
                   </button>
@@ -892,13 +1746,19 @@ const CreateCompany: React.FC = () => {
 
               {currentStep < steps.length ? (
                 <button
-                  onClick={() => setCurrentStep(Math.min(steps.length, currentStep + 1))}
-                  disabled={currentStep === 1 && !formData.selectedTemplate}
+                  onClick={() => {
+                    if (currentStep === 1 && promoCode !== 'MUMBAI2025') {
+                      setPromoCodeError('Please enter a valid promotional code to proceed.');
+                      return;
+                    }
+                    setCurrentStep(Math.min(steps.length, currentStep + 1));
+                  }}
                   className="flex items-center gap-2 px-6 py-3 bg-[#FF0000] text-white rounded-lg font-semibold hover:bg-[#FF0000]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Next
                   <ArrowRight size={20} />
                 </button>
+
               ) : (
                 <button
                   onClick={handleSubmit}

@@ -22,7 +22,7 @@ function SubApp() {
       <Route path="/" element={<CreatePortfolio/>} />
       <Route path="/portfolio-template-1" element={<PortfolioTemplate1 />} />
       <Route path="/portfolio-template-2" element={<PortfolioTemplate2 />} />
-      <Route path="/company-template-1" element={<CompanyTemplate1 />} />
+      <Route path="/:companySlug" element={<CompanyTemplate1 />} />
       <Route path="/company-template-2" element={<CompanyTemplate2 />} />
       <Route path="/create-portfolio" element={<CreatePortfolio />} />
       <Route path="/create-portfolio/professional" element={<ProfessionalTemplates />} />

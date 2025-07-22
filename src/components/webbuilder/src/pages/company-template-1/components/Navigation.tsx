@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
-const Navigation: React.FC = () => {
+interface NavLink {
+  label: string;
+  link: string;
+}
+
+interface NavigationProps {
+  navigationLinks: NavLink[];
+  companyLogo?: string;
+  companyName?: string;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ navigationLinks, companyLogo, companyName, }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Products', href: '#products' },
-    { name: 'Clients', href: '#clients' },
-    { name: 'Contact', href: '#contact' },
-  ];
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -32,34 +31,37 @@ const Navigation: React.FC = () => {
   };
 
   return (
-<nav className={`fixed top-[60px] left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-black/95 backdrop-blur-md shadow-lg py-3' 
+    <nav className={`fixed top-[60px] left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? 'bg-black/95 backdrop-blur-md shadow-lg py-3'
         : 'bg-transparent py-6'
-    }`}>
+      }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="text-2xl font-bold">
+          <div className="flex items-center gap-3 text-2xl font-bold">
+            {companyLogo && (
+              <img
+                src={companyLogo}
+                alt="Company Logo"
+                className="h-8 w-8 object-contain rounded-full bg-white shadow"
+              />
+            )}
             <span className={isScrolled ? 'text-[#FFD400]' : 'text-white'}>
-              Drone
+              {companyName || "Company"}
             </span>
-            <span className="text-[#FF0000]">Tech</span>
           </div>
-
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            {navItems.map((item) => (
+            {(navigationLinks || []).map((item) => (
               <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className={`relative font-medium transition-colors duration-300 group ${
-                  isScrolled 
-                    ? 'text-white hover:text-[#FFD400]' 
+                key={item.label}
+                onClick={() => scrollToSection(item.link)}
+                className={`relative font-medium transition-colors duration-300 group ${isScrolled
+                    ? 'text-white hover:text-[#FFD400]'
                     : 'text-white hover:text-[#FFD400]'
-                }`}
+                  }`}
               >
-                {item.name}
+                {item.label}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF0000] transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
@@ -84,13 +86,13 @@ const Navigation: React.FC = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden mt-4 py-4 bg-black/95 backdrop-blur-md rounded-lg">
-            {navItems.map((item) => (
+            {(navigationLinks || []).map((item) => (
               <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
+                key={item.label}
+                onClick={() => scrollToSection(item.link)}
                 className="block w-full text-left px-4 py-3 text-white hover:text-[#FFD400] hover:bg-white/10 transition-colors"
               >
-                {item.name}
+                {item.label}
               </button>
             ))}
             <button className="w-full mt-4 mx-4 bg-[#FF0000] hover:bg-[#FF0000]/90 text-white px-6 py-3 rounded-full font-semibold transition-colors">
