@@ -111,7 +111,7 @@ const FeaturedCompanies = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-yellow-200 via-yellow-200 to-yellow-100 relative overflow-hidden min-h-screen">
+    <section className="py-20 bg-gradient-to-b from-yellow-300 via-yellow-300 to-yellow-300 relative overflow-hidden min-h-screen">
       {/* Enhanced Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -150,7 +150,7 @@ const FeaturedCompanies = () => {
               <div
                 key={company.id}
                 data-id={company.id}
-                className={`group relative bg-yellow-100 rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1 opacity-100 translate-y-0`}
+                className={`group relative bg-[#f1ee8e] rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1 opacity-100 translate-y-0`}
                 style={{
                   transitionDelay: `${index * 150}ms`,
                   animation: `fadeInUp 0.8s ease-out ${index * 150}ms both`
@@ -214,30 +214,36 @@ const FeaturedCompanies = () => {
 
                   {/* Key Stats */}
                   <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-4">
-                    <div className="text-center p-2 sm:p-3 bg-yellow-50 rounded-lg sm:rounded-xl group-hover:bg-yellow-100 transition-colors duration-300">
-                      <Users className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600 group-hover:text-yellow-600 mx-auto mb-1 transition-colors duration-300" />
-                      <div className="text-xs sm:text-sm font-bold text-gray-800">{company.employees}</div>
-                      <div className="text-xs text-gray-500">Employees</div>
+                    {/* Employees */}
+                    <div className="text-center p-2 sm:p-3 bg-yellow-200 rounded-lg sm:rounded-xl group-hover:bg-yellow-300 transition-colors duration-300">
+                      <Users className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-800 mx-auto mb-1 transition-colors duration-300" />
+                      <div className="text-xs sm:text-sm font-bold text-yellow-800">{company.employees}</div>
+                      <div className="text-xs text-yellow-700">Employees</div>
                     </div>
 
-                    <div className="text-center p-2 sm:p-3 bg-yellow-50 rounded-lg sm:rounded-xl group-hover:bg-yellow-100 transition-colors duration-300">
-                      <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-600 mx-auto mb-1" />
-                      <div className="text-xs sm:text-sm font-bold text-yellow-600">{company.growth}</div>
-                      <div className="text-xs text-gray-500">Growth</div>
+                    {/* Growth */}
+                    <div className="text-center p-2 sm:p-3 bg-yellow-200 rounded-lg sm:rounded-xl group-hover:bg-yellow-300 transition-colors duration-300">
+                      <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-900 mx-auto mb-1" />
+                      <div className="text-xs sm:text-sm font-bold text-yellow-900">{company.growth}</div>
+                      <div className="text-xs text-yellow-800">Growth</div>
                     </div>
                   </div>
 
                   {/* Revenue & Clients */}
                   <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-4">
-                    <div className="text-center p-2 bg-yellow-50 rounded-lg group-hover:bg-yellow-100 transition-colors duration-300">
-                      <div className="text-xs sm:text-sm font-bold text-black">{company.revenue}</div>
-                      <div className="text-xs text-gray-600">Revenue</div>
+                    {/* Revenue */}
+                    <div className="text-center p-2 sm:p-3 bg-yellow-200 rounded-lg sm:rounded-xl group-hover:bg-yellow-300 transition-colors duration-300">
+                      <div className="text-xs sm:text-sm font-bold text-yellow-900">{company.revenue}</div>
+                      <div className="text-xs text-yellow-700">Revenue</div>
                     </div>
-                    <div className="text-center p-2 bg-yellow-100 rounded-lg group-hover:bg-yellow-200 transition-colors duration-300">
-                      <div className="text-xs sm:text-sm font-bold text-yellow-700">{company.clients}</div>
-                      <div className="text-xs text-yellow-600">Clients</div>
+
+                    {/* Clients */}
+                    <div className="text-center p-2 sm:p-3 bg-yellow-300 rounded-lg sm:rounded-xl group-hover:bg-yellow-400 transition-colors duration-300">
+                      <div className="text-xs sm:text-sm font-bold text-yellow-900">{company.clients}</div>
+                      <div className="text-xs text-yellow-800">Clients</div>
                     </div>
                   </div>
+
 
                   {/* Specialties */}
                   <div className="mb-3 sm:mb-4">
@@ -246,14 +252,14 @@ const FeaturedCompanies = () => {
                       {company.specialties.slice(0, 3).map((specialty, idx) => (
                         <span
                           key={specialty}
-                          className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium group-hover:bg-yellow-200 transition-colors duration-300"
+                          className="bg-yellow-200 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium group-hover:bg-yellow-400 transition-colors duration-300"
                           style={{ animationDelay: `${idx * 100}ms` }}
                         >
                           {specialty}
                         </span>
                       ))}
                       {company.specialties.length > 3 && (
-                        <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium group-hover:bg-gray-200 transition-colors duration-300">
+                        <span className="bg-yellow-200 text-gray-600 px-2 py-1 rounded-full text-xs font-medium group-hover:bg-yellow-400 transition-colors duration-300">
                           +{company.specialties.length - 3} more
                         </span>
                       )}
@@ -305,7 +311,8 @@ const FeaturedCompanies = () => {
             <p className="text-black/80 mb-6 max-w-2xl mx-auto">
               Join our network of innovative companies shaping the future of drone technology and reach thousands of industry professionals.
             </p>
-            <button className="bg-black text-white px-8 py-3 rounded-xl font-bold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <button className="bg-yellow-400 text-black px-8 py-3 rounded-xl font-bold hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 shadow-lg
+">
               Partner With Us
             </button>
           </div>
