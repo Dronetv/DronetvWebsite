@@ -30,9 +30,9 @@ const HomePage = () => (
   <>
     <Hero />
     <PopularVideos />
+    <UpcomingEvents />
     <BrowseByTopic />
     <FeaturedCompanies />
-    <UpcomingEvents />
     <GalleryGlimpse />
     <Newsletter />
   </>
