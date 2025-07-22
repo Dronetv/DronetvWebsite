@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, Facebook, Twitter, Instagram, Youtube, X } from 'lucide-react';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -33,11 +33,12 @@ const ContactPage = () => {
   };
 
   const socialLinks = [
-    { name: 'Facebook', icon: Facebook, href: '#', color: 'hover:text-blue-600' },
-    { name: 'Twitter', icon: Twitter, href: '#', color: 'hover:text-blue-400' },
-    { name: 'Instagram', icon: Instagram, href: '#', color: 'hover:text-pink-600' },
-    { name: 'YouTube', icon: Youtube, href: '#', color: 'hover:text-red-600' }
+    { name: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/dronetv.in', color: 'hover:text-blue-600' },
+    { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/dronetv.in/', color: 'hover:text-pink-600' },
+    { name: 'Twitter', icon: X, href: 'https://x.com/indiadronetv', color: 'hover:text-blue-400' },  // Updated with X
+    { name: 'YouTube', icon: Youtube, href: 'https://www.youtube.com/@indiadronetv', color: 'hover:text-red-600' }
   ];
+
 
   return (
     <div className="min-h-screen bg-yellow-400 pt-16">
@@ -66,7 +67,7 @@ const ContactPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             
             {/* Contact Form Section */}
-            <div className="bg-white rounded-3xl p-8 shadow-2xl">
+            <div className="bg-[#f1ee8e] rounded-3xl p-8 shadow-2xl">
               <h2 className="text-3xl font-black text-black mb-6">Send Us a Message</h2>
               
               {!isSubmitted ? (
@@ -82,7 +83,8 @@ const ContactPage = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="Enter your full name"
-                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-500 transition-all duration-300"
+                     className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-500 transition-all duration-300"
+
                       required
                     />
                   </div>
@@ -98,7 +100,8 @@ const ContactPage = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="Enter your email address"
-                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-500 transition-all duration-300"
+                     className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-500 transition-all duration-300"
+
                       required
                     />
                   </div>
@@ -114,7 +117,8 @@ const ContactPage = () => {
                       onChange={handleInputChange}
                       placeholder="Tell us how we can help you..."
                       rows={6}
-                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-500 transition-all duration-300 resize-none"
+                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-500 transition-all duration-300"
+
                       required
                     ></textarea>
                   </div>
@@ -155,7 +159,7 @@ const ContactPage = () => {
             <div className="space-y-8">
               
               {/* Our Info Section */}
-              <div className="bg-white rounded-3xl p-8 shadow-2xl">
+              <div className="bg-[#f1ee8e] rounded-3xl p-8 shadow-2xl">
                 <h2 className="text-3xl font-black text-black mb-6">Get In Touch</h2>
                 <div className="space-y-6">
                   
@@ -165,8 +169,8 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <h3 className="font-bold text-black">Email Address</h3>
-                      <p className="text-gray-600">hello@dronetv.com</p>
-                      <p className="text-gray-600">support@dronetv.com</p>
+                      <p className="text-gray-600">bd@dronetv.in</p>
+                     
                     </div>
                   </div>
 
@@ -176,8 +180,8 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <h3 className="font-bold text-black">Phone Number</h3>
-                      <p className="text-gray-600">+1 (555) 123-4567</p>
-                      <p className="text-gray-600 text-sm">Mon-Fri, 9AM-6PM PST</p>
+                      <p className="text-gray-600">+91 7520123555</p>
+                    
                     </div>
                   </div>
 
@@ -187,16 +191,18 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <h3 className="font-bold text-black">Office Location</h3>
-                      <p className="text-gray-600">123 Innovation Drive</p>
-                      <p className="text-gray-600">San Francisco, CA 94105</p>
-                      <p className="text-gray-600">United States</p>
+                      <p className="text-gray-600">IPage UM Services Pvt Ltd 5A/6B, White Waters,
+
+</p>
+                      <p className="text-gray-600">Timber Lake Colony, Shaikpet,</p>
+                      <p className="text-gray-600">Hyderabad - 500008 India</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Social Media Section */}
-              <div className="bg-white rounded-3xl p-8 shadow-2xl">
+              <div className="bg-[#f1ee8e]  rounded-3xl p-8 shadow-2xl">
                 <h2 className="text-3xl font-black text-black mb-6">Follow Us</h2>
                 <p className="text-gray-600 mb-6">
                   Stay connected with us on social media for the latest updates, news, and insights from the drone technology world.
@@ -225,31 +231,7 @@ const ContactPage = () => {
               </div>
 
               {/* Additional Info */}
-              <div className="bg-white rounded-3xl p-8 shadow-2xl">
-                <h3 className="text-xl font-bold text-black mb-4">Business Hours</h3>
-                <div className="space-y-2 text-gray-600">
-                  <div className="flex justify-between">
-                    <span>Monday - Friday:</span>
-                    <span className="font-semibold">9:00 AM - 6:00 PM PST</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Saturday:</span>
-                    <span className="font-semibold">10:00 AM - 4:00 PM PST</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Sunday:</span>
-                    <span className="font-semibold">Closed</span>
-                  </div>
-                </div>
-                
-                <div className="mt-6 pt-6 border-t border-gray-200">
-                  <h4 className="font-bold text-black mb-2">Response Time</h4>
-                  <p className="text-gray-600 text-sm">
-                    We typically respond to all inquiries within 24 hours during business days. 
-                    For urgent matters, please call us directly.
-                  </p>
-                </div>
-              </div>
+            
             </div>
           </div>
         </div>

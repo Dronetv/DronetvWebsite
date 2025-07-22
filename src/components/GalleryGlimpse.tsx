@@ -8,42 +8,42 @@ const GalleryGlimpse = () => {
   const galleryPreview = [
     {
       id: 1,
-      src: "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=600",
+      src: "/images/1.png",
       title: "DroneWorld Conference 2024"
     },
     {
       id: 2,
-      src: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=600",
+      src: "/images/2.png",
       title: "AI Partnership Event"
     },
     {
       id: 3,
-      src: "https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg?auto=compress&cs=tinysrgb&w=600",
+      src: "/images/3.png",
       title: "GIS Mapping Workshop"
     },
     {
       id: 4,
-      src: "https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=600",
+      src: "/images/4.png",
       title: "Technology Exhibition"
     },
     {
       id: 5,
-      src: "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=600",
+      src: "/images/5.png",
       title: "Industry Panel Discussion"
     },
     {
       id: 6,
-      src: "https://images.pexels.com/photos/724712/pexels-photo-724712.jpeg?auto=compress&cs=tinysrgb&w=600",
+      src: "/images/6.png",
       title: "Product Launch Event"
     },
     {
       id: 7,
-      src: "https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg?auto=compress&cs=tinysrgb&w=600",
+      src: "/images/7.png",
       title: "Team Building Retreat"
     },
     {
       id: 8,
-      src: "https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=600",
+      src: "/images/8.png",
       title: "Partnership Signing"
     }
   ];
@@ -95,20 +95,20 @@ const GalleryGlimpse = () => {
                 />
                 
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                {/* <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
                   <div className="absolute inset-0 bg-black/60"></div>
                   <div className="relative bg-yellow-400 text-black px-4 py-2 rounded-full font-bold shadow-2xl transform scale-0 group-hover:scale-100 transition-all duration-500 hover:bg-yellow-300 flex items-center gap-2">
                     <Eye className="h-4 w-4" />
                     <span>View</span>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Title Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                {/* <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
                   <h3 className="text-white font-bold text-sm line-clamp-2">
                     {image.title}
                   </h3>
-                </div>
+                </div> */}
               </div>
             </div>
           ))}
@@ -126,7 +126,8 @@ const GalleryGlimpse = () => {
             </p>
             <Link 
               to="/gallery"
-              className="inline-flex items-center gap-3 bg-black text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 shadow-lg"
+             className="inline-flex items-center gap-3 bg-yellow-400 text-black px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 shadow-lg"
+
             >
               <Camera className="h-5 w-5" />
               <span>Browse All Photos</span>

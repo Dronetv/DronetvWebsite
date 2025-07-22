@@ -83,11 +83,12 @@ const Footer = () => {
             {/* Copyright */}
             <div className="text-center text-black/80 mb-8">
               <p className="flex items-center justify-center gap-2 text-lg">
-                &copy; 2024 Drone TV. Made with
-                <Heart className="h-5 w-5 text-red-500 animate-pulse" />
-                for drone enthusiasts
+                &copy; 2024 Drone TV. Built with
+
+                for the global drone community.
               </p>
             </div>
+
 
             {/* Back to Top Button */}
             <button

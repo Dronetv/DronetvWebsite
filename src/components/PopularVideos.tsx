@@ -5,62 +5,78 @@ const PopularVideos = () => {
   const [visibleCards, setVisibleCards] = useState(new Set());
   const observerRef = useRef(null);
 
-  const videos = [
+ const videos = [
     {
-      id: 1,
-      title: "Advanced Drone AI Navigation",
-      description: "Latest AI algorithms for autonomous flight",
-      thumbnail: "https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "AI",
-      views: "12.5K",
-      duration: "8:42"
-    },
+    id: 3,
+    title: "Dr. Pranay Kumar on Industry-Scale Drone Integration at Drone Expo 2025",
+    description:
+      "Dr. Pranay Kumar, COO of BBPL Aero, shares expert insights on how drone technology is transforming agriculture, infrastructure, logistics, and more. His briefing outlines a roadmap for intelligent UAV adoption and strategic industry integration in India.",
+    thumbnail: "https://img.youtube.com/vi/7Emdg4-WgQo/maxresdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/7Emdg4-WgQo",
+    category: "Drone",
+    views: "15.2K",
+    duration: "6:33"
+  },
+
+
+  {
+    id: 2,
+    title: "Voices from Drone Expo 2025 – Featuring Dev R, Founder of Drone TV",
+    description:
+      "Drone TV captures the spirit of Drone Expo 2025 — candid interviews, expert insights, and bold visions shaping India’s UAV ecosystem. Dev R, Founder of Drone TV, shares: 'Drone TV is the voice of the drone ecosystem — a platform where innovators, startups, and entrepreneurs can express their vision and connect with the world.'",
+    thumbnail: "https://img.youtube.com/vi/W2kpIo1Xlj4/maxresdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/W2kpIo1Xlj4",
+    category: "Events",
+    views: "8.9K",
+    duration: "12:15"
+  },
+  {
+    id: 6,
+    title: "Payal Highlights Innovation at Drone Expo 2025",
+    description:
+      "In this feature, Payal from the Drone Expo team shares her take on the most innovative drone stalls. From standout tech to collaborative spirit, she captures the futuristic energy of Drone Expo 2025.",
+    thumbnail: "https://img.youtube.com/vi/ykgVmoq5UXc/maxresdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/ykgVmoq5UXc",
+    category: "GIS",
+    views: "7.8K",
+    duration: "9:51"
+  },
     {
-      id: 2,
-      title: "GIS Mapping with Drones",
-      description: "Precision mapping and surveying techniques",
-      thumbnail: "https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "GIS",
-      views: "8.9K",
-      duration: "12:15"
-    },
+    id: 5,
+    title: "Teja from Corteva on Drone-Powered Agriculture at Drone Expo 2025",
+    description:
+      "Drone TV interviews Teja from Corteva Agriscience to explore how drones are transforming agriculture. From precision spraying to crop monitoring, Corteva uses drone tech to boost sustainability and productivity.",
+    thumbnail: "https://img.youtube.com/vi/9SUglQh93cQ/maxresdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/9SUglQh93cQ",
+    category: "AI",
+    views: "11.3K",
+    duration: "14:07"
+  },
+  {
+    id: 4,
+    title: "Carbon Light’s Innovation in Drone Design – Rini Bansal at Drone Expo 2025",
+    description:
+      "Rini Bansal from Carbon Light shares insights on their carbon fiber components and lightweight drone frames at Drone Expo 2025. Learn how their tech enhances endurance, payload, and performance — making them a top name for drone OEMs.",
+    thumbnail: "https://img.youtube.com/vi/bIOSkyj6xSk/maxresdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/bIOSkyj6xSk",
+    category: "Drone",
+    views: "9.7K",
+    duration: "10:28"
+  },
+
+  
     {
-      id: 3,
-      title: "Commercial Drone Applications",
-      description: "Real-world use cases in various industries",
-      thumbnail: "https://images.pexels.com/photos/724712/pexels-photo-724712.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "Drone",
-      views: "15.2K",
-      duration: "6:33"
-    },
-    {
-      id: 4,
-      title: "Drone Safety and Regulations",
-      description: "Essential guidelines for drone operators",
-      thumbnail: "https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "Drone",
-      views: "9.7K",
-      duration: "10:28"
-    },
-    {
-      id: 5,
-      title: "Machine Learning in Drone Tech",
-      description: "How ML is revolutionizing drone capabilities",
-      thumbnail: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "AI",
-      views: "11.3K",
-      duration: "14:07"
-    },
-    {
-      id: 6,
-      title: "Precision Agriculture Drones",
-      description: "Transforming farming with aerial technology",
-      thumbnail: "https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "GIS",
-      views: "7.8K",
-      duration: "9:51"
-    }
-  ];
+    id: 1,
+    title: "Gowrav Reddy on Drone Tech for Indian Agriculture",
+    description:
+      "At Drone Expo, Gowrav Reddy, Founder of CropWings, highlights how drone technology can address India's agri crisis—reducing pesticide overuse, minimizing crop protection costs, and connecting farmers with certified drone operators for safer, smarter farming.",
+    thumbnail: "https://img.youtube.com/vi/hRt9Op9nD7M/maxresdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/hRt9Op9nD7M",
+    category: "Agritech",
+    views: "12.5K",
+    duration: "8:42"
+  }
+];
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -95,87 +111,65 @@ const PopularVideos = () => {
   };
 
   return (
-    <section className="py-20 bg-yellow-200 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 25% 25%, #000000 2px, transparent 2px)`,
-          backgroundSize: '50px 50px'
-        }}></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-black text-black mb-4 tracking-tight">
-            <span className="text-black">
-              Popular Videos
-            </span>
-
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-black to-red-600 mx-auto rounded-full"></div>
-        </div>
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-  {videos.map((video, index) => (
+  <section className="py-20 bg-yellow-300 relative overflow-hidden">
+  {/* Background Pattern */}
+  <div className="absolute inset-0 opacity-5">
     <div
-      key={video.id}
-      data-id={video.id}
-      className={`group bg-yellow-100 rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1 ${visibleCards.has(video.id)
-        ? 'opacity-100 translate-y-0'
-        : 'opacity-0 translate-y-10'
-      }`}
+      className="absolute inset-0"
       style={{
-        transitionDelay: `${index * 150}ms`,
+        backgroundImage: `radial-gradient(circle at 25% 25%, #000000 2px, transparent 2px)`,
+        backgroundSize: '50px 50px',
       }}
-    >
-      <div className="relative overflow-hidden">
-        <img
-          src={video.thumbnail}
-          alt={video.title}
-          className="w-full h-40 sm:h-48 object-cover transition-all duration-700 group-hover:scale-110"
-        />
+    ></div>
+  </div>
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-
-        {/* Play Button */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-          <div className="bg-red-600 rounded-full p-4 transform scale-0 group-hover:scale-100 transition-all duration-500 hover:bg-red-700 shadow-2xl">
-            <Play className="h-8 w-8 text-white" />
-          </div>
-        </div>
-
-        {/* Category Badge */}
-        <div className={`absolute top-4 right-4 ${getCategoryColor(video.category)} text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg transform translate-x-full group-hover:translate-x-0 transition-transform duration-500`}>
-          {video.category}
-        </div>
-
-        {/* Duration */}
-        <div className="absolute bottom-4 right-4 bg-black/80 text-white px-2 py-1 rounded-lg text-xs font-medium flex items-center gap-1">
-          <Clock className="h-3 w-3" />
-          {video.duration}
-        </div>
-      </div>
-
-      <div className="p-4 sm:p-6">
-        <h3 className="text-lg sm:text-xl font-bold text-black mb-2 group-hover:text-red-800 transition-colors duration-300">
-          {video.title}
-        </h3>
-        <p className="text-sm sm:text-base text-gray-600 mb-4 line-clamp-2">{video.description}</p>
-
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1 text-gray-500 text-xs sm:text-sm">
-            <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
-            {video.views} views
-          </div>
-          <div className="w-8 h-1 bg-gradient-to-r from-black to-red-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-        </div>
-      </div>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl md:text-6xl font-black text-black mb-4 tracking-tight">
+        <span className="text-black">Popular Videos</span>
+      </h2>
+      <div className="w-24 h-1 bg-gradient-to-r from-black to-red-600 mx-auto rounded-full"></div>
     </div>
-  ))}
-</div>
 
-      </div>
-    </section>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {videos.map((video, index) => (
+        <div
+          key={video.id}
+          data-id={video.id}
+          className={`group bg-[#f1ee8e] rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1`}
+          style={{ transitionDelay: `${index * 150}ms` }}
+        >
+          <div className="relative aspect-video overflow-hidden">
+            <iframe
+              src={video.videoUrl.replace("watch?v=", "embed/")}
+              title={video.title}
+              className="w-full h-full rounded-2xl"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+
+            {/* Category Badge */}
+            
+            {/* Duration */}
+            
+          </div>
+
+          <div className="p-4 sm:p-6">
+            <h3 className="text-lg sm:text-xl font-bold text-black mb-2 group-hover:text-red-800 transition-colors duration-300">
+              {video.title}
+            </h3>
+            <p className="text-sm sm:text-base text-gray-600 mb-4 line-clamp-2">
+              {video.description}
+            </p>
+
+            
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
   );
 };
 

@@ -11,54 +11,58 @@ const GalleryPage = () => {
   const [isLiked, setIsLiked] = useState(false);
   const imagesPerPage = 24;
 
-  const categories = ['All', 'Events', 'Collaborations', 'Conferences', 'Workshops', 'Product Launches', 'Team Photos'];
+  const categories = ['All', 'Events', 'Collaborations', 'Conferences', 'Interviews', 'Product Launches', 'Team Photos'];
 
   const allImages = [
     {
       id: 1,
-      src: "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/1.png",
       title: "DroneWorld Conference 2024 Opening Ceremony",
-      category: "Events",
+      category: "Collaborations",
       date: "March 15, 2024",
       location: "San Francisco, CA",
       attendees: "2,500+",
-      description: "Grand opening ceremony of the largest drone technology conference with industry leaders."
+      description: "Grand opening ceremony of the largest drone technology conference with industry leaders.",
+      tags: ["Teja","Dev"]
     },
     {
       id: 2,
-      src: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/2.png",
       title: "AI Partnership Announcement",
-      category: "Collaborations",
+      category: "Interviews",
       date: "February 20, 2024",
       location: "Seattle, WA",
       attendees: "150+",
-      description: "Strategic partnership announcement with leading AI technology companies."
+      description: "Strategic partnership announcement with leading AI technology companies.",
+      tags: ["Dev"]
     },
     {
       id: 3,
-      src: "https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/3.png",
       title: "GIS Mapping Workshop Session",
-      category: "Workshops",
+      category: "Interviews",
       date: "January 28, 2024",
       location: "Austin, TX",
       attendees: "200+",
-      description: "Hands-on workshop demonstrating advanced GIS mapping techniques."
+      description: "Hands-on workshop demonstrating advanced GIS mapping techniques.",
+      
     },
     {
       id: 4,
-      src: "https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/4.png",
       title: "Drone Technology Exhibition",
-      category: "Events",
+      category: "Interviews",
       date: "March 16, 2024",
       location: "San Francisco, CA",
       attendees: "3,000+",
-      description: "Latest drone technology showcase with live demonstrations."
+      description: "Latest drone technology showcase with live demonstrations.",
+     tags: ["Gosharpener"]
     },
     {
       id: 5,
-      src: "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/5.png",
       title: "Industry Leaders Panel Discussion",
-      category: "Conferences",
+      category: "Interviews",
       date: "March 17, 2024",
       location: "San Francisco, CA",
       attendees: "1,500+",
@@ -66,9 +70,9 @@ const GalleryPage = () => {
     },
     {
       id: 6,
-      src: "https://images.pexels.com/photos/724712/pexels-photo-724712.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/6.png",
       title: "New Product Launch Event",
-      category: "Product Launches",
+      category: "Interviews",
       date: "February 10, 2024",
       location: "Los Angeles, CA",
       attendees: "800+",
@@ -76,129 +80,142 @@ const GalleryPage = () => {
     },
     {
       id: 7,
-      src: "https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/7.png",
       title: "Team Building Retreat",
       category: "Team Photos",
       date: "January 15, 2024",
       location: "Napa Valley, CA",
       attendees: "50+",
-      description: "Annual team building retreat with outdoor activities and team bonding."
+      description: "Annual team building retreat with outdoor activities and team bonding.",
+       tags: ["Dev","Pushpak"]
     },
     {
       id: 8,
-      src: "https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/8.png",
       title: "University Partnership Signing",
-      category: "Collaborations",
+      category: "Events",
       date: "December 20, 2023",
       location: "Boston, MA",
       attendees: "100+",
-      description: "Partnership agreement signing with leading universities for research collaboration."
+      description: "Partnership agreement signing with leading universities for research collaboration.",
+       tags: ["Vamsi","Pushpak"]
     },
     {
       id: 9,
-      src: "https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/9.png",
       title: "Drone Safety Training Workshop",
-      category: "Workshops",
+      category: "Events",
       date: "November 30, 2023",
       location: "Denver, CO",
       attendees: "300+",
-      description: "Comprehensive safety training workshop for drone operators and pilots."
+      description: "Comprehensive safety training workshop for drone operators and pilots.",
+       tags: ["Dev","Sandeep","Ramesh"]
     },
     {
       id: 10,
-      src: "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/10.png",
       title: "International Drone Summit",
-      category: "Conferences",
+      category: "Events",
       date: "October 25, 2023",
       location: "New York, NY",
       attendees: "2,000+",
-      description: "Global summit bringing together international drone technology experts."
+      description: "Global summit bringing together international drone technology experts.",
+       tags: ["Dev"]
     },
     {
       id: 11,
-      src: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/11.png",
       title: "Startup Collaboration Meetup",
       category: "Collaborations",
       date: "September 15, 2023",
       location: "Silicon Valley, CA",
       attendees: "250+",
-      description: "Networking event connecting startups with established drone companies."
+      description: "Networking event connecting startups with established drone companies.",
+       tags: ["Dev","Pranay"]
     },
     {
       id: 12,
-      src: "https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/12.png",
       title: "Annual Company Celebration",
-      category: "Team Photos",
+      category: "Interviews",
       date: "August 20, 2023",
       location: "San Francisco, CA",
       attendees: "200+",
-      description: "Annual company celebration recognizing achievements and milestones."
+      description: "Annual company celebration recognizing achievements and milestones.",
+
     },
     {
       id: 13,
-      src: "https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/13.png",
       title: "Environmental Monitoring Conference",
-      category: "Conferences",
+      category: "Events",
       date: "July 18, 2023",
       location: "Portland, OR",
       attendees: "900+",
-      description: "Conference focused on drone applications in environmental monitoring."
+      description: "Conference focused on drone applications in environmental monitoring.",
+       tags: ["Dev","Pallavi",]
     },
     {
       id: 14,
-      src: "https://images.pexels.com/photos/724712/pexels-photo-724712.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/14.png",
       title: "Racing Drone Championship",
-      category: "Events",
+      category: "Collaborations",
       date: "June 25, 2023",
       location: "Las Vegas, NV",
       attendees: "5,000+",
-      description: "International drone racing championship with live competitions."
+      description: "International drone racing championship with live competitions.",
+        tags: ["Dev","Gowrav Reddy",]
     },
     {
       id: 15,
-      src: "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/15.png",
       title: "AI Research Collaboration",
-      category: "Collaborations",
+      category: "Team Photos",
       date: "May 30, 2023",
       location: "Cambridge, MA",
       attendees: "75+",
-      description: "Research collaboration announcement with MIT AI Lab."
+      description: "Research collaboration announcement with MIT AI Lab.",
+       tags: ["Dev"]
     },
     {
       id: 16,
-      src: "https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/16.png",
       title: "Precision Agriculture Workshop",
-      category: "Workshops",
+      category: "Interviews",
       date: "April 22, 2023",
       location: "Iowa City, IA",
       attendees: "180+",
-      description: "Workshop on precision agriculture applications using drone technology."
+      description: "Workshop on precision agriculture applications using drone technology.",
+      tags: ["Sakthivelan"]
     },
     {
       id: 17,
-      src: "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/17.png",
       title: "Drone Delivery Demo Day",
-      category: "Product Launches",
+      category: "Interviews",
       date: "March 28, 2023",
       location: "Phoenix, AZ",
       attendees: "600+",
-      description: "Live demonstration of autonomous drone delivery systems."
+      description: "Live demonstration of autonomous drone delivery systems.",
+     
+      tags: ["Dr. Nirranjan Kumar Gupta"]
     },
     {
       id: 18,
-      src: "https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/18.png",
       title: "Holiday Team Party",
       category: "Team Photos",
       date: "December 15, 2022",
       location: "San Francisco, CA",
       attendees: "120+",
-      description: "Annual holiday celebration with the entire Drone TV team."
+      description: "Annual holiday celebration with the entire Drone TV team.",
+       tags: ["Dr. Nirranjan Kumar Gupta","Dev"]
     },
     {
       id: 19,
-      src: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/19.png",
       title: "Government Partnership Forum",
-      category: "Collaborations",
+      category: "Events",
       date: "November 10, 2022",
       location: "Washington, DC",
       attendees: "300+",
@@ -206,54 +223,281 @@ const GalleryPage = () => {
     },
     {
       id: 20,
-      src: "https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/20.png",
       title: "Advanced Pilot Training",
-      category: "Workshops",
+      category: "Collaborations",
       date: "October 5, 2022",
       location: "Miami, FL",
       attendees: "150+",
-      description: "Advanced pilot training program for commercial drone operators."
+      description: "Advanced pilot training program for commercial drone operators.",
+       tags: ["Dev","Ajitha Surabhi"]
     },
     {
       id: 21,
-      src: "https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/21.png",
       title: "Tech Innovation Showcase",
       category: "Events",
       date: "September 20, 2022",
       location: "Austin, TX",
       attendees: "1,800+",
-      description: "Showcase of the latest innovations in drone and AI technology."
+      description: "Showcase of the latest innovations in drone and AI technology.",
+       tags: ["Dev","Payal","vamsi"]
     },
     {
       id: 22,
-      src: "https://images.pexels.com/photos/724712/pexels-photo-724712.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/22.png",
       title: "European Expansion Launch",
-      category: "Product Launches",
+      category: "Conferences",
       date: "August 15, 2022",
       location: "London, UK",
       attendees: "400+",
-      description: "Official launch of Drone TV's expansion into European markets."
+      description: "Official launch of Drone TV's expansion into European markets.",
+       tags: ["Dev","Rini Bansal"]
     },
     {
       id: 23,
-      src: "https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/23.png",
       title: "Mapping Technology Conference",
-      category: "Conferences",
+      category: "Interviews",
       date: "July 8, 2022",
       location: "Denver, CO",
       attendees: "1,200+",
-      description: "Conference focused on advances in drone mapping technology."
+      description: "Conference focused on advances in drone mapping technology.",
+       tags: ["Dev","MGR"]
     },
     {
       id: 24,
-      src: "https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg?auto=compress&cs=tinysrgb&w=800",
+      src: "/images/25.png",
       title: "Company Milestone Celebration",
-      category: "Team Photos",
+      category: "Interviews",
       date: "June 1, 2022",
       location: "San Francisco, CA",
       attendees: "80+",
-      description: "Celebrating major company milestones and achievements."
-    }
+      description: "Celebrating major company milestones and achievements.",
+     tags: ["Rini Bansal"]
+    },
+  //   {
+  //   "id": 25,
+  //   "src": "/images/28.png",
+  //   "title": "Event Title 25",
+  //   "category": "Team Photos",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "250+",
+  //   "description": "Description for event 25.",
+  //   "tags": ["Dev", "kamala","Purvik"]
+  // },
+  // {
+  //   "id": 26,
+  //   "src": "/images/29.png",
+  //   "title": "Event Title 26",
+  //   "category": "Team Photos",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "260+",
+  //   "description": "Description for event 26."
+    
+  // },
+  // {
+  //   "id": 27,
+  //   "src": "/images/30.png",
+  //   "title": "Event Title 27",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "270+",
+  //   "description": "Description for event 27.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 28,
+  //   "src": "/images/31.png",
+  //   "title": "Event Title 28",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "280+",
+  //   "description": "Description for event 28.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 29,
+  //   "src": "/images/32.png",
+  //   "title": "Event Title 29",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "290+",
+  //   "description": "Description for event 29.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 30,
+  //   "src": "/images/33.png",
+  //   "title": "Event Title 30",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "300+",
+  //   "description": "Description for event 30.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 31,
+  //   "src": "/images/34.png",
+  //   "title": "Event Title 31",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "310+",
+  //   "description": "Description for event 31.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 32,
+  //   "src": "/images/35.png",
+  //   "title": "Event Title 32",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "320+",
+  //   "description": "Description for event 32.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 33,
+  //   "src": "/images/36.png",
+  //   "title": "Event Title 33",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "330+",
+  //   "description": "Description for event 33.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 34,
+  //   "src": "/images/37.png",
+  //   "title": "Event Title 34",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "340+",
+  //   "description": "Description for event 34.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 35,
+  //   "src": "/images/38.png",
+  //   "title": "Event Title 35",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "350+",
+  //   "description": "Description for event 35.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 36,
+  //   "src": "/images/39.png",
+  //   "title": "Event Title 36",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "360+",
+  //   "description": "Description for event 36.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 37,
+  //   "src": "/images/40.png",
+  //   "title": "Event Title 37",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "370+",
+  //   "description": "Description for event 37.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 38,
+  //   "src": "/images/41.png",
+  //   "title": "Event Title 38",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "380+",
+  //   "description": "Description for event 38.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 39,
+  //   "src": "/images/42.png",
+  //   "title": "Event Title 39",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "390+",
+  //   "description": "Description for event 39.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 40,
+  //   "src": "/images/43.png",
+  //   "title": "Event Title 40",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "400+",
+  //   "description": "Description for event 40.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 41,
+  //   "src": "/images/44.png",
+  //   "title": "Event Title 41",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "410+",
+  //   "description": "Description for event 41.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 42,
+  //   "src": "/images/45.png",
+  //   "title": "Event Title 42",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "420+",
+  //   "description": "Description for event 42.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 43,
+  //   "src": "/images/46.png",
+  //   "title": "Event Title 43",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "430+",
+  //   "description": "Description for event 43.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  // {
+  //   "id": 44,
+  //   "src": "/images/47.png",
+  //   "title": "Event Title 44",
+  //   "category": "Events",
+  //   "date": "June 2025",
+  //   "location": "TBD",
+  //   "attendees": "440+",
+  //   "description": "Description for event 44.",
+  //   "tags": ["Dev", "Team"]
+  // },
+  
+    
   ];
 
   useEffect(() => {
@@ -265,13 +509,16 @@ const GalleryPage = () => {
     }
 
     // Filter by search query
-    if (searchQuery) {
-      filtered = filtered.filter(image =>
-        image.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        image.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        image.location.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
+  if (searchQuery) {
+  const lowerQuery = searchQuery.toLowerCase();
+  filtered = filtered.filter(image =>
+    image.title.toLowerCase().includes(lowerQuery) ||
+    image.description.toLowerCase().includes(lowerQuery) ||
+    image.location.toLowerCase().includes(lowerQuery) ||
+    (image.tags && image.tags.some(tag => tag.toLowerCase().includes(lowerQuery))) // 👈 NEW
+  );
+}
+
 
     // Sort by date (newest first)
     filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -402,7 +649,7 @@ const GalleryPage = () => {
 
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                  {/* <div className="absolute bottom-0 left-0 right-0 p-4">
                     <h3 className="text-white font-bold text-sm mb-1 line-clamp-2">
                       {image.title}
                     </h3>
@@ -410,7 +657,7 @@ const GalleryPage = () => {
                       <Calendar className="h-3 w-3" />
                       {new Date(image.date).toLocaleDateString()}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Category Badge */}

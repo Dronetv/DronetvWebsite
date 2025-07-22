@@ -1,93 +1,103 @@
-import React, { useState } from 'react';
-import { Target, Eye, Heart, Users, Calendar, Award, Lightbulb, Globe, ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Target, Eye, Heart, Users, Calendar, Award, Lightbulb, Globe, ArrowRight, Mail, Phone, MapPin, Rocket, Star, Video } from 'lucide-react';
 
 const AboutPage = () => {
   const [hoveredTeamMember, setHoveredTeamMember] = useState(null);
+  const [visibleTimelineItems, setVisibleTimelineItems] = useState([]);
+  const timelineRef = useRef(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = Number(entry.target.getAttribute('data-index'));
+          if (entry.isIntersecting) {
+            setVisibleTimelineItems((prev) => {
+              const updated = [...prev];
+              updated[index] = true;
+              return updated;
+            });
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
 
+    const cards = timelineRef.current?.querySelectorAll('.timeline-card') || [];
+    cards.forEach((card, index) => {
+      card.setAttribute('data-index', index.toString());
+      observer.observe(card);
+    });
+
+    return () => {
+      cards.forEach((card) => observer.unobserve(card));
+    };
+  }, []);
   const teamMembers = [
     {
       id: 1,
-      name: "Alex Johnson",
+      name: "Dev R",
       role: "Founder & CEO",
-      image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "Visionary leader with 15+ years in drone technology and AI innovation.",
-      funFact: "Licensed pilot who has flown over 50 different drone models!"
+      image: "/images/dev.png",
+      bio: "Founder of Drone TV, India Drone Academy, and IPAGE UM Services — driving innovation in UAV training, GIS, and simulation technologies.",
+      funFact: "Has personally led over 200 drone missions across India, including defense and disaster response zones."
     },
     {
       id: 2,
-      name: "Dr. Sarah Chen",
-      role: "Chief Technology Officer",
-      image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "AI researcher and former NASA engineer specializing in autonomous systems.",
-      funFact: "Published 40+ research papers on drone AI and machine learning."
+      name: "Vamsi Krishna Kurakula",
+      role: "Director",
+      image: "/images/vamsi.jpg",
+      bio: "Director at Drone TV and IPAGE UMS, with expertise in business development, project strategy, and UAV integration.",
+      funFact: "Has successfully expanded drone services to over 5 Indian states through government and enterprise partnerships."
     },
     {
       id: 3,
-      name: "Michael Rodriguez",
-      role: "Head of Content",
+      name: "Amarnath Reddy",
+      role: "Promotional Manager",
       image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "Award-winning journalist covering technology and innovation for 12 years.",
-      funFact: "Has interviewed over 200 tech industry leaders and innovators."
+      bio: "Leads promotions and outreach at Drone TV, connecting audiences with cutting-edge drone tech content and events.",
+      funFact: "Once organized a drone roadshow covering 7 cities in just 14 days."
     },
-    {
-      id: 4,
-      name: "Jennifer Park",
-      role: "Head of Partnerships",
-      image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "Business development expert with extensive network in drone industry.",
-      funFact: "Speaks 5 languages and has worked in 15+ countries."
-    },
-    {
-      id: 5,
-      name: "Dr. James Liu",
-      role: "Lead Data Scientist",
-      image: "https://images.pexels.com/photos/2379006/pexels-photo-2379006.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "Machine learning expert focused on drone data analytics and insights.",
-      funFact: "Built his first drone from scratch at age 16!"
-    },
-    {
-      id: 6,
-      name: "Emma Foster",
-      role: "UX/UI Designer",
-      image: "https://images.pexels.com/photos/3184293/pexels-photo-3184293.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "Creative designer passionate about user experience and interface design.",
-      funFact: "Won 3 international design awards for tech platform interfaces."
-    }
+
+
   ];
 
   const timelineEvents = [
     {
-      year: "2020",
-      title: "Drone TV Founded",
-      description: "Alex Johnson launches Drone TV with a vision to democratize drone technology knowledge.",
-      icon: Lightbulb
+      year: 'Feb 2024',
+      title: 'Foundational Vision',
+      description:
+        'The idea of bringing all drone-related sectors onto one platform under "Drone TV" was born. This led to active coverage during Drone Expo (Sept 26–28) at Yashobhoomi, IICC, New Delhi.',
+      icon: Calendar,
     },
     {
-      year: "2021",
-      title: "First 1,000 Videos",
-      description: "Platform reaches milestone of 1,000 educational videos covering all aspects of drone technology.",
-      icon: Target
+      year: '2024',
+      title: 'Industry Leadership',
+      description:
+        'Drone TV recognized as the leading platform for drone technology education with over 100K+ active users.',
+      icon: Star,
     },
     {
-      year: "2022",
-      title: "Global Expansion",
-      description: "Drone TV expands internationally, partnering with companies and experts from 25+ countries.",
-      icon: Globe
+      year: 'Feb 2025',
+      title: 'Official Launch',
+      description:
+        'We proudly launched Drone TV — showcasing innovators, drone products, and expert insights with a unified media voice.',
+      icon: Rocket,
     },
     {
-      year: "2023",
-      title: "AI Integration",
-      description: "Launch of AI-powered content recommendations and personalized learning paths for users.",
-      icon: Award
+      year: 'April 2025',
+      title: 'Media Partner – Drone Expo 2025 (Hyderabad)',
+      description:
+        'Drone TV served as the official media partner — covering stalls, product showcases, and thought leader interviews, reaffirming our mission.',
+      icon: Video,
     },
     {
-      year: "2024",
-      title: "Industry Leadership",
-      description: "Recognized as the leading platform for drone technology education with 100K+ active users.",
-      icon: Users
-    }
+      year: 'Sept 2025',
+      title: 'Upcoming: Drone Expo 2025 – Mumbai Edition',
+      description:
+        'We are gearing up for the Mumbai edition (Sept 25–27) — committed to delivering a high-impact media experience once again.',
+      icon: Target,
+    },
   ];
-
   return (
     <div className="min-h-screen bg-yellow-400 pt-16">
       {/* Hero Section */}
@@ -114,7 +124,8 @@ const AboutPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+              <div className="bg-[#f1ee8e] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+
                 <div className="flex items-center mb-6">
                   <div className="bg-yellow-400 rounded-full p-4 mr-4">
                     <Target className="h-8 w-8 text-black" />
@@ -122,11 +133,12 @@ const AboutPage = () => {
                   <h2 className="text-3xl font-black text-black">Our Mission</h2>
                 </div>
                 <p className="text-gray-700 leading-relaxed text-lg">
-                  To democratize access to drone technology knowledge and create a global community where enthusiasts, professionals, and innovators can learn, share, and advance the future of autonomous flight systems.
+                  To bring every sector of the drone industry together on one unified platform—Drone TV. We aim to offer new innovators a prominent space to showcase their ideas, deliver expert content from drone companies, and present in-depth insights from drone enthusiasts, industry speakers, and tech visionaries.
                 </p>
+
               </div>
 
-              <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+              <div className="bg-[#f1ee8e] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
                 <div className="flex items-center mb-6">
                   <div className="bg-yellow-400 rounded-full p-4 mr-4">
                     <Eye className="h-8 w-8 text-black" />
@@ -134,17 +146,19 @@ const AboutPage = () => {
                   <h2 className="text-3xl font-black text-black">Our Vision</h2>
                 </div>
                 <p className="text-gray-700 leading-relaxed text-lg">
-                  To become the world's leading platform for drone technology education, fostering innovation and responsible development of autonomous systems that benefit humanity and advance technological progress.
+
+                  To become the definitive global platform for showcasing drone innovation—where every drone enthusiast, creator, and company has a voice. We envision a future where Drone TV stands as the trusted source for all things drones: from new technologies and speaker sessions to deep-dive interviews and public showcases.
                 </p>
+
               </div>
             </div>
 
             <div className="relative">
-              <div className="bg-white rounded-3xl p-8 shadow-2xl">
+              <div className="bg-[#f1ee8e] rounded-3xl p-8 shadow-2xl">
                 <img
-                  src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  src="/images/logo.png"
                   alt="Drone Technology"
-                  className="w-full h-64 object-cover rounded-2xl mb-6"
+                  className="w-full w-20 h-54 object-cover rounded-2xl mb-6"
                 />
                 <div className="text-center">
                   <h3 className="text-2xl font-bold text-black mb-4">Shaping Tomorrow's Technology</h3>
@@ -165,12 +179,12 @@ const AboutPage = () => {
       {/* Founder's Message Section */}
       <section className="py-20 bg-yellow-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-3xl p-12 shadow-2xl">
+          <div className="bg-[#f1ee8e] rounded-3xl p-12 shadow-2xl">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
               <div className="lg:col-span-1">
                 <div className="relative">
                   <img
-                    src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400"
+                    src="/images/dev.png"
                     alt="Alex Johnson - Founder"
                     className="w-64 h-64 object-cover rounded-full mx-auto shadow-2xl"
                   />
@@ -186,20 +200,21 @@ const AboutPage = () => {
                 </h2>
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p className="text-lg">
-                    "When I started Drone TV in 2020, I had a simple yet ambitious vision: to create a platform where anyone, anywhere, could access world-class education about drone technology and artificial intelligence."
+                    Drone TV was created to unify the drone ecosystem — a platform that educates, connects, and empowers. With experience across training, services, and simulation, I saw the urgent need for a media space that truly reflects the pulse of this fast-growing industry.
                   </p>
                   <p className="text-lg">
-                    "Having worked in the aerospace industry for over 15 years, I witnessed firsthand how rapidly drone technology was evolving, yet how difficult it was for enthusiasts and professionals to stay current with the latest developments."
+                    What began in February 2024 as an idea became reality in 2025 — with live event coverage, expert interviews, and community-driven storytelling. Today, Drone TV stands as a voice for innovators and drone professionals nationwide.
                   </p>
                   <p className="text-lg">
-                    "Today, Drone TV has grown into a global community of innovators, educators, and dreamers who share a common passion for pushing the boundaries of what's possible with autonomous flight systems."
+                    As the founder of India Drone Academy, IPAGE UM Services, and the IPAGE Drone Simulator, my mission has always been to merge education with innovation. Drone TV continues that journey — showcasing how drones are transforming industries and lives.
                   </p>
                   <p className="text-lg font-semibold text-black">
-                    "Together, we're not just learning about the future – we're building it."
+                    We’re not just documenting the future — we’re helping build it.
                   </p>
                 </div>
+
                 <div className="mt-8">
-                  <div className="text-xl font-bold text-black">Alex Johnson</div>
+                  <div className="text-xl font-bold text-black">Dev R</div>
                   <div className="text-gray-600">Founder & CEO, Drone TV</div>
                 </div>
               </div>
@@ -224,7 +239,7 @@ const AboutPage = () => {
             {teamMembers.map((member, index) => (
               <div
                 key={member.id}
-                className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
+                className="group bg-yellow-200 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
                 style={{
                   animationDelay: `${index * 150}ms`,
                   animation: `fadeInUp 0.8s ease-out ${index * 150}ms both`
@@ -232,22 +247,27 @@ const AboutPage = () => {
                 onMouseEnter={() => setHoveredTeamMember(member.id)}
                 onMouseLeave={() => setHoveredTeamMember(null)}
               >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-64 object-cover transition-all duration-700 group-hover:scale-110"
-                  />
+                <div className="relative overflow-hidden rounded-2xl shadow-md bg-white group">
+                  <div className="bg-white flex items-center justify-center h-64">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
 
                   {/* Hover Overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-all duration-500 ${hoveredTeamMember === member.id ? 'opacity-100' : 'opacity-0'
-                    }`}>
-                    <div className="absolute bottom-4 left-4 right-4 text-white">
-                      <h4 className="font-bold mb-2">Fun Fact:</h4>
-                      <p className="text-sm">{member.funFact}</p>
-                    </div>
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity duration-500 ${hoveredTeamMember === member.id ? 'opacity-100' : 'opacity-0'
+                      }`}
+                  >
+
                   </div>
                 </div>
+
+                {/* Below image text */}
+
+
 
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-black mb-1 group-hover:text-gray-800 transition-colors duration-300">
@@ -263,64 +283,95 @@ const AboutPage = () => {
       </section>
 
       {/* History Timeline Section */}
-      <section className="py-20 bg-yellow-400">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-black mb-4">
-              Our Journey
-            </h2>
-            <p className="text-lg text-black/80 max-w-2xl mx-auto">
-              Key milestones in Drone TV's evolution from startup to industry leader
-            </p>
-          </div>
+      <section className="py-20 bg-yellow-400" ref={timelineRef}>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="text-center mb-16">
+        <h2 className="text-3xl md:text-4xl font-black text-black mb-4">Our Journey</h2>
+        <p className="text-lg text-black/80 max-w-2xl mx-auto">
+          Key milestones in Drone TV's evolution from startup to industry leader
+        </p>
+      </div>
 
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-black/20 rounded-full"></div>
+      <div className="relative">
+        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-black/20 rounded-full"></div>
+        <div className="space-y-12">
+          {timelineEvents.map((event, index) => {
+            const isEven = index % 2 === 0;
+            const IconComponent = event.icon;
+            const isVisible = visibleTimelineItems[index];
 
-            <div className="space-y-12">
-              {timelineEvents.map((event, index) => {
-                const IconComponent = event.icon;
-                const isEven = index % 2 === 0;
-
-                return (
-                  <div
-                    key={event.year}
-                    className={`relative flex items-center ${isEven ? 'justify-start' : 'justify-end'}`}
-                    style={{
-                      animationDelay: `${index * 200}ms`,
-                      animation: `fadeInUp 0.8s ease-out ${index * 200}ms both`
-                    }}
-                  >
-                    {/* Timeline Node */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 bg-white rounded-full border-4 border-yellow-400 flex items-center justify-center shadow-lg z-10">
-                      <IconComponent className="h-8 w-8 text-black" />
+            return (
+              <div
+                key={index}
+                className={`relative flex items-center timeline-card ${
+                  isEven ? 'justify-start' : 'justify-end'
+                } ${
+                  isVisible
+                    ? isEven
+                      ? 'animate-slide-in-left'
+                      : 'animate-slide-in-right'
+                    : 'opacity-0'
+                }`}
+                style={{
+                  animationDelay: `${index * 0.2}s`,
+                  animationFillMode: 'forwards',
+                }}
+              >
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 bg-yellow-100 rounded-full border-4 border-yellow-400 flex items-center justify-center shadow-lg z-10">
+                  <IconComponent className="h-8 w-8 text-black" />
+                </div>
+                <div className={`w-5/12 ${isEven ? 'pr-8' : 'pl-8'}`}>
+                  <div className="bg-yellow-200 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+                    <div className="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold inline-block mb-3">
+                      {event.year}
                     </div>
-
-                    {/* Content Card */}
-                    <div className={`w-5/12 ${isEven ? 'pr-8' : 'pl-8'}`}>
-                      <div className="bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
-                        <div className="flex items-center mb-4">
-                          <div className="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold mr-4">
-                            {event.year}
-                          </div>
-                        </div>
-                        <h3 className="text-xl font-bold text-black mb-3">{event.title}</h3>
-                        <p className="text-gray-600 leading-relaxed">{event.description}</p>
-                      </div>
-                    </div>
+                    <h3 className="text-xl font-bold text-black mb-2">{event.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{event.description}</p>
                   </div>
-                );
-              })}
-            </div>
-          </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
-      </section>
+      </div>
+    </div>
+
+    <style>{`
+      @keyframes slide-in-left {
+        0% {
+          opacity: 0;
+          transform: translateX(-80px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes slide-in-right {
+        0% {
+          opacity: 0;
+          transform: translateX(80px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .animate-slide-in-left {
+        animation: slide-in-left 0.8s ease-out forwards;
+      }
+      .animate-slide-in-right {
+        animation: slide-in-right 0.8s ease-out forwards;
+      }
+    `}</style>
+  </section>
+
+
 
       {/* Contact CTA Section */}
       <section className="py-20 bg-gradient-to-b from-yellow-400 to-yellow-300">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-white rounded-3xl p-12 shadow-2xl">
+          <div className="bg-yellow-200 rounded-3xl p-12 shadow-2xl">
             <h2 className="text-3xl md:text-4xl font-black text-black mb-6">
               Ready to Join Our Mission?
             </h2>
@@ -331,15 +382,19 @@ const AboutPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="flex items-center justify-center gap-3 text-gray-700">
                 <Mail className="h-5 w-5 text-yellow-600" />
-                <span>hello@dronetv.com</span>
+                <span>bd@dronetv.in</span>
               </div>
               <div className="flex items-center justify-center gap-3 text-gray-700">
                 <Phone className="h-5 w-5 text-yellow-600" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91 7520123555</span>
               </div>
               <div className="flex items-center justify-center gap-3 text-gray-700">
                 <MapPin className="h-5 w-5 text-yellow-600" />
-                <span>San Francisco, CA</span>
+                <span>
+
+
+
+                  Hyderabad - 500008 India</span>
               </div>
             </div>
 
@@ -348,7 +403,7 @@ const AboutPage = () => {
                 <span>Get In Touch</span>
                 <ArrowRight className="h-4 w-4" />
               </button>
-              <button className="bg-black text-white px-8 py-3 rounded-xl font-bold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105">
+              <button className="bg-yellow-400 text-black px-8 py-3 rounded-xl font-bold hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 justify-center">
                 Partner With Us
               </button>
             </div>

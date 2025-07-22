@@ -25,18 +25,19 @@ const EventsPage = () => {
   const allEvents = [
     {
       id: 1,
-      name: "DroneWorld Conference 2024",
-      description: "The largest gathering of drone industry professionals, featuring keynotes, exhibitions, and networking opportunities.",
-      date: "March 15-17, 2024",
-      location: "San Francisco, CA",
+      name: "Drone Expo & Conference 2025",
+      description: "Join us in Mumbai for the premier Drone Expo & Conference where innovation, networking, and industry insights converge. Meet key buyers, launch and showcase new products, understand market competition, and build brand awareness. Explore specialized zones, attend technical conferences, and engage with top speakers from defense, tech, and academia.",
+      date: "April 24-26, 2025",
+      location: "Mumbai, India",
       time: "9:00 AM - 6:00 PM",
-      attendees: "2,500+",
-      image: "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=600",
-      type: "Conference",
+      attendees: "5,000+",
+      image: "/images/expologo.png",
+      type: "Expo & Conference",
       status: "upcoming",
       price: "Premium",
       featured: true
     },
+
     {
       id: 2,
       name: "AI in Aviation Summit",
@@ -257,7 +258,7 @@ const EventsPage = () => {
   const getStatusColor = (status) => {
     return status === 'upcoming' ? 'bg-green-500' : 'bg-gray-500';
   };
-  
+
 
   const handleViewDetailsClick = () => {
     navigate('/list/event-template-1'); // Redirect to the specified URL
@@ -376,7 +377,7 @@ const EventsPage = () => {
             {featuredEvents.map((event, index) => (
               <div
                 key={event.id}
-                className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1 border-2 border-black/20 hover:border-black/40"
+                className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1 border-2 border-black/20 hover:border-black/40"
                 style={{
                   animationDelay: `${index * 200}ms`,
                   animation: `fadeInUp 0.8s ease-out ${index * 200}ms both`
@@ -386,8 +387,10 @@ const EventsPage = () => {
                   <img
                     src={event.image}
                     alt={event.name}
-                    className="w-full h-48 object-cover transition-all duration-700 group-hover:scale-110 border-b-2 border-black/10"
+                    className={`w-full ${event.id === 1 ? 'h-60 object-contain scale-90' : 'h-48 object-cover'} transition-all duration-700 group-hover:scale-100 border-b-2 border-black/10`}
                   />
+
+
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
 
@@ -471,7 +474,7 @@ const EventsPage = () => {
               {currentEvents.map((event, index) => (
                 <div
                   key={event.id}
-                  className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 border-2 border-black/20 hover:border-black/40"
+                  className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 border-2 border-black/20 hover:border-black/40"
                   style={{
                     animationDelay: `${index * 100}ms`,
                     animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`
@@ -487,15 +490,15 @@ const EventsPage = () => {
 
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
 
-                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-  <div
-    onClick={() => navigate('/list/event-template-2')} // Use the navigate function directly for this button
-    className="bg-yellow-400 text-black px-4 py-2 rounded-full font-bold shadow-2xl transform scale-0 group-hover:scale-100 transition-all duration-500 hover:bg-yellow-300 flex items-center gap-2"
-  >
-    <span>View Details</span>
-    <ArrowRight className="h-3 w-3" />
-  </div>
-</div>
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                        <div
+                          onClick={() => navigate('/list/event-template-2')} // Use the navigate function directly for this button
+                          className="bg-yellow-400 text-black px-4 py-2 rounded-full font-bold shadow-2xl transform scale-0 group-hover:scale-100 transition-all duration-500 hover:bg-yellow-300 flex items-center gap-2"
+                        >
+                          <span>View Details</span>
+                          <ArrowRight className="h-3 w-3" />
+                        </div>
+                      </div>
 
 
                       <div className={`absolute top-3 right-3 ${getTypeColor(event.type)} text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg`}>
