@@ -1,149 +1,128 @@
-import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import React from 'react';
 
-const ProductsSection: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState('All');
+type Product = {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+};
 
-  const categories = ['All', 'Survey Drones', 'Agri Drones', 'Custom UAVs'];
+interface ProductsSectionProps {
+  productsTitle: string;
+  productCategories: string;
+  products: Product[];
+}
 
-  const products = [
-    {
-      id: 1,
-      name: 'SurveyMaster Pro',
-      category: 'Survey Drones',
-      image: 'https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=600',
-      specs: 'RTK GPS, 4K Camera, 45min Flight Time',
-      description: 'Professional surveying drone with centimeter-level accuracy for mapping and construction projects.'
-    },
-    {
-      id: 2,
-      name: 'AgriScout X1',
-      category: 'Agri Drones',
-      image: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600',
-      specs: 'Multispectral Camera, NDVI Analysis, 60min Flight',
-      description: 'Advanced agricultural monitoring drone for crop health analysis and precision farming applications.'
-    },
-    {
-      id: 3,
-      name: 'SecurityHawk Elite',
-      category: 'Custom UAVs',
-      image: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=600',
-      specs: 'Thermal Camera, Night Vision, Real-time Streaming',
-      description: 'High-performance security drone with advanced surveillance capabilities for perimeter monitoring.'
-    },
-    {
-      id: 4,
-      name: 'MapperPro 3000',
-      category: 'Survey Drones',
-      image: 'https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=600',
-      specs: 'LiDAR Sensor, PPK GPS, Weather Resistant',
-      description: 'Industrial-grade mapping drone designed for large-scale surveying and topographic mapping projects.'
-    },
-    {
-      id: 5,
-      name: 'CropGuard Pro',
-      category: 'Agri Drones',
-      image: 'https://images.pexels.com/photos/1595108/pexels-photo-1595108.jpeg?auto=compress&cs=tinysrgb&w=600',
-      specs: 'Spray System, GPS Guidance, 40L Capacity',
-      description: 'Precision spraying drone for efficient crop protection and fertilizer application in agriculture.'
-    },
-    {
-      id: 6,
-      name: 'CustomFlex UAV',
-      category: 'Custom UAVs',
-      image: 'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=600',
-      specs: 'Modular Design, Custom Payload, Extended Range',
-      description: 'Fully customizable drone platform designed for specialized applications and unique payload requirements.'
-    }
-  ];
+const ProductsSection: React.FC<ProductsSectionProps> = ({
+  productsTitle,
+  productCategories,
+  products,
+}) => (
+  <section className="w-full py-16 md:py-24 bg-white relative overflow-hidden">
+    {/* Background decorative elements */}
+    <div className="absolute inset-0 opacity-5">
+      <div className="absolute top-20 left-10 w-32 h-32 bg-[#FFD400] rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-[#FF0000] rounded-full blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-[#FFD400] rounded-full blur-3xl opacity-50"></div>
+    </div>
 
-  const filteredProducts = activeFilter === 'All' 
-    ? products 
-    : products.filter(product => product.category === activeFilter);
-
-  return (
-    <section id="products" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 data-aos="fade-up" className="text-4xl md:text-5xl font-bold text-black mb-4">
-            Our <span className="text-[#FF0000]">Products</span>
-          </h2>
-          <div data-aos="fade-up" data-aos-delay="200" className="w-24 h-1 bg-[#FFD400] mx-auto mb-6"></div>
-          <p data-aos="fade-up" data-aos-delay="400" className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Cutting-edge drone technology designed for professional applications across various industries.
-          </p>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Header Section */}
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-black mb-6 leading-tight">
+          {productsTitle}
+        </h2>
+        
+        {/* Decorative line */}
+        <div className="flex items-center gap-3 mb-8 justify-center">
+          <div className="h-1 w-20 bg-gradient-to-r from-[#FFD400] to-[#FFD400] rounded-full"></div>
+          <div className="h-1 w-12 bg-gradient-to-r from-[#FF0000] to-[#FF0000] rounded-full"></div>
+          <div className="h-1 w-6 bg-black rounded-full"></div>
         </div>
 
-        {/* Filter Buttons */}
-        <div data-aos="fade-up" data-aos-delay="600" className="flex justify-center mb-12">
-          <div className="flex flex-wrap gap-4 p-2 bg-gray-100 rounded-full">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveFilter(category)}
-                className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
-                  activeFilter === category
-                    ? 'bg-[#FF0000] text-white shadow-lg transform scale-105'
-                    : 'text-gray-700 hover:text-[#FF0000] hover:bg-white'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
+        <p className="text-lg md:text-xl lg:text-2xl text-black/80 max-w-4xl mx-auto leading-relaxed font-medium">
+          {productCategories}
+        </p>
+      </div>
 
-        {/* Products Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProducts.map((product, index) => (
-            <div 
-              key={product.id}
-              data-aos="fade-up" 
-              data-aos-delay={index * 100}
-              className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border border-gray-100"
-            >
-              <div className="relative overflow-hidden">
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <button className="bg-[#FFD400] text-black px-6 py-2 rounded-full font-semibold hover:bg-[#FFD400]/90 transition-colors">
-                    View Details
-                  </button>
-                </div>
-                <div className="absolute top-4 right-4">
-                  <span className="bg-[#FF0000] text-white px-3 py-1 rounded-full text-xs font-semibold">
-                    {product.category.split(' ')[0]}
-                  </span>
-                </div>
-              </div>
+      {/* Products Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        {products.map((product, idx) => (
+          <a
+            key={product.title + idx}
+            href={product.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative bg-white rounded-3xl shadow-2xl border-4 border-transparent hover:border-[#FFD400] transition-all duration-500 overflow-hidden transform hover:-translate-y-3 hover:scale-105"
+          >
+            {/* Background gradient on hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#FFD400]/10 to-[#FF0000]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            {/* Product Image */}
+            <div className="relative aspect-[16/9] bg-gray-100 overflow-hidden rounded-t-3xl">
+              <img
+                src={product.image}
+                alt={product.title}
+                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+              />
               
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-black mb-2 group-hover:text-[#FF0000] transition-colors">
-                  {product.name}
-                </h3>
-                
-                <p className="text-sm text-[#FFD400] font-semibold mb-3 bg-[#FFD400]/10 px-3 py-1 rounded-full inline-block">
-                  {product.specs}
-                </p>
-                
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  {product.description}
-                </p>
-                
-                <button className="group/btn flex items-center gap-2 text-[#FF0000] font-semibold hover:gap-3 transition-all duration-300">
-                  <span>Know More</span>
-                  <ArrowRight size={16} className="transform group-hover/btn:translate-x-1 transition-transform" />
-                </button>
+              {/* Image overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
+              
+              {/* Floating badge */}
+              <div className="absolute top-4 right-4 bg-gradient-to-r from-[#FFD400] to-[#FFD400] text-black px-4 py-2 rounded-full text-sm font-bold shadow-lg transform translate-x-full group-hover:translate-x-0 transition-transform duration-500">
+                Featured
               </div>
             </div>
-          ))}
+
+            {/* Product Content */}
+            <div className="relative z-10 p-8 lg:p-10">
+              {/* Title */}
+              <h3 className="text-2xl lg:text-3xl font-bold text-black mb-4 group-hover:text-[#FF0000] transition-colors duration-300">
+                {product.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-base lg:text-lg text-gray-700 leading-relaxed whitespace-pre-line mb-6">
+                {product.description}
+              </p>
+
+              {/* CTA Button */}
+              <div className="flex justify-end">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FF0000] to-[#FF0000]/90 text-white px-6 py-3 rounded-full font-bold text-sm lg:text-base shadow-lg group-hover:shadow-2xl group-hover:from-[#FFD400] group-hover:to-[#FFD400] group-hover:text-black transition-all duration-500 transform group-hover:scale-110">
+                  <span>Learn More</span>
+                  <svg 
+                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Decorative corner accent */}
+            <div className="absolute top-0 left-0 w-8 h-8 bg-gradient-to-br from-[#FFD400] to-[#FF0000] rounded-br-2xl rounded-tl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            {/* Bottom accent line */}
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-[#FFD400] to-[#FF0000] group-hover:w-32 transition-all duration-500 rounded-full"></div>
+          </a>
+        ))}
+      </div>
+
+      {/* Bottom decorative element */}
+      <div className="flex justify-center mt-16">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 bg-[#FFD400] rounded-full"></div>
+          <div className="w-2 h-2 bg-[#FF0000] rounded-full"></div>
+          <div className="w-1 h-1 bg-black rounded-full"></div>
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default ProductsSection;

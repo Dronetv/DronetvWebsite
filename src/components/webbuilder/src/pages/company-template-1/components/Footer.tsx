@@ -1,30 +1,56 @@
 import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from 'lucide-react';
 
-const Footer: React.FC = () => {
-  const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Products', href: '#products' },
-    { name: 'Contact', href: '#contact' },
-  ];
+interface SocialLinks {
+  facebook?: string;
+  twitter?: string;
+  instagram?: string;
+  linkedin?: string;
+  youtube?: string;
+  [key: string]: string | undefined;
+}
 
-  const services = [
+interface FooterProps {
+  footerLogo?: string;
+  footerText?: string;
+  footerNavLinks?: { label: string; link: string }[];
+  socialLinks?: SocialLinks;
+  email?: string;
+  phone?: string;
+  address?: string;
+  services?: string[];
+}
+
+const Footer: React.FC<FooterProps> = ({
+  footerLogo,
+  footerText = '© 2025 DroneTech. All rights reserved.',
+  footerNavLinks = [
+    { label: 'Home', link: '#home' },
+    { label: 'About', link: '#about' },
+    { label: 'Services', link: '#services' },
+    { label: 'Products', link: '#products' },
+    { label: 'Contact', link: '#contact' }
+  ],
+  socialLinks = {},
+  email = "info@dronetech.com",
+  phone = "+91 98765 43210",
+  address = "Bangalore, Karnataka",
+  services = [
     'Aerial Surveying',
     'Agricultural Monitoring',
     'Security & Surveillance',
     'Custom UAV Solutions',
     'Training & Support',
-  ];
+  ]
+}) => {
 
-  const socialLinks = [
-    { icon: <Facebook size={20} />, href: '#', label: 'Facebook' },
-    { icon: <Twitter size={20} />, href: '#', label: 'Twitter' },
-    { icon: <Instagram size={20} />, href: '#', label: 'Instagram' },
-    { icon: <Linkedin size={20} />, href: '#', label: 'LinkedIn' },
-    { icon: <Youtube size={20} />, href: '#', label: 'YouTube' },
-  ];
+  const renderedSocialLinks = [
+    socialLinks.facebook ? { icon: <Facebook size={20} />, href: socialLinks.facebook, label: 'Facebook' } : undefined,
+    socialLinks.twitter ? { icon: <Twitter size={20} />, href: socialLinks.twitter, label: 'Twitter' } : undefined,
+    socialLinks.instagram ? { icon: <Instagram size={20} />, href: socialLinks.instagram, label: 'Instagram' } : undefined,
+    socialLinks.linkedin ? { icon: <Linkedin size={20} />, href: socialLinks.linkedin, label: 'LinkedIn' } : undefined,
+    socialLinks.youtube ? { icon: <Youtube size={20} />, href: socialLinks.youtube, label: 'YouTube' } : undefined,
+  ].filter((link): link is { icon: JSX.Element; href: string; label: string } => !!link);
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -39,49 +65,52 @@ const Footer: React.FC = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div className="md:col-span-1">
-            <div className="text-2xl font-bold mb-4">
-              <span className="text-[#FFD400]">Drone</span>
-              <span className="text-[#FF0000]">Tech</span>
+            <div className="mb-4 flex items-center gap-3">
+              {footerLogo ? (
+                <img src={footerLogo} alt="Logo" className="h-14 w-18 object-contain rounded-full" />
+              ) : (
+                <span className="text-3xl font-bold">
+                  <span className="text-[#FFD400]">Drone</span>
+                  <span className="text-[#FF0000]">Tech</span>
+                </span>
+              )}
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Leading provider of advanced drone solutions for surveying, agriculture, 
+              Leading provider of advanced drone solutions for surveying, agriculture,
               security, and custom applications across India.
             </p>
-            
             {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <Mail size={16} className="text-[#FF0000]" />
-                <span className="text-gray-400">info@dronetech.com</span>
+                <Mail size={18} className="text-[#FF0000]" />
+                <span className="text-gray-400">{email}</span>
               </div>
               <div className="flex items-center gap-3">
-                <Phone size={16} className="text-[#FF0000]" />
-                <span className="text-gray-400">+91 98765 43210</span>
+                <Phone size={18} className="text-[#FF0000]" />
+                <span className="text-gray-400">{phone}</span>
               </div>
               <div className="flex items-center gap-3">
-                <MapPin size={16} className="text-[#FF0000]" />
-                <span className="text-gray-400">Bangalore, Karnataka</span>
+                <MapPin size={18} className="text-[#FF0000]" />
+                <span className="text-gray-400">{address}</span>
               </div>
             </div>
           </div>
-          
           {/* Quick Links */}
           <div>
             <h3 className="text-xl font-bold mb-4 text-[#FFD400]">Quick Links</h3>
             <ul className="space-y-2">
-              {quickLinks.map((link, index) => (
+              {footerNavLinks.map((link, index) => (
                 <li key={index}>
                   <button
-                    onClick={() => scrollToSection(link.href)}
+                    onClick={() => scrollToSection(link.link)}
                     className="text-gray-400 hover:text-[#FFD400] transition-colors duration-300 hover:translate-x-1 transform inline-block"
                   >
-                    {link.name}
+                    {link.label}
                   </button>
                 </li>
               ))}
             </ul>
           </div>
-          
           {/* Services */}
           <div>
             <h3 className="text-xl font-bold mb-4 text-[#FFD400]">Services</h3>
@@ -93,7 +122,6 @@ const Footer: React.FC = () => {
               ))}
             </ul>
           </div>
-          
           {/* Newsletter */}
           <div>
             <h3 className="text-xl font-bold mb-4 text-[#FFD400]">Stay Updated</h3>
@@ -112,26 +140,40 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2024 DroneTech. All rights reserved. | Privacy Policy | Terms of Service
+              {footerText}
             </div>
-            
             {/* Social Links */}
             <div className="flex gap-4">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#FF0000] transition-all duration-300 transform hover:scale-110"
-                >
-                  {social.icon}
-                </a>
-              ))}
+              {renderedSocialLinks.length > 0 ? (
+                renderedSocialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social!.href}
+                    aria-label={social!.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#FF0000] transition-all duration-300 transform hover:scale-110"
+                  >
+                    {social!.icon}
+                  </a>
+                ))
+              ) : (
+                <>
+                  <span className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400">
+                    <Facebook size={20} />
+                  </span>
+                  <span className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400">
+                    <Twitter size={20} />
+                  </span>
+                  <span className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400">
+                    <Instagram size={20} />
+                  </span>
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -1,75 +1,104 @@
 import React from 'react';
-import { Camera, Zap, Shield, Settings } from 'lucide-react';
+import { Camera, Zap, Shield, Settings, Plus, Trash2 } from 'lucide-react';
 
-const ServicesSection: React.FC = () => {
-  const services = [
-    {
-      icon: <Camera size={40} />,
-      title: 'Aerial Surveying',
-      description: 'High-precision mapping and surveying services using advanced drone technology for construction, mining, and land development projects.'
-    },
-    {
-      icon: <Zap size={40} />,
-      title: 'Agricultural Monitoring',
-      description: 'Crop health monitoring, precision agriculture solutions, and yield optimization using specialized agricultural drones and sensors.'
-    },
-    {
-      icon: <Shield size={40} />,
-      title: 'Security & Surveillance',
-      description: 'Advanced surveillance solutions for perimeter security, crowd monitoring, and emergency response with real-time data transmission.'
-    },
-    {
-      icon: <Settings size={40} />,
-      title: 'Custom UAV Solutions',
-      description: 'Tailored drone systems designed for specific industry needs, including payload integration and specialized flight control systems.'
-    }
-  ];
+// Icon map for demonstration—add more as needed
+const defaultIconMap: Record<string, React.ReactNode> = {
+  camera: <Camera size={38} />,
+  zap: <Zap size={38} />,
+    shield: <Shield size={38} />,
+  settings: <Settings size={38} />,
+};
 
-  return (
-    <section id="services" className="py-20 bg-[#FFD400]">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 data-aos="fade-up" className="text-4xl md:text-5xl font-bold text-black mb-4">
-            Our <span className="text-[#FF0000]">Services</span>
-          </h2>
-          <div data-aos="fade-up" data-aos-delay="200" className="w-24 h-1 bg-black mx-auto mb-6"></div>
-          <p data-aos="fade-up" data-aos-delay="400" className="text-black/80 text-lg max-w-2xl mx-auto">
-            Comprehensive drone solutions tailored to meet the unique needs of various industries and applications.
-          </p>
+type Service = {
+  title: string;
+  description: string;
+  icon: string;
+};
+
+interface ServicesSectionProps {
+  servicesTitle: string;
+  servicesDescription: string;
+  services: Service[];
+  iconMap?: Record<string, React.ReactNode>;
+}
+
+const ServicesSection: React.FC<ServicesSectionProps> = ({
+  servicesTitle,
+  servicesDescription,
+  services,
+  iconMap = defaultIconMap, // Use the default if not provided
+}) => (
+  <section className="w-full py-16 md:py-24 bg-[#FFD400] relative" style={{ minHeight: '100vh' }}>
+    {/* Decorative blurred elements */}
+    <div className="pointer-events-none absolute inset-0 opacity-10 select-none z-0">
+      <div className="absolute top-20 left-10 w-32 h-32 bg-[#FF0000] rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-[#FF0000] rounded-full blur-3xl opacity-50"></div>
+    </div>
+
+    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Header */}
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-black mb-6 leading-tight">
+          {servicesTitle}
+        </h2>
+        {/* Decorative line */}
+        <div className="flex items-center gap-3 mb-8 justify-center">
+          <div className="h-1 w-20 bg-[#FF0000] rounded-full"></div>
+          <div className="h-1 w-12 bg-black rounded-full"></div>
+          <div className="h-1 w-6 bg-white rounded-full"></div>
         </div>
+        <p className="text-lg md:text-xl lg:text-2xl text-black/80 max-w-4xl mx-auto leading-relaxed font-medium">
+          {servicesDescription}
+        </p>
+      </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
-            <div 
-              key={index}
-              data-aos="fade-up" 
-              data-aos-delay={index * 200}
-              className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:bg-black"
-            >
-              <div className="text-[#FF0000] group-hover:text-[#FFD400] transition-colors duration-300 mb-6">
-                {service.icon}
+      {/* Services Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 overflow-visible">
+        {services.map((service, idx) => (
+          <div
+            key={service.title + idx}
+            className="group relative bg-white rounded-3xl p-8 lg:p-10 shadow-2xl border-4 border-transparent hover:border-[#FF0000] transition-all duration-500 transform hover:-translate-y-3 hover:scale-105"
+            style={{ minHeight: '300px' }}
+          >
+            {/* Background gradient on hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#FFD400]/10 to-[#FF0000]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            {/* Content */}
+            <div className="relative z-10 text-center">
+              {/* Icon Container */}
+              <div className="inline-flex items-center justify-center w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-[#FF0000] to-[#FF0000]/80 rounded-2xl mb-6 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                <div className="text-white group-hover:scale-110 transition-transform duration-500">
+                  {iconMap[service.icon] ||
+                    <span className="w-10 h-10 bg-gray-300 rounded-full inline-block"></span>
+                  }
+                </div>
               </div>
-              
-              <h3 className="text-xl font-bold text-black group-hover:text-white transition-colors duration-300 mb-4">
+              {/* Title */}
+              <h3 className="text-2xl lg:text-3xl font-bold text-black mb-4 group-hover:text-[#FF0000] transition-colors duration-300">
                 {service.title}
               </h3>
-              
-              <p className="text-gray-600 group-hover:text-gray-300 transition-colors duration-300 leading-relaxed">
+              {/* Description */}
+              <p className="text-base lg:text-lg text-gray-700 leading-relaxed whitespace-pre-line">
                 {service.description}
               </p>
-              
-              <div className="mt-6 pt-6 border-t border-gray-200 group-hover:border-gray-700 transition-colors duration-300">
-                <button className="text-[#FF0000] group-hover:text-[#FFD400] font-semibold hover:underline transition-colors duration-300 flex items-center gap-2">
-                  Learn More
-                  <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-                </button>
-              </div>
             </div>
-          ))}
+            {/* Decorative accents */}
+            <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-br from-[#FFD400] to-[#FF0000] rounded-bl-2xl rounded-tr-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-[#FFD400] to-[#FF0000] group-hover:w-20 transition-all duration-500 rounded-full"></div>
+          </div>
+        ))}
+      </div>
+
+      {/* Bottom dots */}
+      <div className="flex justify-center mt-16">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 bg-[#FF0000] rounded-full"></div>
+          <div className="w-2 h-2 bg-black rounded-full"></div>
+          <div className="w-1 h-1 bg-white rounded-full"></div>
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default ServicesSection;

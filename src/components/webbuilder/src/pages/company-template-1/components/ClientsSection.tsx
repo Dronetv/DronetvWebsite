@@ -1,150 +1,216 @@
 import React from 'react';
-import { Star } from 'lucide-react';
 
-const ClientsSection: React.FC = () => {
-  const clients = [
-    {
-      name: 'TechCorp Industries',
-      logo: 'https://images.pexels.com/photos/1851415/pexels-photo-1851415.jpeg?auto=compress&cs=tinysrgb&w=200',
-      industry: 'Technology'
-    },
-    {
-      name: 'AgriGrow Solutions',
-      logo: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=200',
-      industry: 'Agriculture'
-    },
-    {
-      name: 'BuildMax Construction',
-      logo: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=200',
-      industry: 'Construction'
-    },
-    {
-      name: 'SecureGuard Systems',
-      logo: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=200',
-      industry: 'Security'
-    },
-    {
-      name: 'GeoSurvey Pro',
-      logo: 'https://images.pexels.com/photos/1310522/pexels-photo-1310522.jpeg?auto=compress&cs=tinysrgb&w=200',
-      industry: 'Surveying'
-    },
-    {
-      name: 'EnergyFlow Corp',
-      logo: 'https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=200',
-      industry: 'Energy'
-    }
-  ];
-
-  const testimonials = [
-    {
-      name: 'Rajesh Kumar',
-      position: 'Project Manager',
-      company: 'BuildMax Construction',
-      image: 'https://images.pexels.com/photos/1212984/pexels-photo-1212984.jpeg?auto=compress&cs=tinysrgb&w=400',
-      rating: 5,
-      text: 'DroneTech\'s surveying solutions have revolutionized our construction projects. The accuracy and efficiency are unmatched.'
-    },
-    {
-      name: 'Priya Sharma',
-      position: 'Agricultural Consultant',
-      company: 'AgriGrow Solutions',
-      image: 'https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=400',
-      rating: 5,
-      text: 'The agricultural monitoring drones have helped our farmers increase crop yields by 30%. Exceptional technology and support.'
-    },
-    {
-      name: 'Amit Patel',
-      position: 'Security Director',
-      company: 'SecureGuard Systems',
-      image: 'https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=400',
-      rating: 5,
-      text: 'Outstanding surveillance capabilities. The real-time monitoring and alert systems have significantly enhanced our security operations.'
-    }
-  ];
-
-  return (
-    <section id="clients" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        {/* Clients Section */}
-        <div className="text-center mb-16">
-          <h2 data-aos="fade-up" className="text-4xl md:text-5xl font-bold text-black mb-4">
-            Trusted by <span className="text-[#FF0000]">Leading Brands</span>
-          </h2>
-          <div data-aos="fade-up" data-aos-delay="200" className="w-24 h-1 bg-[#FFD400] mx-auto mb-6"></div>
-          <p data-aos="fade-up" data-aos-delay="400" className="text-gray-600 text-lg">
-            Partnering with industry leaders across India to deliver exceptional drone solutions.
-          </p>
-        </div>
-
-        {/* Client Logos Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-20">
-          {clients.map((client, index) => (
-            <div 
-              key={index}
-              data-aos="fade-up" 
-              data-aos-delay={index * 100}
-              className="group flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-            >
-              <div className="w-16 h-16 bg-gray-200 rounded-full mb-4 overflow-hidden group-hover:ring-4 group-hover:ring-[#FFD400]/30 transition-all">
-                <img 
-                  src={client.logo} 
-                  alt={client.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-sm font-semibold text-black text-center mb-1">{client.name}</h3>
-              <p className="text-xs text-gray-500">{client.industry}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Testimonials Section */}
-        <div className="text-center mb-12">
-          <h3 data-aos="fade-up" className="text-3xl font-bold text-black mb-4">
-            What Our <span className="text-[#FF0000]">Clients Say</span>
-          </h3>
-          <div data-aos="fade-up" data-aos-delay="200" className="w-16 h-1 bg-[#FFD400] mx-auto"></div>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div 
-              key={index}
-              data-aos="fade-up" 
-              data-aos-delay={index * 200}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-            >
-              {/* Rating */}
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} size={16} className="text-[#FFD400] fill-current" />
-                ))}
-              </div>
-              
-              {/* Testimonial Text */}
-              <p className="text-gray-600 mb-6 italic leading-relaxed">
-                "{testimonial.text}"
-              </p>
-              
-              {/* Client Info */}
-              <div className="flex items-center gap-4">
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <h4 className="font-semibold text-black">{testimonial.name}</h4>
-                  <p className="text-sm text-gray-500">{testimonial.position}</p>
-                  <p className="text-xs text-[#FF0000] font-medium">{testimonial.company}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+type Client = {
+  name: string;
+  logo: string;
+  industry: string;
 };
 
-export default ClientsSection;
+type Testimonial = {
+  name: string;
+  photo: string;
+  quote: string;
+  rating: number; // out of 5
+  role: string;
+};
+
+interface ClientsSectionProps {
+  clientsTitle: string;
+  clients: Client[];
+  clientLogos?: string[];
+  testimonials: Testimonial[];
+}
+
+const ClientsSection: React.FC<ClientsSectionProps> = ({
+  clientsTitle,
+  clients,
+  clientLogos = [],
+  testimonials,
+}) => (
+  <section className="w-full py-16 md:py-24 bg-[#FFD400] relative overflow-hidden">
+    {/* Background decorative elements */}
+    <div className="absolute inset-0 opacity-10">
+      <div className="absolute top-20 left-10 w-32 h-32 bg-[#FF0000] rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-[#FF0000] rounded-full blur-3xl opacity-50"></div>
+    </div>
+
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Header Section */}
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-black mb-6 leading-tight">
+          {clientsTitle}
+        </h2>
+        
+        {/* Decorative line */}
+        <div className="flex items-center gap-3 mb-8 justify-center">
+          <div className="h-1 w-20 bg-[#FF0000] rounded-full"></div>
+          <div className="h-1 w-12 bg-black rounded-full"></div>
+          <div className="h-1 w-6 bg-white rounded-full"></div>
+        </div>
+      </div>
+
+      {/* Clients Section */}
+      <div className="mb-20">
+        {clientLogos && clientLogos.length > 0 ? (
+          /* Simple Logo Grid */
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center">
+            {clientLogos.map((logo, idx) => (
+              <div
+                key={logo + idx}
+                className="group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 border-2 border-transparent hover:border-[#FF0000]"
+              >
+                {/* Background gradient on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#FFD400]/20 to-[#FF0000]/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10">
+                  <img
+                    src={logo}
+                    alt={`Client ${idx + 1}`}
+                    className="h-16 md:h-20 w-full object-contain transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Decorative corner */}
+                <div className="absolute top-0 right-0 w-6 h-6 bg-gradient-to-br from-[#FFD400] to-[#FF0000] rounded-bl-xl rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          /* Detailed Client Cards */
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {clients.map((client, idx) => (
+              <div
+                key={client.name + idx}
+                className="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 border-4 border-transparent hover:border-[#FF0000]"
+              >
+                {/* Background gradient on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#FFD400]/10 to-[#FF0000]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10 text-center">
+                  {/* Logo Container */}
+                  <div className="mb-6">
+                    <div className="relative inline-block">
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#FFD400] to-[#FF0000] rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                      <div className="relative bg-white rounded-2xl p-4 shadow-lg">
+                        <img
+                          src={client.logo}
+                          alt={client.name}
+                          className="h-16 w-16 object-contain mx-auto transition-transform duration-500 group-hover:scale-110"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Client Name */}
+                  <h3 className="text-xl font-bold text-black mb-2 group-hover:text-[#FF0000] transition-colors duration-300">
+                    {client.name}
+                  </h3>
+
+                  {/* Industry */}
+                  <span className="inline-block px-4 py-2 bg-gradient-to-r from-[#FF0000] to-[#FF0000]/90 text-white text-sm font-bold rounded-full shadow-lg group-hover:from-[#FFD400] group-hover:to-[#FFD400] group-hover:text-black transition-all duration-500">
+                    {client.industry}
+                  </span>
+                </div>
+
+                {/* Decorative corner accent */}
+                <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-br from-[#FFD400] to-[#FF0000] rounded-bl-2xl rounded-tr-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Testimonials Section */}
+      {testimonials && testimonials.length > 0 && (
+        <div>
+          <div className="text-center mb-12">
+            <h3 className="text-3xl md:text-4xl font-black text-black mb-4">
+              What Our Clients Say
+            </h3>
+            <div className="flex items-center gap-2 justify-center">
+              <div className="h-1 w-12 bg-[#FF0000] rounded-full"></div>
+              <div className="h-1 w-8 bg-black rounded-full"></div>
+              <div className="h-1 w-4 bg-white rounded-full"></div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+            {testimonials.map((testimonial, idx) => (
+              <div
+                key={testimonial.name + idx}
+                className="group relative bg-white rounded-3xl p-8 lg:p-10 shadow-2xl border-4 border-transparent hover:border-[#FF0000] transition-all duration-500 transform hover:-translate-y-3 hover:scale-105"
+              >
+                {/* Background gradient on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#FFD400]/10 to-[#FF0000]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10">
+                  {/* Profile Section */}
+                  <div className="flex items-center mb-6">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#FFD400] to-[#FF0000] rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+                      <img
+                        src={testimonial.photo}
+                        alt={testimonial.name}
+                        className="relative w-16 h-16 rounded-full object-cover border-4 border-[#FFD400] shadow-lg transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="ml-4">
+                      <h4 className="text-lg font-bold text-black group-hover:text-[#FF0000] transition-colors duration-300">
+                        {testimonial.name}
+                      </h4>
+                      <p className="text-sm text-gray-600 font-medium">
+                        {testimonial.role}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Rating Stars */}
+                  <div className="flex items-center mb-4 justify-center">
+                    {[...Array(5)].map((_, i) => (
+                      <span
+                        key={i}
+                        className={`text-2xl transition-colors duration-300 ${
+                          i < testimonial.rating
+                            ? 'text-[#FFD400] group-hover:text-[#FF0000]'
+                            : 'text-gray-300'
+                        }`}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Quote */}
+                  <blockquote className="text-gray-700 text-lg leading-relaxed italic text-center mb-4">
+                    "{testimonial.quote}"
+                  </blockquote>
+                </div>
+
+                {/* Decorative corner accent */}
+                <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-br from-[#FFD400] to-[#FF0000] rounded-bl-2xl rounded-tr-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Bottom accent line */}
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-[#FFD400] to-[#FF0000] group-hover:w-20 transition-all duration-500 rounded-full"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Bottom decorative element */}
+      <div className="flex justify-center mt-16">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 bg-[#FF0000] rounded-full"></div>
+          <div className="w-2 h-2 bg-black rounded-full"></div>
+          <div className="w-1 h-1 bg-white rounded-full"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+export default ClientsSection
