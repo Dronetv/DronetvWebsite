@@ -30,7 +30,7 @@ const ProfessionalsPage = () => {
       location: "San Francisco, CA",
       rating: 4.9,
       experience: "8 years",
-      profilePicture: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400",
+      profilePicture: "/images/sumit.jpg",
       bio: "Commercial drone pilot specializing in aerial cinematography and industrial inspections.",
       specialties: ["Aerial Photography", "Industrial Inspection", "Mapping"],
       projects: 150,
