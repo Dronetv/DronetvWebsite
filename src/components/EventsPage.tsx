@@ -23,20 +23,21 @@ const EventsPage = () => {
   ];
 
   const allEvents = [
-    {
-      id: 1,
-      name: "DroneWorld Conference 2024",
-      description: "The largest gathering of drone industry professionals, featuring keynotes, exhibitions, and networking opportunities.",
-      date: "March 15-17, 2024",
-      location: "San Francisco, CA",
-      time: "9:00 AM - 6:00 PM",
-      attendees: "2,500+",
-      image: "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=600",
-      type: "Conference",
-      status: "upcoming",
-      price: "Premium",
-      featured: true
-    },
+ {
+  id: 1,
+  name: "Drone Expo & Conference 2025",
+  description: "Join us in Mumbai for the premier Drone Expo & Conference where innovation, networking, and industry insights converge. Meet key buyers, launch and showcase new products, understand market competition, and build brand awareness. Explore specialized zones, attend technical conferences, and engage with top speakers from defense, tech, and academia.",
+  date: "April 24-26, 2025",
+  location: "Mumbai, India",
+  time: "9:00 AM - 6:00 PM",
+  attendees: "5,000+",
+  image: "/images/expologo.png",
+  type: "Expo & Conference",
+  status: "upcoming",
+  price: "Premium",
+  featured: true
+},
+
     {
       id: 2,
       name: "AI in Aviation Summit",
@@ -384,10 +385,12 @@ const EventsPage = () => {
               >
                 <div className="relative overflow-hidden">
                   <img
-                    src={event.image}
-                    alt={event.name}
-                    className="w-full h-48 object-cover transition-all duration-700 group-hover:scale-110 border-b-2 border-black/10"
-                  />
+  src={event.image}
+  alt={event.name}
+  className={`w-full ${event.id === 1 ? 'h-60 object-contain scale-90' : 'h-48 object-cover'} transition-all duration-700 group-hover:scale-100 border-b-2 border-black/10`}
+/>
+
+
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
 

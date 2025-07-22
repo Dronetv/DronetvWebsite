@@ -401,7 +401,7 @@ const GalleryPage = () => {
                 />
 
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
+                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <h3 className="text-white font-bold text-sm mb-1 line-clamp-2">
                       {image.title}
@@ -411,12 +411,12 @@ const GalleryPage = () => {
                       {new Date(image.date).toLocaleDateString()}
                     </div>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Category Badge */}
-                <div className="absolute top-3 right-3 bg-black/80 text-yellow-400 px-2 py-1 rounded-full text-xs font-bold opacity-0 group-hover:opacity-100 transition-all duration-500">
+                {/* <div className="absolute top-3 right-3 bg-black/80 text-yellow-400 px-2 py-1 rounded-full text-xs font-bold opacity-0 group-hover:opacity-100 transition-all duration-500">
                   {image.category}
-                </div>
+                </div> */}
               </div>
             </div>
           ))}
