@@ -19,42 +19,42 @@ const ProductsPage = () => {
   ];
 
   const allProducts = [
-    {
-      id: 1,
-      name: "DJI Mavic Air 2S",
-      description: "Professional-grade drone with 1-inch CMOS sensor and 5.4K video recording capabilities.",
-      image: "https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "Drones",
-      price: "$999",
-      rating: 4.8,
-      popularity: 95,
-      features: ["5.4K Video", "1-inch Sensor", "34min Flight Time"],
-      featured: true
-    },
-    {
-      id: 2,
-      name: "LiDAR Mapping Sensor",
-      description: "High-precision LiDAR sensor for accurate 3D mapping and surveying applications.",
-      image: "https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "Sensors",
-      price: "$2,499",
-      rating: 4.9,
-      popularity: 88,
-      features: ["360° Scanning", "1cm Accuracy", "Real-time Processing"],
-      featured: true
-    },
-    {
-      id: 3,
-      name: "AI Flight Controller",
-      description: "Advanced flight controller with built-in AI for autonomous navigation and obstacle avoidance.",
-      image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "Accessories",
-      price: "$599",
-      rating: 4.7,
-      popularity: 92,
-      features: ["AI Navigation", "Obstacle Avoidance", "Auto Landing"],
-      featured: true
-    },
+     {
+    id: 1,
+    name: "AGRIBOT A5",
+    description: "India’s 1st Type Certified Agriculture Drone, approved by DGCA.",
+    image: "/images/product1.jpg",
+    category: "Agriculture Drones",
+    price: "$1999",
+    rating: 5.0,
+    popularity: 95,
+    features: ["1 Acre Spray in 7 Minutes", "Water Usage: 8-10 Liters per Acre", "3 in 1 Agri Drone: Spray, Broadcast, Crop Health Monitoring"],
+    featured: true
+  },
+  {
+    id: 2,
+    name: "AGRIBOT A6",
+    description: "Advanced Agriculture Drone with DGCA Certification.",
+    image: "/images/product2.png",
+    category: "Agriculture Drones",
+    price: "$2499",
+    rating: 4.9,
+    popularity: 90,
+    features: ["1 Acre Spray in 7 Minutes", "Water Usage: 8-10 Liters per Acre", "Radar-Based Collision Detection", "Fleet Management Dashboard"],
+    featured: true
+  },
+  {
+    id: 3,
+    name: "Surveybot",
+    description: "Advanced drone for aerial surveys with 16-channel LiDAR for accurate data collection.",
+    image: "/images/product3.png",
+    category: "Survey Drones",
+    price: "$3500",
+    rating: 4.8,
+    popularity: 89,
+    features: ["16-Channel LiDAR for Precision", "360° 3D High-Speed Scanning", "Battery and Engine Powered", "Terrain Compatibility"],
+    featured: true
+  },
     {
       id: 4,
       name: "Professional Gimbal Camera",
