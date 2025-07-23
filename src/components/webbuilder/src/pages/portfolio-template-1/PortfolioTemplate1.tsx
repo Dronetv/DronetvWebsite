@@ -51,7 +51,7 @@ const PortfolioTemplate1: React.FC = () => {
         <Skills />
         <Services />
         <Portfolio />
-        <Testimonials />
+        {/* <Testimonials /> */}
         <Contact />
         <Footer />
       </div>

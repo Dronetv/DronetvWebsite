@@ -53,8 +53,8 @@ const PortfolioTemplate2: React.FC = () => {
         <Skills />
         <Services />
         <Portfolio />
-        <Testimonials />
-        <Blog />
+        {/* <Testimonials /> */}
+        {/* <Blog /> */}
         <Contact />
         <Footer />
       </div>

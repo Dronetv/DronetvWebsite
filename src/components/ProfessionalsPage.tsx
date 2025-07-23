@@ -22,34 +22,40 @@ const ProfessionalsPage = () => {
   ];
 
   const allProfessionals = [
-    {
-      id: 1,
-      name: "Alex Johnson",
-      age: 32,
-      profession: "Drone Pilot",
-      location: "San Francisco, CA",
-      rating: 4.9,
-      experience: "8 years",
-      profilePicture: "/images/sumit.jpg",
-      bio: "Commercial drone pilot specializing in aerial cinematography and industrial inspections.",
-      specialties: ["Aerial Photography", "Industrial Inspection", "Mapping"],
-      projects: 150,
-      featured: true
-    },
-    {
-      id: 2,
-      name: "Dr. Sarah Chen",
-      age: 29,
-      profession: "AI Specialist",
-      location: "Seattle, WA",
-      rating: 4.8,
-      experience: "6 years",
-      profilePicture: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "AI researcher focused on autonomous flight systems and machine learning algorithms.",
-      specialties: ["Machine Learning", "Computer Vision", "Neural Networks"],
-      projects: 85,
-      featured: true
-    },
+  {
+  id: 1,
+  name: "Sumit Krishnan",
+  age: 38,
+  profession: "DGCA-Certified RPAS Instructor",
+  location: "Hyderabad, Telangana",
+  rating: 5.0,
+  experience: "11+ years",
+  profilePicture: "/images/sumit.jpg",
+  bio: "DGCA-certified RPAS Instructor with a strong background in aerospace education, currently training drone pilots at India Drone Academy, Hyderabad.",
+  specialties: [
+    "Drone Pilot Training",
+    "Flight Mechanics & Stability",
+    "CFD & Wind Tunnel Testing"
+  ],
+  projects: 120,
+  featured: true
+},
+
+{
+  id: 2,
+  name: "Dev R",
+ 
+  profession: "CEO, Founder",
+  location: "Singapore",
+  rating: 4.8,
+  
+  profilePicture: "/images/dev.png",
+  bio: "CEO , a licensed UAV & VoIP systems provider in Singapore.",
+  specialties: ["UAV Services", "System Integration", "Telecom"],
+  projects: 85,
+  featured: true
+},
+
     {
       id: 3,
       name: "Michael Rodriguez",
@@ -346,80 +352,79 @@ const ProfessionalsPage = () => {
 
 
       {/* Featured Professionals Section */}
-      <section className="py-4 bg-gradient-to-b from-yellow-400 to-yellow-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {featuredProfessionals.map((professional, index) => (
-          <div
-            key={professional.id}
-            className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1"
-            style={{
-              animationDelay: `${index * 200}ms`,
-              animation: `fadeInUp 0.8s ease-out ${index * 200}ms both`
-            }}
-            onClick={() => navigate('/list/portfolio-template-1')} // Navigate on card click
-          >
-            <div className="p-8 text-center bg-[#f1ee8e]">
-              {/* Profile Picture */}
-              <div className="relative mb-6">
-                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 group-hover:border-yellow-500 transition-all duration-300">
-                  <img
-                    src={professional.profilePicture}
-                    alt={professional.name}
-                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                  />
-                </div>
-                <div className="absolute -top-2 -right-2 bg-yellow-400 text-black px-2 py-1 rounded-lg text-xs font-bold flex items-center gap-1">
-                  <Star className="h-3 w-3 fill-current" />
-                  Featured
-                </div>
+    <section className="py-4 bg-gradient-to-b from-yellow-400 to-yellow-300">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {featuredProfessionals.map((professional, index) => (
+        <div
+          key={professional.id}
+          className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 hover:-rotate-1"
+          style={{
+            animationDelay: `${index * 200}ms`,
+            animation: `fadeInUp 0.8s ease-out ${index * 200}ms both`
+          }}
+          onClick={() =>
+            professional.id === 2
+              ? navigate('/list/portfolio-template-2')
+              : navigate('/list/portfolio-template-1')
+          }
+        >
+          <div className="p-8 text-center bg-[#f1ee8e]">
+            {/* Profile Picture */}
+            <div className="relative mb-6">
+              <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 group-hover:border-yellow-500 transition-all duration-300">
+                <img
+                  src={professional.profilePicture}
+                  alt={professional.name}
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                />
               </div>
-
-              {/* Professional Info */}
-              <h3 className="text-xl font-bold text-black mb-1 group-hover:text-gray-800 transition-colors duration-300">
-                {professional.name}
-              </h3>
-              <p className="text-gray-600 mb-2">Age: {professional.age}</p>
-
-              <div className={`${getProfessionColor(professional.profession)} text-white px-3 py-1 rounded-full text-sm font-bold inline-block mb-3`}>
-                {professional.profession}
+              <div className="absolute -top-2 -right-2 bg-yellow-400 text-black px-2 py-1 rounded-lg text-xs font-bold flex items-center gap-1">
+                <Star className="h-3 w-3 fill-current" />
+                Featured
               </div>
-
-              <div className="flex items-center justify-center gap-2 text-gray-600 mb-3">
-                <MapPin className="h-4 w-4" />
-                <span className="text-sm">{professional.location}</span>
-              </div>
-
-              <div className="flex items-center justify-center gap-1 mb-3">
-                {renderStars(professional.rating)}
-                <span className="ml-2 text-black font-semibold">{professional.rating}</span>
-              </div>
-
-              <p className="text-gray-600 mb-4 leading-relaxed text-sm">
-                {professional.bio}
-              </p>
-
-              <div className="grid grid-cols-2 gap-3 mb-4">
-                <div className="text-center p-2 bg-yellow-50 rounded-lg">
-                  <div className="text-sm font-bold text-black">{professional.experience}</div>
-                  <div className="text-xs text-gray-600">Experience</div>
-                </div>
-                <div className="text-center p-2 bg-yellow-200 rounded-lg">
-                  <div className="text-sm font-bold text-yellow-700">{professional.projects}</div>
-                  <div className="text-xs text-yellow-600">Projects</div>
-                </div>
-              </div>
-
-              <button className="bg-black text-yellow-400 px-6 py-3 rounded-xl font-semibold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto">
-                <Mail className="h-4 w-4" />
-                Contact
-              </button>
             </div>
+
+            {/* Professional Info */}
+            <h3 className="text-xl font-bold text-black mb-1 group-hover:text-gray-800 transition-colors duration-300">
+              {professional.name}
+            </h3>
+            <p className="text-gray-600 mb-2">Age: {professional.age}</p>
+            <div className={`${getProfessionColor(professional.profession)} text-white px-3 py-1 rounded-full text-sm font-bold inline-block mb-3`}>
+              {professional.profession}
+            </div>
+            <div className="flex items-center justify-center gap-2 text-gray-600 mb-3">
+              <MapPin className="h-4 w-4" />
+              <span className="text-sm">{professional.location}</span>
+            </div>
+            <div className="flex items-center justify-center gap-1 mb-3">
+              {renderStars(professional.rating)}
+              <span className="ml-2 text-black font-semibold">{professional.rating}</span>
+            </div>
+            <p className="text-gray-600 mb-4 leading-relaxed text-sm">
+              {professional.bio}
+            </p>
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="text-center p-2 bg-yellow-50 rounded-lg">
+                <div className="text-sm font-bold text-black">{professional.experience}</div>
+                <div className="text-xs text-gray-600">Experience</div>
+              </div>
+              <div className="text-center p-2 bg-yellow-200 rounded-lg">
+                <div className="text-sm font-bold text-yellow-700">{professional.projects}</div>
+                <div className="text-xs text-yellow-600">Projects</div>
+              </div>
+            </div>
+            <button className="bg-black text-yellow-400 px-6 py-3 rounded-xl font-semibold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto">
+              <Mail className="h-4 w-4" />
+              Contact
+            </button>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-      </section>
+  </div>
+</section>
+
 
       {/* All Professionals Grid Section */}
       <section className="py-16 bg-yellow-400">

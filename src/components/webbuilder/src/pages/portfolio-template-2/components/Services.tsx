@@ -1,43 +1,78 @@
 import React from 'react';
-import { Camera, Video, Settings, Users, Zap, Shield } from 'lucide-react';
+import {
+  Home,
+  Building,
+  Camera,
+  Image,
+  Scissors,
+  Video,
+  UserCheck,
+  GraduationCap,
+  ClipboardList,
+  Headphones
+} from 'lucide-react';
 
 const Services: React.FC = () => {
   const services = [
     {
+      icon: <Home size={32} />,
+      title: 'Real Estate Appraisal',
+      description: 'Accurate valuation of residential and commercial properties based on market trends and property features.',
+      features: ['Market Analysis', 'Comparative Reports', 'Certified Valuation']
+    },
+    {
+      icon: <Building size={32} />,
+      title: 'Property Management',
+      description: 'Complete management of rental properties ensuring smooth operations and tenant satisfaction.',
+      features: ['Rent Collection', 'Maintenance Support', 'Tenant Screening']
+    },
+    {
       icon: <Camera size={32} />,
-      title: 'Aerial Photography',
-      description: 'Professional aerial photography for real estate, events, and commercial projects with high-resolution imagery.',
-      features: ['4K Resolution', 'HDR Processing', 'Same-day Delivery']
+      title: 'Real Estate Photography',
+      description: 'High-quality photography that highlights your property’s best features to attract buyers and renters.',
+      features: ['Interior & Exterior', 'Wide-Angle Lenses', 'Fast Delivery']
+    },
+    {
+      icon: <Image size={32} />,
+      title: 'Stock Photography',
+      description: 'A curated library and custom shoots for commercial, editorial, and digital stock photo needs.',
+      features: ['Royalty-Free Licensing', 'High Resolution', 'Tailored Themes']
+    },
+    {
+      icon: <Scissors size={32} />,
+      title: 'Video Editing',
+      description: 'Professional post-production for promotional, educational, and cinematic projects.',
+      features: ['Transitions & Effects', 'Color Grading', 'Audio Sync']
     },
     {
       icon: <Video size={32} />,
-      title: 'Drone Cinematography',
-      description: 'Cinematic aerial footage for films, documentaries, and promotional content with smooth professional results.',
-      features: ['Cinematic Quality', 'Color Grading', 'Motion Graphics']
+      title: 'Videography',
+      description: 'On-site video production services for events, businesses, and real estate.',
+      features: ['4K Shooting', 'Stabilized Shots', 'Multi-angle Coverage']
     },
     {
-      icon: <Settings size={32} />,
-      title: 'UAV Development',
-      description: 'Custom drone solutions and modifications for specialized applications and unique project requirements.',
-      features: ['Custom Builds', 'Sensor Integration', 'Technical Support']
+      icon: <UserCheck size={32} />,
+      title: 'Career Development Coaching',
+      description: 'Guiding professionals in building career paths, setting goals, and maximizing potential.',
+      features: ['1-on-1 Coaching', 'Skill Assessment', 'Career Roadmap']
     },
     {
-      icon: <Users size={32} />,
-      title: 'Training & Consulting',
-      description: 'Expert consultation and training for drone operations, safety protocols, and regulatory compliance.',
-      features: ['Safety Training', 'License Prep', 'Compliance Audit']
+      icon: <GraduationCap size={32} />,
+      title: 'Training',
+      description: 'Customized training sessions on tools, tech, productivity, and communication.',
+      features: ['Online & Offline', 'Interactive Modules', 'Certificates']
     },
     {
-      icon: <Zap size={32} />,
-      title: 'Live Streaming',
-      description: 'Real-time aerial broadcasting for events, sports, and live productions with professional quality.',
-      features: ['HD Streaming', 'Multi-platform', 'Real-time Control']
+      icon: <ClipboardList size={32} />,
+      title: 'Project Management',
+      description: 'Managing deliverables, resources, and timelines to ensure smooth project execution.',
+      features: ['Task Planning', 'Progress Tracking', 'Stakeholder Updates']
     },
     {
-      icon: <Shield size={32} />,
-      title: 'Insurance & Safety',
-      description: 'Comprehensive insurance coverage and safety protocols for all aerial operations and projects.',
-      features: ['Full Coverage', 'Risk Assessment', 'Safety Protocols']
+      icon: <Headphones size={32} />,
+      title: 'Virtual Assistance',
+      description: 'Remote admin support for scheduling, communication, research, and more.',
+      features: ['Email Management', 'Calendar Coordination', 'Task Automation']
     }
   ];
 
@@ -50,14 +85,13 @@ const Services: React.FC = () => {
           </h2>
           <div data-aos="fade-up" data-aos-delay="200" className="w-24 h-1 bg-black mx-auto mb-6"></div>
           <p data-aos="fade-up" data-aos-delay="400" className="text-black/80 max-w-2xl mx-auto text-lg">
-            Comprehensive drone services tailored to meet your specific needs and deliver exceptional results.
+            A wide range of professional services to support your business, property, content, and career development goals.
           </p>
         </div>
 
-        {/* Zig-zag Layout */}
         <div className="max-w-6xl mx-auto space-y-16">
           {services.map((service, index) => (
-            <div 
+            <div
               key={index}
               data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
               data-aos-delay={index * 100}
@@ -74,11 +108,11 @@ const Services: React.FC = () => {
                     </div>
                     <h3 className="text-2xl font-bold text-black">{service.title}</h3>
                   </div>
-                  
+
                   <p className="text-gray-700 mb-6 leading-relaxed text-lg">
                     {service.description}
                   </p>
-                  
+
                   <div className="space-y-3">
                     {service.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center gap-3">
@@ -87,7 +121,7 @@ const Services: React.FC = () => {
                       </div>
                     ))}
                   </div>
-                  
+
                   <button className="mt-8 bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
                     Learn More →
                   </button>
@@ -104,8 +138,7 @@ const Services: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  
-                  {/* Floating Elements */}
+
                   <div className="absolute -top-4 -right-4 w-8 h-8 bg-[#FF0000] rounded-full animate-bounce" style={{ animationDelay: `${index * 0.2}s` }}></div>
                   <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-black rounded-full animate-bounce" style={{ animationDelay: `${index * 0.2 + 0.5}s` }}></div>
                 </div>

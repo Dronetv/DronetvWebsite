@@ -1,44 +1,41 @@
 import React from 'react';
-import { Camera, Code, Palette, Zap, Shield, Users } from 'lucide-react';
+import { GraduationCap, Plane, Activity, BookOpen, Mic, ClipboardList, Cpu, Users } from 'lucide-react';
 
 const Skills: React.FC = () => {
   const skillCategories = [
     {
-      title: 'Photography',
-      icon: <Camera size={24} />,
+      title: 'Drone Training',
+      icon: <GraduationCap size={24} />,
       skills: [
-        { name: 'Aerial Photography', level: 95 },
-        { name: 'Cinematography', level: 90 },
-        { name: 'Photo Editing', level: 85 },
-        { name: 'Color Grading', level: 88 },
+        { name: 'RPAS Instructor (DGCA)', level: 98 },
+        { name: 'Ground School & Simulators', level: 95 },
+        { name: 'Practical Flying Sessions', level: 92 },
       ]
     },
     {
-      title: 'Technical',
-      icon: <Code size={24} />,
+      title: 'Aerospace Expertise',
+      icon: <Plane size={24} />,
       skills: [
-        { name: 'UAV Development', level: 92 },
-        { name: 'Flight Planning', level: 98 },
-        { name: 'Sensor Integration', level: 87 },
-        { name: 'Live Streaming', level: 83 },
+        { name: 'Flight Dynamics & Stability', level: 93 },
+        { name: 'CFD & Wind Tunnel Testing', level: 91 },
+        { name: 'Curriculum Development', level: 90 },
       ]
     },
     {
-      title: 'Creative',
-      icon: <Palette size={24} />,
+      title: 'Professional Skills',
+      icon: <BookOpen size={24} />,
       skills: [
-        { name: 'Visual Storytelling', level: 93 },
-        { name: 'Brand Development', level: 80 },
-        { name: 'Motion Graphics', level: 78 },
-        { name: 'UI/UX Design', level: 75 },
+        { name: 'Technical Writing & Research', level: 94 },
+        { name: 'Public Speaking & Presentations', level: 89 },
+        { name: 'Conference & Event Management', level: 88 },
       ]
     }
   ];
 
   const certifications = [
-    { icon: <Zap size={20} />, title: 'FAA Part 107 Certified', desc: 'Commercial Drone License' },
-    { icon: <Shield size={20} />, title: 'Safety Certified', desc: 'Advanced Safety Protocols' },
-    { icon: <Users size={20} />, title: 'Team Leadership', desc: 'Crew Management Experience' },
+    { icon: <Cpu size={20} />, title: 'DGCA RPAS Instructor', desc: 'Medium & Small Class Certified' },
+    { icon: <BookOpen size={20} />, title: 'Published Author', desc: '“Fundamentals of Propulsion” & 7 Research Papers' },
+    { icon: <Users size={20} />, title: 'Conference Organizer', desc: 'ICASAS – 2019, Airworthiness & Safety' },
   ];
 
   return (
@@ -53,11 +50,11 @@ const Skills: React.FC = () => {
 
         {/* Skills Grid */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {skillCategories.map((category, categoryIndex) => (
-            <div 
-              key={categoryIndex}
-              data-aos="fade-up" 
-              data-aos-delay={categoryIndex * 200}
+          {skillCategories.map((category, index) => (
+            <div
+              key={index}
+              data-aos="fade-up"
+              data-aos-delay={index * 200}
               className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <div className="flex items-center gap-4 mb-6">
@@ -66,7 +63,7 @@ const Skills: React.FC = () => {
                 </div>
                 <h3 className="text-xl font-bold text-black dark:text-white">{category.title}</h3>
               </div>
-              
+
               <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex}>
@@ -75,7 +72,7 @@ const Skills: React.FC = () => {
                       <span className="text-[#FF0000] font-bold">{skill.level}%</span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                      <div 
+                      <div
                         className="bg-gradient-to-r from-[#FFD400] to-[#FF0000] h-2 rounded-full transition-all duration-1000 ease-out"
                         style={{ width: `${skill.level}%` }}
                       ></div>
@@ -92,10 +89,10 @@ const Skills: React.FC = () => {
           <h3 className="text-2xl font-bold text-white text-center mb-8">
             Certifications & <span className="text-[#FFD400]">Achievements</span>
           </h3>
-          
+
           <div className="grid md:grid-cols-3 gap-6">
             {certifications.map((cert, index) => (
-              <div 
+              <div
                 key={index}
                 className="flex items-center gap-4 p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors duration-300"
               >

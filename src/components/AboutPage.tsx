@@ -205,8 +205,7 @@ const AboutPage = () => {
                   <p className="text-lg">
                     What began in February 2024 as an idea became reality in 2025 — with live event coverage, expert interviews, and community-driven storytelling. Today, Drone TV stands as a voice for innovators and drone professionals nationwide.
                   </p>
-                  <p className="text-lg">
-                    As the founder of India Drone Academy, IPAGE UM Services, and the IPAGE Drone Simulator, my mission has always been to merge education with innovation. Drone TV continues that journey — showcasing how drones are transforming industries and lives.
+                  <p className="text-lg"> Drone TV continues that journey — showcasing how drones are transforming industries and lives.
                   </p>
                   <p className="text-lg font-semibold text-black">
                     We’re not just documenting the future — we’re helping build it.

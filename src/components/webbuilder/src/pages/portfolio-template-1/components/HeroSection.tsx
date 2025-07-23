@@ -9,7 +9,12 @@ const HeroSection: React.FC = () => {
   useEffect(() => {
     if (typedRef.current) {
       typedInstance.current = new Typed(typedRef.current, {
-        strings: ['Drone Photographer', 'UAV Developer', 'Creative Director', 'Visual Storyteller'],
+        strings: [
+          'DGCA RPAS Instructor',
+          'Aerospace Educator',
+          'Drone Pilot Trainer',
+          'Flight Mechanics Expert'
+        ],
         typeSpeed: 50,
         backSpeed: 30,
         backDelay: 2000,
@@ -42,7 +47,7 @@ const HeroSection: React.FC = () => {
         <div className="text-center max-w-4xl mx-auto">
           <div data-aos="fade-up" data-aos-delay="300">
             <h1 className="text-6xl md:text-8xl font-bold text-black mb-6 leading-tight">
-              Alex <span className="text-[#FF0000]">Chen</span>
+              Sumit <span className="text-[#FF0000]">Krishnan</span>
             </h1>
           </div>
 
@@ -54,31 +59,18 @@ const HeroSection: React.FC = () => {
 
           <div data-aos="fade-up" data-aos-delay="900" className="mb-12">
             <p className="text-lg md:text-xl text-black/80 max-w-2xl mx-auto leading-relaxed">
-              Capturing the world from above with cutting-edge drone technology.
-              Transforming aerial perspectives into stunning visual narratives.
+              Empowering India’s drone workforce with certified training, real-world simulations, and aerospace expertise. Based at India Drone Academy, Hyderabad.
             </p>
           </div>
 
-          <div data-aos="fade-up" data-aos-delay="1200" className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="group relative bg-[#FF0000] hover:bg-[#FF0000]/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105">
-              <MessageCircle size={20} />
-              Hire Me
-              <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-            </button>
-
-            <button className="group relative bg-black hover:bg-black/90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105">
-              <Download size={20} />
-              Download CV
-              <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-            </button>
-          </div>
+         
 
           {/* Scroll Indicator */}
-          <div data-aos="fade-up" data-aos-delay="1500" className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+          {/* <div data-aos="fade-up" data-aos-delay="1500" className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
             <div className="w-6 h-10 border-2 border-black rounded-full flex justify-center">
               <div className="w-1 h-3 bg-black rounded-full animate-bounce mt-2"></div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
