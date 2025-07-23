@@ -45,7 +45,7 @@ const AboutPage = () => {
       id: 2,
       name: "Vamsi Krishna Kurakula",
       role: "Director",
-      image: "/images/vamsi.jpg",
+      image: "/images/vamsi.png",
       bio: "Director at Drone TV and IPAGE UMS, with expertise in business development, project strategy, and UAV integration.",
       funFact: "Has successfully expanded drone services to over 5 Indian states through government and enterprise partnerships."
     },
@@ -246,8 +246,8 @@ const AboutPage = () => {
                 onMouseEnter={() => setHoveredTeamMember(member.id)}
                 onMouseLeave={() => setHoveredTeamMember(null)}
               >
-                <div className="relative overflow-hidden rounded-2xl shadow-md bg-white group">
-                  <div className="bg-white flex items-center justify-center h-64">
+                <div className="relative overflow-hidden rounded-2xl shadow-md bg-yellow-200 group">
+                  <div className="bg-yellow-200 flex items-center justify-center h-64">
                     <img
                       src={member.image}
                       alt={member.name}

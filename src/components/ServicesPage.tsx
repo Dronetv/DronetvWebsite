@@ -442,13 +442,13 @@ const ServicesPage = () => {
                         {service.features.slice(0, 3).map((feature, idx) => (
                           <span
                             key={feature}
-                            className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
+                            className="bg-yellow-300 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
                           >
                             {feature}
                           </span>
                         ))}
                         {service.features.length > 3 && (
-                          <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
+                          <span className="bg-yellow-300 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
                             +{service.features.length - 3} more
                           </span>
                         )}
@@ -551,13 +551,13 @@ const ServicesPage = () => {
                         {service.features.slice(0, 2).map((feature, idx) => (
                           <span
                             key={feature}
-                            className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
+                            className="bg-yellow-300 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
                           >
                             {feature}
                           </span>
                         ))}
                         {service.features.length > 2 && (
-                          <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
+                          <span className="bg-yellow-300 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
                             +{service.features.length - 2}
                           </span>
                         )}

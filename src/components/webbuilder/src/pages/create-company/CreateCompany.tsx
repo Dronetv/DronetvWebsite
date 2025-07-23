@@ -301,16 +301,17 @@ case 1:
     <div className="space-y-6">
       <h2 className="text-2xl font-bold text-black mb-4">Basic Company Details</h2>
 
-      <input
-        type="text"
-        required
-        placeholder="Your company name (used in URL)"
-        className="w-full px-4 py-2 border rounded-md"
-        value={formData.companyName}
-        onChange={e =>
-          handleInputChange('companyName', e.target.value.toLowerCase().replace(/\s+/g, '-'))
-        }
-      />
+     <input
+  type="text"
+  required
+  placeholder="Your company name (used in URL)"
+  className="w-full px-4 py-2 border rounded-md"
+  value={formData.companyName}
+  onChange={e =>
+    handleInputChange('companyName', e.target.value) // Now it preserves the exact text entered
+  }
+/>
+
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>

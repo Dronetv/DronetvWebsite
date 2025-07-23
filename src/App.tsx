@@ -40,7 +40,7 @@ const HomePage = () => (
 
 const AppContent = () => {
   const location = useLocation();
-  const hideFooter = location.pathname.startsWith('/list');
+  const hideFooter = location.pathname.startsWith('/company');
 
   return (
     <div className="min-h-screen">
@@ -61,7 +61,7 @@ const AppContent = () => {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
         <Route path="/service/:id" element={<ServiceDetailPage />} />
-        <Route path="/list/*" element={<SubApp />} />
+        <Route path="/company/*" element={<SubApp />} />
       </Routes>
       {!hideFooter && <Footer />}
       <ScrollingFooter />

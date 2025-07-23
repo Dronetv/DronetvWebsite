@@ -288,7 +288,7 @@ const FeaturedCompanies = () => {
                   {/* CTA Button */}
                   <div className="flex justify-center pt-2">
                     <button
-                      onClick={() => navigate('/list/company-template-1')} // Trigger navigation to the specific route on click
+                      onClick={() => navigate('/company/company-template-1')} // Trigger navigation to the specific route on click
                       className="group/btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-3 rounded-xl font-semibold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg"
                     >
                       <span>View Profile</span>

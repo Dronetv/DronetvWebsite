@@ -34,20 +34,20 @@ const CompaniesPage: React.FC = () => {
   const navigate = useNavigate();
 
   // 3. Fetch Companies from API
-useEffect(() => {
-  const fetchCompanies = async () => {
-    setLoading(true); // Start loading
-    try {
-      const res = await fetch('https://iutg55q58b.execute-api.ap-south-1.amazonaws.com/geallcomapnies');
-      const data = await res.json();
-      setAllCompanies(data);
-    } catch (error) {
-      setAllCompanies([]);
-    }
-    setLoading(false); // Done loading
-  };
-  fetchCompanies();
-}, []);
+  useEffect(() => {
+    const fetchCompanies = async () => {
+      setLoading(true); // Start loading
+      try {
+        const res = await fetch('https://iutg55q58b.execute-api.ap-south-1.amazonaws.com/geallcomapnies');
+        const data = await res.json();
+        setAllCompanies(data);
+      } catch (error) {
+        setAllCompanies([]);
+      }
+      setLoading(false); // Done loading
+    };
+    fetchCompanies();
+  }, []);
 
 
   // 4. Filtering & Sorting
@@ -101,14 +101,14 @@ useEffect(() => {
       default: return 'bg-gray-800';
     }
   };
-if (loading) {
-  return (
-    <LoadingScreen
-      logoSrc="images/logo.png" // Or "/logo.png" if inside public
-      loadingText="Loading Companies..."
-    />
-  );
-}
+  if (loading) {
+    return (
+      <LoadingScreen
+        logoSrc="images/logo.png" // Or "/logo.png" if inside public
+        loadingText="Loading Companies..."
+      />
+    );
+  }
   return (
     <div className="min-h-screen bg-yellow-400 pt-16">
       {/* Hero Section */}
@@ -128,7 +128,7 @@ if (loading) {
         </div>
         <div className="absolute top-4 right-10 z-10 pointer-events-auto">
           <button
-            onClick={() => navigate('/list')}
+            onClick={() => navigate('/company')}
             className="px-6 py-3 bg-black text-white rounded-lg hover:bg-red-600 transition duration-300"
           >
             List your Company
@@ -233,23 +233,24 @@ if (loading) {
                     key={company.companyName + idx}
                     className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
                   >
-                    <div className="relative p-8 bg-gradient-to-br from-yellow-50 to-yellow-100 group-hover:from-yellow-100 group-hover:to-yellow-200 transition-all duration-500">
+                   <div className="relative p-8 bg-[#f1ee8e] transition-all duration-500">
+
                       <div className="flex justify-center mb-4">
-  <div className="relative">
-    <div className="absolute inset-0 bg-yellow-400/20 rounded-2xl blur-xl scale-150 group-hover:scale-200 transition-all duration-700"></div>
-    <div className="relative bg-yellow-400/20 backdrop-blur-sm rounded-2xl flex items-center justify-center w-16 h-16 group-hover:scale-110 transition-all duration-500 border border-yellow-400/30 group-hover:shadow-lg group-hover:shadow-yellow-400/30">
-      {company.companyLogo ? (
-        <img
-          src={company.companyLogo}
-          alt={company.companyName}
-          className="w-12 h-12 rounded-2xl object-cover object-center bg-white"
-        />
-      ) : (
-        <div className="w-12 h-12 bg-gray-200 rounded-2xl"></div>
-      )}
-    </div>
-  </div>
-</div>
+                        <div className="relative">
+                          <div className="absolute inset-0 bg-yellow-400/20 rounded-2xl blur-xl scale-150 group-hover:scale-200 transition-all duration-700"></div>
+                          <div className="relative bg-yellow-400/20 backdrop-blur-sm rounded-2xl flex items-center justify-center w-16 h-16 group-hover:scale-110 transition-all duration-500 border border-yellow-400/30 group-hover:shadow-lg group-hover:shadow-yellow-400/30">
+                            {company.companyLogo ? (
+                              <img
+                                src={company.companyLogo}
+                                alt={company.companyName}
+                                className="w-12 h-12 rounded-2xl object-cover object-center bg-white"
+                              />
+                            ) : (
+                              <div className="w-12 h-12 bg-gray-200 rounded-2xl"></div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
 
 
                       <div className="text-center">
@@ -268,17 +269,18 @@ if (loading) {
                         </div> */}
                       </div>
                     </div>
-                    <div className="p-6">
+                    <div className="relative p-8 bg-[#f1ee8e] transition-all duration-500">
+
                       <p className="text-gray-600 mb-4 leading-relaxed text-sm line-clamp-3">
                         {company.aboutDescription || company.heroHeadline || 'No company description.'}
                       </p>
                       {/* TOTAL SERVICES & PRODUCTS */}
                       <div className="grid grid-cols-2 gap-3 mb-4">
-                        <div className="flex-1 bg-yellow-50 rounded-lg p-3 text-center">
+                        <div className="flex-1 bg-yellow-300 rounded-lg p-3 text-center">
                           <div className="text-lg font-bold text-black">{totalServices}</div>
                           <div className="text-xs text-gray-600">Total Services</div>
                         </div>
-                        <div className="flex-1 bg-yellow-100 rounded-lg p-3 text-center">
+                        <div className="flex-1 bg-yellow-300 rounded-lg p-3 text-center">
                           <div className="text-lg font-bold text-yellow-700">{totalProducts}</div>
                           <div className="text-xs text-yellow-700">Total Products</div>
                         </div>
@@ -288,7 +290,7 @@ if (loading) {
                           onClick={() => {
                             if (company.companyName) {
                               // Just encode, don't change case or replace spaces
-                              navigate(`/list/${encodeURIComponent(company.companyName)}`);
+                              navigate(`/company/${encodeURIComponent(company.companyName)}`);
                             } else {
                               alert('Invalid company name');
                             }

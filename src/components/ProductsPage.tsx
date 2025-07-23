@@ -393,7 +393,7 @@ const ProductsPage = () => {
                         {product.features.slice(0, 3).map((feature, idx) => (
                           <span
                             key={feature}
-                            className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
+                            className="bg-yellow-300 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
                           >
                             {feature}
                           </span>
@@ -481,7 +481,7 @@ const ProductsPage = () => {
 
                       <div className="flex items-center justify-between text-xs mb-3">
                         <div className="flex items-center gap-1 text-gray-500">
-                          <Star className="h-3 w-3 fill-current text-yellow-500" />
+                          <Star className="h-3 w-3 fill-current text-yellow-600" />
                           {product.rating}
                         </div>
                         <div className="text-lg font-bold text-black">{product.price}</div>
@@ -491,7 +491,7 @@ const ProductsPage = () => {
                         {product.features.slice(0, 2).map((feature, idx) => (
                           <span
                             key={feature}
-                            className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
+                            className="bg-yellow-300 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
                           >
                             {feature}
                           </span>

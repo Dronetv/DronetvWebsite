@@ -191,7 +191,7 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <h3 className="font-bold text-black">Office Location</h3>
-                      <p className="text-gray-600">IPage UM Services Pvt Ltd 5A/6B, White Waters,
+                      <p className="text-gray-600">DroneTv 5A/6B, White Waters,
 
 </p>
                       <p className="text-gray-600">Timber Lake Colony, Shaikpet,</p>
