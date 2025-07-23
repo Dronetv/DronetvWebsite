@@ -309,7 +309,7 @@ const EventsPage = () => {
                 placeholder="Search events..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-black/20 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 text-sm transition-all duration-300"
+                className="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-yellow-400 bg-yellow-200 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 text-sm transition-all duration-300"
               />
             </div>
 
@@ -318,7 +318,7 @@ const EventsPage = () => {
               <select
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value)}
-                className="w-48 appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300"
+                className="w-48 appearance-none bg-yellow-200 backdrop-blur-sm border-2 border-yellow-400 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300"
               >
                 {eventTypes.map((type) => (
                   <option key={type} value={type}>
@@ -326,7 +326,7 @@ const EventsPage = () => {
                   </option>
                 ))}
               </select>
-              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
+              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-yellow-60 pointer-events-none" />
             </div>
 
             {/* Sort Options */}
@@ -334,7 +334,7 @@ const EventsPage = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="appearance-none bg-white/80 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300 w-72"
+                className="appearance-none bg-yellow-200 backdrop-blur-sm border-2 border-black/yellow-400 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300 w-72"
               >
                 {sortOptions.map((option) => (
                   <option key={option.value} value={option.value}>
