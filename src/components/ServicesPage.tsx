@@ -19,48 +19,70 @@ const ServicesPage = () => {
   ];
 
   const allServices = [
-    {
-      id: 1,
-      title: "Professional Aerial Surveying",
-      company: "AeroTech Solutions",
-      description: "High-precision aerial surveying services using advanced drone technology for construction, mining, and infrastructure projects.",
-      image: "https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "Drone Technology",
-      price: "$500/day",
-      rating: 4.9,
-      popularity: 95,
-      location: "San Francisco, CA",
-      features: ["High-Resolution Mapping", "3D Modeling", "Real-time Data", "Professional Reports"],
-      featured: true
-    },
-    {
-      id: 2,
-      title: "AI-Powered Object Detection",
-      company: "DroneAI Systems",
-      description: "Advanced AI algorithms for real-time object detection and classification in aerial imagery and video streams.",
-      image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "AI Solutions",
-      price: "$1,200/month",
-      rating: 4.8,
-      popularity: 92,
-      location: "Seattle, WA",
-      features: ["Real-time Processing", "99% Accuracy", "Custom Models", "API Integration"],
-      featured: true
-    },
-    {
-      id: 3,
-      title: "Precision Agriculture Mapping",
-      company: "SkyMap Technologies",
-      description: "Comprehensive GIS mapping services for precision agriculture, crop monitoring, and yield optimization.",
-      image: "https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "GIS Services",
-      price: "$300/acre",
-      rating: 4.7,
-      popularity: 88,
-      location: "Austin, TX",
-      features: ["Crop Health Analysis", "Yield Prediction", "Soil Mapping", "Weather Integration"],
-      featured: true
-    },
+  {
+    id: 1,
+    title: "Advanced Drone Surveying",
+    company: "IPage UM Services",
+    description:
+      "Efficient and accurate drone-based surveying solutions tailored for infrastructure, urban planning, and irrigation projects.",
+    image:
+      "https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=600",
+    category: "Drone Technology",
+    price: "$400/project",
+    rating: 4.9,
+    popularity: 96,
+    location: "Hyderabad, India",
+    features: [
+      "Orthomosaic Generation",
+      "Topographic Mapping",
+      "Infrastructure Scanning",
+      "High Accuracy GCP Integration",
+    ],
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "AI-Driven Infrastructure Inspection",
+    company: "IPage UM Services",
+    description:
+      "Automated inspections using drone-captured imagery with AI for crack detection, corrosion analysis, and structural health monitoring.",
+    image:
+      "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=600",
+    category: "AI & ML Solutions",
+    price: "$1,000/month",
+    rating: 4.8,
+    popularity: 93,
+    location: "Singapore & India",
+    features: [
+      "AI Anomaly Detection",
+      "Thermal Analysis",
+      "Detailed Reports",
+      "Cloud Integration",
+    ],
+    featured: true,
+  },
+  {
+    id: 3,
+    title: "GIS-based Precision Agriculture",
+    company: "IPage UM Services",
+    description:
+      "Empowering farmers with drone-enabled crop health monitoring, NDVI mapping, and variable rate spraying through GIS analytics.",
+    image:
+      "https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg?auto=compress&cs=tinysrgb&w=600",
+    category: "GIS & Agriculture",
+    price: "$250/acre",
+    rating: 4.7,
+    popularity: 90,
+    location: "Andhra Pradesh, India",
+    features: [
+      "NDVI & NDRE Index",
+      "Field Zoning",
+      "Real-time Crop Stress Detection",
+      "Agriculture Analytics",
+    ],
+    featured: true,
+  },
+
     {
       id: 4,
       title: "Drone Pilot Training Program",

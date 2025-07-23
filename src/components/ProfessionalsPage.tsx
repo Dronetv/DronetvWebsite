@@ -28,7 +28,7 @@ const ProfessionalsPage = () => {
   age: 38,
   profession: "DGCA-Certified RPAS Instructor",
   location: "Hyderabad, Telangana",
-  rating: 5.0,
+  rating: 4.8,
   experience: "11+ years",
   profilePicture: "/images/sumit.jpg",
   bio: "DGCA-certified RPAS Instructor with a strong background in aerospace education, currently training drone pilots at India Drone Academy, Hyderabad.",
@@ -47,7 +47,7 @@ const ProfessionalsPage = () => {
  
   profession: "CEO, Founder",
   location: "Singapore",
-  rating: 4.8,
+  rating: 5.0,
   
   profilePicture: "/images/dev.png",
   bio: "CEO , a licensed UAV & VoIP systems provider in Singapore.",
@@ -389,7 +389,7 @@ const ProfessionalsPage = () => {
             <h3 className="text-xl font-bold text-black mb-1 group-hover:text-gray-800 transition-colors duration-300">
               {professional.name}
             </h3>
-            <p className="text-gray-600 mb-2">Age: {professional.age}</p>
+            
             <div className={`${getProfessionColor(professional.profession)} text-white px-3 py-1 rounded-full text-sm font-bold inline-block mb-3`}>
               {professional.profession}
             </div>

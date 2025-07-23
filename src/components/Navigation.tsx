@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Search, Menu, X } from 'lucide-react';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLanguageOpen, setIsLanguageOpen] = useState(false); // To toggle language dropdown
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+
+  const languageRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -17,20 +19,24 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
-  }, [location.pathname]);
-
-  // Scroll to top when route changes
-  useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  const handleNavigation = (path) => {
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (languageRef.current && !languageRef.current.contains(event.target as Node)) {
+        setIsLanguageOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleNavigation = (path: string) => {
     setIsMenuOpen(false);
     navigate(path);
-    window.scrollTo(0, 0);
   };
 
   const navItems = [
@@ -61,6 +67,7 @@ const Navigation = () => {
               src="/images/logo.png"
               alt="Drone TV Logo"
               className="w-40 h-14 mx-auto cursor-pointer group-hover:scale-110 transition-all duration-300"
+              onClick={() => handleNavigation('/')}
             />
           </div>
 
@@ -74,44 +81,38 @@ const Navigation = () => {
                   ? 'text-gray-800 bg-black/10'
                   : 'text-black hover:text-gray-800'
                   }`}
-                style={{ animationDelay: `${index * 50}ms` }}
               >
                 <span className="relative z-10">{item.name}</span>
                 <div className="absolute inset-0 bg-black/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-lg"></div>
               </Link>
             ))}
+
             {/* Language Selector */}
-            <div className="relative">
+            <div className="relative" ref={languageRef}>
               <button onClick={() => setIsLanguageOpen(!isLanguageOpen)} className="text-black hover:text-gray-800 flex items-center space-x-2">
-                <img src="/images/download.jpg" alt="Language" className="h-6 w-6 rounded-full" /> {/* Replace with actual flag image path */}
+                <img src="/images/download.jpg" alt="Language" className="h-6 w-6 rounded-full" />
                 <span className="text-sm">Language</span>
               </button>
               {isLanguageOpen && (
-                <div className="absolute bg-white border-2 border-gray-200 rounded-lg shadow-lg mt-2">
-                  <div className="p-2">
-                    <ul>
-                      {/* Add your language options here */}
-                      <li className="px-4 py-2 cursor-pointer">English</li>
+               <div className="absolute right-0 bg-yellow-300 border-2 border-yellow-400 rounded-lg shadow-lg mt-2 z-50">
+  <div className="p-2">
+    <ul className="text-sm text-black">
+      {[
+        'English', 'Hindi', 'Bengali', 'Telugu',
+        'Tamil', 'Kannada', 'Odia', 'Assamese',
+        'Nepali', 'Spanish', 'French', 'Chinese'
+      ].map(lang => (
+        <li
+          key={lang}
+          className="px-4 py-2 cursor-pointer hover:bg-yellow-200 rounded"
+        >
+          {lang}
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
 
-
-                      <li className="px-4 py-2 cursor-pointer">Hindi</li>
-                      <li className="px-4 py-2 cursor-pointer">Bengali</li>
-                      <li className="px-4 py-2 cursor-pointer">Telugu</li>
-
-                      <li className="px-4 py-2 cursor-pointer">Tamil</li>
-                      <li className="px-4 py-2 cursor-pointer">Kannada</li>
-                      <li className="px-4 py-2 cursor-pointer">Odia</li>
-                      <li className="px-4 py-2 cursor-pointer">Assamese</li>
-
-                      <li className="px-4 py-2 cursor-pointer">Nepali</li>
-                      <li className="px-4 py-2 cursor-pointer">Spanish</li>
-                      <li className="px-4 py-2 cursor-pointer">French</li>
-                      <li className="px-4 py-2 cursor-pointer">Chinese</li>
-
-                      {/* Add more languages as needed */}
-                    </ul>
-                  </div>
-                </div>
               )}
             </div>
           </div>
@@ -120,7 +121,7 @@ const Navigation = () => {
           <div className="xl:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-black hover:text-gray-800 focus:outline-none focus:text-gray-800 transition-all duration-300 hover:scale-110"
+              className="text-black hover:text-gray-800 focus:outline-none transition-all duration-300 hover:scale-110"
             >
               <div className="relative w-6 h-6">
                 <Menu className={`h-6 w-6 absolute transition-all duration-300 ${isMenuOpen ? 'opacity-0 rotate-180' : 'opacity-100 rotate-0'}`} />

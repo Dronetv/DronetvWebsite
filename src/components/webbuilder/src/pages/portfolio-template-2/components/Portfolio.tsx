@@ -249,7 +249,7 @@ const Portfolio: React.FC = () => {
   ];
 
   return (
-    <section id="gallery" className="py-20 bg-white dark:bg-gray-900">
+    <section id="portfolio" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">

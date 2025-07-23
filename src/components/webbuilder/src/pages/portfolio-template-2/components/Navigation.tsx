@@ -25,7 +25,7 @@ const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode }) => 
     { name: 'Skills', href: '#skills' },
     { name: 'Services', href: '#services' },
     { name: 'Gallery', href: '#portfolio' },
-    { name: 'Blog', href: '#blog' },
+    // { name: 'Blog', href: '#blog' },
     { name: 'Contact', href: '#contact' },
   ];
 
