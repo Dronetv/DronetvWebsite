@@ -140,7 +140,7 @@ const BrowseByTopic = () => {
                       {topic.subcategories.map((sub, idx) => (
                         <div
                           key={sub}
-                          className="bg-yellow-400/10 backdrop-blur-sm rounded-lg px-2 sm:px-3 py-1 sm:py-2 text-gray-300 text-xs font-medium border border-yellow-400/20 group-hover:bg-yellow-400/20 group-hover:border-yellow-400/40 group-hover:text-yellow transition-all duration-300"
+                          className="bg-yellow-400/10 backdrop-blur-sm rounded-lg px-2 sm:px-3 py-1 sm:py-2 text-yellow-300 text-xs font-medium border border-yellow-400/20 group-hover:bg-yellow-400/20 group-hover:border-yellow-400/40 group-hover:text-yellow transition-all duration-300"
                           style={{ transitionDelay: `${idx * 100}ms` }}
                         >
                           {sub}

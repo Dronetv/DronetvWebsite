@@ -1,49 +1,42 @@
 import React from 'react';
-import { Camera, Video, Code, Palette, Settings, Zap } from 'lucide-react';
+import { Briefcase, TrendingUp, ClipboardList, Target, FlaskConical } from 'lucide-react';
 
 const Skills: React.FC = () => {
   const skills = [
     {
-      icon: <Camera size={24} />,
-      title: 'Aerial Photography',
-      description: 'Professional drone photography with advanced composition techniques',
+      icon: <Briefcase size={24} />,
+      title: 'Business Strategy',
+      description: 'Crafting data-driven, scalable business models for long-term success.',
       percentage: 95,
       delay: 0
     },
     {
-      icon: <Video size={24} />,
-      title: 'Cinematography',
-      description: 'Cinematic aerial footage and video production',
-      percentage: 90,
+      icon: <TrendingUp size={24} />,
+      title: 'Business Development',
+      description: 'Identifying growth opportunities, partnerships, and new markets.',
+      percentage: 93,
       delay: 200
     },
     {
-      icon: <Code size={24} />,
-      title: 'UAV Programming',
-      description: 'Custom drone software and autonomous flight systems',
-      percentage: 85,
+      icon: <ClipboardList size={24} />,
+      title: 'Business Planning',
+      description: 'Designing actionable plans aligned with organizational goals.',
+      percentage: 90,
       delay: 400
     },
     {
-      icon: <Palette size={24} />,
-      title: 'Post-Production',
-      description: 'Video editing, color grading, and visual effects',
-      percentage: 88,
+      icon: <Target size={24} />,
+      title: 'Strategic Planning',
+      description: 'Aligning mission, vision, and execution to drive competitive advantage.',
+      percentage: 92,
       delay: 600
     },
     {
-      icon: <Settings size={24} />,
-      title: 'Technical Support',
-      description: 'Drone maintenance, repair, and system optimization',
-      percentage: 92,
+      icon: <FlaskConical size={24} />,
+      title: 'R&D Innovation',
+      description: 'Pioneering new ideas through research and product development.',
+      percentage: 88,
       delay: 800
-    },
-    {
-      icon: <Zap size={24} />,
-      title: 'Live Streaming',
-      description: 'Real-time aerial broadcasting and streaming solutions',
-      percentage: 80,
-      delay: 1000
     }
   ];
 
@@ -52,11 +45,11 @@ const Skills: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 data-aos="fade-up" className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-4">
-            My <span className="text-[#FF0000]">Skills</span>
+            Top <span className="text-[#FF0000]">Skills</span>
           </h2>
           <div data-aos="fade-up" data-aos-delay="200" className="w-24 h-1 bg-[#FFD400] mx-auto mb-6"></div>
           <p data-aos="fade-up" data-aos-delay="400" className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            A comprehensive skill set developed through years of experience in drone technology and aerial content creation.
+            A proven skill set focused on building, growing, and sustaining strategic business ventures across emerging and established markets.
           </p>
         </div>
 

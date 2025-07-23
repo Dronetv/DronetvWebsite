@@ -1,31 +1,31 @@
 import React from 'react';
-import { Camera, Video, Bone as Drone, Settings } from 'lucide-react';
+import { GraduationCap, BookOpenCheck, Settings, Activity } from 'lucide-react';
 
 const Services: React.FC = () => {
   const services = [
     {
-      icon: <Camera size={32} />,
-      title: 'Aerial Photography',
-      description: 'Professional aerial photography for real estate, events, and commercial projects.',
-      features: ['High-resolution images', '360° panoramas', 'HDR processing', 'Same-day delivery']
+      icon: <GraduationCap size={32} />,
+      title: 'Drone Pilot Training',
+      description: 'Comprehensive RPAS training programs for aspiring drone pilots at India Drone Academy.',
+      features: ['Ground School Modules', 'Simulator-Based Learning', 'Rotorcraft Flight Sessions', 'DGCA Certification Support']
     },
     {
-      icon: <Video size={32} />,
-      title: 'Drone Cinematography',
-      description: 'Cinematic aerial footage for films, documentaries, and promotional content.',
-      features: ['4K video recording', 'Smooth gimbal shots', 'Color correction', 'Motion graphics']
+      icon: <Activity size={32} />,
+      title: 'Aerospace Education',
+      description: 'Aviation-focused instruction in core aerospace disciplines from fundamentals to applied projects.',
+      features: ['Flight Dynamics', 'Aircraft Performance', 'Stability & Control', 'UAV Design Guidance']
     },
     {
-      icon: <Drone size={32} />,
-      title: 'UAV Development',
-      description: 'Custom drone solutions and modifications for specialized applications.',
-      features: ['Custom builds', 'Sensor integration', 'Flight testing', 'Technical support']
+      icon: <BookOpenCheck size={32} />,
+      title: 'Research & Technical Writing',
+      description: 'Authoring support, curriculum building, and academic research consulting in aerospace and drones.',
+      features: ['7 Published Papers', 'Book: Fundamentals of Propulsion', 'Conference Papers', 'Academic Review Guidance']
     },
     {
       icon: <Settings size={32} />,
-      title: 'Consulting & Training',
-      description: 'Expert consultation and training for drone operations and regulations.',
-      features: ['Safety protocols', 'License preparation', 'Team training', 'Compliance audit']
+      title: 'Workshops & Event Management',
+      description: 'End-to-end support for aerospace & UAV educational events, including ICASAS-style conferences.',
+      features: ['Technical Presentations', 'Faculty Training', 'Event Planning', 'Professional Speaking Engagements']
     }
   ];
 
@@ -38,7 +38,7 @@ const Services: React.FC = () => {
           </h2>
           <div data-aos="fade-up" data-aos-delay="200" className="w-24 h-1 bg-[#FFD400] mx-auto mb-6"></div>
           <p data-aos="fade-up" data-aos-delay="400" className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-            Comprehensive drone services tailored to meet your specific needs and deliver exceptional results.
+            Specialized drone and aerospace training programs tailored for individuals, institutions, and researchers — led by a DGCA-Certified RPAS Instructor with over 11 years of experience in aviation education.
           </p>
         </div>
 
@@ -73,12 +73,12 @@ const Services: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              
+{/*               
               <div className="mt-6 pt-6 border-t border-black/20 group-hover:border-gray-700 transition-colors duration-300">
                 <button className="text-black group-hover:text-[#FFD400] font-semibold hover:underline transition-colors duration-300">
                   Learn More →
                 </button>
-              </div>
+              </div> */}
             </div>
           ))}
         </div>
