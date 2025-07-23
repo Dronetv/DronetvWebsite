@@ -39,7 +39,7 @@ const AboutMe: React.FC = () => {
                 <div>
                   <h3 className="text-2xl font-bold text-black dark:text-white mb-6">About Me</h3>
                   <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                    As the Founder & CEO of IPage UM Services Pte Ltd (Singapore) and IPage UM Services Pvt Ltd (India), I bring over 16 years of expertise across UAV technology, GIS, AI, and IT solutions. My journey started with IPage Telecom in Singapore, building Tier-1 VoIP infrastructure across 185+ countries. In India, I led national-scale projects like Amaravati with Surbana Jurong and infrastructure initiatives like Polavaram and Kaleshwaram, using drones and geospatial analytics for smarter governance. I also established India Drone Academy, a DGCA-certified training institute, and created DroneTV to broadcast global drone innovations and insights. Our platforms now power real-time mapping, smart data portals, and immersive UAV learning ecosystems.
+                    As the Founder & CEO of IPage UM Services Pte Ltd (Singapore) and IPage UM Services Pvt Ltd (India), I bring over 16 years of expertise across UAV technology, GIS, AI, and IT solutions. In India, I led national-scale projects like Amaravati with Surbana Jurong and infrastructure initiatives like Polavaram and Kaleshwaram, using drones and geospatial analytics for smarter governance. I also established India Drone Academy, a DGCA-certified training institute, and created DroneTV to broadcast global drone innovations and insights. Our platforms now power real-time mapping, smart data portals, and immersive UAV learning ecosystems.
                   </p>
                 </div>
 

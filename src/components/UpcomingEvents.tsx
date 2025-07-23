@@ -6,7 +6,7 @@ const UpcomingEvents = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
   const navigate = useNavigate();
   const handleLearnMoreClick = () => {
-    navigate('/list/event-template-1');
+    navigate('/company/event-template-1');
   };
   const events = [
     {
@@ -106,7 +106,7 @@ const UpcomingEvents = () => {
 
                   <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 pointer-events-auto">
                     <Link
-                      to="/list/event-template-1"
+                      to="/company/event-template-1"
                       className="inline-flex items-center gap-2 bg-yellow-400 text-black px-6 py-3 rounded-full font-bold shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-yellow-300 border border-yellow-500"
                     >
                       <span>Learn More</span>

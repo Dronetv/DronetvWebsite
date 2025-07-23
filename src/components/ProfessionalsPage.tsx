@@ -48,7 +48,7 @@ const ProfessionalsPage = () => {
   profession: "CEO, Founder",
   location: "Singapore",
   rating: 5.0,
-  
+  experience: "17+ years",
   profilePicture: "/images/dev.png",
   bio: "CEO , a licensed UAV & VoIP systems provider in Singapore.",
   specialties: ["UAV Services", "System Integration", "Telecom"],
@@ -263,7 +263,7 @@ const ProfessionalsPage = () => {
   };
 
   const handleAddEventClick = () => {
-    navigate('/list'); // Navigate to the /add-event route
+    navigate('/company'); // Navigate to the /add-event route
   };
 
   return (
@@ -365,8 +365,8 @@ const ProfessionalsPage = () => {
           }}
           onClick={() =>
             professional.id === 2
-              ? navigate('/list/portfolio-template-2')
-              : navigate('/list/portfolio-template-1')
+              ? navigate('/company/portfolio-template-2')
+              : navigate('/company/portfolio-template-1')
           }
         >
           <div className="p-8 text-center bg-[#f1ee8e]">
@@ -405,7 +405,7 @@ const ProfessionalsPage = () => {
               {professional.bio}
             </p>
             <div className="grid grid-cols-2 gap-3 mb-4">
-              <div className="text-center p-2 bg-yellow-50 rounded-lg">
+              <div className="text-center p-2 bg-yellow-300 rounded-lg">
                 <div className="text-sm font-bold text-black">{professional.experience}</div>
                 <div className="text-xs text-gray-600">Experience</div>
               </div>
@@ -456,9 +456,9 @@ const ProfessionalsPage = () => {
             animationDelay: `${index * 100}ms`,
             animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`
           }}
-          onClick={() => navigate('/list/portfolio-template-2')} // Navigate on card click
+          onClick={() => navigate('/company/portfolio-template-2')} // Navigate on card click
         >
-          <div className="p-6 text-center bg-yellow-50">
+          <div className="p-6 text-center bg-[#f1ee8e]">
             {/* Profile Picture */}
             <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border-3 border-yellow-400 group-hover:border-yellow-500 transition-all duration-300 mb-4">
               <img
@@ -493,7 +493,7 @@ const ProfessionalsPage = () => {
             </p>
 
             <div className="grid grid-cols-2 gap-2 mb-4">
-              <div className="text-center p-2 bg-yellow-50 rounded-lg">
+              <div className="text-center p-2 bg-yellow-300 rounded-lg">
                 <div className="text-xs font-bold text-black">{professional.experience}</div>
                 <div className="text-xs text-gray-600">Experience</div>
               </div>
@@ -514,7 +514,7 @@ const ProfessionalsPage = () => {
                   </span>
                 ))}
                 {professional.specialties.length > 2 && (
-                  <span className="bg-yellow-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
+                  <span className="bg-yellow-200 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
                     +{professional.specialties.length - 2}
                   </span>
                 )}

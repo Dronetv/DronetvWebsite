@@ -359,7 +359,7 @@ const PartnerPage = () => {
                 </p>
                 <div className="text-sm text-gray-500">
                   <p>Need immediate assistance? Contact us at:</p>
-                  <p className="font-semibold">partnerships@dronetv.com</p>
+                  <p className="font-semibold">partnership@dronetv.in</p>
                 </div>
               </div>
             )}
@@ -374,15 +374,15 @@ const PartnerPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-center justify-center gap-3 text-black">
               <Mail className="h-5 w-5" />
-              <span className="font-medium">partnerships@dronetv.com</span>
+              <span className="font-medium">partnership@dronetv.in</span>
             </div>
             <div className="flex items-center justify-center gap-3 text-black">
               <Phone className="h-5 w-5" />
-              <span className="font-medium">+1 (555) 123-4567</span>
+              <span className="font-medium">+91 7520123555</span>
             </div>
             <div className="flex items-center justify-center gap-3 text-black">
               <MapPin className="h-5 w-5" />
-              <span className="font-medium">San Francisco, CA</span>
+              <span className="font-medium">Hyderabad - 500008 India</span>
             </div>
           </div>
         </div>

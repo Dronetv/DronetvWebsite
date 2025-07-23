@@ -13,29 +13,29 @@ const CreatePortfolio: React.FC = () => {
       icon: <Building2 size={48} />,
       available: true
     },
-    {
-      id: 'professional',
-      title: 'Professional',
-      description: 'Build your personal professional portfolio',
-      icon: <User size={48} />,
-      available: true
-    },
-    {
-      id: 'event',
-      title: 'Event Manager',
-      description: 'Showcase your event management services',
-      icon: <Calendar size={48} />,
-      available: true
-    }
+    // {
+    //   id: 'professional',
+    //   title: 'Professional',
+    //   description: 'Build your personal professional portfolio',
+    //   icon: <User size={48} />,
+    //   available: true
+    // },
+    // {
+    //   id: 'event',
+    //   title: 'Event Manager',
+    //   description: 'Showcase your event management services',
+    //   icon: <Calendar size={48} />,
+    //   available: true
+    // }
   ];
 
   const handleCategorySelect = (categoryId: string) => {
     if (categoryId === 'professional') {
-      navigate('/list/create-portfolio/professional');
+      navigate('/company/create-portfolio/professional');
     } else if (categoryId === 'company') {
-      navigate('/list/create-company');
+      navigate('/company/create-company');
     } else if (categoryId === 'event') {
-      navigate('/list/create-event');
+      navigate('/company/create-event');
     }
   };
 
@@ -49,7 +49,7 @@ const CreatePortfolio: React.FC = () => {
               Drone<span className="text-[#FFD400]">TV</span>
             </div>
             <nav>
-              <a href="/list" className="text-white hover:text-[#FFD400] transition-colors">
+              <a href="/company" className="text-white hover:text-[#FFD400] transition-colors">
                 ← Back to Home
               </a>
             </nav>
@@ -62,11 +62,11 @@ const CreatePortfolio: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h1 className="text-5xl font-bold text-black mb-6">
-              Create Your <span className="text-[#FF0000]">Portfolio</span>
+              Create Your <span className="text-[#FF0000]">Company Portfolio</span>
             </h1>
             <div className="w-24 h-1 bg-[#FFD400] mx-auto mb-6"></div>
             <p className="text-gray-600 text-xl max-w-2xl mx-auto">
-              Choose your portfolio category to get started with our professional templates
+             Choose your company category to get started with our professional templates and showcase your products, services, and innovations to a wide audience.
             </p>
           </div>
 
