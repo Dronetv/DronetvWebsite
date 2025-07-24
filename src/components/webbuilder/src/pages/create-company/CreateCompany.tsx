@@ -139,7 +139,7 @@ const CreateCompany: React.FC = () => {
 
     if (response.ok) {
       // Success — maybe route to preview page
-      navigate('/preview/company-template');
+      navigate('/companies');
     } else {
       // Handle error
       alert('Failed to create company. Try again!');
