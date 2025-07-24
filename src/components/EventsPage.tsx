@@ -261,7 +261,7 @@ const EventsPage = () => {
 
 
   const handleViewDetailsClick = () => {
-    navigate('/company/event-template-1'); // Redirect to the specified URL
+    navigate('/company/droneexpo'); // Redirect to the specified URL
   };
 
   return (
@@ -492,7 +492,7 @@ const EventsPage = () => {
 
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
                         <div
-                          onClick={() => navigate('/company/event-template-2')} // Use the navigate function directly for this button
+                          onClick={() => navigate('/company/droneexpo')} // Use the navigate function directly for this button
                           className="bg-yellow-400 text-black px-4 py-2 rounded-full font-bold shadow-2xl transform scale-0 group-hover:scale-100 transition-all duration-500 hover:bg-yellow-300 flex items-center gap-2"
                         >
                           <span>View Details</span>
