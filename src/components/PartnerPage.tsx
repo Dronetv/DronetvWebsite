@@ -19,19 +19,39 @@ const PartnerPage = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsLoading(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    setIsLoading(false);
-    setIsSubmitted(true);
-    setFormData({ name: '', email: '', organization: '', message: '' });
-
-    setTimeout(() => setIsSubmitted(false), 5000);
+  const payload = {
+    name: formData.name,
+    email: formData.email,
+    organization: formData.organization,
+    message: formData.message
   };
+
+  try {
+    const response = await fetch('https://0etsqrl2k1.execute-api.ap-south-1.amazonaws.com/postdronetvpartner', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      setIsSubmitted(true); // Trigger thank you message
+    } else {
+      alert("Failed to submit: " + result.error);
+    }
+  } catch (error) {
+    alert("Network error: " + error.message);
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const partnerTypes = [
     {
@@ -355,7 +375,7 @@ const PartnerPage = () => {
                 <h3 className="text-2xl font-bold text-black mb-4">Thank You for Your Interest!</h3>
                 <p className="text-gray-600 mb-6">
                   We've received your partnership application and our team will review it shortly.
-                  You can expect to hear from us within 24 hours.
+                 
                 </p>
                 <div className="text-sm text-gray-500">
                   <p>Need immediate assistance? Contact us at:</p>
