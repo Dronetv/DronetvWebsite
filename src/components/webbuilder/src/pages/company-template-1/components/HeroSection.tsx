@@ -62,24 +62,25 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center justify-center text-center px-6 py-8 mt-16">
         
         {/* Company Logo with floating animation */}
-        {companyLogo && (
-          <div 
-            className="mb-6 transform transition-all duration-1000 ease-out opacity-0"
-            style={{
-              animationDelay: '0.2s',
-              animation: 'fadeInScale 1.5s ease-out 0.2s both'
-            }}
-          >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-400 rounded-full blur-lg opacity-40"></div>
-              <img
-                src={companyLogo}
-                alt="Company Logo"
-                className="relative h-16 w-16 md:h-20 md:w-20 rounded-full bg-white shadow-2xl object-contain border-4 border-yellow-400 transition-transform duration-300 hover:scale-110 hover:rotate-12"
-              />
-            </div>
-          </div>
-        )}
+{companyLogo && (
+  <div 
+    className="mb-6 transform transition-all duration-1000 ease-out opacity-0"
+    style={{
+      animationDelay: '0.2s',
+      animation: 'fadeInScale 1.5s ease-out 0.2s both'
+    }}
+  >
+    <div className="relative">
+      <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-400 rounded-full blur-lg opacity-40"></div>
+      <img
+        src={companyLogo}
+        alt="Company Logo"
+        className="relative h-16 w-16 md:h-20 md:w-20 bg-white shadow-2xl object-contain border-4 border-yellow-400 transition-transform duration-300 hover:scale-110 hover:rotate-12" // <-- no rounded-full!
+      />
+    </div>
+  </div>
+)}
+
 
         {/* Main Headline with typing effect style */}
         <h1

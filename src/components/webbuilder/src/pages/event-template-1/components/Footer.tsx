@@ -20,11 +20,11 @@ const Footer: React.FC = () => {
   ];
 
   const socialLinks = [
-    { icon: <Facebook size={20} />, href: '#', label: 'Facebook' },
-    { icon: <Twitter size={20} />, href: '#', label: 'Twitter' },
-    { icon: <Instagram size={20} />, href: '#', label: 'Instagram' },
-    { icon: <Linkedin size={20} />, href: '#', label: 'LinkedIn' },
-    { icon: <Youtube size={20} />, href: '#', label: 'YouTube' },
+    { icon: <Facebook size={20} />, href: 'https://www.facebook.com/DroneExpo.in/', label: 'Facebook' },
+    // { icon: <Twitter size={20} />, href: '#', label: 'Twitter' },
+    { icon: <Instagram size={20} />, href: 'https://www.instagram.com/droneexpo.in/', label: 'Instagram' },
+    { icon: <Linkedin size={20} />, href: 'https://www.linkedin.com/company/droneexpo', label: 'LinkedIn' },
+    { icon: <Youtube size={20} />, href: 'https://www.youtube.com/@droneexpo', label: 'YouTube' },
   ];
 
   const scrollToSection = (href: string) => {

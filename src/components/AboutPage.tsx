@@ -53,7 +53,7 @@ const AboutPage = () => {
       id: 3,
       name: "Amarnath Reddy",
       role: "Promotional Manager",
-      image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "/images/amar.png",
       bio: "Leads promotions and outreach at Drone TV, connecting audiences with cutting-edge drone tech content and events.",
       funFact: "Once organized a drone roadshow covering 7 cities in just 14 days."
     },
@@ -63,38 +63,46 @@ const AboutPage = () => {
 
   const timelineEvents = [
     {
-      year: 'Feb 2024',
+      year: 'Aug 2024',
       title: 'Foundational Vision',
       description:
-        'The idea of bringing all drone-related sectors onto one platform under "Drone TV" was born. This led to active coverage during Drone Expo (Sept 26–28) at Yashobhoomi, IICC, New Delhi.',
+        'The idea of bringing all drone-related sectors onto one platform under "Drone TV" was born. ',
       icon: Calendar,
     },
     {
-      year: '2024',
-      title: 'Industry Leadership',
+      year: 'Nov 204',
+      title: 'Pre Launch',
       description:
-        'Drone TV recognized as the leading platform for drone technology education with over 100K+ active users.',
-      icon: Star,
-    },
-    {
-      year: 'Feb 2025',
-      title: 'Official Launch',
-      description:
-        'We proudly launched Drone TV — showcasing innovators, drone products, and expert insights with a unified media voice.',
+        'We proudly Pre launched Drone TV  showcasing innovators, drone products, and expert insights with a unified media voice.',
       icon: Rocket,
     },
+    {
+      year: 'Jan 2025',
+      title: 'Building the Drone Ecosystem',
+      description:
+        'Drone TV began recognizing industry leaders, drone service providers, and key players across the UAV ecosystem. We started curating data, stories, and innovations to shape the foundation of the DroneTV platform.',
+      icon: Star,
+    },
+    
     {
       year: 'April 2025',
       title: 'Media Partner – Drone Expo 2025 (Hyderabad)',
       description:
-        'Drone TV served as the official media partner — covering stalls, product showcases, and thought leader interviews, reaffirming our mission.',
+        'Drone TV served as the official media partner  covering stalls, product showcases, and thought leader interviews, reaffirming our mission.',
       icon: Video,
     },
     {
-      year: 'Sept 2025',
-      title: 'Upcoming: Drone Expo 2025 – Mumbai Edition',
+      year: 'Jul 2025',
+      title: 'Official Portal Launch at Drone Expo Curtain Raiser',
       description:
-        'We are gearing up for the Mumbai edition (Sept 25–27) — committed to delivering a high-impact media experience once again.',
+        'DroneTV.in was officially launched during the Curtain Raiser of Drone Expo 2025 in Goregaon, Mumbai marking a new era for drone-focused media, community, and innovation.',
+      icon: Target,
+    },
+        {
+      year: 'Sept 2025',
+      title: 'Upcoming: Drone Expo 2025  Mumbai Edition',
+      description:
+        'We are gearing up for the Mumbai edition (Sept 25–27)  committed to delivering a high-impact media experience once again.',
       icon: Target,
     },
   ];
@@ -133,7 +141,7 @@ const AboutPage = () => {
                   <h2 className="text-3xl font-black text-black">Our Mission</h2>
                 </div>
                 <p className="text-gray-700 leading-relaxed text-lg">
-                  To bring every sector of the drone industry together on one unified platform—Drone TV. We aim to offer new innovators a prominent space to showcase their ideas, deliver expert content from drone companies, and present in-depth insights from drone enthusiasts, industry speakers, and tech visionaries.
+                  To bring every sector of the drone industry together on one unified platform Drone TV. We aim to offer new innovators a prominent space to showcase their ideas, deliver expert content from drone companies, and present in-depth insights from drone enthusiasts, industry speakers, and tech visionaries.
                 </p>
 
               </div>
@@ -147,7 +155,7 @@ const AboutPage = () => {
                 </div>
                 <p className="text-gray-700 leading-relaxed text-lg">
 
-                  To become the definitive global platform for showcasing drone innovation—where every drone enthusiast, creator, and company has a voice. We envision a future where Drone TV stands as the trusted source for all things drones: from new technologies and speaker sessions to deep-dive interviews and public showcases.
+                  To become the definitive global platform for showcasing drone innovation where every drone enthusiast, creator, and company has a voice. We envision a future where Drone TV stands as the trusted source for all things drones: from new technologies and speaker sessions to deep-dive interviews and public showcases.
                 </p>
 
               </div>
@@ -165,10 +173,10 @@ const AboutPage = () => {
                   <p className="text-gray-600 mb-6">
                     Through comprehensive education and industry partnerships, we're building the foundation for the next generation of drone innovations.
                   </p>
-                  <button className="bg-yellow-400 text-black px-6 py-3 rounded-xl font-bold hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto">
+                  {/* <button className="bg-yellow-400 text-black px-6 py-3 rounded-xl font-bold hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto">
                     <span>Learn More</span>
                     <ArrowRight className="h-4 w-4" />
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -200,15 +208,15 @@ const AboutPage = () => {
                 </h2>
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p className="text-lg">
-                    Drone TV was created to unify the drone ecosystem — a platform that educates, connects, and empowers. With experience across training, services, and simulation, I saw the urgent need for a media space that truly reflects the pulse of this fast-growing industry.
+                    Drone TV was created to unify the drone ecosystem  a platform that educates, connects, and empowers. With experience across training, services, and simulation, I saw the urgent need for a media space that truly reflects the pulse of this fast-growing industry.
                   </p>
                   <p className="text-lg">
-                    What began in February 2024 as an idea became reality in 2025 — with live event coverage, expert interviews, and community-driven storytelling. Today, Drone TV stands as a voice for innovators and drone professionals nationwide.
+                    What began in February 2024 as an idea became reality in 2025 with live event coverage, expert interviews, and community-driven storytelling. Today, Drone TV stands as a voice for innovators and drone professionals nationwide.
                   </p>
-                  <p className="text-lg"> Drone TV continues that journey — showcasing how drones are transforming industries and lives.
+                  <p className="text-lg"> Drone TV continues that journey  showcasing how drones are transforming industries and lives.
                   </p>
                   <p className="text-lg font-semibold text-black">
-                    We’re not just documenting the future — we’re helping build it.
+                    We’re not just documenting the future  we’re helping build it.
                   </p>
                 </div>
 

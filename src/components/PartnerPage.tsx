@@ -144,7 +144,7 @@ const PartnerPage = () => {
             <div className="relative">
               <div className="bg-[#f1ee8e] rounded-3xl p-8 shadow-2xl">
                 <img
-                  src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  src="/images/partner.png"
                   alt="Partnership Opportunities"
                   className="w-full h-64 object-cover rounded-2xl mb-6"
                 />

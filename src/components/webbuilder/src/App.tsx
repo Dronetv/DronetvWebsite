@@ -30,7 +30,7 @@ function SubApp() {
       <Route path="/preview/portfolio-template-:templateId" element={<PreviewTemplate />} />
       <Route path="/create-company" element={<CreateCompany />} />
       <Route path="/preview/company-template-:templateId" element={<CompanyPreview />} />
-      <Route path="/event-template-1" element={<EventTemplate1 />} />
+      <Route path="/droneexpo" element={<EventTemplate1 />} />
       <Route path="/event-template-2" element={<EventTemplate2 />} />
       <Route path="/create-event" element={<CreateEvent />} />
       <Route path="/preview/event-template-:templateId" element={<EventPreview />} />

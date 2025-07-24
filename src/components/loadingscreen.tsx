@@ -7,7 +7,7 @@ interface LoadingScreenProps {
 
 const LoadingScreen: React.FC<LoadingScreenProps> = ({
   logoSrc = "images/logo.png",
-  loadingText = "Loading Companies..."
+  loadingText = "Loading..."
 }) => {
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-yellow-400 via-yellow-400 to-yellow-500 z-[9999] overflow-hidden">
@@ -21,21 +21,21 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
         <div className="absolute bottom-1/3 right-1/6 w-2 h-2 bg-white rounded-full animate-pulse delay-700"></div>
       </div>
 
-      {/* Rotating rings around logo */}
-      <div className="relative w-32 h-32">
-          {/* Glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-yellow-400 rounded-full blur-xl opacity-60 animate-pulse"></div>
-          
-          {/* Logo */}
-          <img
-            src={logoSrc}
-            alt="Loading..."
-            className="relative w-full h-full object-contain bg-white rounded-2xl border-4 border-white shadow-2xl animate-bounce p-2"
-            style={{ 
-              filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.3))',
-            }}
-          />
-          
+      {/* Rotating Logo (logo as it is, no bg, no border) */}
+      <div className="relative w-32 h-32 flex items-center justify-center">
+        {/* Glow effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-yellow-400 rounded-full blur-xl opacity-60 animate-pulse"></div>
+        {/* Clean Logo (no shape, no border, no background) */}
+        <img
+          src={logoSrc}
+          alt="Loading..."
+          className="relative w-full h-full object-contain"
+          style={{
+            animation: "spin 2.5s linear infinite",
+            filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.3))',
+            background: "none"
+          }}
+        />
       </div>
 
       {/* Loading text with enhanced animation */}
@@ -54,7 +54,6 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
             </span>
           ))}
         </div>
-        
         {/* Loading dots */}
         <div className="flex justify-center items-center mt-4 space-x-2">
           <div className="w-3 h-3 bg-red-500 rounded-full animate-bounce"></div>
@@ -67,6 +66,13 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
       <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-64 h-2 bg-black/20 rounded-full overflow-hidden">
         <div className="h-full bg-gradient-to-r from-red-500 to-yellow-400 rounded-full animate-pulse w-full"></div>
       </div>
+
+      {/* Inline style for custom spin animation */}
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 };

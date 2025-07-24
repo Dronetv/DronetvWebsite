@@ -23,9 +23,9 @@ const ProductsPage = () => {
     id: 1,
     name: "AGRIBOT A5",
     description: "India’s 1st Type Certified Agriculture Drone, approved by DGCA.",
-    image: "/images/product1.jpg",
+    image: "/images/product1.png",
     category: "Agriculture Drones",
-    price: "$1999",
+    price: "₹4,50,000",
     rating: 5.0,
     popularity: 95,
     features: ["1 Acre Spray in 7 Minutes", "Water Usage: 8-10 Liters per Acre", "3 in 1 Agri Drone: Spray, Broadcast, Crop Health Monitoring"],
@@ -37,7 +37,7 @@ const ProductsPage = () => {
     description: "Advanced Agriculture Drone with DGCA Certification.",
     image: "/images/product2.png",
     category: "Agriculture Drones",
-    price: "$2499",
+    price: "₹5,50,000",
     rating: 4.9,
     popularity: 90,
     features: ["1 Acre Spray in 7 Minutes", "Water Usage: 8-10 Liters per Acre", "Radar-Based Collision Detection", "Fleet Management Dashboard"],
@@ -49,7 +49,7 @@ const ProductsPage = () => {
     description: "Advanced drone for aerial surveys with 16-channel LiDAR for accurate data collection.",
     image: "/images/product3.png",
     category: "Survey Drones",
-    price: "$3500",
+    price: "₹6,50,000",
     rating: 4.8,
     popularity: 89,
     features: ["16-Channel LiDAR for Precision", "360° 3D High-Speed Scanning", "Battery and Engine Powered", "Terrain Compatibility"],
@@ -359,7 +359,7 @@ const ProductsPage = () => {
                       </div>
 
                       <div className="absolute bottom-4 right-4 bg-black/80 text-white px-2 py-1 rounded-lg text-xs font-medium flex items-center gap-1">
-                        <DollarSign className="h-3 w-3" />
+                        {/* <DollarSign className="h-3 w-3" /> */}
                         {product.price}
                       </div>
 
@@ -466,7 +466,7 @@ const ProductsPage = () => {
                       </div>
 
                       <div className="absolute bottom-3 right-3 bg-black/80 text-white px-2 py-1 rounded-lg text-xs font-medium flex items-center gap-1">
-                        <DollarSign className="h-3 w-3" />
+                        
                         {product.price}
                       </div>
                     </div>

@@ -25,7 +25,7 @@ const ProfessionalsPage = () => {
   {
   id: 1,
   name: "Sumit Krishnan",
-  age: 38,
+ 
   profession: "DGCA-Certified RPAS Instructor",
   location: "Hyderabad, Telangana",
   rating: 4.8,
@@ -472,7 +472,7 @@ const ProfessionalsPage = () => {
             <h3 className="text-lg font-bold text-black mb-1 group-hover:text-gray-800 transition-colors duration-300">
               {professional.name}
             </h3>
-            <p className="text-gray-600 text-sm mb-2">Age: {professional.age}</p>
+            {/* <p className="text-gray-600 text-sm mb-2">Age: {professional.age}</p> */}
 
             <div className={`${getProfessionColor(professional.profession)} text-white px-2 py-1 rounded-full text-xs font-bold inline-block mb-3`}>
               {professional.profession}
