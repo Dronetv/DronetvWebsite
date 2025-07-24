@@ -90,7 +90,7 @@ const Navigation = () => {
             {/* Language Selector */}
             <div className="relative" ref={languageRef}>
               <button onClick={() => setIsLanguageOpen(!isLanguageOpen)} className="text-black hover:text-gray-800 flex items-center space-x-2">
-                <img src="/images/download1.jpg" alt="Language" className="h-6 w-6 rounded-full" />
+                <img src="/images/iconre.jpg" alt="Language" className="h-6 w-6 rounded-full" />
                 <span className="text-sm">Language</span>
               </button>
               {isLanguageOpen && (
