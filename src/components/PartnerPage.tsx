@@ -2,32 +2,36 @@ import React, { useState } from 'react';
 import { Handshake, Building2, Brain, Calendar, GraduationCap, Users, Eye, Award, TrendingUp, Mail, Phone, MapPin, CheckCircle, Send } from 'lucide-react';
 
 const PartnerPage = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    organization: '',
-    message: ''
-  });
+const [formData, setFormData] = useState({
+  name: '',
+  email: '',
+  phone: '',
+  whatsapp: '',
+  organization: '',
+  message: ''
+});
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
- const handleSubmit = async (e: React.FormEvent) => {
+ const handleInputChange = (e) => {
+  const { name, value } = e.target;
+  setFormData((prev) => ({
+    ...prev,
+    [name]: value
+  }));
+};
+const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   setIsLoading(true);
 
   const payload = {
-    name: formData.name,
-    email: formData.email,
-    organization: formData.organization,
-    message: formData.message
+    name: formData.name.trim(),
+    email: formData.email.trim(),
+    phone: formData.phone.trim(),
+    whatsapp: formData.whatsapp.trim(),
+    organization: formData.organization.trim(),
+    message: formData.message.trim()
   };
 
   try {
@@ -42,7 +46,7 @@ const PartnerPage = () => {
     const result = await response.json();
 
     if (response.ok) {
-      setIsSubmitted(true); // Trigger thank you message
+      setIsSubmitted(true);
     } else {
       alert("Failed to submit: " + result.error);
     }
@@ -314,8 +318,41 @@ const PartnerPage = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="Enter your email address"
-                       className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-600 transition-all duration-300 resize-none"
+                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-600 transition-all duration-300 resize-none"
                       required
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-bold text-black mb-2">
+                      Phone Number *
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="Enter your phone number"
+                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-600 transition-all duration-300 resize-none"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="whatsapp" className="block text-sm font-bold text-black mb-2">
+                      WhatsApp Number
+                    </label>
+                    <input
+                      type="tel"
+                      id="whatsapp"
+                      name="whatsapp"
+                      value={formData.whatsapp}
+                      onChange={handleInputChange}
+                      placeholder="Enter your WhatsApp number"
+                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-black placeholder-gray-600 transition-all duration-300 resize-none"
                     />
                   </div>
                 </div>
@@ -375,7 +412,6 @@ const PartnerPage = () => {
                 <h3 className="text-2xl font-bold text-black mb-4">Thank You for Your Interest!</h3>
                 <p className="text-gray-600 mb-6">
                   We've received your partnership application and our team will review it shortly.
-                 
                 </p>
                 <div className="text-sm text-gray-500">
                   <p>Need immediate assistance? Contact us at:</p>
