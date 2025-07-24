@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Star, Heart, ShoppingCart, Truck, Shield, Award, Play, ChevronLeft, ChevronRight, Plus, Minus, Eye, Share2, MessageCircle } from 'lucide-react';
+import { Star, Heart, ShoppingCart, Truck, Shield, Award, Play, ChevronLeft, ChevronRight, Plus, Minus, Eye, Share2, MessageCircle, Globe2, SatelliteDish, ScanLine, ShieldCheck, Timer, Zap } from 'lucide-react';
+import { Droplet, Wrench, BatteryCharging, Radar, LineChart, Ruler, Plane, Settings } from 'lucide-react';
+
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -24,18 +26,20 @@ const ProductDetailPage = () => {
       reviewCount: 234,
       inStock: true,
       images: [
-        "/images/product1.jpg",
+        "/images/product1.png",
         "/images/service1.jpg",
         "/images/product1.1.webp"
       ],
-      features: [
-        { icon: "🚜", text: "1 Acre Spray in 7 Minutes" },
-        { icon: "💧", text: "Water Usage: 8-10 Liters per Acre" },
-        { icon: "🛠️", text: "3 in 1 Agri Drone: Spray, Broadcast, Crop Health Monitoring" },
-        { icon: "🔋", text: "Smart Battery Fail-Safe" },
-        { icon: "⚖️", text: "Radar-Based Collision Detection" },
-        { icon: "📊", text: "Proven Results: Tested for 6 Years in Indian Conditions" }
-      ],
+     features: [
+  { icon: <Plane className="h-5 w-5 text-yellow-700" />, text: "1 Acre Spray in 7 Minutes" },
+  { icon: <Droplet className="h-5 w-5 text-blue-600" />, text: "Water Usage: 8-10 Liters per Acre" },
+  { icon: <Wrench className="h-5 w-5 text-gray-700" />, text: "3 in 1 Agri Drone: Spray, Broadcast, Crop Health Monitoring" },
+  { icon: <BatteryCharging className="h-5 w-5 text-green-700" />, text: "Smart Battery Fail-Safe" },
+  { icon: <Radar className="h-5 w-5 text-indigo-600" />, text: "Radar-Based Collision Detection" },
+  { icon: <LineChart className="h-5 w-5 text-red-600" />, text: "Proven Results: Tested for 6 Years in Indian Conditions" }
+],
+
+
       specifications: {
         "Structure": "Hexacopter Structure",
         "Flight Modes": "Autonomous & Loiter Mode",
@@ -54,7 +58,7 @@ With the ability to spray, broadcast, and monitor crop health, AGRIBOT A5 is a v
       shipping: {
         standard: "5-7 business days",
         express: "2-3 business days",
-        free: "Free shipping on orders over $100"
+        free: "Free shipping"
       },
       warranty: "1 Year Manufacturer Warranty",
       category: "Agriculture Drones"
@@ -75,13 +79,14 @@ With the ability to spray, broadcast, and monitor crop health, AGRIBOT A5 is a v
         "/images/product2.3.jpg"
       ],
       features: [
-        { icon: "🚜", text: "1 Acre Spray in 7 Minutes" },
-        { icon: "💧", text: "Water Usage: 8-10 Liters per Acre" },
-        { icon: "🛠️", text: "Safe for Farmers & Crops" },
-        { icon: "🔋", text: "Smart Battery Fail-Safe" },
-        { icon: "⚖️", text: "Radar-Based Collision Detection" },
-        { icon: "📊", text: "Fleet Management Dashboard" }
-      ],
+  { icon: <Plane className="h-5 w-5 text-yellow-700" />, text: "1 Acre Spray in 7 Minutes" },
+  { icon: <Droplet className="h-5 w-5 text-blue-600" />, text: "Water Usage: 8-10 Liters per Acre" },
+  { icon: <ShieldCheck className="h-5 w-5 text-green-600" />, text: "Safe for Farmers & Crops" },
+  { icon: <BatteryCharging className="h-5 w-5 text-yellow-600" />, text: "Smart Battery Fail-Safe" },
+  { icon: <Radar className="h-5 w-5 text-indigo-700" />, text: "Radar-Based Collision Detection" },
+  { icon: <LineChart className="h-5 w-5 text-purple-700" />, text: "Fleet Management Dashboard" },
+]
+,
       specifications: {
         "Structure": "Hexacopter Structure",
         "Flight Modes": "Autonomous & Loiter Mode",
@@ -101,7 +106,7 @@ With a foldable design and transport options like backpack or bike back carriage
       shipping: {
         standard: "5-7 business days",
         express: "2-3 business days",
-        free: "Free shipping on orders over $150"
+        free: "Free shipping"
       },
       warranty: "1 Year Manufacturer Warranty",
       category: "Agriculture Drones"
@@ -121,14 +126,14 @@ With a foldable design and transport options like backpack or bike back carriage
         "/images/product3.1.jpg",
         "/images/product3.2.jpg"
       ],
-      features: [
-        { icon: "📊", text: "16-Channel LiDAR for Precision" },
-        { icon: "⚡", text: "360° 3D High-Speed Scanning" },
-        { icon: "⏱️", text: "Flight Time: 25 to 180 Minutes" },
-        { icon: "🔋", text: "Battery and Engine Powered" },
-        { icon: "🌍", text: "Terrain Compatibility" },
-        { icon: "📡", text: "Data Collection & Processing" }
-      ],
+        features: [
+      { icon: <ScanLine className="h-5 w-5 text-indigo-700" />, text: "16-Channel LiDAR for Precision" },
+      { icon: <Zap className="h-5 w-5 text-yellow-600" />, text: "360° 3D High-Speed Scanning" },
+      { icon: <Timer className="h-5 w-5 text-orange-500" />, text: "Flight Time: 25 to 180 Minutes" },
+      { icon: <BatteryCharging className="h-5 w-5 text-green-700" />, text: "Battery and Engine Powered" },
+      { icon: <Globe2 className="h-5 w-5 text-blue-700" />, text: "Terrain Compatibility" },
+      { icon: <SatelliteDish className="h-5 w-5 text-purple-600" />, text: "Data Collection & Processing" }
+    ],
       specifications: {
         "Structure": "Fixed-Wing",
         "Flight Modes": "Autonomous, Loiter Mode",
@@ -145,7 +150,7 @@ Perfect for professionals in surveying and mapping, it ensures accurate terrain 
       shipping: {
         standard: "5-7 business days",
         express: "2-3 business days",
-        free: "Free shipping on orders over $200"
+        free: "Free shipping"
       },
       warranty: "1 Year Manufacturer Warranty",
       category: "Survey Drones"
@@ -288,13 +293,13 @@ Perfect for professionals in surveying and mapping, it ensures accurate terrain 
             <div className="bg-white rounded-2xl p-6 shadow-lg">
               <h3 className="text-xl font-bold text-black mb-4">Key Features</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {product.features.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3 p-3 bg-yellow-50 rounded-xl">
-                    <span className="text-xl">{feature.icon}</span>
-                    <span className="text-black font-medium text-sm">{feature.text}</span>
-                  </div>
-                ))}
-              </div>
+  {product.features.map((feature, index) => (
+    <div key={index} className="flex items-center gap-3 p-3 bg-yellow-50 rounded-xl">
+      {feature.icon}
+      <span className="text-black font-medium text-sm">{feature.text}</span>
+    </div>
+  ))}
+</div>
             </div>
 
             {/* Shipping Info */}

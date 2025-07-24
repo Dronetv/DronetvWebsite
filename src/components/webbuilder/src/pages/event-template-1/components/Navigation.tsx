@@ -40,15 +40,13 @@ const Navigation: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="h-16 w-44"> {/* Adjust height and width here */}
+          <div className="h-16 w-44">
             <img
               src="/images/expologo.png"
               alt="Drone Expo Logo"
               className="h-full w-full object-contain"
             />
           </div>
-
-
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
@@ -67,11 +65,16 @@ const Navigation: React.FC = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Button (Desktop) */}
           <div className="hidden lg:block">
-            <button className="bg-[#FF0000] hover:bg-[#FF0000]/90 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
+            <a
+              href="https://www.droneexpo.in/visitor-registration"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#FF0000] hover:bg-[#FF0000]/90 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+            >
               Register Now
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -95,9 +98,14 @@ const Navigation: React.FC = () => {
                 {item.name}
               </button>
             ))}
-            <button className="w-full mt-4 mx-4 bg-[#FF0000] hover:bg-[#FF0000]/90 text-white px-6 py-3 rounded-full font-semibold transition-colors">
+            <a
+              href="https://www.droneexpo.in/visitor-registration"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full mt-4 mx-4 bg-[#FF0000] hover:bg-[#FF0000]/90 text-white px-6 py-3 rounded-full font-semibold transition-colors text-center"
+            >
               Register Now
-            </button>
+            </a>
           </div>
         )}
       </div>

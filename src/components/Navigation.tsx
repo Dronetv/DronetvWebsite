@@ -90,29 +90,28 @@ const Navigation = () => {
             {/* Language Selector */}
             <div className="relative" ref={languageRef}>
               <button onClick={() => setIsLanguageOpen(!isLanguageOpen)} className="text-black hover:text-gray-800 flex items-center space-x-2">
-                <img src="/images/download.jpg" alt="Language" className="h-6 w-6 rounded-full" />
+                <img src="/images/download1.jpg" alt="Language" className="h-6 w-6 rounded-full" />
                 <span className="text-sm">Language</span>
               </button>
               {isLanguageOpen && (
-               <div className="absolute right-0 bg-yellow-300 border-2 border-yellow-400 rounded-lg shadow-lg mt-2 z-50">
-  <div className="p-2">
-    <ul className="text-sm text-black">
-      {[
-        'English', 'Hindi', 'Bengali', 'Telugu',
-        'Tamil', 'Kannada', 'Odia', 'Assamese',
-        'Nepali', 'Spanish', 'French', 'Chinese'
-      ].map(lang => (
-        <li
-          key={lang}
-          className="px-4 py-2 cursor-pointer hover:bg-yellow-200 rounded"
-        >
-          {lang}
-        </li>
-      ))}
-    </ul>
-  </div>
-</div>
-
+                <div className="absolute right-0 bg-yellow-300 border-2 border-yellow-400 rounded-lg shadow-lg mt-2 z-50">
+                  <div className="p-2">
+                    <ul className="text-sm text-black">
+                      {[
+                        'English', 'Hindi', 'Bengali', 'Telugu',
+                        'Tamil', 'Kannada', 'Odia', 'Assamese',
+                        'Nepali', 'Spanish', 'French', 'Chinese'
+                      ].map(lang => (
+                        <li
+                          key={lang}
+                          className="px-4 py-2 cursor-pointer hover:bg-yellow-200 rounded"
+                        >
+                          {lang}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               )}
             </div>
           </div>
@@ -132,9 +131,9 @@ const Navigation = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`xl:hidden transition-all duration-500 ease-out overflow-hidden ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}>
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-yellow-400">
+        <div className={`xl:hidden transition-all duration-500 ease-out overflow-hidden ${isMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'}`}>
+          {/* Scrolling is inside this div */}
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-yellow-400 max-h-[70vh] overflow-y-auto rounded-b-2xl">
             {navItems.map((item, index) => (
               <button
                 key={item.name}

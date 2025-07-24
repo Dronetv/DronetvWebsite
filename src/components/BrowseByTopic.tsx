@@ -3,8 +3,8 @@ import { Zap as Drone, Brain, Map, ArrowRight, Play, Users, TrendingUp } from 'l
 import { useNavigate } from 'react-router-dom';
 
 const BrowseByTopic = () => {
-  const [hoveredCard, setHoveredCard] = useState(null);
-    const navigate = useNavigate();
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   const topics = [
     {
@@ -49,7 +49,6 @@ const BrowseByTopic = () => {
         <div className="absolute top-10 left-10 w-64 h-64 bg-yellow-200/20 rounded-full animate-pulse blur-3xl"></div>
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-yellow-600/20 rounded-full animate-pulse blur-3xl" style={{ animationDelay: '2s' }}></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-yellow-500/10 rounded-full animate-spin-slow blur-2xl"></div>
-
         {/* Floating geometric shapes */}
         <div className="absolute top-20 right-20 w-16 h-16 bg-yellow-600/20 rotate-45 animate-bounce" style={{ animationDelay: '1s' }}></div>
         <div className="absolute bottom-32 left-20 w-12 h-12 bg-yellow-400/30 rounded-full animate-ping" style={{ animationDelay: '3s' }}></div>
@@ -81,6 +80,9 @@ const BrowseByTopic = () => {
                 }}
                 onMouseEnter={() => setHoveredCard(topic.id)}
                 onMouseLeave={() => setHoveredCard(null)}
+                onClick={() => navigate('/videos')}
+                role="button"
+                tabIndex={0}
               >
                 {/* Background Image */}
                 <div className="absolute inset-0">
@@ -93,13 +95,10 @@ const BrowseByTopic = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/85 to-black/90 transition-all duration-500"></div>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70 transition-all duration-500"></div>
-
                 {/* Yellow Glow Effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-transparent to-yellow-600/20 opacity-70 group-hover:opacity-90 transition-all duration-500"></div>
-
                 {/* Animated Border with Yellow Glow */}
                 <div className="absolute inset-0 rounded-3xl border-2 border-yellow-400/40 group-hover:border-yellow-400/80 transition-all duration-500 shadow-lg group-hover:shadow-yellow-400/30"></div>
-
                 {/* Yellow Glow on Hover */}
                 <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-2xl shadow-yellow-400/40"></div>
 
@@ -113,7 +112,6 @@ const BrowseByTopic = () => {
                         <IconComponent className="h-6 w-6 sm:h-8 sm:w-8 text-yellow-400 drop-shadow-lg" />
                       </div>
                     </div>
-
                     <div className="text-right">
                       <div className="text-yellow-400 font-semibold text-sm mb-1">{topic.count}</div>
                       <div className="text-yellow-300 text-xs flex items-center gap-1">
@@ -127,12 +125,10 @@ const BrowseByTopic = () => {
                   <h3 className="text-xl sm:text-2xl font-black text-yellow-200 mb-3 sm:mb-4 group-hover:scale-105 transition-all duration-500 drop-shadow-lg group-hover:text-yellow-300">
                     {topic.name}
                   </h3>
-
                   {/* Description */}
                   <p className="text-sm sm:text-base text-yellow-200 leading-relaxed mb-3 sm:mb-4 group-hover:text-yellow-300 transition-colors duration-300">
                     {topic.description}
                   </p>
-
                   {/* Subcategories */}
                   <div className="mb-3 sm:mb-4 flex-grow">
                     <h4 className="text-yellow-400 font-semibold mb-2 sm:mb-3 text-xs sm:text-sm">Popular Topics:</h4>
@@ -148,7 +144,6 @@ const BrowseByTopic = () => {
                       ))}
                     </div>
                   </div>
-
                   {/* Stats */}
                   <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-3 sm:mb-4">
                     <div className="text-center">
@@ -164,13 +159,14 @@ const BrowseByTopic = () => {
                       <div className="text-yellow-300 text-xs">Events</div>
                     </div>
                   </div>
-
                   {/* CTA Button */}
                   <div className="flex justify-center mt-auto">
                     <div className="flex justify-center mt-auto">
                       <button
-                        onClick={() => navigate('/videos')}
                         className="bg-yellow-400/20 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 border border-yellow-400/30 group hover:bg-yellow-400/30 hover:scale-105 hover:border-yellow-400/50 hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-500 flex items-center gap-2"
+                        // onClick handled by card itself
+                        tabIndex={-1}
+                        type="button"
                       >
                         <Play className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-400" />
                         <span className="text-yellow-400 font-semibold text-sm sm:text-base">
@@ -181,7 +177,6 @@ const BrowseByTopic = () => {
                     </div>
                   </div>
                 </div>
-
                 {/* Enhanced Floating Particles */}
                 <div className="absolute inset-0 overflow-hidden rounded-3xl">
                   {[...Array(12)].map((_, i) => (

@@ -233,7 +233,7 @@ const CompaniesPage: React.FC = () => {
                     key={company.companyName + idx}
                     className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
                   >
-                   <div className="relative p-8 bg-[#f1ee8e] transition-all duration-500">
+                    <div className="relative p-8 bg-[#f1ee8e] transition-all duration-500">
 
                       <div className="flex justify-center mb-4">
                         <div className="relative">
@@ -243,7 +243,8 @@ const CompaniesPage: React.FC = () => {
                               <img
                                 src={company.companyLogo}
                                 alt={company.companyName}
-                                className="w-12 h-12 rounded-2xl object-cover object-center bg-white"
+                                className="w-12 h-12 object-contain object-center bg-white" // <-- original shape!
+                                style={{ background: "#fff" }}
                               />
                             ) : (
                               <div className="w-12 h-12 bg-gray-200 rounded-2xl"></div>
@@ -251,6 +252,7 @@ const CompaniesPage: React.FC = () => {
                           </div>
                         </div>
                       </div>
+
 
 
                       <div className="text-center">

@@ -10,8 +10,7 @@ const HeroSection: React.FC = () => {
   });
 
   useEffect(() => {
-    const eventDate = new Date('2025-09-25T09:00:00').getTime(); // Updated date
-
+    const eventDate = new Date('2025-09-25T09:00:00').getTime();
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const distance = eventDate - now;
@@ -31,29 +30,38 @@ const HeroSection: React.FC = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: 'url("https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=1920")'
-        }}
-      >
-        <div className="absolute inset-0 bg-black/60"></div>
+      {/* YouTube Video BG */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+        <iframe
+          className="w-full h-full object-cover"
+          style={{
+            position: 'absolute',
+            top: 0, left: 0, width: '100%', height: '100%',
+            minHeight: '100vh'
+          }}
+          src="https://www.youtube.com/embed/tZrpJmS_f40?autoplay=1&mute=1&controls=0&loop=1&playlist=tZrpJmS_f40&modestbranding=1&showinfo=0&rel=0"
+          title="Drone Expo Background"
+          frameBorder="0"
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+        />
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/60 z-10"></div>
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-10 text-center pt-32">
+      <div className="container mx-auto px-4 relative z-20 text-center pt-32">
         <div className="max-w-4xl mx-auto">
-          <h1 
-            data-aos="fade-up" 
+          <h1
+            data-aos="fade-up"
             data-aos-delay="300"
             className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
           >
             Drone <span className="text-[#FFD400]">Expo 2025</span>
           </h1>
-          
-          <div 
-            data-aos="fade-up" 
+
+          <div
+            data-aos="fade-up"
             data-aos-delay="600"
             className="flex flex-wrap justify-center gap-6 mb-8 text-white"
           >
@@ -72,8 +80,8 @@ const HeroSection: React.FC = () => {
           </div>
 
           {/* Countdown Timer */}
-          <div 
-            data-aos="fade-up" 
+          <div
+            data-aos="fade-up"
             data-aos-delay="900"
             className="grid grid-cols-4 gap-4 max-w-md mx-auto mb-12"
           >
@@ -101,8 +109,8 @@ const HeroSection: React.FC = () => {
           </div>
 
           {/* Buttons */}
-          <div 
-            data-aos="fade-up" 
+          <div
+            data-aos="fade-up"
             data-aos-delay="1200"
             className="flex flex-col sm:flex-row gap-6 justify-center"
           >

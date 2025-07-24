@@ -25,6 +25,7 @@ import ScrollingFooter from './components/ScrollingFooter';
 import GalleryPage from './components/GalleryPage';
 import GalleryGlimpse from './components/GalleryGlimpse';
 import SubApp from './components/webbuilder/src/App';
+import OurPartners from './components/Ourpartners';
 
 const HomePage = () => (
   <>
@@ -33,6 +34,7 @@ const HomePage = () => (
     <UpcomingEvents />
     <BrowseByTopic />
     <FeaturedCompanies />
+    <OurPartners />
     <GalleryGlimpse />
     <Newsletter />
   </>
