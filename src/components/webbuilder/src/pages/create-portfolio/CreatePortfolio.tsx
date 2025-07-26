@@ -13,20 +13,20 @@ const CreatePortfolio: React.FC = () => {
       icon: <Building2 size={48} />,
       available: true
     },
-    // {
-    //   id: 'professional',
-    //   title: 'Professional',
-    //   description: 'Build your personal professional portfolio',
-    //   icon: <User size={48} />,
-    //   available: true
-    // },
-    // {
-    //   id: 'event',
-    //   title: 'Event Manager',
-    //   description: 'Showcase your event management services',
-    //   icon: <Calendar size={48} />,
-    //   available: true
-    // }
+    {
+      id: 'professional',
+      title: 'Professional',
+      description: 'Build your personal professional portfolio',
+      icon: <User size={48} />,
+      available: true
+    },
+    {
+      id: 'event',
+      title: 'Event Manager',
+      description: 'Showcase your event management services',
+      icon: <Calendar size={48} />,
+      available: true
+    }
   ];
 
   const handleCategorySelect = (categoryId: string) => {

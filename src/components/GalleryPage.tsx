@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Filter, ChevronDown, X, ChevronLeft, ChevronRight, Download, Share2, Heart, Calendar, MapPin, Users } from 'lucide-react';
+import { Search, ChevronDown, X, ChevronLeft, ChevronRight, Download, Share2, Heart, Calendar, MapPin, Users } from 'lucide-react';
 
 const GalleryPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -12,10 +12,190 @@ const GalleryPage = () => {
   const imagesPerPage = 24;
 
   const categories = ['All', 'Events', 'Collaborations', 'Conferences', 'Interviews', 'Product Launches', 'Team Photos'];
-
-  const allImages = [
+const allImages = [
     {
       id: 1,
+      src: "/images/50.png",
+      title: "Tech Innovations Showcase",
+      category: "Events",
+      date: "July 10, 2023",
+      location: "New York, NY",
+      attendees: "100+",
+      description: "Showcasing the latest innovations in drone technology.",
+      tags: ["dev", "vamsi"]
+    },
+    {
+      id: 2,
+      src: "/images/51.png",
+      title: "Global Partnerships Panel",
+      category: "Events",
+      date: "July 12, 2023",
+      location: "London, UK",
+      attendees: "120+",
+      description: "Discussing strategic partnerships in the drone industry.",
+      tags: ["dev", "sandeep", "pranay"]
+    },
+    {
+      id: 3,
+      src: "/images/52.png",
+      title: "Drone Education Summit",
+      category: "Events",
+      date: "July 15, 2023",
+      location: "Berlin, Germany",
+      attendees: "150+",
+      description: "Gathering experts to discuss the future of drone education.",
+      tags: ["dev", "payal", "pallavi", "supriya", "sandeep"]
+    },
+
+    {
+      id: 5,
+      src: "/images/54.png",
+      title: "Drone Security and Safety Workshop",
+      category: "Events",
+      date: "July 20, 2023",
+      location: "Sydney, Australia",
+      attendees: "80+",
+      description: "Focusing on safety protocols and security in drone operations.",
+      
+    },
+    {
+      id: 6,
+      src: "/images/55.png",
+      title: "UAV Industry Trends",
+      category: "Events",
+      date: "July 22, 2023",
+      location: "Virtual",
+      attendees: "150+",
+      description: "Analyzing the latest trends and innovations in the UAV industry.",
+     
+    },
+
+    {
+      id: 8,
+      src: "/images/57.png",
+      title: "Autonomous Drone Operations Seminar",
+      category: "Events",
+      date: "July 28, 2023",
+      location: "Singapore",
+      attendees: "120+",
+      description: "Discussing the future of autonomous drone systems.",
+      tags: ["dev","pranay"]
+    },
+    {
+      id: 9,
+      src: "/images/58.png",
+      title: "Drone Surveying and Mapping Workshop",
+      category: "Events",
+      date: "August 1, 2023",
+      location: "Paris, France",
+      attendees: "90+",
+      description: "Hands-on workshop focusing on drone surveying techniques.",
+      tags: ["dev"]
+    },
+    {
+      id: 10,
+      src: "/images/59.png",
+      title: "Future of Aerial Imaging Conference",
+      category: "Events",
+      date: "August 5, 2023",
+      location: "Tokyo, Japan",
+      attendees: "300+",
+      description: "A deep dive into the future of aerial imaging and its applications.",
+      tags: ["dev"]
+    },
+  
+    {
+      id: 12,
+      src: "/images/61.png",
+      title: "Drone Delivery Solutions Expo",
+      category: "Events",
+      date: "August 12, 2023",
+      location: "Dubai, UAE",
+      attendees: "250+",
+      description: "Exploring the latest advancements in drone delivery solutions.",
+      tags: ["dev"]
+    },
+    {
+      id: 13,
+      src: "/images/62.png",
+      title: "Drone Industry Roundtable",
+      category: "Events",
+      date: "August 15, 2023",
+      location: "Los Angeles, CA",
+      attendees: "70+",
+      description: "Industry leaders discuss the future of the drone market.",
+      tags: ["dev"]
+    },
+    {
+      id: 14,
+      src: "/images/63.png",
+      title: "Geospatial Data and UAV Integration",
+      category: "Events",
+      date: "August 17, 2023",
+      location: "Virtual",
+      attendees: "130+",
+      description: "Webinar on integrating UAVs with geospatial data for mapping.",
+      tags: ["vamsi"]
+    },
+    {
+      id: 15,
+      src: "/images/64.png",
+      title: "Drone Technology Innovations Showcase",
+      category: "Events",
+      date: "August 20, 2023",
+      location: "San Francisco, CA",
+      attendees: "200+",
+      description: "A showcase of the latest innovations in drone technology.",
+      tags: ["dev"]
+    },
+ 
+
+    {
+      id: 18,
+      src: "/images/67.png",
+      title: "Drones in Environmental Conservation Expo",
+      category: "Events",
+      date: "September 5, 2023",
+      location: "Berlin, Germany",
+      attendees: "80+",
+      description: "Exploring the use of drones in environmental conservation efforts.",
+      tags: ["dev","pranay"]
+    },
+    {
+      id: 19,
+      src: "/images/68.png",
+      title: "Autonomous Drone Systems Workshop",
+      category: "Events",
+      date: "September 10, 2023",
+      location: "Paris, France",
+      attendees: "60+",
+      description: "Hands-on workshop on autonomous drone technologies.",
+      tags: ["dev"]
+    },
+    {
+      id: 20,
+      src: "/images/69.png",
+      title: "Drone Pilot Training and Certification",
+      category: "Events",
+      date: "September 15, 2023",
+      location: "Toronto, Canada",
+      attendees: "40+",
+      description: "Certification program for aspiring drone pilots.",
+      tags: ["sandeep"]
+    },
+    {
+      id: 21,
+      src: "/images/70.png",
+      title: "UAV Innovations and Safety Conference",
+      category: "Events",
+      date: "September 20, 2023",
+      location: "Sydney, Australia",
+      attendees: "250+",
+      description: "Focusing on UAV innovations and safety standards.",
+      tags: ["dev"]
+    },
+    {
+      id: 22,
       src: "/images/1.png",
       title: "DroneWorld Conference 2024 Opening Ceremony",
       category: "Collaborations",
@@ -23,10 +203,10 @@ const GalleryPage = () => {
       location: "San Francisco, CA",
       attendees: "2,500+",
       description: "Grand opening ceremony of the largest drone technology conference with industry leaders.",
-      tags: ["Teja","Dev"]
+      tags: ["Teja", "Dev"]
     },
     {
-      id: 2,
+      id: 23,
       src: "/images/2.png",
       title: "AI Partnership Announcement",
       category: "Interviews",
@@ -37,7 +217,7 @@ const GalleryPage = () => {
       tags: ["Dev"]
     },
     {
-      id: 3,
+      id: 24,
       src: "/images/3.png",
       title: "GIS Mapping Workshop Session",
       category: "Interviews",
@@ -45,10 +225,9 @@ const GalleryPage = () => {
       location: "Austin, TX",
       attendees: "200+",
       description: "Hands-on workshop demonstrating advanced GIS mapping techniques.",
-      
     },
     {
-      id: 4,
+      id: 25,
       src: "/images/4.png",
       title: "Drone Technology Exhibition",
       category: "Interviews",
@@ -56,10 +235,10 @@ const GalleryPage = () => {
       location: "San Francisco, CA",
       attendees: "3,000+",
       description: "Latest drone technology showcase with live demonstrations.",
-     tags: ["Gosharpener"]
+      tags: ["Gosharpener"]
     },
     {
-      id: 5,
+      id: 26,
       src: "/images/5.png",
       title: "Industry Leaders Panel Discussion",
       category: "Interviews",
@@ -69,7 +248,7 @@ const GalleryPage = () => {
       description: "Panel discussion with top executives from leading drone companies."
     },
     {
-      id: 6,
+      id: 27,
       src: "/images/6.png",
       title: "New Product Launch Event",
       category: "Interviews",
@@ -79,7 +258,7 @@ const GalleryPage = () => {
       description: "Exclusive launch event for the latest drone technology innovations."
     },
     {
-      id: 7,
+      id: 28,
       src: "/images/7.png",
       title: "Team Building Retreat",
       category: "Team Photos",
@@ -87,10 +266,10 @@ const GalleryPage = () => {
       location: "Napa Valley, CA",
       attendees: "50+",
       description: "Annual team building retreat with outdoor activities and team bonding.",
-       tags: ["Dev","Pushpak"]
+      tags: ["Dev", "Pushpak"]
     },
     {
-      id: 8,
+      id: 29,
       src: "/images/8.png",
       title: "University Partnership Signing",
       category: "Events",
@@ -98,10 +277,10 @@ const GalleryPage = () => {
       location: "Boston, MA",
       attendees: "100+",
       description: "Partnership agreement signing with leading universities for research collaboration.",
-       tags: ["Vamsi","Pushpak"]
+      tags: ["Vamsi", "Pushpak"]
     },
     {
-      id: 9,
+      id: 30,
       src: "/images/9.png",
       title: "Drone Safety Training Workshop",
       category: "Events",
@@ -109,10 +288,10 @@ const GalleryPage = () => {
       location: "Denver, CO",
       attendees: "300+",
       description: "Comprehensive safety training workshop for drone operators and pilots.",
-       tags: ["Dev","Sandeep","Ramesh"]
+      tags: ["Dev", "Sandeep", "Ramesh"]
     },
     {
-      id: 10,
+      id: 31,
       src: "/images/10.png",
       title: "International Drone Summit",
       category: "Events",
@@ -120,10 +299,10 @@ const GalleryPage = () => {
       location: "New York, NY",
       attendees: "2,000+",
       description: "Global summit bringing together international drone technology experts.",
-       tags: ["Dev"]
+      tags: ["Dev"]
     },
     {
-      id: 11,
+      id: 32,
       src: "/images/11.png",
       title: "Startup Collaboration Meetup",
       category: "Collaborations",
@@ -131,10 +310,10 @@ const GalleryPage = () => {
       location: "Silicon Valley, CA",
       attendees: "250+",
       description: "Networking event connecting startups with established drone companies.",
-       tags: ["Dev","Pranay"]
+      tags: ["Dev", "Pranay"]
     },
     {
-      id: 12,
+      id: 33,
       src: "/images/12.png",
       title: "Annual Company Celebration",
       category: "Interviews",
@@ -142,10 +321,9 @@ const GalleryPage = () => {
       location: "San Francisco, CA",
       attendees: "200+",
       description: "Annual company celebration recognizing achievements and milestones.",
-
     },
     {
-      id: 13,
+      id: 34,
       src: "/images/13.png",
       title: "Environmental Monitoring Conference",
       category: "Events",
@@ -153,10 +331,10 @@ const GalleryPage = () => {
       location: "Portland, OR",
       attendees: "900+",
       description: "Conference focused on drone applications in environmental monitoring.",
-       tags: ["Dev","Pallavi",]
+      tags: ["Dev", "Pallavi"]
     },
     {
-      id: 14,
+      id: 35,
       src: "/images/14.png",
       title: "Racing Drone Championship",
       category: "Collaborations",
@@ -164,10 +342,10 @@ const GalleryPage = () => {
       location: "Las Vegas, NV",
       attendees: "5,000+",
       description: "International drone racing championship with live competitions.",
-        tags: ["Dev","Gowrav Reddy",]
+      tags: ["Dev", "Gowrav Reddy"]
     },
     {
-      id: 15,
+      id: 36,
       src: "/images/15.png",
       title: "AI Research Collaboration",
       category: "Team Photos",
@@ -175,10 +353,10 @@ const GalleryPage = () => {
       location: "Cambridge, MA",
       attendees: "75+",
       description: "Research collaboration announcement with MIT AI Lab.",
-       tags: ["Dev"]
+      tags: ["Dev"]
     },
     {
-      id: 16,
+      id: 37,
       src: "/images/16.png",
       title: "Precision Agriculture Workshop",
       category: "Interviews",
@@ -189,7 +367,7 @@ const GalleryPage = () => {
       tags: ["Sakthivelan"]
     },
     {
-      id: 17,
+      id: 38,
       src: "/images/17.png",
       title: "Drone Delivery Demo Day",
       category: "Interviews",
@@ -197,11 +375,10 @@ const GalleryPage = () => {
       location: "Phoenix, AZ",
       attendees: "600+",
       description: "Live demonstration of autonomous drone delivery systems.",
-     
       tags: ["Dr. Nirranjan Kumar Gupta"]
     },
     {
-      id: 18,
+      id: 39,
       src: "/images/18.png",
       title: "Holiday Team Party",
       category: "Team Photos",
@@ -209,10 +386,10 @@ const GalleryPage = () => {
       location: "San Francisco, CA",
       attendees: "120+",
       description: "Annual holiday celebration with the entire Drone TV team.",
-       tags: ["Dr. Nirranjan Kumar Gupta","Dev"]
+      tags: ["Dr. Nirranjan Kumar Gupta", "Dev"]
     },
     {
-      id: 19,
+      id: 40,
       src: "/images/19.png",
       title: "Government Partnership Forum",
       category: "Events",
@@ -222,7 +399,7 @@ const GalleryPage = () => {
       description: "Forum discussing government partnerships in drone technology."
     },
     {
-      id: 20,
+      id: 41,
       src: "/images/20.png",
       title: "Advanced Pilot Training",
       category: "Collaborations",
@@ -230,10 +407,10 @@ const GalleryPage = () => {
       location: "Miami, FL",
       attendees: "150+",
       description: "Advanced pilot training program for commercial drone operators.",
-       tags: ["Dev","Ajitha Surabhi"]
+      tags: ["Dev", "Ajitha Surabhi"]
     },
     {
-      id: 21,
+      id: 42,
       src: "/images/21.png",
       title: "Tech Innovation Showcase",
       category: "Events",
@@ -241,10 +418,10 @@ const GalleryPage = () => {
       location: "Austin, TX",
       attendees: "1,800+",
       description: "Showcase of the latest innovations in drone and AI technology.",
-       tags: ["Dev","Payal","vamsi"]
+      tags: ["Dev", "Payal", "vamsi"]
     },
     {
-      id: 22,
+      id: 43,
       src: "/images/22.png",
       title: "European Expansion Launch",
       category: "Conferences",
@@ -252,10 +429,10 @@ const GalleryPage = () => {
       location: "London, UK",
       attendees: "400+",
       description: "Official launch of Drone TV's expansion into European markets.",
-       tags: ["Dev","Rini Bansal"]
+      tags: ["Dev", "Rini Bansal"]
     },
     {
-      id: 23,
+      id: 44,
       src: "/images/23.png",
       title: "Mapping Technology Conference",
       category: "Interviews",
@@ -263,10 +440,10 @@ const GalleryPage = () => {
       location: "Denver, CO",
       attendees: "1,200+",
       description: "Conference focused on advances in drone mapping technology.",
-       tags: ["Dev","MGR"]
+      tags: ["Dev", "MGR"]
     },
     {
-      id: 24,
+      id: 45,
       src: "/images/25.png",
       title: "Company Milestone Celebration",
       category: "Interviews",
@@ -274,258 +451,258 @@ const GalleryPage = () => {
       location: "San Francisco, CA",
       attendees: "80+",
       description: "Celebrating major company milestones and achievements.",
-     tags: ["Rini Bansal"]
+      tags: ["Rini Bansal"]
     },
-  //   {
-  //   "id": 25,
-  //   "src": "/images/28.png",
-  //   "title": "Event Title 25",
-  //   "category": "Team Photos",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "250+",
-  //   "description": "Description for event 25.",
-  //   "tags": ["Dev", "kamala","Purvik"]
-  // },
-  // {
-  //   "id": 26,
-  //   "src": "/images/29.png",
-  //   "title": "Event Title 26",
-  //   "category": "Team Photos",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "260+",
-  //   "description": "Description for event 26."
-    
-  // },
-  // {
-  //   "id": 27,
-  //   "src": "/images/30.png",
-  //   "title": "Event Title 27",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "270+",
-  //   "description": "Description for event 27.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 28,
-  //   "src": "/images/31.png",
-  //   "title": "Event Title 28",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "280+",
-  //   "description": "Description for event 28.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 29,
-  //   "src": "/images/32.png",
-  //   "title": "Event Title 29",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "290+",
-  //   "description": "Description for event 29.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 30,
-  //   "src": "/images/33.png",
-  //   "title": "Event Title 30",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "300+",
-  //   "description": "Description for event 30.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 31,
-  //   "src": "/images/34.png",
-  //   "title": "Event Title 31",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "310+",
-  //   "description": "Description for event 31.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 32,
-  //   "src": "/images/35.png",
-  //   "title": "Event Title 32",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "320+",
-  //   "description": "Description for event 32.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 33,
-  //   "src": "/images/36.png",
-  //   "title": "Event Title 33",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "330+",
-  //   "description": "Description for event 33.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 34,
-  //   "src": "/images/37.png",
-  //   "title": "Event Title 34",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "340+",
-  //   "description": "Description for event 34.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 35,
-  //   "src": "/images/38.png",
-  //   "title": "Event Title 35",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "350+",
-  //   "description": "Description for event 35.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 36,
-  //   "src": "/images/39.png",
-  //   "title": "Event Title 36",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "360+",
-  //   "description": "Description for event 36.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 37,
-  //   "src": "/images/40.png",
-  //   "title": "Event Title 37",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "370+",
-  //   "description": "Description for event 37.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 38,
-  //   "src": "/images/41.png",
-  //   "title": "Event Title 38",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "380+",
-  //   "description": "Description for event 38.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 39,
-  //   "src": "/images/42.png",
-  //   "title": "Event Title 39",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "390+",
-  //   "description": "Description for event 39.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 40,
-  //   "src": "/images/43.png",
-  //   "title": "Event Title 40",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "400+",
-  //   "description": "Description for event 40.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 41,
-  //   "src": "/images/44.png",
-  //   "title": "Event Title 41",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "410+",
-  //   "description": "Description for event 41.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 42,
-  //   "src": "/images/45.png",
-  //   "title": "Event Title 42",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "420+",
-  //   "description": "Description for event 42.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 43,
-  //   "src": "/images/46.png",
-  //   "title": "Event Title 43",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "430+",
-  //   "description": "Description for event 43.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  // {
-  //   "id": 44,
-  //   "src": "/images/47.png",
-  //   "title": "Event Title 44",
-  //   "category": "Events",
-  //   "date": "June 2025",
-  //   "location": "TBD",
-  //   "attendees": "440+",
-  //   "description": "Description for event 44.",
-  //   "tags": ["Dev", "Team"]
-  // },
-  
-    
+    //   {
+    //   "id": 25,
+    //   "src": "/images/28.png",
+    //   "title": "Event Title 25",
+    //   "category": "Team Photos",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "250+",
+    //   "description": "Description for event 25.",
+    //   "tags": ["Dev", "kamala","Purvik"]
+    // },
+    // {
+    //   "id": 26,
+    //   "src": "/images/29.png",
+    //   "title": "Event Title 26",
+    //   "category": "Team Photos",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "260+",
+    //   "description": "Description for event 26."
+
+    // },
+    // {
+    //   "id": 27,
+    //   "src": "/images/30.png",
+    //   "title": "Event Title 27",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "270+",
+    //   "description": "Description for event 27.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 28,
+    //   "src": "/images/31.png",
+    //   "title": "Event Title 28",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "280+",
+    //   "description": "Description for event 28.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 29,
+    //   "src": "/images/32.png",
+    //   "title": "Event Title 29",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "290+",
+    //   "description": "Description for event 29.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 30,
+    //   "src": "/images/33.png",
+    //   "title": "Event Title 30",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "300+",
+    //   "description": "Description for event 30.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 31,
+    //   "src": "/images/34.png",
+    //   "title": "Event Title 31",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "310+",
+    //   "description": "Description for event 31.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 32,
+    //   "src": "/images/35.png",
+    //   "title": "Event Title 32",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "320+",
+    //   "description": "Description for event 32.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 33,
+    //   "src": "/images/36.png",
+    //   "title": "Event Title 33",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "330+",
+    //   "description": "Description for event 33.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 34,
+    //   "src": "/images/37.png",
+    //   "title": "Event Title 34",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "340+",
+    //   "description": "Description for event 34.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 35,
+    //   "src": "/images/38.png",
+    //   "title": "Event Title 35",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "350+",
+    //   "description": "Description for event 35.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 36,
+    //   "src": "/images/39.png",
+    //   "title": "Event Title 36",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "360+",
+    //   "description": "Description for event 36.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 37,
+    //   "src": "/images/40.png",
+    //   "title": "Event Title 37",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "370+",
+    //   "description": "Description for event 37.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 38,
+    //   "src": "/images/41.png",
+    //   "title": "Event Title 38",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "380+",
+    //   "description": "Description for event 38.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 39,
+    //   "src": "/images/42.png",
+    //   "title": "Event Title 39",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "390+",
+    //   "description": "Description for event 39.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 40,
+    //   "src": "/images/43.png",
+    //   "title": "Event Title 40",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "400+",
+    //   "description": "Description for event 40.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 41,
+    //   "src": "/images/44.png",
+    //   "title": "Event Title 41",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "410+",
+    //   "description": "Description for event 41.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 42,
+    //   "src": "/images/45.png",
+    //   "title": "Event Title 42",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "420+",
+    //   "description": "Description for event 42.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 43,
+    //   "src": "/images/46.png",
+    //   "title": "Event Title 43",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "430+",
+    //   "description": "Description for event 43.",
+    //   "tags": ["Dev", "Team"]
+    // },
+    // {
+    //   "id": 44,
+    //   "src": "/images/47.png",
+    //   "title": "Event Title 44",
+    //   "category": "Events",
+    //   "date": "June 2025",
+    //   "location": "TBD",
+    //   "attendees": "440+",
+    //   "description": "Description for event 44.",
+    //   "tags": ["Dev", "Team"]
+    // },
+
+
   ];
 
-  useEffect(() => {
-    let filtered = allImages;
+useEffect(() => {
+  let filtered = allImages;
 
-    // Filter by category
-    if (selectedCategory !== 'All') {
-      filtered = filtered.filter(image => image.category === selectedCategory);
-    }
+  // Filter by category
+  if (selectedCategory !== 'All') {
+    filtered = filtered.filter(image => image.category === selectedCategory);
+  }
 
-    // Filter by search query
+  // Filter by search query (tags and other fields)
   if (searchQuery) {
-  const lowerQuery = searchQuery.toLowerCase();
-  filtered = filtered.filter(image =>
-    image.title.toLowerCase().includes(lowerQuery) ||
-    image.description.toLowerCase().includes(lowerQuery) ||
-    image.location.toLowerCase().includes(lowerQuery) ||
-    (image.tags && image.tags.some(tag => tag.toLowerCase().includes(lowerQuery))) // 👈 NEW
-  );
-}
+    const lowerQuery = searchQuery.toLowerCase();
+    filtered = filtered.filter(image =>
+      image.title.toLowerCase().includes(lowerQuery) ||
+      image.description.toLowerCase().includes(lowerQuery) ||
+      image.location.toLowerCase().includes(lowerQuery) ||
+      (image.tags && image.tags.some(tag => tag.toLowerCase().includes(lowerQuery))) // Search through tags
+    );
+  }
 
+  // Sort by ID (ascending order)
+  filtered.sort((a, b) => a.id - b.id);
 
-    // Sort by date (newest first)
-    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    setFilteredImages(filtered);
-    setCurrentPage(1);
-  }, [selectedCategory, searchQuery]);
+  setFilteredImages(filtered);
+  setCurrentPage(1); // Reset to the first page after filtering
+}, [selectedCategory, searchQuery]); // Runs when category or search query changes
+ // Runs when category or search query changes
 
   const indexOfLastImage = currentPage * imagesPerPage;
   const indexOfFirstImage = indexOfLastImage - imagesPerPage;
@@ -571,152 +748,130 @@ const GalleryPage = () => {
           <div className="w-24 h-1 bg-black mx-auto rounded-full"></div>
         </div>
       </section>
+
       {/* Filter Section */}
       <section className="py-2 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex flex-col lg:flex-row gap-2 items-center justify-between">
-      {/* Search Bar */}
-      <div className="relative flex-1 max-w-xs">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60" />
-        <input
-          type="text"
-          placeholder="Search photos..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-black/20 bg-yellow-200 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 font-medium text-sm transition-all duration-300"
-        />
-      </div>
-
-      {/* Category Filter */}
-      <div className="relative w-full lg:w-auto">
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className="w-full lg:w-auto appearance-none bg-yellow-200 backdrop-blur-sm border-2 border-black/20 rounded-xl px-3 py-2 pr-8 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300"
-        >
-          {categories.map(category => (
-            <option key={category} value={category}>
-              {category === 'All' ? 'All Photos' : category}
-            </option>
-          ))}
-        </select>
-        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
-      </div>
-    </div>
-
-    {/* Results Count */}
-    {/* <div className="mt-2 text-center">
-      <span className="text-black/70 font-medium">
-        Showing {currentImages.length} of {filteredImages.length} photos
-      </span>
-    </div> */}
-  </div>
-</section>
-
-
-      {/* Photo Grid Section */}
-     <section className="py-4 sm:py-6 bg-yellow-400 mt-4 sticky top-16 z-40 border-b border-black/10">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    {currentImages.length === 0 ? (
-      <div className="text-center py-16">
-        <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 max-w-md mx-auto">
-          <Search className="h-16 w-16 text-black/40 mx-auto mb-4" />
-          <h3 className="text-2xl font-bold text-black mb-2">No photos found</h3>
-          <p className="text-black/60">Try adjusting your search or filter</p>
-        </div>
-      </div>
-    ) : (
-      <>
-        {/* Masonry Grid Layout */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-6 space-y-4 sm:space-y-6">
-          {currentImages.map((image, index) => (
-            <div
-              key={image.id}
-              className="break-inside-avoid group cursor-pointer"
-              onClick={() => openLightbox(image, index)}
-              style={{
-                animationDelay: `${index * 50}ms`,
-                animation: `fadeInUp 0.6s ease-out ${index * 50}ms both`
-              }}
-            >
-              <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
-                <img
-                  src={image.src}
-                  alt={image.title}
-                  className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  {/* <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h3 className="text-white font-bold text-sm mb-1 line-clamp-2">
-                      {image.title}
-                    </h3>
-                    <div className="flex items-center gap-2 text-white/80 text-xs">
-                      <Calendar className="h-3 w-3" />
-                      {new Date(image.date).toLocaleDateString()}
-                    </div>
-                  </div> */}
-                </div>
-
-                {/* Category Badge */}
-                <div className="absolute top-3 right-3 bg-black/80 text-yellow-400 px-2 py-1 rounded-full text-xs font-bold opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  {image.category}
-                </div>
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row gap-2 items-center justify-between">
+            {/* Search Bar */}
+            <div className="relative flex-1 max-w-xs">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60" />
+              <input
+                type="text"
+                placeholder="Search photos..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-black/20 bg-yellow-200 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 font-medium text-sm transition-all duration-300"
+              />
             </div>
-          ))}
-        </div>
 
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="flex justify-center mt-12">
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-                className="px-4 py-2 rounded-xl bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black font-medium hover:bg-white hover:border-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+            {/* Category Filter */}
+            <div className="relative w-full lg:w-auto">
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full lg:w-auto appearance-none bg-yellow-200 backdrop-blur-sm border-2 border-black/20 rounded-xl px-3 py-2 pr-8 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300"
               >
-                Previous
-              </button>
-
-              {[...Array(totalPages)].map((_, index) => {
-                const page = index + 1;
-                if (page === currentPage || page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)) {
-                  return (
-                    <button
-                      key={page}
-                      onClick={() => setCurrentPage(page)}
-                      className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${page === currentPage
-                        ? 'bg-black text-yellow-400 border-2 border-black'
-                        : 'bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black hover:bg-white hover:border-black/40'
-                        }`}
-                    >
-                      {page}
-                    </button>
-                  );
-                } else if (page === currentPage - 2 || page === currentPage + 2) {
-                  return <span key={page} className="px-2 text-black/60">...</span>;
-                }
-                return null;
-              })}
-
-              <button
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                className="px-4 py-2 rounded-xl bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black font-medium hover:bg-white hover:border-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-              >
-                Next
-              </button>
+                {categories.map(category => (
+                  <option key={category} value={category}>
+                    {category === 'All' ? 'All Photos' : category}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
             </div>
           </div>
-        )}
-      </>
-    )}
-  </div>
-</section>
+        </div>
+      </section>
 
+      {/* Photo Grid Section */}
+      <section className="py-4 sm:py-6 bg-yellow-400 mt-4 sticky top-16 z-40 border-b border-black/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {currentImages.length === 0 ? (
+            <div className="text-center py-16">
+              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 max-w-md mx-auto">
+                <Search className="h-16 w-16 text-black/40 mx-auto mb-4" />
+                <h3 className="text-2xl font-bold text-black mb-2">No photos found</h3>
+                <p className="text-black/60">Try adjusting your search or filter</p>
+              </div>
+            </div>
+          ) : (
+            <>
+              {/* Masonry Grid Layout */}
+              <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-6 space-y-4 sm:space-y-6">
+                {currentImages.map((image, index) => (
+                  <div
+                    key={image.id}
+                    className="break-inside-avoid group cursor-pointer"
+                    onClick={() => openLightbox(image, index)}
+                    style={{
+                      animationDelay: `${index * 50}ms`,
+                      animation: `fadeInUp 0.6s ease-out ${index * 50}ms both`
+                    }}
+                  >
+                    <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+                      <img
+                        src={image.src}
+                        alt={image.title}
+                        className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                      <div className="absolute top-3 right-3 bg-black/80 text-yellow-400 px-2 py-1 rounded-full text-xs font-bold opacity-0 group-hover:opacity-100 transition-all duration-500">
+                        {image.category}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex justify-center mt-12">
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                      disabled={currentPage === 1}
+                      className="px-4 py-2 rounded-xl bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black font-medium hover:bg-white hover:border-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                    >
+                      Previous
+                    </button>
+
+                    {[...Array(totalPages)].map((_, index) => {
+                      const page = index + 1;
+                      if (page === currentPage || page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)) {
+                        return (
+                          <button
+                            key={page}
+                            onClick={() => setCurrentPage(page)}
+                            className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${page === currentPage
+                              ? 'bg-black text-yellow-400 border-2 border-black'
+                              : 'bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black hover:bg-white hover:border-black/40'
+                              }`}
+                          >
+                            {page}
+                          </button>
+                        );
+                      } else if (page === currentPage - 2 || page === currentPage + 2) {
+                        return <span key={page} className="px-2 text-black/60">...</span>;
+                      }
+                      return null;
+                    })}
+
+                    <button
+                      onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                      disabled={currentPage === totalPages}
+                      className="px-4 py-2 rounded-xl bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black font-medium hover:bg-white hover:border-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </section>
 
       {/* Lightbox Modal */}
       {selectedImage && (
