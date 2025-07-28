@@ -12,78 +12,98 @@ const GalleryPage = () => {
   const imagesPerPage = 24;
 
   const categories = ['All', 'Events', 'Collaborations', 'Conferences', 'Interviews', 'Product Launches', 'Team Photos'];
-const allImages = [
+  const allImages = [
     {
       id: 1,
-      src: "/images/50.png",
+      src: "/images/1.jpg",
       title: "Tech Innovations Showcase",
       category: "Events",
       date: "July 10, 2023",
       location: "New York, NY",
       attendees: "100+",
       description: "Showcasing the latest innovations in drone technology.",
-      tags: ["dev", "vamsi"]
+      tags: ["dev", "Pranay"]
     },
     {
       id: 2,
-      src: "/images/51.png",
+      src: "/images/2.jpg",
       title: "Global Partnerships Panel",
       category: "Events",
       date: "July 12, 2023",
       location: "London, UK",
       attendees: "120+",
       description: "Discussing strategic partnerships in the drone industry.",
-      tags: ["dev", "sandeep", "pranay"]
+      tags: ["dev"]
     },
     {
       id: 3,
-      src: "/images/52.png",
+      src: "/images/3.jpg",
       title: "Drone Education Summit",
       category: "Events",
       date: "July 15, 2023",
       location: "Berlin, Germany",
       attendees: "150+",
       description: "Gathering experts to discuss the future of drone education.",
-      tags: ["dev", "payal", "pallavi", "supriya", "sandeep"]
+      tags: ["dev", "payal", "pallavi", "supriya", "sandeep", "vamsi", "pranay"]
     },
-
+    {
+      id: 4,
+      src: "/images/4.jpg",
+      title: "Aerial Imaging Workshop",
+      category: "Events",
+      date: "July 18, 2023",
+      location: "Chicago, IL",
+      attendees: "85+",
+      description: "Practical hands-on experience in aerial image processing.",
+      tags: ["pranay", "dev", "sandeep"]
+    },
     {
       id: 5,
-      src: "/images/54.png",
+      src: "/images/5.jpg",
       title: "Drone Security and Safety Workshop",
       category: "Events",
       date: "July 20, 2023",
       location: "Sydney, Australia",
       attendees: "80+",
       description: "Focusing on safety protocols and security in drone operations.",
-      
+      tags: ["vamsi"]
     },
     {
       id: 6,
-      src: "/images/55.png",
+      src: "/images/6.jpg",
       title: "UAV Industry Trends",
       category: "Events",
       date: "July 22, 2023",
       location: "Virtual",
       attendees: "150+",
       description: "Analyzing the latest trends and innovations in the UAV industry.",
-     
+      tags: ["dev", "pranay"]
     },
-
+    {
+      id: 7,
+      src: "/images/7.jpg",
+      title: "Drone Photography Challenge",
+      category: "Events",
+      date: "July 25, 2023",
+      location: "Bangkok, Thailand",
+      attendees: "60+",
+      description: "Competition on drone-based creative photography.",
+      tags: ["dev", "pranay"]
+    },
     {
       id: 8,
-      src: "/images/57.png",
+      src: "/images/8.jpg",
       title: "Autonomous Drone Operations Seminar",
       category: "Events",
       date: "July 28, 2023",
       location: "Singapore",
       attendees: "120+",
       description: "Discussing the future of autonomous drone systems.",
-      tags: ["dev","pranay"]
+      tags: ["dev"]
     },
     {
       id: 9,
-      src: "/images/58.png",
+      src: "/images/9.jpg",
       title: "Drone Surveying and Mapping Workshop",
       category: "Events",
       date: "August 1, 2023",
@@ -94,7 +114,7 @@ const allImages = [
     },
     {
       id: 10,
-      src: "/images/59.png",
+      src: "/images/10.jpg",
       title: "Future of Aerial Imaging Conference",
       category: "Events",
       date: "August 5, 2023",
@@ -103,10 +123,20 @@ const allImages = [
       description: "A deep dive into the future of aerial imaging and its applications.",
       tags: ["dev"]
     },
-  
+    {
+      id: 11,
+      src: "/images/11.jpg",
+      title: "AgriTech Drone Solutions Meet",
+      category: "Events",
+      date: "August 8, 2023",
+      location: "Ahmedabad, India",
+      attendees: "110+",
+      description: "Innovative drone solutions for agriculture and spraying.",
+      tags: ["dev", "pranay"]
+    },
     {
       id: 12,
-      src: "/images/61.png",
+      src: "/images/12.jpg",
       title: "Drone Delivery Solutions Expo",
       category: "Events",
       date: "August 12, 2023",
@@ -117,29 +147,29 @@ const allImages = [
     },
     {
       id: 13,
-      src: "/images/62.png",
+      src: "/images/13.jpg",
       title: "Drone Industry Roundtable",
       category: "Events",
       date: "August 15, 2023",
       location: "Los Angeles, CA",
       attendees: "70+",
       description: "Industry leaders discuss the future of the drone market.",
-      tags: ["dev"]
+      tags: ["vamsi", "payal"]
     },
     {
       id: 14,
-      src: "/images/63.png",
+      src: "/images/14.jpg",
       title: "Geospatial Data and UAV Integration",
       category: "Events",
       date: "August 17, 2023",
       location: "Virtual",
       attendees: "130+",
       description: "Webinar on integrating UAVs with geospatial data for mapping.",
-      tags: ["vamsi"]
+      tags: ["vamsi", "dev"]
     },
     {
       id: 15,
-      src: "/images/64.png",
+      src: "/images/15.jpg",
       title: "Drone Technology Innovations Showcase",
       category: "Events",
       date: "August 20, 2023",
@@ -148,54 +178,108 @@ const allImages = [
       description: "A showcase of the latest innovations in drone technology.",
       tags: ["dev"]
     },
- 
-
+    {
+      id: 16,
+      src: "/images/16.jpg",
+      title: "Disaster Management with UAVs",
+      category: "Events",
+      date: "August 23, 2023",
+      location: "Chennai, India",
+      attendees: "140+",
+      description: "Utilizing UAVs in emergency response and disaster zones.",
+      tags: ["dev"]
+    },
+    {
+      id: 17,
+      src: "/images/17.jpg",
+      title: "Women in Drone Technology",
+      category: "Events",
+      date: "August 25, 2023",
+      location: "Pune, India",
+      attendees: "100+",
+      description: "Celebrating women professionals in the UAV industry.",
+      tags: ["dev", "pranay", "sandeep"]
+    },
     {
       id: 18,
-      src: "/images/67.png",
+      src: "/images/18.jpg",
       title: "Drones in Environmental Conservation Expo",
       category: "Events",
       date: "September 5, 2023",
       location: "Berlin, Germany",
       attendees: "80+",
       description: "Exploring the use of drones in environmental conservation efforts.",
-      tags: ["dev","pranay"]
+      tags: ["dev", "vamsi"]
     },
     {
       id: 19,
-      src: "/images/68.png",
+      src: "/images/19.jpg",
       title: "Autonomous Drone Systems Workshop",
       category: "Events",
       date: "September 10, 2023",
       location: "Paris, France",
       attendees: "60+",
       description: "Hands-on workshop on autonomous drone technologies.",
-      tags: ["dev"]
+      tags: ["vamsi"]
     },
-    {
-      id: 20,
-      src: "/images/69.png",
-      title: "Drone Pilot Training and Certification",
-      category: "Events",
-      date: "September 15, 2023",
-      location: "Toronto, Canada",
-      attendees: "40+",
-      description: "Certification program for aspiring drone pilots.",
-      tags: ["sandeep"]
-    },
+
     {
       id: 21,
-      src: "/images/70.png",
+      src: "/images/21.jpg",
       title: "UAV Innovations and Safety Conference",
       category: "Events",
       date: "September 20, 2023",
       location: "Sydney, Australia",
       attendees: "250+",
       description: "Focusing on UAV innovations and safety standards.",
-      tags: ["dev"]
+      tags: ["dev", "payal", "pallavi", "supriya", "sandeep", "vamsi", "pranay"]
     },
     {
       id: 22,
+      src: "/images/22.jpg",
+      title: "Drone Journalism and Media Session",
+      category: "Events",
+      date: "September 25, 2023",
+      location: "Mumbai, India",
+      attendees: "75+",
+      description: "Exploring the role of drones in journalism and broadcasting.",
+      tags: ["dev", "vamsi"]
+
+    },
+    {
+      id: 23,
+      src: "/images/23.jpg",
+      title: "AI Integration in Drone Systems",
+      category: "Events",
+      date: "September 28, 2023",
+      location: "Seoul, South Korea",
+      attendees: "180+",
+      description: "Leveraging AI to improve autonomous drone behavior.",
+      tags: ["dev", "pranay", "sandeep"]
+    },
+    {
+      id: 24,
+      src: "/images/24.jpg",
+      title: "Youth Drone Bootcamp",
+      category: "Events",
+      date: "October 2, 2023",
+      location: "Hyderabad, India",
+      attendees: "90+",
+      description: "Drone training and awareness for young enthusiasts.",
+      tags: ["dev", "pranay"]
+    },
+    {
+      id: 25,
+      src: "/images/25.jpg",
+      title: "Drone AI & Geospatial Data Forum",
+      category: "Events",
+      date: "October 5, 2023",
+      location: "Singapore",
+      attendees: "160+",
+      description: "Discussing convergence of AI and GIS in drone workflows.",
+      tags: ["dev", "vamsi", "sandeep", "pranay"]
+    }, {
+      id: 26,
       src: "/images/1.png",
       title: "DroneWorld Conference 2024 Opening Ceremony",
       category: "Collaborations",
@@ -206,7 +290,7 @@ const allImages = [
       tags: ["Teja", "Dev"]
     },
     {
-      id: 23,
+      id: 27,
       src: "/images/2.png",
       title: "AI Partnership Announcement",
       category: "Interviews",
@@ -217,17 +301,17 @@ const allImages = [
       tags: ["Dev"]
     },
     {
-      id: 24,
+      id: 28,
       src: "/images/3.png",
       title: "GIS Mapping Workshop Session",
       category: "Interviews",
       date: "January 28, 2024",
       location: "Austin, TX",
       attendees: "200+",
-      description: "Hands-on workshop demonstrating advanced GIS mapping techniques.",
+      description: "Hands-on workshop demonstrating advanced GIS mapping techniques."
     },
     {
-      id: 25,
+      id: 29,
       src: "/images/4.png",
       title: "Drone Technology Exhibition",
       category: "Interviews",
@@ -238,7 +322,7 @@ const allImages = [
       tags: ["Gosharpener"]
     },
     {
-      id: 26,
+      id: 30,
       src: "/images/5.png",
       title: "Industry Leaders Panel Discussion",
       category: "Interviews",
@@ -248,7 +332,7 @@ const allImages = [
       description: "Panel discussion with top executives from leading drone companies."
     },
     {
-      id: 27,
+      id: 31,
       src: "/images/6.png",
       title: "New Product Launch Event",
       category: "Interviews",
@@ -258,7 +342,7 @@ const allImages = [
       description: "Exclusive launch event for the latest drone technology innovations."
     },
     {
-      id: 28,
+      id: 32,
       src: "/images/7.png",
       title: "Team Building Retreat",
       category: "Team Photos",
@@ -269,7 +353,7 @@ const allImages = [
       tags: ["Dev", "Pushpak"]
     },
     {
-      id: 29,
+      id: 33,
       src: "/images/8.png",
       title: "University Partnership Signing",
       category: "Events",
@@ -280,7 +364,7 @@ const allImages = [
       tags: ["Vamsi", "Pushpak"]
     },
     {
-      id: 30,
+      id: 34,
       src: "/images/9.png",
       title: "Drone Safety Training Workshop",
       category: "Events",
@@ -291,7 +375,7 @@ const allImages = [
       tags: ["Dev", "Sandeep", "Ramesh"]
     },
     {
-      id: 31,
+      id: 35,
       src: "/images/10.png",
       title: "International Drone Summit",
       category: "Events",
@@ -302,7 +386,7 @@ const allImages = [
       tags: ["Dev"]
     },
     {
-      id: 32,
+      id: 36,
       src: "/images/11.png",
       title: "Startup Collaboration Meetup",
       category: "Collaborations",
@@ -313,17 +397,17 @@ const allImages = [
       tags: ["Dev", "Pranay"]
     },
     {
-      id: 33,
+      id: 37,
       src: "/images/12.png",
       title: "Annual Company Celebration",
       category: "Interviews",
       date: "August 20, 2023",
       location: "San Francisco, CA",
       attendees: "200+",
-      description: "Annual company celebration recognizing achievements and milestones.",
+      description: "Annual company celebration recognizing achievements and milestones."
     },
     {
-      id: 34,
+      id: 38,
       src: "/images/13.png",
       title: "Environmental Monitoring Conference",
       category: "Events",
@@ -334,7 +418,7 @@ const allImages = [
       tags: ["Dev", "Pallavi"]
     },
     {
-      id: 35,
+      id: 39,
       src: "/images/14.png",
       title: "Racing Drone Championship",
       category: "Collaborations",
@@ -345,7 +429,7 @@ const allImages = [
       tags: ["Dev", "Gowrav Reddy"]
     },
     {
-      id: 36,
+      id: 40,
       src: "/images/15.png",
       title: "AI Research Collaboration",
       category: "Team Photos",
@@ -356,7 +440,7 @@ const allImages = [
       tags: ["Dev"]
     },
     {
-      id: 37,
+      id: 41,
       src: "/images/16.png",
       title: "Precision Agriculture Workshop",
       category: "Interviews",
@@ -367,7 +451,7 @@ const allImages = [
       tags: ["Sakthivelan"]
     },
     {
-      id: 38,
+      id: 42,
       src: "/images/17.png",
       title: "Drone Delivery Demo Day",
       category: "Interviews",
@@ -378,7 +462,7 @@ const allImages = [
       tags: ["Dr. Nirranjan Kumar Gupta"]
     },
     {
-      id: 39,
+      id: 43,
       src: "/images/18.png",
       title: "Holiday Team Party",
       category: "Team Photos",
@@ -389,7 +473,7 @@ const allImages = [
       tags: ["Dr. Nirranjan Kumar Gupta", "Dev"]
     },
     {
-      id: 40,
+      id: 44,
       src: "/images/19.png",
       title: "Government Partnership Forum",
       category: "Events",
@@ -399,7 +483,7 @@ const allImages = [
       description: "Forum discussing government partnerships in drone technology."
     },
     {
-      id: 41,
+      id: 45,
       src: "/images/20.png",
       title: "Advanced Pilot Training",
       category: "Collaborations",
@@ -410,7 +494,7 @@ const allImages = [
       tags: ["Dev", "Ajitha Surabhi"]
     },
     {
-      id: 42,
+      id: 46,
       src: "/images/21.png",
       title: "Tech Innovation Showcase",
       category: "Events",
@@ -421,7 +505,7 @@ const allImages = [
       tags: ["Dev", "Payal", "vamsi"]
     },
     {
-      id: 43,
+      id: 47,
       src: "/images/22.png",
       title: "European Expansion Launch",
       category: "Conferences",
@@ -432,7 +516,7 @@ const allImages = [
       tags: ["Dev", "Rini Bansal"]
     },
     {
-      id: 44,
+      id: 48,
       src: "/images/23.png",
       title: "Mapping Technology Conference",
       category: "Interviews",
@@ -443,7 +527,7 @@ const allImages = [
       tags: ["Dev", "MGR"]
     },
     {
-      id: 45,
+      id: 49,
       src: "/images/25.png",
       title: "Company Milestone Celebration",
       category: "Interviews",
@@ -677,32 +761,32 @@ const allImages = [
 
   ];
 
-useEffect(() => {
-  let filtered = allImages;
+  useEffect(() => {
+    let filtered = allImages;
 
-  // Filter by category
-  if (selectedCategory !== 'All') {
-    filtered = filtered.filter(image => image.category === selectedCategory);
-  }
+    // Filter by category
+    if (selectedCategory !== 'All') {
+      filtered = filtered.filter(image => image.category === selectedCategory);
+    }
 
-  // Filter by search query (tags and other fields)
-  if (searchQuery) {
-    const lowerQuery = searchQuery.toLowerCase();
-    filtered = filtered.filter(image =>
-      image.title.toLowerCase().includes(lowerQuery) ||
-      image.description.toLowerCase().includes(lowerQuery) ||
-      image.location.toLowerCase().includes(lowerQuery) ||
-      (image.tags && image.tags.some(tag => tag.toLowerCase().includes(lowerQuery))) // Search through tags
-    );
-  }
+    // Filter by search query (tags and other fields)
+    if (searchQuery) {
+      const lowerQuery = searchQuery.toLowerCase();
+      filtered = filtered.filter(image =>
+        image.title.toLowerCase().includes(lowerQuery) ||
+        image.description.toLowerCase().includes(lowerQuery) ||
+        image.location.toLowerCase().includes(lowerQuery) ||
+        (image.tags && image.tags.some(tag => tag.toLowerCase().includes(lowerQuery))) // Search through tags
+      );
+    }
 
-  // Sort by ID (ascending order)
-  filtered.sort((a, b) => a.id - b.id);
+    // Sort by ID (ascending order)
+    filtered.sort((a, b) => a.id - b.id);
 
-  setFilteredImages(filtered);
-  setCurrentPage(1); // Reset to the first page after filtering
-}, [selectedCategory, searchQuery]); // Runs when category or search query changes
- // Runs when category or search query changes
+    setFilteredImages(filtered);
+    setCurrentPage(1); // Reset to the first page after filtering
+  }, [selectedCategory, searchQuery]); // Runs when category or search query changes
+  // Runs when category or search query changes
 
   const indexOfLastImage = currentPage * imagesPerPage;
   const indexOfFirstImage = indexOfLastImage - imagesPerPage;
