@@ -31,6 +31,31 @@ const VideosPage = () => {
 
 
   const allVideos: Video[] = [
+
+    {
+      id: 13,
+      title: "Dr. Pranay Kumar Speaks on RPTO Association",
+      description: "Dr. Pranay Kumar of India Drone TV discusses the RPTO Association and its vision for drone training and leadership in India’s rapidly evolving drone industry—a key highlight from Drone Expo 2025.",
+      videoUrl: "https://www.youtube.com/embed/ZxMxuGhwaRo",
+      category: "Events",
+      views: "not available",
+      duration: "not available",
+      rating: 4.5,
+      featured: true  // ✅ Add this line
+    },
+    {
+      id: 14,
+      title: "A Game‑Changing Initiative by Mr. Dev in Drone Technology",
+      description: "This latest segment on Drone TV highlights Mr. Dev’s pioneering drone initiative in mapping and commercial applications, showcasing how innovate leaders are shaping India’s Drone Expo 2025 narrative.",
+      videoUrl: "https://www.youtube.com/embed/MOT_ElaXvY0",
+      category: "Events",
+      views: "not available",
+      duration: "not available",
+      rating: 4.6,
+      featured: true  // ✅ Add this line
+    },
+
+
     {
       id: 3,
       title: "Dr. Pranay Kumar on Industry-Scale Drone Integration at Drone Expo 2025",
@@ -52,9 +77,9 @@ const VideosPage = () => {
       views: "8.9K",
       duration: "12:15",
       rating: 4.6,
-      featured: true
+     
     },
-   {
+    {
       id: 1,
       title: "Payal Highlights Innovation at Drone Expo 2025",
       description: "In this special feature, Payal — a passionate voice from the Drone Expo team — shares her take on the most innovative drone stalls at the event. From standout technologies to unique features, her enthusiasm captures the collaborative and futuristic spirit of Drone Expo 2025, where industry leaders, enthusiasts, and innovators converge.",
@@ -63,7 +88,7 @@ const VideosPage = () => {
       views: "7.8K",
       duration: "9:51",
       rating: 4.4,
-      featured: true
+      
     },
     {
       id: 6,
@@ -74,7 +99,7 @@ const VideosPage = () => {
       views: "9.7K",
       duration: "10:28",
       rating: 4.5,
-      featured: true
+    
     },
     {
       id: 5,
@@ -87,7 +112,7 @@ const VideosPage = () => {
       rating: 4.7
     },
 
- 
+
 
     {
       id: 7,
@@ -202,12 +227,14 @@ const VideosPage = () => {
   }, [selectedCategory, sortBy, searchQuery]);
 
   const featuredVideos = allVideos.filter(video => video.featured).slice(0, 3);
-  
 
-  const indexOfLastVideo = currentPage * videosPerPage;
-  const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
-  const currentVideos = filteredVideos.slice(indexOfFirstVideo, indexOfLastVideo);
-  const totalPages = Math.ceil(filteredVideos.length / videosPerPage);
+const allVideoIds = allVideos.filter(video => video.id >= 2 && video.id <= 12);
+const indexOfLastVideo = currentPage * videosPerPage;
+const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
+const currentVideos = allVideoIds.slice(indexOfFirstVideo, indexOfLastVideo);
+
+const totalPages = Math.ceil(allVideoIds.length / videosPerPage);
+
 
   const getCategoryColor = (category) => {
     switch (category) {
@@ -353,48 +380,50 @@ const VideosPage = () => {
             </div>
           </div>
 
-        {currentVideos.filter(video => ![1, 2, 3].includes(video.id)).length === 0 ? (
-  <div className="text-center py-16">
-    <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 max-w-md mx-auto">
-      <Search className="h-16 w-16 text-black/40 mx-auto mb-4" />
-      <h3 className="text-2xl font-bold text-black mb-2">No videos found</h3>
-      <p className="text-black/60">Try adjusting your filters or search terms</p>
-    </div>
-  </div>
-) : (
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-    {currentVideos
-      .filter(video => ![1, 2, 3].includes(video.id)) // Exclude featured videos
-      .map((video, index) => (
-        <div
-          key={video.id}
-          className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 border-2 border-black/20 hover:border-black/40"
-          style={{
-            animationDelay: `${index * 100}ms`,
-            animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`
-          }}
-        >
-          <div className="p-3">
-            <div className="relative overflow-hidden rounded-2xl">
-              <iframe
-                src={`https://www.youtube.com/embed/${getYoutubeId(video.videoUrl)}?rel=0&modestbranding=1`}
-                title={video.title}
-                className="w-full h-48 object-cover rounded-2xl"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
+          {currentVideos.filter(video => !video.featured).length === 0 ? (
+
+            <div className="text-center py-16">
+              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 max-w-md mx-auto">
+                <Search className="h-16 w-16 text-black/40 mx-auto mb-4" />
+                <h3 className="text-2xl font-bold text-black mb-2">No videos found</h3>
+                <p className="text-black/60">Try adjusting your filters or search terms</p>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {currentVideos
+                .filter(video => !video.featured) // Dynamically exclude featured
+                .map((video, index) => (
 
-          <div className="p-4">
-            <h3 className="text-lg font-bold text-black mb-2 group-hover:text-red-800 transition-colors duration-300 line-clamp-2">
-              {video.title}
-            </h3>
-            <p className="text-gray-600 mb-3 line-clamp-2 text-sm">{video.description}</p>
+                  <div
+                    key={video.id}
+                    className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105 border-2 border-black/20 hover:border-black/40"
+                    style={{
+                      animationDelay: `${index * 100}ms`,
+                      animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`
+                    }}
+                  >
+                    <div className="p-3">
+                      <div className="relative overflow-hidden rounded-2xl">
+                        <iframe
+                          src={`https://www.youtube.com/embed/${getYoutubeId(video.videoUrl)}?rel=0&modestbranding=1`}
+                          title={video.title}
+                          className="w-full h-48 object-cover rounded-2xl"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
+                      </div>
+                    </div>
 
-            {/* Optional stats section
+                    <div className="p-4">
+                      <h3 className="text-lg font-bold text-black mb-2 group-hover:text-red-800 transition-colors duration-300 line-clamp-2">
+                        {video.title}
+                      </h3>
+                      <p className="text-gray-600 mb-3 line-clamp-2 text-sm">{video.description}</p>
+
+                      {/* Optional stats section
             <div className="flex items-center justify-between text-xs">
               <div className="flex items-center gap-3 text-gray-500">
                 <div className="flex items-center gap-1">
@@ -411,11 +440,11 @@ const VideosPage = () => {
                 {new Date(video.date ?? "").toLocaleDateString()}
               </div>
             </div> */}
-          </div>
-        </div>
-      ))}
-  </div>
-)}
+                    </div>
+                  </div>
+                ))}
+            </div>
+          )}
 
 
           {/* Pagination */}
