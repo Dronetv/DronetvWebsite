@@ -178,55 +178,55 @@ const NewsPage = () => {
       </section>
 
       {/* Filter Section */}
-    <section className="py-2 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex flex-col lg:flex-row gap-1 items-center justify-between">
-      {/* Search Bar */}
-      <div className="relative flex-1 max-w-xs">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60" />
-        <input
-          type="text"
-          placeholder="Search articles..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-black/20 bg-yellow-200 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 font-medium text-sm transition-all duration-300"
-        />
-      </div>
+      <section className="py-2 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row gap-1 items-center justify-between">
+            {/* Search Bar */}
+            <div className="relative flex-1 max-w-xs">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60" />
+              <input
+                type="text"
+                placeholder="Search articles..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-black/20 bg-yellow-200 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-black placeholder-black/60 font-medium text-sm transition-all duration-300"
+              />
+            </div>
 
-      {/* Category Filter */}
-      <div className="relative">
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className="appearance-none bg-yellow-200 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 pr-8 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300 w-48"
-        >
-          {categories.map(category => (
-            <option key={category} value={category}>
-              {category === 'All' ? 'All Categories' : category}
-            </option>
-          ))}
-        </select>
-        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
-      </div>
-    </div>
+            {/* Category Filter */}
+            <div className="relative">
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="appearance-none bg-yellow-200 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 pr-8 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300 w-48"
+              >
+                {categories.map(category => (
+                  <option key={category} value={category}>
+                    {category === 'All' ? 'All Categories' : category}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
+            </div>
+          </div>
 
-    {/* Active Filters Display */}
-    <div className="mt-1 flex flex-wrap gap-1">
-      {selectedCategory !== 'All' && (
-        <span className="bg-black text-yellow-400 px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-          Category: {selectedCategory}
-          <button onClick={() => setSelectedCategory('All')} className="hover:text-white text-sm">×</button>
-        </span>
-      )}
-      {searchQuery && (
-        <span className="bg-black text-yellow-400 px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-          Search: "{searchQuery}"
-          <button onClick={() => setSearchQuery('')} className="hover:text-white text-sm">×</button>
-        </span>
-      )}
-    </div>
-  </div>
-</section>
+          {/* Active Filters Display */}
+          <div className="mt-1 flex flex-wrap gap-1">
+            {selectedCategory !== 'All' && (
+              <span className="bg-black text-yellow-400 px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                Category: {selectedCategory}
+                <button onClick={() => setSelectedCategory('All')} className="hover:text-white text-sm">×</button>
+              </span>
+            )}
+            {searchQuery && (
+              <span className="bg-black text-yellow-400 px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                Search: "{searchQuery}"
+                <button onClick={() => setSearchQuery('')} className="hover:text-white text-sm">×</button>
+              </span>
+            )}
+          </div>
+        </div>
+      </section>
 
 
 
@@ -413,8 +413,8 @@ const NewsPage = () => {
                         key={page}
                         onClick={() => setCurrentPage(page)}
                         className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${page === currentPage
-                            ? 'bg-black text-yellow-400 border-2 border-black'
-                            : 'bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black hover:bg-white hover:border-black/40'
+                          ? 'bg-black text-yellow-400 border-2 border-black'
+                          : 'bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black hover:bg-white hover:border-black/40'
                           }`}
                       >
                         {page}

@@ -113,86 +113,86 @@ const CompanyTemplate1: React.FC = () => {
 
   // You can also log here, but logging in useEffect after fetch will catch API mapping errors early
 
-return (
-  <div className="bg-white">
-    <Navigation
-      navigationLinks={company.navigationLinks}
-      companyLogo={company.companyLogo}
-      companyName={company.companyName}
-    />
-    <section id="home">
-      <HeroSection
-        headline={company.heroHeadline}
-        subheadline={company.heroSubheadline}
-        background={company.heroBackground || company.aboutImage}
-        primaryCTA={company.primaryCTA}
-        secondaryCTA={company.secondaryCTA}
+  return (
+    <div className="bg-white">
+      <Navigation
+        navigationLinks={company.navigationLinks}
         companyLogo={company.companyLogo}
+        companyName={company.companyName}
       />
-    </section>
-    <section id="about">
-      <AboutSection
-        aboutTitle={company.aboutTitle}
-        aboutDescription={company.aboutDescription}
-        aboutTeamExperience={company.aboutTeamExperience}
-        aboutImage={company.aboutImage}
-        aboutExperienceYears={company.aboutExperienceYears}
-        companyValues={company.companyValues}
-        videoEmbedUrl={company.videoEmbedUrl}
-      />
-    </section>
-    <section id="services">
-      <ServicesSection
-        servicesTitle={company.servicesTitle}
-        servicesDescription={company.servicesDescription}
-        services={company.services}
-      />
-    </section>
-    <section id="products">
-      <ProductsSection
-        productsTitle={company.productsTitle}
-        productCategories={company.productCategories}
-        products={company.products}
-      />
-    </section>
-    <section id="clients">
-      <ClientsSection
-        clientsTitle={company.clientsTitle}
-        clients={company.clients}
-        clientLogos={company.clientLogos}
-        testimonials={company.testimonials}
-      />
-    </section>
-    <section id="contact">
-      <ContactSection
-        contactTitle={company.contactTitle}
+      <section id="home">
+        <HeroSection
+          headline={company.heroHeadline}
+          subheadline={company.heroSubheadline}
+          background={company.heroBackground || company.aboutImage}
+          primaryCTA={company.primaryCTA}
+          secondaryCTA={company.secondaryCTA}
+          companyLogo={company.companyLogo}
+        />
+      </section>
+      <section id="about">
+        <AboutSection
+          aboutTitle={company.aboutTitle}
+          aboutDescription={company.aboutDescription}
+          aboutTeamExperience={company.aboutTeamExperience}
+          aboutImage={company.aboutImage}
+          aboutExperienceYears={company.aboutExperienceYears}
+          companyValues={company.companyValues}
+          videoEmbedUrl={company.videoEmbedUrl}
+        />
+      </section>
+      <section id="services">
+        <ServicesSection
+          servicesTitle={company.servicesTitle}
+          servicesDescription={company.servicesDescription}
+          services={company.services}
+        />
+      </section>
+      <section id="products">
+        <ProductsSection
+          productsTitle={company.productsTitle}
+          productCategories={company.productCategories}
+          products={company.products}
+        />
+      </section>
+      <section id="clients">
+        <ClientsSection
+          clientsTitle={company.clientsTitle}
+          clients={company.clients}
+          clientLogos={company.clientLogos}
+          testimonials={company.testimonials}
+        />
+      </section>
+      <section id="contact">
+        <ContactSection
+          contactTitle={company.contactTitle}
+          email={company.email}
+          phone={company.phone}
+          addressLine={company.addressLine}
+          city={company.city}
+          state={company.state}
+          pinCode={company.pinCode}
+          mapEmbedUrl={company.mapEmbedUrl}
+          contactFormText={company.contactFormText}
+          submitButtonText={company.submitButtonText}
+        />
+      </section>
+      <Footer
+        footerLogo={company.footerLogo}
+        footerText={company.footerText}
+        footerNavLinks={company.footerNavLinks}
+        socialLinks={company.socialLinks}
         email={company.email}
         phone={company.phone}
-        addressLine={company.addressLine}
-        city={company.city}
-        state={company.state}
-        pinCode={company.pinCode}
-        mapEmbedUrl={company.mapEmbedUrl}
-        contactFormText={company.contactFormText}
-        submitButtonText={company.submitButtonText}
+        address={company.addressLine || company.address}
+        services={company.services && Array.isArray(company.services)
+          ? company.services.map((s: any) => s.title || s.name || s.service || '')
+          : []
+        }
       />
-    </section>
-<Footer
-  footerLogo={company.footerLogo}
-  footerText={company.footerText}
-  footerNavLinks={company.footerNavLinks}
-  socialLinks={company.socialLinks}
-  email={company.email}
-  phone={company.phone}
-  address={company.addressLine || company.address}
-  services={company.services && Array.isArray(company.services)
-    ? company.services.map((s: any) => s.title || s.name || s.service || '')
-    : []
-  }
-/>
 
-  </div>
-);
+    </div>
+  );
 
 };
 

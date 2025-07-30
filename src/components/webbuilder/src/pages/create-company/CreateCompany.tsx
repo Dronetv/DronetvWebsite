@@ -34,7 +34,7 @@ interface Testimonial {
 interface FormData {
   companyName: string;
   contactName: string;
-category?: string;
+  category?: string;
   // Header & Hero
   companyLogo: string;
   navigationLinks: { label: string; link: string }[];
@@ -148,7 +148,7 @@ const CreateCompany: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     companyName: '',
     contactName: '',
-category: '',
+    category: '',
     // Header & Hero
     companyLogo: '',
     navigationLinks: [
@@ -296,99 +296,101 @@ category: '',
 
   const renderStepContent = () => {
     switch (currentStep) {
-case 1:
-  return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-black mb-4">Basic Company Details</h2>
+      case 1:
+        return (
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-black mb-4">Basic Company Details</h2>
+            <input
+              type="text"
+              required
+              placeholder="Your company name (used in URL)"
+              className="w-full px-4 py-2 border rounded-md"
+              value={formData.companyName}
+              onChange={e => {
+                const rawValue = e.target.value;
+                // Remove anything that's not A-Z, a-z, or 0-9
+                const cleaned = rawValue.replace(/[^a-zA-Z0-9]/g, '');
+                handleInputChange('companyName', cleaned);
+              }}
+            />
 
-     <input
-  type="text"
-  required
-  placeholder="Your company name (used in URL)"
-  className="w-full px-4 py-2 border rounded-md"
-  value={formData.companyName}
-  onChange={e =>
-    handleInputChange('companyName', e.target.value) // Now it preserves the exact text entered
-  }
-/>
 
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+              <input
+                type="text"
+                placeholder="John Doe"
+                className="w-full px-4 py-2 border rounded-md"
+                onChange={e => handleInputChange('contactName', e.target.value)}
+              />
+            </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
-        <input
-          type="text"
-          placeholder="John Doe"
-          className="w-full px-4 py-2 border rounded-md"
-          onChange={e => handleInputChange('contactName', e.target.value)}
-        />
-      </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <input
+                type="email"
+                placeholder="you@example.com"
+                className="w-full px-4 py-2 border rounded-md"
+                value={formData.email}
+                onChange={e => handleInputChange('email', e.target.value)}
+              />
+            </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-        <input
-          type="email"
-          placeholder="you@example.com"
-          className="w-full px-4 py-2 border rounded-md"
-          value={formData.email}
-          onChange={e => handleInputChange('email', e.target.value)}
-        />
-      </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+              <input
+                type="tel"
+                placeholder="+91 9876543210"
+                className="w-full px-4 py-2 border rounded-md"
+                value={formData.phone}
+                onChange={e => handleInputChange('phone', e.target.value)}
+              />
+            </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-        <input
-          type="tel"
-          placeholder="+91 9876543210"
-          className="w-full px-4 py-2 border rounded-md"
-          value={formData.phone}
-          onChange={e => handleInputChange('phone', e.target.value)}
-        />
-      </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Promotional Code</label>
+              <input
+                type="text"
+                placeholder="Enter Promotional Code"
+                className="w-full px-4 py-2 border rounded-md"
+                value={promoCode}
+                onChange={e => {
+                  setPromoCode(e.target.value);
+                  setPromoCodeError('');
+                }}
+              />
+              {promoCodeError && (
+                <div className="text-red-600 mt-1 text-sm">{promoCodeError}</div>
+              )}
+            </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Promotional Code</label>
-        <input
-          type="text"
-          placeholder="Enter Promotional Code"
-          className="w-full px-4 py-2 border rounded-md"
-          value={promoCode}
-          onChange={e => {
-            setPromoCode(e.target.value);
-            setPromoCodeError('');
-          }}
-        />
-        {promoCodeError && (
-          <div className="text-red-600 mt-1 text-sm">{promoCodeError}</div>
-        )}
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-        <select
-          className="w-full px-4 py-2 border rounded-md"
-          value={formData.category || ''}
-          onChange={e => handleInputChange('category', e.target.value)}
-        >
-          <option value="">Select a category</option>
-          <option value="Drone Manufacturer">Drone Manufacturer</option>
-          <option value="Drone Service Provider">Drone Service Provider</option>
-          <option value="Spare Parts Provider">Spare Parts Provider</option>
-          <option value="Startup">Startup</option>
-          <option value="AI Solutions">AI Solutions</option>
-          <option value="GIS Solutions">GIS Solutions</option>
-          <option value="Training Institute">Training Institute</option>
-          <option value="Drone Pilot">Drone Pilot</option>
-          <option value="Agritech">Agritech</option>
-          <option value="Aerial Cinematography">Aerial Cinematography</option>
-          <option value="Media & Events">Media & Events</option>
-          <option value="Software Developer">Software Developer</option>
-          <option value="Government">Government</option>
-          <option value="Academia/College">Academia/College</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-    </div>
-  );
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+              <select
+                className="w-full px-4 py-2 border rounded-md"
+                value={formData.category || ''}
+                onChange={e => handleInputChange('category', e.target.value)}
+              >
+                <option value="">Select a category</option>
+                <option value="Drone Manufacturer">Drone Manufacturer</option>
+                <option value="Drone Service Provider">Drone Service Provider</option>
+                <option value="Spare Parts Provider">Spare Parts Provider</option>
+                <option value="Startup">Startup</option>
+                <option value="AI Solutions">AI Solutions</option>
+                <option value="GIS Solutions">GIS Solutions</option>
+                <option value="Training Institute">Training Institute</option>
+                <option value="Drone Pilot">Drone Pilot</option>
+                <option value="Agritech">Agritech</option>
+                <option value="Aerial Cinematography">Aerial Cinematography</option>
+                <option value="Media & Events">Media & Events</option>
+                <option value="Software Developer">Software Developer</option>
+                <option value="Government">Government</option>
+                <option value="Academia/College">Academia/College</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+        );
 
       case 2: // Header & Hero
         return (
@@ -1748,10 +1750,15 @@ case 1:
               {currentStep < steps.length ? (
                 <button
                   onClick={() => {
-                    if (currentStep === 1 && promoCode !== 'MUMBAI2025') {
+                    const enteredCode = promoCode.trim().toLowerCase();
+                    const validCodes = ['mumbai2025', 'dronetv2025', 'dtea2025'];
+
+                    if (currentStep === 1 && !validCodes.includes(enteredCode)) {
                       setPromoCodeError('Please enter a valid promotional code to proceed.');
                       return;
                     }
+
+                    setPromoCodeError(''); // clear error if valid
                     setCurrentStep(Math.min(steps.length, currentStep + 1));
                   }}
                   className="flex items-center gap-2 px-6 py-3 bg-[#FF0000] text-white rounded-lg font-semibold hover:bg-[#FF0000]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
