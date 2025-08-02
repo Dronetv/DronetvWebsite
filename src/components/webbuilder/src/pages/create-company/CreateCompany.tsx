@@ -1751,7 +1751,7 @@ const CreateCompany: React.FC = () => {
                 <button
                   onClick={() => {
                     const enteredCode = promoCode.trim().toLowerCase();
-                    const validCodes = ['mumbai2025', 'dronetv2025', 'dtea2025'];
+                    const validCodes = ['mumbai2025', 'dronetv2025', 'dtea2025','pranay2025'];
 
                     if (currentStep === 1 && !validCodes.includes(enteredCode)) {
                       setPromoCodeError('Please enter a valid promotional code to proceed.');
