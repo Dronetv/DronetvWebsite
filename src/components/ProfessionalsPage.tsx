@@ -1,229 +1,176 @@
-import React, { useState, useEffect } from 'react';
-import { Search, Filter, ChevronDown, MapPin, Star, Mail, Phone, Award, Users, Calendar, Eye } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import {
+  Search,
+  Filter,
+  ChevronDown,
+  MapPin,
+  Star,
+  Mail,
+  Phone,
+  Award,
+  Users,
+  Calendar,
+  Eye,
+} from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const ProfessionalsPage = () => {
-  const [selectedProfession, setSelectedProfession] = useState('All');
-  const [selectedLocation, setSelectedLocation] = useState('All');
-  const [sortBy, setSortBy] = useState('name');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filteredProfessionals, setFilteredProfessionals] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+interface Professional {
+  id: string;
+  fullName: string;
+  profession: string;
+  location: string;
+  rating: number;
+  experience: string;
+  profilePicture: string;
+  bio: string;
+  specialties: string[];
+  projects: number;
+  featured: boolean;
+  selectedTemplate: string;
+}
+
+interface SortOption {
+  value: string;
+  label: string;
+}
+
+const ProfessionalsPage: React.FC = () => {
+  const [selectedProfession, setSelectedProfession] = useState<string>("All");
+  const [selectedLocation, setSelectedLocation] = useState<string>("All");
+  const [sortBy, setSortBy] = useState<string>("name");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [filteredProfessionals, setFilteredProfessionals] = useState<
+    Professional[]
+  >([]);
+  const [allProfessionals, setAllProfessionals] = useState<Professional[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const professionalsPerPage = 12;
   const navigate = useNavigate();
 
-  const professions = ['All', 'Drone Pilot', 'AI Specialist', 'GIS Expert', 'Software Engineer', 'Data Analyst', 'Flight Instructor', 'Photographer'];
-  const locations = ['All', 'San Francisco, CA', 'Austin, TX', 'Seattle, WA', 'Denver, CO', 'Miami, FL', 'Boston, MA', 'Chicago, IL', 'New York, NY'];
-  const sortOptions = [
-    { value: 'name', label: 'Sort by Name' },
-    { value: 'rating', label: 'Sort by Rating' },
-    { value: 'experience', label: 'Sort by Experience' },
-    { value: 'location', label: 'Sort by Location' }
+  const professions: string[] = [
+    "All",
+    "Drone Pilot",
+    "AI Specialist",
+    "GIS Expert",
+    "Software Engineer",
+    "Data Analyst",
+    "Flight Instructor",
+    "Photographer",
   ];
-
-  const allProfessionals = [
-  {
-  id: 1,
-  name: "Sumit Krishnan",
- 
-  profession: "DGCA-Certified RPAS Instructor",
-  location: "Hyderabad, Telangana",
-  rating: 4.8,
-  experience: "11+ years",
-  profilePicture: "/images/sumit.jpg",
-  bio: "DGCA-certified RPAS Instructor with a strong background in aerospace education, currently training drone pilots at India Drone Academy, Hyderabad.",
-  specialties: [
-    "Drone Pilot Training",
-    "Flight Mechanics & Stability",
-    "CFD & Wind Tunnel Testing"
-  ],
-  projects: 120,
-  featured: true
-},
-
-{
-  id: 2,
-  name: "Dev R",
- 
-  profession: "CEO, Founder",
-  location: "Singapore",
-  rating: 5.0,
-  experience: "17+ years",
-  profilePicture: "/images/dev.png",
-  bio: "CEO , a licensed UAV & VoIP systems provider in Singapore.",
-  specialties: ["UAV Services", "System Integration", "Telecom"],
-  projects: 85,
-  featured: true
-},
-
-    {
-      id: 3,
-      name: "Michael Rodriguez",
-      age: 35,
-      profession: "GIS Expert",
-      location: "Austin, TX",
-      rating: 4.7,
-      experience: "10 years",
-      profilePicture: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "GIS specialist with expertise in precision mapping and spatial data analysis.",
-      specialties: ["3D Mapping", "Spatial Analysis", "Environmental Monitoring"],
-      projects: 200,
-      featured: true
-    },
-    {
-      id: 4,
-      name: "Jennifer Park",
-      age: 28,
-      profession: "Software Engineer",
-      location: "Denver, CO",
-      rating: 4.6,
-      experience: "5 years",
-      profilePicture: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "Full-stack developer creating innovative drone control and monitoring applications.",
-      specialties: ["Web Development", "Mobile Apps", "IoT Integration"],
-      projects: 120
-    },
-    {
-      id: 5,
-      name: "Dr. James Liu",
-      age: 41,
-      profession: "Data Analyst",
-      location: "Boston, MA",
-      rating: 4.9,
-      experience: "12 years",
-      profilePicture: "https://images.pexels.com/photos/2379006/pexels-photo-2379006.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "Data scientist specializing in drone-collected data analysis and predictive modeling.",
-      specialties: ["Data Mining", "Predictive Analytics", "Statistical Modeling"],
-      projects: 180
-    },
-    {
-      id: 6,
-      name: "Emma Foster",
-      age: 26,
-      profession: "Flight Instructor",
-      location: "Miami, FL",
-      rating: 4.8,
-      experience: "4 years",
-      profilePicture: "https://images.pexels.com/photos/3184293/pexels-photo-3184293.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "Certified flight instructor providing comprehensive drone pilot training and certification.",
-      specialties: ["Pilot Training", "Safety Protocols", "Certification Prep"],
-      projects: 95
-    },
-    {
-      id: 7,
-      name: "Robert Kim",
-      age: 33,
-      profession: "Photographer",
-      location: "Chicago, IL",
-      rating: 4.7,
-      experience: "9 years",
-      profilePicture: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "Professional aerial photographer capturing stunning landscapes and commercial projects.",
-      specialties: ["Aerial Photography", "Real Estate", "Event Coverage"],
-      projects: 300
-    },
-    {
-      id: 8,
-      name: "Lisa Wang",
-      age: 30,
-      profession: "AI Specialist",
-      location: "San Francisco, CA",
-      rating: 4.8,
-      experience: "7 years",
-      profilePicture: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "AI engineer developing autonomous navigation systems for commercial drones.",
-      specialties: ["Autonomous Systems", "Path Planning", "Sensor Fusion"],
-      projects: 110
-    },
-    {
-      id: 9,
-      name: "David Thompson",
-      age: 38,
-      profession: "Drone Pilot",
-      location: "New York, NY",
-      rating: 4.6,
-      experience: "11 years",
-      profilePicture: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "Experienced commercial pilot specializing in urban drone operations and logistics.",
-      specialties: ["Urban Operations", "Logistics", "Emergency Response"],
-      projects: 220
-    },
-    {
-      id: 10,
-      name: "Maria Gonzalez",
-      age: 27,
-      profession: "GIS Expert",
-      location: "Austin, TX",
-      rating: 4.5,
-      experience: "5 years",
-      profilePicture: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "GIS analyst focused on agricultural applications and precision farming solutions.",
-      specialties: ["Agriculture", "Precision Farming", "Crop Monitoring"],
-      projects: 140
-    },
-    {
-      id: 11,
-      name: "Kevin Brown",
-      age: 34,
-      profession: "Software Engineer",
-      location: "Seattle, WA",
-      rating: 4.7,
-      experience: "8 years",
-      profilePicture: "https://images.pexels.com/photos/2379006/pexels-photo-2379006.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "Backend engineer building scalable drone fleet management and monitoring systems.",
-      specialties: ["Backend Development", "Cloud Architecture", "API Design"],
-      projects: 160
-    },
-    {
-      id: 12,
-      name: "Amanda Davis",
-      age: 31,
-      profession: "Data Analyst",
-      location: "Denver, CO",
-      rating: 4.8,
-      experience: "6 years",
-      profilePicture: "https://images.pexels.com/photos/3184293/pexels-photo-3184293.jpeg?auto=compress&cs=tinysrgb&w=400",
-      bio: "Data scientist creating insights from aerial survey data and environmental monitoring.",
-      specialties: ["Environmental Data", "Survey Analysis", "Visualization"],
-      projects: 125
-    }
+  const locations: string[] = [
+    "All",
+    "San Francisco, CA",
+    "Austin, TX",
+    "Seattle, WA",
+    "Denver, CO",
+    "Miami, FL",
+    "Boston, MA",
+    "Chicago, IL",
+    "New York, NY",
+  ];
+  const sortOptions: SortOption[] = [
+    { value: "name", label: "Sort by Name" },
+    { value: "rating", label: "Sort by Rating" },
+    { value: "experience", label: "Sort by Experience" },
+    { value: "location", label: "Sort by Location" },
   ];
 
   useEffect(() => {
+    const fetchProfessionals = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          "https://slvrjjextb.execute-api.ap-south-1.amazonaws.com/Portfolio-get"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch professionals");
+        }
+        const data = await response.json();
+
+        // Transform the API data to match our expected format
+        const transformedData: Professional[] = data.map((item: any) => ({
+          id: item.id,
+          fullName: item.fullName || "Unkown",
+          profession: item.profession || "Drone Pilot", // Default to Drone Pilot if not specified
+          location: item.location || "Unknown Location",
+          rating: parseFloat(item.rating) || 4.5, // Default rating if not provided
+          experience: item.experience || "5 years",
+          profilePicture:
+            item.profilePicture ||
+            "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80",
+          bio:
+            item.bio ||
+            "Professional in the drone industry with extensive experience.",
+          specialties: item.specialties
+            ? item.specialties.split(",")
+            : ["Aerial Photography", "Mapping"],
+          projects: parseInt(item.projects) || 50,
+          featured: item.featured === "true" || false,
+          selectedTemplate: item.selectedTemplate,
+        }));
+
+        setAllProfessionals(transformedData);
+        setFilteredProfessionals(transformedData);
+        setLoading(false);
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : "An unknown error occurred"
+        );
+        setLoading(false);
+      }
+    };
+
+    fetchProfessionals();
+  }, []);
+
+  useEffect(() => {
+    if (allProfessionals.length === 0) return;
+
     let filtered = allProfessionals;
 
     // Filter by profession
-    if (selectedProfession !== 'All') {
-      filtered = filtered.filter(professional => professional.profession === selectedProfession);
+    if (selectedProfession !== "All") {
+      filtered = filtered.filter(
+        (professional) => professional.profession === selectedProfession
+      );
     }
 
     // Filter by location
-    if (selectedLocation !== 'All') {
-      filtered = filtered.filter(professional => professional.location === selectedLocation);
+    if (selectedLocation !== "All") {
+      filtered = filtered.filter(
+        (professional) => professional.location === selectedLocation
+      );
     }
 
     // Filter by search query
     if (searchQuery) {
-      filtered = filtered.filter(professional =>
-        professional.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        professional.profession.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        professional.bio.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        professional.specialties.some(specialty =>
-          specialty.toLowerCase().includes(searchQuery.toLowerCase())
-        )
+      filtered = filtered.filter(
+        (professional) =>
+          professional.fullName
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          professional.profession
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          professional.bio.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          professional.specialties.some((specialty) =>
+            specialty.toLowerCase().includes(searchQuery.toLowerCase())
+          )
       );
     }
 
     // Sort professionals
     filtered.sort((a, b) => {
       switch (sortBy) {
-        case 'name':
-          return a.name.localeCompare(b.name);
-        case 'rating':
+        case "name":
+          return a.fullName.localeCompare(b.fullName);
+        case "rating":
           return b.rating - a.rating;
-        case 'experience':
+        case "experience":
           return parseInt(b.experience) - parseInt(a.experience);
-        case 'location':
+        case "location":
           return a.location.localeCompare(b.location);
         default:
           return 0;
@@ -232,39 +179,93 @@ const ProfessionalsPage = () => {
 
     setFilteredProfessionals(filtered);
     setCurrentPage(1);
-  }, [selectedProfession, selectedLocation, sortBy, searchQuery]);
+  }, [
+    selectedProfession,
+    selectedLocation,
+    sortBy,
+    searchQuery,
+    allProfessionals,
+  ]);
 
-  const featuredProfessionals = allProfessionals.filter(professional => professional.featured);
+  const featuredProfessionals = allProfessionals.filter(
+    (professional) => professional.featured
+  );
   const indexOfLastProfessional = currentPage * professionalsPerPage;
-  const indexOfFirstProfessional = indexOfLastProfessional - professionalsPerPage;
-  const currentProfessionals = filteredProfessionals.slice(indexOfFirstProfessional, indexOfLastProfessional);
-  const totalPages = Math.ceil(filteredProfessionals.length / professionalsPerPage);
+  const indexOfFirstProfessional =
+    indexOfLastProfessional - professionalsPerPage;
+  const currentProfessionals = filteredProfessionals.slice(
+    indexOfFirstProfessional,
+    indexOfLastProfessional
+  );
+  const totalPages = Math.ceil(
+    filteredProfessionals.length / professionalsPerPage
+  );
 
-  const getProfessionColor = (profession) => {
+  const getProfessionColor = (profession: string): string => {
     switch (profession) {
-      case 'Drone Pilot': return 'bg-black';
-      case 'AI Specialist': return 'bg-gray-900';
-      case 'GIS Expert': return 'bg-gray-800';
-      case 'Software Engineer': return 'bg-gray-700';
-      case 'Data Analyst': return 'bg-gray-600';
-      case 'Flight Instructor': return 'bg-black';
-      case 'Photographer': return 'bg-gray-900';
-      default: return 'bg-gray-800';
+      case "Drone Pilot":
+        return "bg-black";
+      case "AI Specialist":
+        return "bg-gray-900";
+      case "GIS Expert":
+        return "bg-gray-800";
+      case "Software Engineer":
+        return "bg-gray-700";
+      case "Data Analyst":
+        return "bg-gray-600";
+      case "Flight Instructor":
+        return "bg-black";
+      case "Photographer":
+        return "bg-gray-900";
+      default:
+        return "bg-gray-800";
     }
   };
 
-  const renderStars = (rating) => {
+  const renderStars = (rating: number): JSX.Element[] => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
-        className={`h-4 w-4 ${i < Math.floor(rating) ? 'text-yellow-500 fill-current' : 'text-gray-300'}`}
+        className={`h-4 w-4 ${
+          i < Math.floor(rating)
+            ? "text-yellow-500 fill-current"
+            : "text-gray-300"
+        }`}
       />
     ));
   };
 
-  const handleAddEventClick = () => {
-    navigate('/company'); // Navigate to the /add-event route
+  const handleAddEventClick = (): void => {
+    navigate("/company");
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-yellow-400 pt-16 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black mx-auto mb-4"></div>
+          <p className="text-black font-medium">Loading professionals...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-yellow-400 pt-16 flex items-center justify-center">
+        <div className="bg-[#f1ee8e] rounded-3xl p-8 max-w-md mx-auto text-center">
+          <div className="text-red-500 mb-4">Error: {error}</div>
+          <p className="text-black mb-4">Failed to load professionals data.</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="bg-black text-yellow-400 px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-all"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-yellow-400 pt-16">
@@ -272,15 +273,18 @@ const ProfessionalsPage = () => {
       <section className="py-3 bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-500 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-200/30 rounded-full animate-pulse blur-2xl"></div>
-          <div className="absolute bottom-10 right-10 w-40 h-40 bg-yellow-600/20 rounded-full animate-pulse blur-2xl" style={{ animationDelay: '2s' }}></div>
+          <div
+            className="absolute bottom-10 right-10 w-40 h-40 bg-yellow-600/20 rounded-full animate-pulse blur-2xl"
+            style={{ animationDelay: "2s" }}
+          ></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-2xl md:text-5xl font-black text-black mb-2 tracking-tight">
             Meet Our Professionals
-
           </h1>
-          <p className="text-xl text-black/80 max-w-2xl mx-auto mb-4">Meet the experts shaping the future of drone tech
+          <p className="text-xl text-black/80 max-w-2xl mx-auto mb-4">
+            Meet the experts shaping the future of drone tech
           </p>
           <div className="w-24 h-1 bg-black mx-auto rounded-full"></div>
         </div>
@@ -292,7 +296,6 @@ const ProfessionalsPage = () => {
             List your Profile
           </button>
         </div>
-
       </section>
 
       {/* Filter Section */}
@@ -311,9 +314,24 @@ const ProfessionalsPage = () => {
             </div>
             <div className="flex gap-3">
               {[
-                { value: selectedProfession, setValue: setSelectedProfession, options: professions, label: 'Professions' },
-                { value: selectedLocation, setValue: setSelectedLocation, options: locations, label: 'Locations' },
-                { value: sortBy, setValue: setSortBy, options: sortOptions, label: 'Sort Options' }
+                {
+                  value: selectedProfession,
+                  setValue: setSelectedProfession,
+                  options: professions,
+                  label: "Professions",
+                },
+                {
+                  value: selectedLocation,
+                  setValue: setSelectedLocation,
+                  options: locations,
+                  label: "Locations",
+                },
+                {
+                  value: sortBy,
+                  setValue: setSortBy,
+                  options: sortOptions,
+                  label: "Sort Options",
+                },
               ].map(({ value, setValue, options, label }, idx) => (
                 <div key={idx} className="relative">
                   <select
@@ -321,9 +339,14 @@ const ProfessionalsPage = () => {
                     onChange={(e) => setValue(e.target.value)}
                     className="appearance-none bg-yellow-200 backdrop-blur-sm border-2 border-black/20 rounded-lg px-3 py-2 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40"
                   >
-                    {options.map(option => (
-                      <option key={option.value || option} value={option.value || option}>
-                        {option === 'All' ? `All ${label}` : option.label || option}
+                    {options.map((option: any) => (
+                      <option
+                        key={option.value || option}
+                        value={option.value || option}
+                      >
+                        {option === "All"
+                          ? `All ${label}`
+                          : option.label || option}
                       </option>
                     ))}
                   </select>
@@ -333,12 +356,31 @@ const ProfessionalsPage = () => {
             </div>
           </div>
           <div className="mt-2 flex flex-wrap gap-2">
-            {['Profession', 'Location', 'Search'].map((filter, idx) => {
-              const value = filter === 'Profession' ? selectedProfession : filter === 'Location' ? selectedLocation : searchQuery;
-              const setter = filter === 'Profession' ? setSelectedProfession : filter === 'Location' ? setSelectedLocation : setSearchQuery;
-              return value !== 'All' && value ? (
-                <span key={idx} className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-                  {filter}: {value} <button onClick={() => setter('All')} className="hover:text-white transition-colors duration-200 text-sm">×</button>
+            {["Profession", "Location", "Search"].map((filter, idx) => {
+              const value =
+                filter === "Profession"
+                  ? selectedProfession
+                  : filter === "Location"
+                  ? selectedLocation
+                  : searchQuery;
+              const setter =
+                filter === "Profession"
+                  ? setSelectedProfession
+                  : filter === "Location"
+                  ? setSelectedLocation
+                  : setSearchQuery;
+              return value !== "All" && value ? (
+                <span
+                  key={idx}
+                  className="bg-black text-yellow-400 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1"
+                >
+                  {filter}: {value}{" "}
+                  <button
+                    onClick={() => setter("All")}
+                    className="hover:text-white transition-colors duration-200 text-sm"
+                  >
+                    ×
+                  </button>
                 </span>
               ) : null;
             })}
@@ -348,10 +390,7 @@ const ProfessionalsPage = () => {
 
 
 
-
-
-
-      {/* Featured Professionals Section */}
+{/* Featured Professionals Section
     <section className="py-4 bg-gradient-to-b from-yellow-400 to-yellow-300">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -370,7 +409,7 @@ const ProfessionalsPage = () => {
           }
         >
           <div className="p-8 text-center bg-[#f1ee8e]">
-            {/* Profile Picture */}
+            Profile Picture
             <div className="relative mb-6">
               <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 group-hover:border-yellow-500 transition-all duration-300">
                 <img
@@ -385,7 +424,7 @@ const ProfessionalsPage = () => {
               </div>
             </div>
 
-            {/* Professional Info */}
+            Professional Info
             <h3 className="text-xl font-bold text-black mb-1 group-hover:text-gray-800 transition-colors duration-300">
               {professional.name}
             </h3>
@@ -424,6 +463,7 @@ const ProfessionalsPage = () => {
     </div>
   </div>
 </section>
+ */}
 
 
       {/* All Professionals Grid Section */}
@@ -442,93 +482,128 @@ const ProfessionalsPage = () => {
             <div className="text-center py-16">
               <div className="bg-[#f1ee8e] backdrop-blur-sm rounded-3xl p-12 max-w-md mx-auto">
                 <Search className="h-16 w-16 text-black/40 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-black mb-2">No professionals found</h3>
-                <p className="text-black/60">Try adjusting your filters or search terms</p>
+                <h3 className="text-2xl font-bold text-black mb-2">
+                  No professionals found
+                </h3>
+                <p className="text-black/60">
+                  Try adjusting your filters or search terms
+                </p>
               </div>
             </div>
           ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-      {currentProfessionals.map((professional, index) => (
-        <div
-          key={professional.id}
-          className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
-          style={{
-            animationDelay: `${index * 100}ms`,
-            animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`
-          }}
-          onClick={() => navigate('/company/portfolio-template-2')} // Navigate on card click
-        >
-          <div className="p-6 text-center bg-[#f1ee8e]">
-            {/* Profile Picture */}
-            <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border-3 border-yellow-400 group-hover:border-yellow-500 transition-all duration-300 mb-4">
-              <img
-                src={professional.profilePicture}
-                alt={professional.name}
-                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {currentProfessionals.map((professional, index) => (
+                <div
+                  key={professional.id}
+                  className="group bg-[#f1ee8e] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:scale-105"
+                  style={{
+                    animationDelay: `${index * 100}ms`,
+                    animation: `fadeInUp 0.8s ease-out ${index * 100}ms both`,
+                  }}
+                  onClick={() => {
+                    // Ensure selectedTemplate exists and is valid
+                    const template = professional.selectedTemplate || "1"; // default to template-1
+                    const validTemplates = ["1", "2"]; // Add more if you have additional templates
+
+                    // Validate the template format
+                    const cleanTemplate = validTemplates.includes(
+                      template.toString()
+                    )
+                      ? template.toString()
+                      : "1";
+
+                    // Navigate to the portfolio page
+                    navigate(`/company/portfolio/template-${professional.selectedTemplate || '1'}/${professional.id}`)}}
+                >
+
+
+                  
+                  <div className="p-6 text-center bg-[#f1ee8e]">
+                    {/* Profile Picture */}
+                    <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border-3 border-yellow-400 group-hover:border-yellow-500 transition-all duration-300 mb-4">
+                      <img
+                        src={professional.profilePicture}
+                        alt={professional.fullName}
+                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src =
+                            "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80";
+                        }}
+                      />
+                    </div>
+
+                    {/* Professional Info */}
+                    <h3 className="text-lg font-bold text-black mb-1 group-hover:text-gray-800 transition-colors duration-300">
+                      {professional.fullName}
+                    </h3>
+
+                    <div
+                      className={`${getProfessionColor(
+                        professional.profession
+                      )} text-white px-2 py-1 rounded-full text-xs font-bold inline-block mb-3`}
+                    >
+                      {professional.profession}
+                    </div>
+
+                    <div className="flex items-center justify-center gap-1 text-gray-600 mb-2 text-sm">
+                      <MapPin className="h-3 w-3" />
+                      <span>{professional.location}</span>
+                    </div>
+
+                    <div className="flex items-center justify-center gap-1 mb-3">
+                      {renderStars(professional.rating)}
+                      <span className="ml-1 text-black font-semibold text-sm">
+                        {professional.rating}
+                      </span>
+                    </div>
+
+                    <p className="text-gray-600 mb-4 leading-relaxed text-sm line-clamp-2">
+                      {professional.bio}
+                    </p>
+
+                    <div className="grid grid-cols-2 gap-2 mb-4">
+                      <div className="text-center p-2 bg-yellow-300 rounded-lg">
+                        <div className="text-xs font-bold text-black">
+                          {professional.experience}
+                        </div>
+                        <div className="text-xs text-gray-600">Experience</div>
+                      </div>
+                      <div className="text-center p-2 bg-yellow-200 rounded-lg">
+                        <div className="text-xs font-bold text-yellow-700">
+                          {professional.projects}
+                        </div>
+                        <div className="text-xs text-yellow-600">Projects</div>
+                      </div>
+                    </div>
+
+                    <div className="mb-3">
+                      <div className="flex flex-wrap gap-1 justify-center">
+                        {professional.specialties
+                          .slice(0, 2)
+                          .map((specialty, idx) => (
+                            <span
+                              key={specialty}
+                              className="bg-yellow-200 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
+                            >
+                              {specialty}
+                            </span>
+                          ))}
+                        {professional.specialties.length > 2 && (
+                          <span className="bg-yellow-200 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
+                            +{professional.specialties.length - 2}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <button className="bg-black text-yellow-400 px-4 py-2 rounded-xl font-semibold text-sm hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto">
+                      <Mail className="h-3 w-3" />
+                      Contact
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
-
-            {/* Professional Info */}
-            <h3 className="text-lg font-bold text-black mb-1 group-hover:text-gray-800 transition-colors duration-300">
-              {professional.name}
-            </h3>
-            {/* <p className="text-gray-600 text-sm mb-2">Age: {professional.age}</p> */}
-
-            <div className={`${getProfessionColor(professional.profession)} text-white px-2 py-1 rounded-full text-xs font-bold inline-block mb-3`}>
-              {professional.profession}
-            </div>
-
-            <div className="flex items-center justify-center gap-1 text-gray-600 mb-2 text-sm">
-              <MapPin className="h-3 w-3" />
-              <span>{professional.location}</span>
-            </div>
-
-            <div className="flex items-center justify-center gap-1 mb-3">
-              {renderStars(professional.rating)}
-              <span className="ml-1 text-black font-semibold text-sm">{professional.rating}</span>
-            </div>
-
-            <p className="text-gray-600 mb-4 leading-relaxed text-sm line-clamp-2">
-              {professional.bio}
-            </p>
-
-            <div className="grid grid-cols-2 gap-2 mb-4">
-              <div className="text-center p-2 bg-yellow-300 rounded-lg">
-                <div className="text-xs font-bold text-black">{professional.experience}</div>
-                <div className="text-xs text-gray-600">Experience</div>
-              </div>
-              <div className="text-center p-2 bg-yellow-200 rounded-lg">
-                <div className="text-xs font-bold text-yellow-700">{professional.projects}</div>
-                <div className="text-xs text-yellow-600">Projects</div>
-              </div>
-            </div>
-
-            <div className="mb-3">
-              <div className="flex flex-wrap gap-1 justify-center">
-                {professional.specialties.slice(0, 2).map((specialty, idx) => (
-                  <span
-                    key={specialty}
-                    className="bg-yellow-200 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
-                  >
-                    {specialty}
-                  </span>
-                ))}
-                {professional.specialties.length > 2 && (
-                  <span className="bg-yellow-200 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
-                    +{professional.specialties.length - 2}
-                  </span>
-                )}
-              </div>
-            </div>
-
-            <button className="bg-black text-yellow-400 px-4 py-2 rounded-xl font-semibold text-sm hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto">
-              <Mail className="h-3 w-3" />
-              Contact
-            </button>
-          </div>
-        </div>
-      ))}
-    </div>
           )}
 
           {/* Pagination */}
@@ -536,7 +611,9 @@ const ProfessionalsPage = () => {
             <div className="flex justify-center mt-12">
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.max(prev - 1, 1))
+                  }
                   disabled={currentPage === 1}
                   className="px-4 py-2 rounded-xl bg-yellow-100/80 backdrop-blur-sm border-2 border-black/20 text-black font-medium hover:bg-yellow-200 hover:border-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
                 >
@@ -545,27 +622,42 @@ const ProfessionalsPage = () => {
 
                 {[...Array(totalPages)].map((_, index) => {
                   const page = index + 1;
-                  if (page === currentPage || page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)) {
+                  if (
+                    page === currentPage ||
+                    page === 1 ||
+                    page === totalPages ||
+                    (page >= currentPage - 1 && page <= currentPage + 1)
+                  ) {
                     return (
                       <button
                         key={page}
                         onClick={() => setCurrentPage(page)}
-                        className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${page === currentPage
-                          ? 'bg-black text-yellow-400 border-2 border-black'
-                          : 'bg-yellow-100/80 backdrop-blur-sm border-2 border-black/20 text-black hover:bg-yellow-200 hover:border-black/40'
-                          }`}
+                        className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
+                          page === currentPage
+                            ? "bg-black text-yellow-400 border-2 border-black"
+                            : "bg-yellow-100/80 backdrop-blur-sm border-2 border-black/20 text-black hover:bg-yellow-200 hover:border-black/40"
+                        }`}
                       >
                         {page}
                       </button>
                     );
-                  } else if (page === currentPage - 2 || page === currentPage + 2) {
-                    return <span key={page} className="px-2 text-black/60">...</span>;
+                  } else if (
+                    page === currentPage - 2 ||
+                    page === currentPage + 2
+                  ) {
+                    return (
+                      <span key={page} className="px-2 text-black/60">
+                        ...
+                      </span>
+                    );
                   }
                   return null;
                 })}
 
                 <button
-                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                  }
                   disabled={currentPage === totalPages}
                   className="px-4 py-2 rounded-xl bg-yellow-100/80 backdrop-blur-sm border-2 border-black/20 text-black font-medium hover:bg-yellow-200 hover:border-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
                 >
