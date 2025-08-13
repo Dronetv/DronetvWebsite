@@ -236,18 +236,20 @@
 //     </section>
 //   );
 // };
-
 import React from 'react';
 
-const Portfolio: React.FC = () => {
-  const galleryImages = [
-    '/images/1.png',
-    '/images/7.png',
-    '/images/11.png',
-    '/images/28.png',
-    '/images/36.png'
-  ];
+interface Project {
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+}
 
+interface PortfolioProps {
+  projects: Project[];
+}
+
+const Portfolio: React.FC<PortfolioProps> = ({ projects }) => {
   return (
     <section id="portfolio" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
@@ -258,13 +260,15 @@ const Portfolio: React.FC = () => {
           </h2>
           <div data-aos="fade-up" data-aos-delay="200" className="w-24 h-1 bg-[#FFD400] mx-auto mb-6"></div>
           <p data-aos="fade-up" data-aos-delay="400" className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            A visual showcase of our drone missions, inspection work, and creative aerial visuals.
+            {projects.length > 0 
+              ? "A collection of my recent projects and work."
+              : "No projects to display at the moment."}
           </p>
         </div>
 
-        {/* Gallery Grid */}
+        {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {galleryImages.map((src, index) => (
+          {projects.map((project, index) => (
             <div
               key={index}
               data-aos="fade-up"
@@ -272,10 +276,21 @@ const Portfolio: React.FC = () => {
               className="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500"
             >
               <img
-                src={src}
-                alt={`Gallery Image ${index + 1}`}
+                src={project.image}
+                alt={project.title}
                 className="w-full h-64 object-cover"
               />
+              <div className="p-4 bg-white dark:bg-gray-800">
+                <h3 className="text-xl font-semibold text-black dark:text-white">
+                  {project.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">
+                  {project.description}
+                </p>
+                <span className="inline-block mt-3 px-3 py-1 bg-[#FFD400] text-black rounded-full text-sm">
+                  {project.category}
+                </span>
+              </div>
             </div>
           ))}
         </div>

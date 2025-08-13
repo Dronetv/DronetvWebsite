@@ -11,28 +11,28 @@ const Preloader: React.FC = () => {
               <Zap size={32} className="text-white" />
             </div>
           </div>
-          <div className="absolute inset-0 w-24 h-24 border-t-4 border-[#FF0000] rounded-full animate-spin" style={{ animationDuration: '1s' }}></div>
+          <div
+            className="absolute inset-0 w-24 h-24 border-t-4 border-[#FF0000] rounded-full animate-spin"
+            style={{ animationDuration: '1s' }}
+          ></div>
         </div>
-        
+
         <div className="text-3xl font-bold text-black mb-4">
           Drone<span className="text-[#FF0000]">TV</span>
         </div>
-        
-        <div className="text-lg text-black/80 mb-6">
-          Loading Portfolio...
-        </div>
-        
+
+        <div className="text-lg text-black/80 mb-6">Loading Portfolio...</div>
+
         <div className="w-48 h-2 bg-black/20 rounded-full mx-auto overflow-hidden">
-          <div className="h-full bg-[#FF0000] rounded-full animate-pulse" style={{ width: '100%', animation: 'loading 2s ease-in-out' }}></div>
+          <div
+            className="h-full bg-[#FF0000] rounded-full animate-pulse"
+            style={{
+              width: '100%',
+              animation: 'loading 2s ease-in-out',
+            }}
+          ></div>
         </div>
       </div>
-      
-      <style jsx>{`
-        @keyframes loading {
-          0% { width: 0%; }
-          100% { width: 100%; }
-        }
-      `}</style>
     </div>
   );
 };

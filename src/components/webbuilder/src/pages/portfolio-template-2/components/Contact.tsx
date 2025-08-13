@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle, MessageCircle } from 'lucide-react';
 
 const Contact: React.FC = () => {
@@ -11,23 +11,46 @@ const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  };
+  }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
+    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
+    
     setIsSubmitting(false);
     setIsSubmitted(true);
     setFormData({ name: '', email: '', subject: '', message: '' });
-    setTimeout(() => setIsSubmitted(false), 3000);
-  };
+    
+    const timer = setTimeout(() => setIsSubmitted(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const contactInfo = [
+    {
+      icon: <Mail size={20} className="text-white" />,
+      title: "Email",
+      content: "bd@ipageums.com"
+    },
+    {
+      icon: <Phone size={20} className="text-white" />,
+      title: "Phone",
+      content: "+91 7799100040"
+    },
+    {
+      icon: <MapPin size={20} className="text-white" />,
+      title: "Locations",
+      content: "Hyderabad | Singapore | India"
+    }
+  ];
 
   return (
     <section id="contact" className="py-20 bg-[#FFD400]">
@@ -38,7 +61,7 @@ const Contact: React.FC = () => {
           </h2>
           <div data-aos="fade-up" data-aos-delay="200" className="w-24 h-1 bg-black mx-auto mb-6"></div>
           <p data-aos="fade-up" data-aos-delay="400" className="text-black/80 max-w-2xl mx-auto text-lg">
-            Whether it's aerial mapping, drone training, or media partnerships—we’re excited to collaborate with you. Reach out today!
+            Whether it's aerial mapping, drone training, or media partnerships—we're excited to collaborate with you. Reach out today!
           </p>
         </div>
 
@@ -61,42 +84,29 @@ const Contact: React.FC = () => {
                 <div className="bg-green-100 border border-green-400 rounded-2xl p-4 mb-6 flex items-center gap-3">
                   <CheckCircle className="text-green-600" size={20} />
                   <span className="text-green-800 font-medium">
-                    Message sent successfully! We’ll be in touch soon.
+                    Message sent successfully! We'll be in touch soon.
                   </span>
                 </div>
               )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="group relative">
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-6 py-4 bg-gray-50 border-2 border-gray-200 rounded-2xl focus:border-[#FF0000] focus:bg-white transition-all duration-300 text-black placeholder-transparent peer"
-                      placeholder="Your name"
-                    />
-                    <label className="absolute left-6 top-4 text-gray-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-[#FF0000] peer-valid:top-1 peer-valid:text-sm">
-                      Your Name *
-                    </label>
-                  </div>
-
-                  <div className="group relative">
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-6 py-4 bg-gray-50 border-2 border-gray-200 rounded-2xl focus:border-[#FF0000] focus:bg-white transition-all duration-300 text-black placeholder-transparent peer"
-                      placeholder="your@email.com"
-                    />
-                    <label className="absolute left-6 top-4 text-gray-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-[#FF0000] peer-valid:top-1 peer-valid:text-sm">
-                      Email Address *
-                    </label>
-                  </div>
+                  {['name', 'email'].map((field) => (
+                    <div key={field} className="group relative">
+                      <input
+                        type={field === 'email' ? 'email' : 'text'}
+                        name={field}
+                        value={formData[field as keyof typeof formData]}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-6 py-4 bg-gray-50 border-2 border-gray-200 rounded-2xl focus:border-[#FF0000] focus:bg-white transition-all duration-300 text-black placeholder-transparent peer"
+                        placeholder={field === 'email' ? 'your@email.com' : 'Your name'}
+                      />
+                      <label className="absolute left-6 top-4 text-gray-500 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-1 peer-focus:text-sm peer-focus:text-[#FF0000] peer-valid:top-1 peer-valid:text-sm">
+                        {field === 'email' ? 'Email Address *' : 'Your Name *'}
+                      </label>
+                    </div>
+                  ))}
                 </div>
 
                 <div className="group relative">
@@ -150,31 +160,17 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Updated Contact Info */}
+          {/* Optimized Contact Info */}
           <div data-aos="fade-up" data-aos-delay="800" className="grid md:grid-cols-3 gap-6 mt-12">
-            <div className="bg-black rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
-              <div className="w-12 h-12 bg-[#FF0000] rounded-full flex items-center justify-center mx-auto mb-4">
-                <Mail size={20} className="text-white" />
+            {contactInfo.map((info, index) => (
+              <div key={index} className="bg-black rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
+                <div className="w-12 h-12 bg-[#FF0000] rounded-full flex items-center justify-center mx-auto mb-4">
+                  {info.icon}
+                </div>
+                <h4 className="font-bold text-white mb-2">{info.title}</h4>
+                <p className="text-gray-400">{info.content}</p>
               </div>
-              <h4 className="font-bold text-white mb-2">Email</h4>
-              <p className="text-gray-400">bd@ipageums.com</p>
-            </div>
-
-            <div className="bg-black rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
-              <div className="w-12 h-12 bg-[#FF0000] rounded-full flex items-center justify-center mx-auto mb-4">
-                <Phone size={20} className="text-white" />
-              </div>
-              <h4 className="font-bold text-white mb-2">Phone</h4>
-              <p className="text-gray-400">+91 7799100040</p>
-            </div>
-
-            <div className="bg-black rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
-              <div className="w-12 h-12 bg-[#FF0000] rounded-full flex items-center justify-center mx-auto mb-4">
-                <MapPin size={20} className="text-white" />
-              </div>
-              <h4 className="font-bold text-white mb-2">Locations</h4>
-              <p className="text-gray-400">Hyderabad | Singapore | India</p>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -182,4 +178,4 @@ const Contact: React.FC = () => {
   );
 };
 
-export default Contact;
+export default React.memo(Contact);
