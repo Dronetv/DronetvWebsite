@@ -26,6 +26,7 @@ import GalleryPage from './components/GalleryPage';
 import GalleryGlimpse from './components/GalleryGlimpse';
 import SubApp from './components/webbuilder/src/App';
 import OurPartners from './components/Ourpartners';
+import GalleryPage1 from './components/GalleryPage1'
 
 const HomePage = () => (
   <>
@@ -58,7 +59,7 @@ const AppContent = () => {
         <Route path="/news" element={<NewsPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/partner" element={<PartnerPage />} />
-        <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />            
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />

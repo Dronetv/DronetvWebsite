@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Search, ChevronDown, X, ChevronLeft, ChevronRight, Download, Share2, Heart, Calendar, MapPin, Users } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Search, ChevronDown, X, ChevronLeft, ChevronRight, Download, Share2, Heart, Calendar, MapPin, Users, Plus, Upload, Tag } from 'lucide-react';
 
 const GalleryPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -9,11 +9,27 @@ const GalleryPage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
-  const imagesPerPage = 24;
+  const [showAddImageModal, setShowAddImageModal] = useState(false);
+  const isInitialLoad = useRef(true);
+  
+  // Form state
+  const [formData, setFormData] = useState({
+    title: '',
+    category: 'Events',
+    description: '',
+    tags: '',
+    location: '',
+    attendees: '',
+    image: null,
+    imagePreview: null
+  });
 
+  const imagesPerPage = 24;
   const categories = ['All', 'Events', 'Collaborations', 'Conferences', 'Interviews', 'Product Launches', 'Team Photos'];
-  const allImages = [
-    {
+  
+  // Default images - these are the initial images
+  const defaultImages = [
+     {
       id: 1,
       src: "/images/1.jpg",
       title: "Tech Innovations Showcase",
@@ -222,7 +238,6 @@ const GalleryPage = () => {
       description: "Hands-on workshop on autonomous drone technologies.",
       tags: ["vamsi"]
     },
-
     {
       id: 21,
       src: "/images/21.jpg",
@@ -244,7 +259,6 @@ const GalleryPage = () => {
       attendees: "75+",
       description: "Exploring the role of drones in journalism and broadcasting.",
       tags: ["dev", "vamsi"]
-
     },
     {
       id: 23,
@@ -537,232 +551,72 @@ const GalleryPage = () => {
       description: "Celebrating major company milestones and achievements.",
       tags: ["Rini Bansal"]
     },
-    //   {
-    //   "id": 25,
-    //   "src": "/images/28.png",
-    //   "title": "Event Title 25",
-    //   "category": "Team Photos",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "250+",
-    //   "description": "Description for event 25.",
-    //   "tags": ["Dev", "kamala","Purvik"]
-    // },
-    // {
-    //   "id": 26,
-    //   "src": "/images/29.png",
-    //   "title": "Event Title 26",
-    //   "category": "Team Photos",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "260+",
-    //   "description": "Description for event 26."
-
-    // },
-    // {
-    //   "id": 27,
-    //   "src": "/images/30.png",
-    //   "title": "Event Title 27",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "270+",
-    //   "description": "Description for event 27.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 28,
-    //   "src": "/images/31.png",
-    //   "title": "Event Title 28",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "280+",
-    //   "description": "Description for event 28.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 29,
-    //   "src": "/images/32.png",
-    //   "title": "Event Title 29",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "290+",
-    //   "description": "Description for event 29.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 30,
-    //   "src": "/images/33.png",
-    //   "title": "Event Title 30",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "300+",
-    //   "description": "Description for event 30.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 31,
-    //   "src": "/images/34.png",
-    //   "title": "Event Title 31",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "310+",
-    //   "description": "Description for event 31.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 32,
-    //   "src": "/images/35.png",
-    //   "title": "Event Title 32",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "320+",
-    //   "description": "Description for event 32.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 33,
-    //   "src": "/images/36.png",
-    //   "title": "Event Title 33",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "330+",
-    //   "description": "Description for event 33.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 34,
-    //   "src": "/images/37.png",
-    //   "title": "Event Title 34",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "340+",
-    //   "description": "Description for event 34.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 35,
-    //   "src": "/images/38.png",
-    //   "title": "Event Title 35",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "350+",
-    //   "description": "Description for event 35.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 36,
-    //   "src": "/images/39.png",
-    //   "title": "Event Title 36",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "360+",
-    //   "description": "Description for event 36.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 37,
-    //   "src": "/images/40.png",
-    //   "title": "Event Title 37",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "370+",
-    //   "description": "Description for event 37.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 38,
-    //   "src": "/images/41.png",
-    //   "title": "Event Title 38",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "380+",
-    //   "description": "Description for event 38.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 39,
-    //   "src": "/images/42.png",
-    //   "title": "Event Title 39",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "390+",
-    //   "description": "Description for event 39.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 40,
-    //   "src": "/images/43.png",
-    //   "title": "Event Title 40",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "400+",
-    //   "description": "Description for event 40.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 41,
-    //   "src": "/images/44.png",
-    //   "title": "Event Title 41",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "410+",
-    //   "description": "Description for event 41.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 42,
-    //   "src": "/images/45.png",
-    //   "title": "Event Title 42",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "420+",
-    //   "description": "Description for event 42.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 43,
-    //   "src": "/images/46.png",
-    //   "title": "Event Title 43",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "430+",
-    //   "description": "Description for event 43.",
-    //   "tags": ["Dev", "Team"]
-    // },
-    // {
-    //   "id": 44,
-    //   "src": "/images/47.png",
-    //   "title": "Event Title 44",
-    //   "category": "Events",
-    //   "date": "June 2025",
-    //   "location": "TBD",
-    //   "attendees": "440+",
-    //   "description": "Description for event 44.",
-    //   "tags": ["Dev", "Team"]
-    // },
-
-
   ];
 
+  const [allImages, setAllImages] = useState([]);
+
+  // localStorage management
+  const STORAGE_KEY = 'droneTV_gallery_images_v3';
+  
+  // Load images from localStorage on component mount
   useEffect(() => {
-    let filtered = allImages;
+    const loadImagesFromStorage = () => {
+      try {
+        const savedImages = localStorage.getItem(STORAGE_KEY);
+        
+        if (savedImages) {
+          const parsedImages = JSON.parse(savedImages);
+          
+          if (Array.isArray(parsedImages) && parsedImages.length > 0) {
+            // Use saved images if they exist
+            setAllImages(parsedImages);
+          } else {
+            // Invalid data, use default images
+            setAllImages(defaultImages);
+          }
+        } else {
+          // No saved data, use default images
+          setAllImages(defaultImages);
+        }
+      } catch (error) {
+        console.error('Error loading images from localStorage:', error);
+        // On error, fall back to default images
+        setAllImages(defaultImages);
+      }
+      
+      // Set initial load flag to false after loading
+      isInitialLoad.current = false;
+    };
+
+    loadImagesFromStorage();
+  }, []);
+
+  // Save images to localStorage whenever allImages changes (but not on initial load)
+  useEffect(() => {
+    if (!isInitialLoad.current && allImages.length > 0) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(allImages));
+        console.log('Images saved to localStorage:', allImages.length, 'images');
+      } catch (error) {
+        console.error('Error saving images to localStorage:', error);
+        alert('Unable to save images. Browser storage might be full.');
+      }
+    }
+  }, [allImages]);
+
+  // Get current date in readable format
+  const getCurrentDate = () => {
+    const now = new Date();
+    return now.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
+
+  // Filter and search logic
+  useEffect(() => {
+    let filtered = [...allImages]; // Create a copy to avoid mutations
 
     // Filter by category
     if (selectedCategory !== 'All') {
@@ -776,26 +630,25 @@ const GalleryPage = () => {
         image.title.toLowerCase().includes(lowerQuery) ||
         image.description.toLowerCase().includes(lowerQuery) ||
         image.location.toLowerCase().includes(lowerQuery) ||
-        (image.tags && image.tags.some(tag => tag.toLowerCase().includes(lowerQuery))) // Search through tags
+        (image.tags && image.tags.some(tag => tag.toLowerCase().includes(lowerQuery)))
       );
     }
 
-    // Sort by ID (ascending order)
-    filtered.sort((a, b) => a.id - b.id);
+    // Sort by ID (most recent first)
+    filtered.sort((a, b) => b.id - a.id);
 
     setFilteredImages(filtered);
-    setCurrentPage(1); // Reset to the first page after filtering
-  }, [selectedCategory, searchQuery]); // Runs when category or search query changes
-  // Runs when category or search query changes
+    setCurrentPage(1);
+  }, [selectedCategory, searchQuery, allImages]);
 
   const indexOfLastImage = currentPage * imagesPerPage;
   const indexOfFirstImage = indexOfLastImage - imagesPerPage;
   const currentImages = filteredImages.slice(indexOfFirstImage, indexOfLastImage);
   const totalPages = Math.ceil(filteredImages.length / imagesPerPage);
 
-  const openLightbox = (image, index) => {
+  const openLightbox = (image, globalIndex) => {
     setSelectedImage(image);
-    setLightboxIndex(index);
+    setLightboxIndex(globalIndex);
     setIsLiked(false);
   };
 
@@ -811,6 +664,103 @@ const GalleryPage = () => {
 
     setLightboxIndex(newIndex);
     setSelectedImage(filteredImages[newIndex]);
+  };
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // Check file size (limit to 10MB)
+      if (file.size > 10 * 1024 * 1024) {
+        alert('File size must be less than 10MB');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setFormData({
+          ...formData,
+          image: file,
+          imagePreview: e.target.result
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    
+    // Validate required fields
+    if (!formData.title.trim() || !formData.description.trim() || !formData.imagePreview) {
+      alert('Please fill in all required fields (Title, Description) and upload an image.');
+      return;
+    }
+
+    // Create tags array from comma-separated string
+    const tagsArray = formData.tags
+      .split(',')
+      .map(tag => tag.trim())
+      .filter(tag => tag !== '');
+
+    // Generate unique ID based on timestamp and random number
+    const newId = Date.now() + Math.floor(Math.random() * 1000);
+
+    // Create new image object
+    const newImage = {
+      id: newId,
+      src: formData.imagePreview,
+      title: formData.title.trim(),
+      category: formData.category,
+      date: getCurrentDate(),
+      location: formData.location.trim() || 'Location not specified',
+      attendees: formData.attendees.trim() || 'Not specified',
+      description: formData.description.trim(),
+      tags: tagsArray
+    };
+
+    // Add new image to the beginning of the array
+    setAllImages(prevImages => [newImage, ...prevImages]);
+
+    // Reset form
+    setFormData({
+      title: '',
+      category: 'Events',
+      description: '',
+      tags: '',
+      location: '',
+      attendees: '',
+      image: null,
+      imagePreview: null
+    });
+
+    // Close modal
+    setShowAddImageModal(false);
+
+    // Show success message
+    alert('Image added successfully!');
+  };
+
+  // Reset form when modal closes
+  const closeAddImageModal = () => {
+    setFormData({
+      title: '',
+      category: 'Events',
+      description: '',
+      tags: '',
+      location: '',
+      attendees: '',
+      image: null,
+      imagePreview: null
+    });
+    setShowAddImageModal(false);
   };
 
   return (
@@ -834,11 +784,11 @@ const GalleryPage = () => {
       </section>
 
       {/* Filter Section */}
-      <section className="py-2 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
+      <section className="py-3 sm:py-4 bg-yellow-400 sticky top-16 z-40 border-b border-black/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row gap-2 items-center justify-between">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-between">
             {/* Search Bar */}
-            <div className="relative flex-1 max-w-xs">
+            <div className="relative flex-1 max-w-xs w-full order-1 sm:order-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60" />
               <input
                 type="text"
@@ -849,76 +799,104 @@ const GalleryPage = () => {
               />
             </div>
 
-            {/* Category Filter */}
-            <div className="relative w-full lg:w-auto">
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full lg:w-auto appearance-none bg-yellow-200 backdrop-blur-sm border-2 border-black/20 rounded-xl px-3 py-2 pr-8 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300"
+            <div className="flex gap-2 sm:gap-3 items-center w-full sm:w-auto justify-between sm:justify-end order-2 sm:order-2">
+              {/* Add Image Button */}
+              <button
+                onClick={() => setShowAddImageModal(true)}
+                className="bg-black text-yellow-400 px-3 sm:px-4 py-2 rounded-xl font-medium hover:bg-black/90 transition-all duration-300 flex items-center gap-2 text-sm"
               >
-                {categories.map(category => (
-                  <option key={category} value={category}>
-                    {category === 'All' ? 'All Photos' : category}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
+                <Plus className="h-4 w-4" />
+                <span>Gallery</span>
+              </button>
+
+              {/* Category Filter */}
+              <div className="relative">
+                <select
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="appearance-none bg-yellow-200 backdrop-blur-sm border-2 border-black/20 rounded-xl px-3 py-2 pr-8 text-black font-medium focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 text-sm transition-all duration-300 min-w-[120px]"
+                >
+                  {categories.map(category => (
+                    <option key={category} value={category}>
+                      {category === 'All' ? 'All Photos' : category}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60 pointer-events-none" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Photo Grid Section */}
-      <section className="py-4 sm:py-6 bg-yellow-400 mt-4 sticky top-16 z-40 border-b border-black/10">
+      <section className="py-4 sm:py-6 bg-yellow-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {currentImages.length === 0 ? (
+          {/* Gallery Title */}
+          <div className="mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold text-black">Gallery ({filteredImages.length})</h2>
+          </div>
+
+          {filteredImages.length === 0 ? (
             <div className="text-center py-16">
-              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 max-w-md mx-auto">
-                <Search className="h-16 w-16 text-black/40 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-black mb-2">No photos found</h3>
-                <p className="text-black/60">Try adjusting your search or filter</p>
+              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 sm:p-12 max-w-md mx-auto">
+                <Search className="h-12 sm:h-16 w-12 sm:w-16 text-black/40 mx-auto mb-4" />
+                <h3 className="text-xl sm:text-2xl font-bold text-black mb-2">No photos found</h3>
+                <p className="text-black/60 text-sm sm:text-base">Try adjusting your search or filter</p>
               </div>
             </div>
           ) : (
             <>
-              {/* Masonry Grid Layout */}
-              <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-6 space-y-4 sm:space-y-6">
-                {currentImages.map((image, index) => (
-                  <div
-                    key={image.id}
-                    className="break-inside-avoid group cursor-pointer"
-                    onClick={() => openLightbox(image, index)}
-                    style={{
-                      animationDelay: `${index * 50}ms`,
-                      animation: `fadeInUp 0.6s ease-out ${index * 50}ms both`
-                    }}
-                  >
-                    <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
-                      <img
-                        src={image.src}
-                        alt={image.title}
-                        className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-110"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                      <div className="absolute top-3 right-3 bg-black/80 text-yellow-400 px-2 py-1 rounded-full text-xs font-bold opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        {image.category}
+              {/* Gallery Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                {currentImages.map((image, index) => {
+                  const globalIndex = indexOfFirstImage + index;
+                  
+                  return (
+                    <div
+                      key={image.id}
+                      className="group cursor-pointer"
+                      onClick={() => openLightbox(image, globalIndex)}
+                      style={{
+                        animationDelay: `${index * 50}ms`,
+                        animation: `fadeInUp 0.6s ease-out ${index * 50}ms both`
+                      }}
+                    >
+                      <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+                        <img
+                          src={image.src}
+                          alt={image.title}
+                          className="w-full h-48 sm:h-56 lg:h-64 object-cover transition-all duration-700 group-hover:scale-110"
+                          loading="lazy"
+                          onError={(e) => {
+                            e.target.src = 'https://via.placeholder.com/400x300?text=Image+Not+Found';
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                        <div className="absolute top-3 right-3 bg-black/80 text-yellow-400 px-2 py-1 rounded-full text-xs font-bold opacity-0 group-hover:opacity-100 transition-all duration-500">
+                          {image.category}
+                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 p-4">
+                          <h3 className="text-white font-semibold text-sm mb-1">{image.title}</h3>
+                          <p className="text-white/80 text-xs line-clamp-2">{image.description}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
-              {/* Pagination */}
+              {/* Pagination - Centered at bottom */}
               {totalPages > 1 && (
-                <div className="flex justify-center mt-12">
-                  <div className="flex items-center gap-2">
+                <div className="flex justify-center mt-8 sm:mt-12 pb-8">
+                  <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-center">
                     <button
                       onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                       disabled={currentPage === 1}
-                      className="px-4 py-2 rounded-xl bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black font-medium hover:bg-white hover:border-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                      className="px-3 sm:px-4 py-2 rounded-xl bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black font-medium hover:bg-white hover:border-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 text-sm"
                     >
-                      Previous
+                      <span className="hidden sm:inline">Previous</span>
+                      <ChevronLeft className="h-4 w-4 sm:hidden" />
                     </button>
 
                     {[...Array(totalPages)].map((_, index) => {
@@ -928,7 +906,7 @@ const GalleryPage = () => {
                           <button
                             key={page}
                             onClick={() => setCurrentPage(page)}
-                            className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${page === currentPage
+                            className={`px-3 sm:px-4 py-2 rounded-xl font-medium transition-all duration-300 text-sm ${page === currentPage
                               ? 'bg-black text-yellow-400 border-2 border-black'
                               : 'bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black hover:bg-white hover:border-black/40'
                               }`}
@@ -937,7 +915,7 @@ const GalleryPage = () => {
                           </button>
                         );
                       } else if (page === currentPage - 2 || page === currentPage + 2) {
-                        return <span key={page} className="px-2 text-black/60">...</span>;
+                        return <span key={page} className="px-1 sm:px-2 text-black/60 text-sm">...</span>;
                       }
                       return null;
                     })}
@@ -945,9 +923,10 @@ const GalleryPage = () => {
                     <button
                       onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                       disabled={currentPage === totalPages}
-                      className="px-4 py-2 rounded-xl bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black font-medium hover:bg-white hover:border-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                      className="px-3 sm:px-4 py-2 rounded-xl bg-white/80 backdrop-blur-sm border-2 border-black/20 text-black font-medium hover:bg-white hover:border-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 text-sm"
                     >
-                      Next
+                      <span className="hidden sm:inline">Next</span>
+                      <ChevronRight className="h-4 w-4 sm:hidden" />
                     </button>
                   </div>
                 </div>
@@ -957,16 +936,213 @@ const GalleryPage = () => {
         </div>
       </section>
 
+      {/* Add Image Modal */}
+      {showAddImageModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-black">Add New Image</h2>
+              <button
+                onClick={closeAddImageModal}
+                className="text-black/60 hover:text-black transition-colors"
+              >
+                <X className="h-5 sm:h-6 w-5 sm:w-6" />
+              </button>
+            </div>
+
+            <form onSubmit={handleFormSubmit} className="space-y-4 sm:space-y-6">
+              {/* Image Upload */}
+              <div>
+                <label className="block text-sm font-medium text-black mb-2">
+                  Upload Image *
+                </label>
+                <div className="border-2 border-dashed border-black/20 rounded-xl p-4 sm:p-6 text-center">
+                  {formData.imagePreview ? (
+                    <div className="relative">
+                      <img
+                        src={formData.imagePreview}
+                        alt="Preview"
+                        className="max-w-full max-h-32 sm:max-h-48 mx-auto rounded-lg"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setFormData({ ...formData, image: null, imagePreview: null })}
+                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+                      >
+                        <X className="h-3 sm:h-4 w-3 sm:w-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    <div>
+                      <Upload className="h-8 sm:h-12 w-8 sm:w-12 text-black/40 mx-auto mb-2 sm:mb-4" />
+                      <p className="text-black/60 mb-2 text-sm">Click to upload an image (Max 10MB)</p>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        className="hidden"
+                        id="imageUpload"
+                      />
+                      <label
+                        htmlFor="imageUpload"
+                        className="bg-yellow-400 text-black px-3 sm:px-4 py-2 rounded-lg cursor-pointer hover:bg-yellow-500 transition-colors text-sm"
+                      >
+                        Choose File
+                      </label>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Title */}
+              <div>
+                <label htmlFor="title" className="block text-sm font-medium text-black mb-2">
+                  Title *
+                </label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-black/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-sm"
+                  placeholder="Enter image title"
+                  required
+                />
+              </div>
+
+              {/* Category */}
+              <div>
+                <label htmlFor="category" className="block text-sm font-medium text-black mb-2">
+                  Category
+                </label>
+                <select
+                  id="category"
+                  name="category"
+                  value={formData.category}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-black/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-sm"
+                >
+                  {categories.filter(cat => cat !== 'All').map(category => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Date (Auto-generated) */}
+              <div>
+                <label className="block text-sm font-medium text-black mb-2">
+                  Date
+                </label>
+                <input
+                  type="text"
+                  value={getCurrentDate()}
+                  disabled
+                  className="w-full px-3 py-2 border border-black/20 rounded-lg bg-gray-100 text-black/60 text-sm"
+                />
+              </div>
+
+              {/* Description */}
+              <div>
+                <label htmlFor="description" className="block text-sm font-medium text-black mb-2">
+                  Description *
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  rows={3}
+                  className="w-full px-3 py-2 border border-black/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-sm"
+                  placeholder="Enter image description"
+                  required
+                />
+              </div>
+
+              {/* Location */}
+              <div>
+                <label htmlFor="location" className="block text-sm font-medium text-black mb-2">
+                  Location
+                </label>
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-black/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-sm"
+                  placeholder="Enter location"
+                />
+              </div>
+
+              {/* Attendees */}
+              <div>
+                <label htmlFor="attendees" className="block text-sm font-medium text-black mb-2">
+                  Attendees
+                </label>
+                <input
+                  type="text"
+                  id="attendees"
+                  name="attendees"
+                  value={formData.attendees}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-black/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-sm"
+                  placeholder="e.g., 100+, 50 people"
+                />
+              </div>
+
+              {/* Tags */}
+              <div>
+                <label htmlFor="tags" className="block text-sm font-medium text-black mb-2">
+                  Tags
+                </label>
+                <div className="relative">
+                  <Tag className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black/60" />
+                  <input
+                    type="text"
+                    id="tags"
+                    name="tags"
+                    value={formData.tags}
+                    onChange={handleInputChange}
+                    className="w-full pl-10 pr-3 py-2 border border-black/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-sm"
+                    placeholder="Enter tags separated by commas (e.g., tech, innovation, event)"
+                  />
+                </div>
+              </div>
+
+              {/* Submit Buttons */}
+              <div className="flex gap-3 sm:gap-4 justify-end">
+                <button
+                  type="button"
+                  onClick={closeAddImageModal}
+                  className="px-4 sm:px-6 py-2 border border-black/20 rounded-lg text-black hover:bg-gray-50 transition-colors text-sm"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 sm:px-6 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-500 transition-colors font-medium text-sm"
+                >
+                  Add Image
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* Lightbox Modal */}
       {selectedImage && (
-        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-2 sm:p-4">
           <div className="relative max-w-6xl w-full h-full flex items-center justify-center">
             {/* Close Button */}
             <button
               onClick={closeLightbox}
-              className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white rounded-full p-3 transition-all duration-300 z-10"
+              className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-white/20 hover:bg-white/30 text-white rounded-full p-2 sm:p-3 transition-all duration-300 z-10"
             >
-              <X className="h-6 w-6" />
+              <X className="h-5 sm:h-6 w-5 sm:w-6" />
             </button>
 
             {/* Navigation Buttons */}
@@ -974,15 +1150,15 @@ const GalleryPage = () => {
               <>
                 <button
                   onClick={() => navigateLightbox('prev')}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white rounded-full p-3 transition-all duration-300 z-10"
+                  className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white rounded-full p-2 sm:p-3 transition-all duration-300 z-10"
                 >
-                  <ChevronLeft className="h-6 w-6" />
+                  <ChevronLeft className="h-5 sm:h-6 w-5 sm:w-6" />
                 </button>
                 <button
                   onClick={() => navigateLightbox('next')}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white rounded-full p-3 transition-all duration-300 z-10"
+                  className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white rounded-full p-2 sm:p-3 transition-all duration-300 z-10"
                 >
-                  <ChevronRight className="h-6 w-6" />
+                  <ChevronRight className="h-5 sm:h-6 w-5 sm:w-6" />
                 </button>
               </>
             )}
@@ -992,46 +1168,58 @@ const GalleryPage = () => {
               <img
                 src={selectedImage.src}
                 alt={selectedImage.title}
-                className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
+                className="max-w-full max-h-[70vh] sm:max-h-[80vh] object-contain rounded-lg shadow-2xl"
               />
             </div>
 
             {/* Image Info Panel */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-3 sm:p-6">
               <div className="max-w-4xl mx-auto">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex flex-col gap-3 sm:gap-4">
                   <div className="flex-1">
-                    <h3 className="text-white text-xl font-bold mb-2">{selectedImage.title}</h3>
-                    <p className="text-white/80 mb-3">{selectedImage.description}</p>
-                    <div className="flex flex-wrap gap-4 text-white/70 text-sm">
+                    <h3 className="text-white text-lg sm:text-xl font-bold mb-1 sm:mb-2">{selectedImage.title}</h3>
+                    <p className="text-white/80 mb-2 sm:mb-3 text-sm sm:text-base">{selectedImage.description}</p>
+                    <div className="flex flex-wrap gap-2 sm:gap-4 text-white/70 text-xs sm:text-sm">
                       <div className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
+                        <Calendar className="h-3 sm:h-4 w-3 sm:w-4" />
                         {selectedImage.date}
                       </div>
                       <div className="flex items-center gap-1">
-                        <MapPin className="h-4 w-4" />
+                        <MapPin className="h-3 sm:h-4 w-3 sm:w-4" />
                         {selectedImage.location}
                       </div>
                       <div className="flex items-center gap-1">
-                        <Users className="h-4 w-4" />
+                        <Users className="h-3 sm:h-4 w-3 sm:w-4" />
                         {selectedImage.attendees}
                       </div>
                     </div>
+                    {selectedImage.tags && selectedImage.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-1 sm:gap-2 mt-2">
+                        {selectedImage.tags.map((tag, index) => (
+                          <span
+                            key={index}
+                            className="bg-yellow-400/20 text-yellow-400 px-2 py-1 rounded-full text-xs font-medium"
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 sm:gap-3 justify-center sm:justify-end">
                     <button
                       onClick={() => setIsLiked(!isLiked)}
-                      className={`p-3 rounded-full transition-all duration-300 ${isLiked ? 'bg-red-500 text-white' : 'bg-white/20 text-white hover:bg-white/30'
+                      className={`p-2 sm:p-3 rounded-full transition-all duration-300 ${isLiked ? 'bg-red-500 text-white' : 'bg-white/20 text-white hover:bg-white/30'
                         }`}
                     >
-                      <Heart className={`h-5 w-5 ${isLiked ? 'fill-current' : ''}`} />
+                      <Heart className={`h-4 sm:h-5 w-4 sm:w-5 ${isLiked ? 'fill-current' : ''}`} />
                     </button>
-                    <button className="p-3 rounded-full bg-white/20 text-white hover:bg-white/30 transition-all duration-300">
-                      <Share2 className="h-5 w-5" />
+                    <button className="p-2 sm:p-3 rounded-full bg-white/20 text-white hover:bg-white/30 transition-all duration-300">
+                      <Share2 className="h-4 sm:h-5 w-4 sm:w-5" />
                     </button>
-                    <button className="p-3 rounded-full bg-white/20 text-white hover:bg-white/30 transition-all duration-300">
-                      <Download className="h-5 w-5" />
+                    <button className="p-2 sm:p-3 rounded-full bg-white/20 text-white hover:bg-white/30 transition-all duration-300">
+                      <Download className="h-4 sm:h-5 w-4 sm:w-5" />
                     </button>
                   </div>
                 </div>
@@ -1039,12 +1227,25 @@ const GalleryPage = () => {
             </div>
 
             {/* Image Counter */}
-            <div className="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-medium">
+            <div className="absolute top-2 sm:top-4 left-2 sm:left-4 bg-black/50 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
               {lightboxIndex + 1} / {filteredImages.length}
             </div>
           </div>
         </div>
       )}
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 };
