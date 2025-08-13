@@ -14,7 +14,7 @@ const [formData, setFormData] = useState({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
- const handleInputChange = (e) => {
+ const handleInputChange = (e : React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement> ) => {
   const { name, value } = e.target;
   setFormData((prev) => ({
     ...prev,
@@ -51,7 +51,11 @@ const handleSubmit = async (e: React.FormEvent) => {
       alert("Failed to submit: " + result.error);
     }
   } catch (error) {
+    if( error instanceof Error) {
     alert("Network error: " + error.message);
+    } else {
+      alert("An unexpected error occurred.");
+    }
   } finally {
     setIsLoading(false);
   }
