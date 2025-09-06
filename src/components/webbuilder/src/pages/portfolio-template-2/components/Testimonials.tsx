@@ -3,57 +3,54 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { Star, Quote } from 'lucide-react';
 
-interface Testimonial {
-  id: string;
-  name: string;
-  position: string;
-  company?: string;
-  image?: string;
-  rating: number;
-  text: string;
-}
-
-interface TestimonialsProps {
-  apiResponse: {
-    testimonials: Array<{
-      M: {
-        name: { S: string };
-        rating: { N: string };
-        photo?: {
-          M: {
-            preview?: { NULL: boolean };
-            file?: { M: Record<string, unknown> };
-          };
-        };
-        role?: { S: string };
-        quote: { S: string };
-        company?: { S: string };
-      };
-    }>;
-    testimonials_0__photo?: string;
-    // Add other photo URLs if you have more testimonials
-  };
-}
-
-const Testimonials: React.FC<TestimonialsProps> = ({ apiResponse }) => {
-  // Transform the API response into a more usable format
-  const processTestimonials = (): Testimonial[] => {
-    return apiResponse.testimonials.map((testimonial, index) => {
-      const photoUrl = apiResponse[`testimonials_${index}__photo` as keyof typeof apiResponse];
-      
-      return {
-        id: `testimonial-${index}`,
-        name: testimonial.M.name.S || 'Anonymous',
-        position: testimonial.M.role?.S || 'Client',
-        company: testimonial.M.company?.S,
-        image: photoUrl as string || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        rating: parseInt(testimonial.M.rating.N) || 5,
-        text: testimonial.M.quote.S
-      };
-    });
-  };
-
-  const testimonials = processTestimonials();
+const Testimonials: React.FC = () => {
+  const testimonials = [
+    {
+      id: 1,
+      name: 'Jennifer Martinez',
+      position: 'Real Estate Developer',
+      company: 'Skyline Properties',
+      image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400',
+      rating: 5,
+      text: 'Marcus delivered absolutely stunning aerial photography for our luxury development. His attention to detail and creative vision exceeded all our expectations.'
+    },
+    {
+      id: 2,
+      name: 'Robert Chen',
+      position: 'Event Coordinator',
+      company: 'Premier Events',
+      image: 'https://images.pexels.com/photos/1310522/pexels-photo-1310522.jpeg?auto=compress&cs=tinysrgb&w=400',
+      rating: 5,
+      text: 'Professional, reliable, and incredibly talented. The aerial footage from our outdoor festival was breathtaking and really captured the energy of the event.'
+    },
+    {
+      id: 3,
+      name: 'Amanda Foster',
+      position: 'Marketing Director',
+      company: 'Coastal Tourism',
+      image: 'https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=400',
+      rating: 5,
+      text: 'The drone cinematography for our tourism campaign was exceptional. Marcus has a unique ability to showcase landscapes in the most compelling way.'
+    },
+    {
+      id: 4,
+      name: 'David Thompson',
+      position: 'Construction Manager',
+      company: 'BuildRight Construction',
+      image: 'https://images.pexels.com/photos/1212984/pexels-photo-1212984.jpeg?auto=compress&cs=tinysrgb&w=400',
+      rating: 5,
+      text: 'Outstanding time-lapse documentation of our construction project. The progress videos were invaluable for client presentations and project management.'
+    },
+    {
+      id: 5,
+      name: 'Sarah Williams',
+      position: 'Film Producer',
+      company: 'Indie Films Studio',
+      image: 'https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=400',
+      rating: 5,
+      text: 'Marcus brought our documentary to life with incredible aerial shots. His technical expertise and creative eye made all the difference in our final production.'
+    }
+  ];
 
   return (
     <section id="testimonials" className="py-20 bg-black">
@@ -68,87 +65,76 @@ const Testimonials: React.FC<TestimonialsProps> = ({ apiResponse }) => {
           </p>
         </div>
 
-        {testimonials.length > 0 ? (
-          <div data-aos="fade-up" data-aos-delay="600" className="relative">
-            <Swiper
-              modules={[Pagination, Autoplay]}
-              spaceBetween={30}
-              slidesPerView={1}
-              pagination={{ 
-                clickable: true,
-                bulletClass: 'swiper-pagination-bullet testimonial-bullet',
-                bulletActiveClass: 'swiper-pagination-bullet-active testimonial-bullet-active'
-              }}
-              autoplay={{ 
-                delay: 4000, 
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true
-              }}
-              breakpoints={{
-                640: { slidesPerView: 1 },
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 }
-              }}
-              className="testimonials-swiper-2 pb-16"
-            >
-              {testimonials.map((testimonial) => (
-                <SwiperSlide key={testimonial.id}>
-                  <div className="relative bg-gray-900 rounded-3xl p-8 h-full shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 border border-[#FFD400]/20">
-                    {/* Quote Icon */}
-                    <div className="absolute -top-4 left-8 w-8 h-8 bg-[#FF0000] rounded-full flex items-center justify-center">
-                      <Quote size={16} className="text-white" />
+        <div data-aos="fade-up" data-aos-delay="600" className="relative">
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
+            pagination={{ 
+              clickable: true,
+              bulletClass: 'swiper-pagination-bullet testimonial-bullet',
+              bulletActiveClass: 'swiper-pagination-bullet-active testimonial-bullet-active'
+            }}
+            autoplay={{ 
+              delay: 4000, 
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true
+            }}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 }
+            }}
+            className="testimonials-swiper-2 pb-16"
+          >
+            {testimonials.map((testimonial) => (
+              <SwiperSlide key={testimonial.id}>
+                <div className="relative bg-gray-900 rounded-3xl p-8 h-full shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 border border-[#FFD400]/20">
+                  {/* Quote Icon */}
+                  <div className="absolute -top-4 left-8 w-8 h-8 bg-[#FF0000] rounded-full flex items-center justify-center">
+                    <Quote size={16} className="text-white" />
+                  </div>
+                  
+                  {/* Rating */}
+                  <div className="flex items-center gap-1 mb-6 mt-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} size={16} className="text-[#FFD400] fill-current" />
+                    ))}
+                  </div>
+                  
+                  {/* Testimonial Text */}
+                  <p className="text-gray-300 mb-8 italic leading-relaxed text-lg">
+                    "{testimonial.text}"
+                  </p>
+                  
+                  {/* Client Info */}
+                  <div className="flex items-center gap-4 mt-auto pt-6 border-t border-gray-800">
+                    <div className="relative">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name}
+                        className="w-14 h-14 rounded-full object-cover border-2 border-[#FFD400]"
+                      />
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#FFD400]/20 to-[#FF0000]/20"></div>
                     </div>
                     
-                    {/* Rating */}
-                    <div className="flex items-center gap-1 mb-6 mt-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} size={16} className="text-[#FFD400] fill-current" />
-                      ))}
-                    </div>
-                    
-                    {/* Testimonial Text */}
-                    <p className="text-gray-300 mb-8 italic leading-relaxed text-lg">
-                      "{testimonial.text}"
-                    </p>
-                    
-                    {/* Client Info */}
-                    <div className="flex items-center gap-4 mt-auto pt-6 border-t border-gray-800">
-                      <div className="relative">
-                        <img 
-                          src={testimonial.image} 
-                          alt={testimonial.name}
-                          className="w-14 h-14 rounded-full object-cover border-2 border-[#FFD400]"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
-                          }}
-                        />
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#FFD400]/20 to-[#FF0000]/20"></div>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-bold text-white text-lg">
-                          {testimonial.name}
-                        </h4>
-                        <p className="text-[#FFD400] text-sm font-medium">
-                          {testimonial.position}
-                        </p>
-                        {testimonial.company && (
-                          <p className="text-gray-400 text-xs">
-                            {testimonial.company}
-                          </p>
-                        )}
-                      </div>
+                    <div>
+                      <h4 className="font-bold text-white text-lg">
+                        {testimonial.name}
+                      </h4>
+                      <p className="text-[#FFD400] text-sm font-medium">
+                        {testimonial.position}
+                      </p>
+                      <p className="text-gray-400 text-xs">
+                        {testimonial.company}
+                      </p>
                     </div>
                   </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <p className="text-gray-400">No testimonials available at the moment.</p>
-          </div>
-        )}
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
         {/* Call to Action */}
         <div data-aos="fade-up" data-aos-delay="800" className="text-center mt-16">
@@ -171,7 +157,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ apiResponse }) => {
         </div>
       </div>
 
-      <style>{`
+      <style jsx>{`
         .testimonial-bullet {
           background: #FFD400 !important;
           opacity: 0.5 !important;
