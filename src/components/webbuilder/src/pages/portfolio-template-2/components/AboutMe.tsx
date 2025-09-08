@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Award } from 'lucide-react';
+import { MapPin, Award } from 'lucide-react';
 
 interface ContactInfo {
   type: 'email' | 'phone' | 'location';
@@ -49,16 +49,6 @@ const AboutMe: React.FC<AboutMeProps> = ({
   // Build contact info from API data if not provided
   const defaultContactInfo: ContactInfo[] = [
     {
-      type: 'email',
-      value: email,
-      label: 'Email'
-    },
-    {
-      type: 'phone',
-      value: phone,
-      label: 'WhatsApp'
-    },
-    {
       type: 'location',
       value: location,
       label: 'Location'
@@ -70,8 +60,6 @@ const AboutMe: React.FC<AboutMeProps> = ({
   const finalProfileImage = profileImage;
 
   const iconMap = {
-    email: <Mail size={20} className="text-white" />,
-    phone: <Phone size={20} className="text-white" />,
     location: <MapPin size={20} className="text-white" />
   };
 

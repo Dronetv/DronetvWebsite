@@ -48,9 +48,9 @@ const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode }) => 
           {/* Logo */}
           <div className="text-2xl font-bold">
             <span className={isScrolled ? 'text-[#FFD400]' : 'text-black dark:text-white'}>
-              Drone
+              DEV
             </span>
-            <span className="text-[#FF0000]">TV</span>
+            <span className="text-[#FF0000]">R</span>
           </div>
 
           {/* Desktop Navigation */}

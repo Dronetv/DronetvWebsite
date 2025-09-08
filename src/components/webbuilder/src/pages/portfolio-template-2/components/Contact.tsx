@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle, MessageCircle } from 'lucide-react';
+import { MapPin, Send, CheckCircle, MessageCircle } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -35,16 +35,6 @@ const Contact: React.FC = () => {
   }, []);
 
   const contactInfo = [
-    {
-      icon: <Mail size={20} className="text-white" />,
-      title: "Email",
-      content: "bd@ipageums.com"
-    },
-    {
-      icon: <Phone size={20} className="text-white" />,
-      title: "Phone",
-      content: "+91 7799100040"
-    },
     {
       icon: <MapPin size={20} className="text-white" />,
       title: "Locations",
