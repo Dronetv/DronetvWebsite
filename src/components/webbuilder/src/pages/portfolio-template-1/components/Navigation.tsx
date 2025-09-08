@@ -46,7 +46,7 @@ const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode }) => 
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <div className="text-2xl font-bold text-black dark:text-white">
-            Drone<span className="text-[#FF0000]">TV</span>
+            Sumit <span className="text-[#FF0000]">Krishnan</span>
           </div>
 
           {/* Desktop Navigation */}

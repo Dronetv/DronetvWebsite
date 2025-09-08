@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram, Linkedin, Youtube, Twitter, Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
+import { Instagram, Linkedin, Youtube, Twitter, MapPin, ArrowUp } from 'lucide-react';
 
 interface SocialLinks {
   whatsapp?: string;
@@ -21,8 +21,6 @@ interface FooterProps {
   footerLogo?: string;
   footerText?: string;
   socialLinks?: SocialLinks;
-  email?: string;
-  phone?: string;
   location?: string;
   quickLinks?: QuickLink[];
   services?: Array<{ title: string; description?: string }>;
@@ -37,8 +35,6 @@ const Footer: React.FC<FooterProps> = ({
   footerLogo,
   footerText = '© 2025 DroneTV | Built with by IPAGEUM Services / Drone TV Team',
   socialLinks = {},
-  email = "bd@ipageums.com",
-  phone = "+65 9006 2901",
   location = "Singapore & Hyderabad, India",
   quickLinks = [
     { name: 'About', href: '#about' },
@@ -147,9 +143,7 @@ const Footer: React.FC<FooterProps> = ({
         
         {/* Contact Info */}
         <div className="bg-gray-900 rounded-2xl p-8 mb-12">
-          <div className="grid md:grid-cols-3 gap-8">
-            <ContactItem icon={<Mail size={24} style={{ color: accentColor }} />} title="Email" value={email} link={`mailto:${email}`} />
-            <ContactItem icon={<Phone size={24} style={{ color: accentColor }} />} title="Phone" value={phone} link={`tel:${phone.replace(/\D/g, '')}`} />
+          <div className="grid md:grid-cols-1 gap-8">
             <ContactItem icon={<MapPin size={24} style={{ color: accentColor }} />} title="Location" value={location} />
           </div>
         </div>
